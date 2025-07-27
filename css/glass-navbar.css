@@ -204,9 +204,9 @@ body.dark-mode .dark-mode-toggle:hover, body.dark-mode .dark-mode-toggle:focus {
   box-shadow: 0 2px 12px rgba(21,101,192,0.25);
 }
 .dropdown {
-  z-index: 2000;
+  z-index: 1000;
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 12px);
   left: 0;
   min-width: 180px;
   background: rgba(255,255,255,0.95);
@@ -222,6 +222,33 @@ body.dark-mode .dark-mode-toggle:hover, body.dark-mode .dark-mode-toggle:focus {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0,79,148,0.1);
+  /* 确保不会影响页面滚动和动画 */
+  will-change: opacity, visibility, transform;
+}
+
+/* 收缩状态下的下拉菜单位置调整 - 保持视觉一致性 */
+.glass-navbar.shrink .dropdown {
+  top: calc(100% + 8px);
+}
+
+/* 响应式优化 - 移动端下拉菜单位置 */
+@media (max-width: 768px) {
+  .dropdown {
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    min-width: 160px;
+  }
+  
+  .glass-navbar.shrink .dropdown {
+    top: calc(100% + 6px);
+  }
+  
+  .nav-list > li:hover .dropdown,
+  .nav-list > li:focus-within .dropdown,
+  .nav-list > li .dropdown:focus {
+    transform: translateX(-50%) translateY(0);
+  }
 }
 body.dark-mode .dropdown {
   background: rgba(24,25,26,0.95);
