@@ -159,14 +159,42 @@ function initDarkMode() {
 
   const savedMode = localStorage.getItem('darkMode') === '1';
   updateDarkMode(savedMode);
+  
+  // 返回updateDarkMode函数，供外部调用
+  return updateDarkMode;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  // 全局暗色模式更新函数
+  let globalDarkModeUpdater = null;
+  
+  // 早期应用暗色模式到body，避免页面闪烁
+  const savedMode = localStorage.getItem('darkMode') === '1';
+  document.body.classList.toggle('dark-mode', savedMode);
+  
   loadComponent('navbar-container', '/components/navbar.html', function() {
     initNavbar();
     initScrollNavbar();
-    initDarkMode();
+    globalDarkModeUpdater = initDarkMode();
   });
   
-  loadComponent('footer', '/components/footer.html');
+  loadComponent('footer', '/components/footer.html', function() {
+    // Footer加载完成后，如果已经有暗色模式更新函数，重新应用
+    if (globalDarkModeUpdater) {
+      const isDark = document.body.classList.contains('dark-mode');
+      globalDarkModeUpdater(isDark);
+    } else {
+      // 如果navbar还没加载完成，直接应用暗色模式设置到footer图标
+      const isDark = localStorage.getItem('darkMode') === '1';
+      document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
+        img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
+      });
+      document.querySelectorAll('.footer-bsky-icon').forEach(img => {
+        img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
+      });
+      document.querySelectorAll('.footer-igem-icon').forEach(img => {
+        img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
+      });
+    }
+  });
 });
