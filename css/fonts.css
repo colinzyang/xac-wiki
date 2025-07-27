@@ -1,0 +1,68 @@
+/* Source Sans Pro - 推荐用于科学和学术网站的现代字体 */
+
+/* Regular (400) */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Regular.woff2') format('woff2'),
+       url('../assets/fonts/SourceSansPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Medium (500) - 用于导航栏和重要文本 */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Medium.woff2') format('woff2'),
+       url('../assets/fonts/SourceSansPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* SemiBold (600) - 用于标题 */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-SemiBold.woff2') format('woff2'),
+       url('../assets/fonts/SourceSansPro-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold (700) - 用于强调 */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Bold.woff2') format('woff2'),
+       url('../assets/fonts/SourceSansPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Light (300) - 用于副标题和描述文本 */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Light.woff2') format('woff2'),
+       url('../assets/fonts/SourceSansPro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 备选字体配置 - 英文网站字体优先级 */
+:root {
+  --font-primary: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                  'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 
+               'Courier New', monospace;
+  
+  /* 团队主题色系 */
+  --color-primary: #004F94;
+  --color-primary-light: #1565C0;
+  --color-primary-dark: #003366;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-text-dark: #333333;
+  --color-text-light: #666666;
+}
