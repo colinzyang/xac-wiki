@@ -105,6 +105,28 @@ body.dark-mode .hero-logo {
   margin-top: 32px;
 }
 
+/* vanSchneider Style Grid System - Prevent Overlap */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  padding: 0;
+  margin-top: 48px;
+  grid-auto-rows: minmax(280px, auto);  /* Consistent row height */
+  align-items: start;                    /* Prevent stretching */
+}
+
+/* Additional spacing between sections */
+.team-section + .team-section {
+  margin-top: 120px;
+}
+
+/* Ensure proper grid container behavior */
+.feature-grid.members-grid {
+  position: relative;
+  z-index: 1;
+}
+
 .feature-card {
   background: rgba(255,255,255,0.8);
   border-radius: 16px;
@@ -119,6 +141,11 @@ body.dark-mode .feature-card {
   background: rgba(40,40,40,0.8);
   border-color: rgba(108,180,255,0.2);
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .member-card {
+  background: #1a1a1a !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4) !important;
 }
 
 .feature-card:hover {
@@ -881,4 +908,629 @@ body.dark-mode .footer-bottom a:hover, body.dark-mode .footer-bottom a:focus {
     scroll-snap-align: start;
     background: none;
   }
+}
+
+/* ===== TEAM MEMBERS STYLES ===== */
+
+/* Team Photo Hero Section - Parallax Design with Geometric Background */
+.team-photo-hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 65vh;  /* Reduce height from 100vh to 65vh */
+  z-index: -1;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+body.dark-mode .team-photo-hero {
+  background: #18191a;
+}
+
+/* DNA Double Helix Background Pattern */
+.team-photo-hero {
+  --dna-rotation: 0deg;
+  --dna-scale: 1;
+  --dna-opacity: 1;
+}
+
+/* DNA Background Layer 1 - Foreground helix */
+.team-photo-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  background-image: url('/assets/images/dna-helix.svg');
+  background-size: 200px 300px;
+  background-repeat: repeat;
+  background-position: 0% 0%;
+  will-change: transform;
+  transform: rotate(var(--dna-rotation)) scale(var(--dna-scale));
+  opacity: calc(var(--dna-opacity) * 0.35);
+  z-index: 1;
+  animation: dnaRotateIllusion 20s linear infinite;
+}
+
+body.dark-mode .team-photo-hero::before {
+  opacity: calc(var(--dna-opacity) * 0.28);
+  filter: brightness(1.2);
+}
+
+/* DNA Background Layer 2 - Background helix with different phase */
+.team-photo-hero::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -15%;
+  width: 130%;
+  height: 160%;
+  background-image: url('/assets/images/dna-helix.svg');
+  background-size: 160px 240px;
+  background-repeat: repeat;
+  background-position: 50% 30%;
+  will-change: transform;
+  transform: rotate(calc(var(--dna-rotation) * -0.7)) scale(calc(var(--dna-scale) * 0.8));
+  opacity: calc(var(--dna-opacity) * 0.20);
+  z-index: 2;
+  animation: dnaRotateIllusionReverse 25s linear infinite;
+}
+
+body.dark-mode .team-photo-hero::after {
+  opacity: calc(var(--dna-opacity) * 0.15);
+  filter: brightness(1.1);
+}
+
+/* DNA Rotation Illusion Animation - Optimized for Performance */
+@keyframes dnaRotateIllusion {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.05); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(0.95); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes dnaRotateIllusionReverse {
+  0% { transform: rotate(0deg) scale(0.8); }
+  25% { transform: rotate(-72deg) scale(0.85); }
+  50% { transform: rotate(-144deg) scale(0.8); }
+  75% { transform: rotate(-216deg) scale(0.75); }
+  100% { transform: rotate(-288deg) scale(0.8); }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .team-photo-hero::before,
+  .team-photo-hero::after {
+    animation: none !important;
+    transform: rotate(0deg) scale(1) !important;
+  }
+  
+  .team-photo-hero {
+    --dna-rotation: 0deg !important;
+    --dna-scale: 1 !important;
+  }
+}
+
+/* Performance optimizations for DNA animations */
+.team-photo-hero::before,
+.team-photo-hero::after {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.team-photo-container {
+  position: relative;
+  width: 90%;  /* Increase width - make it wider */
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.team-photo {
+  width: 100%;
+  height: 120%;  /* Slightly larger for parallax effect */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(20%) contrast(1.1);
+  transition: filter 0.4s ease;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+.team-photo:hover {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* Minimal overlay for depth */
+.team-photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.05);
+  pointer-events: none;
+}
+
+body.dark-mode .team-photo-overlay {
+  background: rgba(0,0,0,0.1);
+}
+
+/* Content overlay section */
+.content-overlay {
+  position: relative;
+  background: #ffffff;
+  margin-top: 65vh;  /* Start after reduced hero height */
+  z-index: 1;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .content-overlay {
+  background: #18191a;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+}
+
+/* Adjust main content to be inside overlay */
+.main-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 12px 48px 12px;
+}
+
+/* Remove broken edge */
+.broken-edge {
+  display: none;
+}
+
+/* Page header adjustment */
+.page-header {
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* PI Showcase Section */
+.pi-showcase {
+  margin: 64px 0 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* PI card uses same styling as member cards but with special accent color */
+.pi-card {
+  max-width: 320px;
+}
+
+.pi-accent {
+  background: linear-gradient(135deg, #8B5CF6, #A855F7) !important; /* Purple gradient for PI */
+}
+
+/* Team Section Styling */
+.team-section {
+  margin: 80px 0;
+}
+
+.team-title {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.8em;
+  margin: 0 0 40px 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+body.dark-mode .team-title {
+  color: var(--color-primary-light);
+}
+
+.team-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  margin: 16px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Member Card Enhancements - vanSchneider Featured Essays Style */
+.member-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: center;
+  cursor: pointer;
+  border-radius: 2px !important;     /* Minimal rounded corners */
+  padding: 0 !important;             /* Remove padding for clean edge-to-edge design */
+  width: 100%;                       /* Full width within grid cell */
+  height: 280px;                     /* Fixed height instead of aspect-ratio */
+  background: #ffffff !important;    /* Pure white background */
+  border: none !important;           /* Clean edges */
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06) !important;
+  display: flex;                     /* Use flexbox for content layout */
+  flex-direction: column;            /* Stack content vertically */
+}
+
+/* vanSchneider Style Hover Effects - Subtle and Sophisticated */
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+body.dark-mode .member-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* vanSchneider Style - Bold Color Block Header */
+.geometric-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: var(--color-primary);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 1;
+}
+
+/* Different colors for different roles */
+.team-section[data-role="leaders"] .geometric-accent {
+  background: linear-gradient(135deg, #667EEA, #764BA2);
+}
+
+.team-section[data-role="members"] .geometric-accent {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+}
+
+body.dark-mode .geometric-accent {
+  opacity: 0.9;
+}
+
+.member-card:hover .geometric-accent {
+  height: 130px;
+}
+
+/* Member Avatar - vanSchneider Style Integration */
+.member-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 2px;                    /* Square with minimal rounding */
+  margin: 40px auto 0 auto;              /* Position in color block */
+  background: rgba(255,255,255,0.2);     /* Subtle overlay on color block */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.4em;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);           /* Glass effect */
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+
+body.dark-mode .member-avatar {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.avatar-initials {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.member-card:hover .member-avatar {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.3);
+}
+
+body.dark-mode .member-card:hover .member-avatar {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Member Information - vanSchneider Minimal Typography */
+.member-name {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.1em;
+  margin: 32px 24px 8px 24px;
+  color: #1a1a1a;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 3;
+}
+
+
+body.dark-mode .member-name {
+  color: #ffffff;
+}
+
+.member-role {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #666;
+  margin: 0 24px 24px 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  position: relative;
+  z-index: 3;
+}
+
+
+body.dark-mode .member-role {
+  color: #cccccc;
+}
+
+
+/* vanSchneider Style Responsive Grid - No Overlap */
+@media (min-width: 1200px) {
+  .members-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 40px;
+    grid-auto-rows: 280px;  /* Fixed row height */
+  }
+  
+  /* PI section gets single column */
+  .pi-showcase .members-grid {
+    display: block;  /* Remove grid for PI section */
+    max-width: 420px;
+  }
+  
+  .pi-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Leaders section gets 3 columns */
+  .team-section[data-role="leaders"] .members-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+  }
+  
+  /* Members section gets 4 columns to fit more cards */
+  .team-section[data-role="members"] .members-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 280px;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .members-grid {
+    gap: 32px;
+    grid-auto-rows: 280px;
+  }
+  
+  .pi-showcase .members-grid {
+    display: block;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  
+  .team-section[data-role="leaders"] .members-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+  }
+  
+  .team-section[data-role="members"] .members-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .members-grid {
+    gap: 24px;
+    grid-auto-rows: 260px;
+  }
+  
+  .pi-showcase .members-grid {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .team-section .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 260px;
+  }
+  
+  .member-card {
+    height: 260px;
+  }
+}
+
+/* Parallax Responsive Design */
+@media (max-width: 1024px) {
+  .team-photo-hero {
+    height: 55vh;  /* Reduce from 80vh to 55vh */
+  }
+  
+  .content-overlay {
+    margin-top: 55vh;
+  }
+  
+  .team-photo-container {
+    width: 95%;  /* Make even wider on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .team-photo-hero {
+    height: 50vh;  /* Reduce from 70vh to 50vh */
+  }
+  
+  .content-overlay {
+    margin-top: 50vh;
+  }
+  
+  .main-content {
+    padding: 60px 16px 32px 16px;
+  }
+  
+  .team-photo-container {
+    width: 98%;  /* Nearly full width on mobile */
+  }
+  
+  /* Adjust DNA patterns on mobile */
+  .team-photo-hero::before {
+    background-size: 150px 225px;
+    opacity: calc(var(--dna-opacity) * 0.12);
+  }
+  
+  .team-photo-hero::after {
+    background-size: 120px 180px;
+    opacity: calc(var(--dna-opacity) * 0.06);
+  }
+}
+
+@media (max-width: 767px) {
+  .team-section {
+    margin: 48px 0;
+  }
+  
+  .team-title {
+    font-size: 1.4em;
+    margin-bottom: 32px;
+  }
+  
+  .pi-showcase {
+    margin: 32px 0 48px 0;
+  }
+  
+  .pi-card {
+    padding: 36px 24px;
+    margin: 0 16px;
+  }
+  
+  .member-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    margin: 32px auto 0 auto;
+  }
+  
+  
+  .member-card {
+    height: 240px;
+  }
+  
+  .geometric-accent {
+    height: 100px;
+  }
+  
+  .member-card:hover .geometric-accent {
+    height: 110px;
+  }
+  
+  .member-name {
+    font-size: 1em;
+    margin: 24px 20px 6px 20px;
+  }
+  
+  .member-role {
+    font-size: 0.75em;
+    margin: 0 20px 20px 20px;
+  }
+}
+
+@media (max-width: 479px) {
+  .team-photo-hero {
+    height: 45vh;  /* Reduce from 60vh to 45vh */
+  }
+  
+  .content-overlay {
+    margin-top: 45vh;
+  }
+  
+  .main-content {
+    padding: 48px 16px 32px 16px;
+  }
+  
+  .team-photo-container {
+    width: 100%;  /* Full width on very small screens */
+  }
+  
+  /* Even smaller DNA patterns on very small screens */
+  .team-photo-hero::before {
+    background-size: 120px 180px;
+    opacity: calc(var(--dna-opacity) * 0.10);
+  }
+  
+  .team-photo-hero::after {
+    background-size: 100px 150px;
+    opacity: calc(var(--dna-opacity) * 0.05);
+  }
+  
+  .members-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    grid-auto-rows: 220px;
+  }
+  
+  .pi-showcase .members-grid {
+    display: block;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  
+  .member-card {
+    height: 220px;
+    margin: 0 8px;
+  }
+  
+  .geometric-accent {
+    height: 90px;
+  }
+  
+  .member-card:hover .geometric-accent {
+    height: 100px;
+  }
+  
+  .member-avatar {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1em;
+    margin: 28px auto 0 auto;
+  }
+  
+  .member-name {
+    font-size: 0.95em;
+    margin: 20px 16px 6px 16px;
+  }
+  
+  .member-role {
+    font-size: 0.7em;
+    margin: 0 16px 16px 16px;
+  }
+  
+  .team-title {
+    font-size: 1.3em;
+  }
+  
 } 

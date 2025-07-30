@@ -164,6 +164,70 @@ function initDarkMode() {
   return updateDarkMode;
 }
 
+function initParallax() {
+  const teamPhoto = document.querySelector('.team-photo');
+  const teamPhotoHero = document.querySelector('.team-photo-hero');
+  if (!teamPhoto || !teamPhotoHero) return;
+  
+  // Check if device prefers reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+  
+  // Disable parallax on mobile devices for better performance
+  const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+  if (isMobile) return;
+  
+  let ticking = false;
+  
+  function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const viewportHeight = window.innerHeight;
+    
+    // Calculate parallax rate based on scroll progress
+    const scrollProgress = Math.min(scrolled / viewportHeight, 1);
+    const photoRate = scrolled * -0.2; // Subtle parallax for photo
+    
+    // DNA visual illusion rotation - scroll-driven effects
+    const dnaRotation = scrolled * 0.3; // Smooth rotation based on scroll
+    const dnaScale = 1 + (scrollProgress * 0.1); // Slight scale variation
+    const dnaOpacity = Math.max(0.5, 1 - (scrollProgress * 0.4)); // Fade as user scrolls
+    
+    // Apply parallax transforms with boundaries
+    if (scrollProgress <= 1.2) {
+      // Photo parallax
+      teamPhoto.style.transform = `translateY(${photoRate}px)`;
+      
+      // DNA background effects - create visual illusion with scroll
+      teamPhotoHero.style.setProperty('--dna-rotation', `${dnaRotation}deg`);
+      teamPhotoHero.style.setProperty('--dna-scale', dnaScale);
+      teamPhotoHero.style.setProperty('--dna-opacity', dnaOpacity);
+    }
+    
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  
+  // Use passive scroll listener for better performance
+  window.addEventListener('scroll', requestTick, { passive: true });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    const newIsMobile = window.innerWidth <= 768;
+    if (newIsMobile) {
+      teamPhoto.style.transform = 'translateY(0)';
+      teamPhotoHero.style.setProperty('--dna-rotation', '0deg');
+      teamPhotoHero.style.setProperty('--dna-scale', '1');
+      teamPhotoHero.style.setProperty('--dna-opacity', '1');
+    }
+  }, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // 全局暗色模式更新函数
   let globalDarkModeUpdater = null;
@@ -171,6 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // 早期应用暗色模式到body，避免页面闪烁
   const savedMode = localStorage.getItem('darkMode') === '1';
   document.body.classList.toggle('dark-mode', savedMode);
+  
+  // Initialize parallax effect
+  initParallax();
   
   loadComponent('navbar-container', '/components/navbar.html', function() {
     initNavbar();
