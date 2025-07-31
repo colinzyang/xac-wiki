@@ -267,13 +267,207 @@ function initParallax() {
   }, { passive: true });
 }
 
+function initTeamShowcase() {
+  const showcaseContainers = document.querySelectorAll('.team-showcase-container');
+  if (showcaseContainers.length === 0) return;
+  
+  // Check if device prefers reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Mobile detection
+  const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+  
+  // Initialize expand animations for Leaders and Students
+  initExpandAnimations();
+  
+  // Initialize scroll behavior
+  initScrollBehavior();
+  
+  // Initialize wheel scroll control
+  initWheelScrollControl();
+  
+  let ticking = false;
+  
+  function initExpandAnimations() {
+    // Track which sections have been animated
+    const animatedSections = new Set();
+    
+    // Create Intersection Observer for expand animations
+    const expandObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          const level = section.dataset.level;
+          
+          // Only animate leaders and students, and only once
+          if ((level === 'leaders' || level === 'students') && !animatedSections.has(level)) {
+            animatedSections.add(level);
+            triggerExpandAnimation(section);
+          }
+        }
+      });
+    }, {
+      threshold: 0.3, // 更低的阈值，更早触发
+      rootMargin: '0px 0px -10% 0px' // 稍微提前触发
+    });
+    
+    // Observe Leaders and Students sections
+    const leadersSection = document.querySelector('.leaders-showcase-section');
+    const studentsSection = document.querySelector('.students-showcase-section');
+    
+    if (leadersSection) expandObserver.observe(leadersSection);
+    if (studentsSection) expandObserver.observe(studentsSection);
+  }
+  
+  function triggerExpandAnimation(section) {
+    const memberCards = section.querySelectorAll('.member-card-expand');
+    const level = section.dataset.level;
+    
+    memberCards.forEach((card, index) => {
+      let actualIndex = index;
+      
+      // Leaders expand from right to left (reverse order)
+      if (level === 'leaders') {
+        actualIndex = memberCards.length - 1 - index;
+      }
+      
+      // Set CSS custom property for staggered delay
+      card.style.setProperty('--expand-delay', actualIndex.toString());
+      
+      // Add expanded class with slight delay to ensure CSS is applied
+      setTimeout(() => {
+        card.classList.add('expanded');
+      }, 100 + (actualIndex * 120)); // Faster stagger for smoother flow
+    });
+  }
+  
+  // Initialize scroll behavior
+  function initScrollBehavior() {
+    const scrollTracks = document.querySelectorAll('.members-scroll-track');
+    
+    scrollTracks.forEach(track => {
+      // Enable smooth scrolling
+      track.style.scrollBehavior = 'smooth';
+      
+      // Add permanent auto-scroll hint animation after cards are expanded
+      setTimeout(() => {
+        track.classList.add('auto-scroll-hint');
+      }, 1500); // Start 500ms earlier for better UX flow
+      
+      // Optional: Add scroll snap for better UX on touch devices
+      if ('ontouchstart' in window) {
+        track.style.scrollSnapType = 'x mandatory';
+        const cards = track.querySelectorAll('.member-card-expand');
+        cards.forEach(card => {
+          card.style.scrollSnapAlign = 'start';
+        });
+      }
+    });
+  }
+  
+  // Initialize wheel scroll control
+  function initWheelScrollControl() {
+    const scrollContainers = document.querySelectorAll('.members-horizontal-container');
+    
+    scrollContainers.forEach(container => {
+      const scrollTrack = container.querySelector('.members-scroll-track');
+      if (!scrollTrack) return;
+      
+      let isScrolling = false;
+      
+      container.addEventListener('mouseenter', () => {
+        // Pause auto-scroll hint when user hovers
+        scrollTrack.classList.add('auto-scroll-paused');
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        // Resume auto-scroll hint when user leaves
+        scrollTrack.classList.remove('auto-scroll-paused');
+      });
+      
+      container.addEventListener('wheel', (e) => {
+        // Prevent default vertical scroll
+        e.preventDefault();
+        
+        // Convert vertical wheel movement to horizontal scroll
+        const scrollAmount = e.deltaY * 2; // Adjust sensitivity
+        
+        // Smooth scroll horizontally
+        scrollTrack.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+        
+        // Throttle scrolling to prevent overwhelming
+        if (!isScrolling) {
+          isScrolling = true;
+          setTimeout(() => {
+            isScrolling = false;
+          }, 50);
+        }
+      }, { passive: false });
+    });
+  }
+  
+  function updateTeamShowcase() {
+    const currentTime = Date.now();
+    const currentScrollY = window.pageYOffset;
+    
+    showcaseContainers.forEach(container => {
+      const level = container.dataset.level;
+      const rect = container.getBoundingClientRect();
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (!isInViewport) return;
+      
+      // Apply floating animation to PI only
+      if (level === 'pi') {
+        const piAvatar = container.querySelector('.member-avatar-large');
+        if (piAvatar && !prefersReducedMotion) {
+          const scrollFactor = currentScrollY * 0.0005;
+          const floatOffset = Math.sin(currentTime * 0.001 + scrollFactor) * 3;
+          piAvatar.style.transform = `translateY(${floatOffset}px)`;
+        }
+      }
+    });
+    
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateTeamShowcase);
+      ticking = true;
+    }
+  }
+  
+  // Simple scroll handling for PI floating animation
+  function handleScroll() {
+    requestTick();
+  }
+  
+  // Event listeners
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Handle resize - reset animations if needed
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Re-initialize expand animations on resize if needed
+      initExpandAnimations();
+    }, 100);
+  }, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // 早期应用暗色模式到body，避免页面闪烁
   const savedMode = localStorage.getItem('darkMode') === '1';
   document.body.classList.toggle('dark-mode', savedMode);
   
-  // Initialize parallax effect
+  // Initialize parallax effects
   initParallax();
+  initTeamShowcase();
   
   // 组件加载状态追踪
   let componentsLoaded = {

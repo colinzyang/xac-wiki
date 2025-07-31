@@ -145,7 +145,7 @@ body.dark-mode .feature-card {
 
 body.dark-mode .member-card {
   background: #1a1a1a !important;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15) !important;
 }
 
 .feature-card:hover {
@@ -154,7 +154,7 @@ body.dark-mode .member-card {
 }
 
 body.dark-mode .feature-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
 .feature-card h3 {
@@ -470,7 +470,7 @@ body.dark-mode .igem-footer {
 .footer-social-icon.xhs { background: linear-gradient(135deg, #f43f5e 60%, #fbbf24 100%); }
 .footer-social-icon.bsky { background: #4fc3f7; }
 .footer-social-icon.igem { background: #8bc34a; }
-.footer-social-icon:hover { filter: brightness(1.1); }
+.footer-social-icon:hover { filter: brightness(1.05); }
 .footer-col-newsletter strong {
   font-size: 1.1em;
   margin-bottom: 8px;
@@ -539,10 +539,10 @@ body.dark-mode .igem-footer {
   background: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  filter: grayscale(0) brightness(1.1) contrast(1.1) !important;
+  filter: grayscale(0) brightness(1.02) contrast(1.02) !important;
 }
 .footer-social a:hover img {
-  filter: brightness(1.3) drop-shadow(0 2px 8px #4fc3f7aa) !important;
+  filter: brightness(1.05) !important;
 }
 .footer-main.cc-layout {
   display: flex;
@@ -956,7 +956,7 @@ body.dark-mode .team-photo-hero {
 
 body.dark-mode .team-photo-hero::before {
   opacity: calc(var(--dna-opacity) * 0.28);
-  filter: brightness(1.2);
+  filter: brightness(1.05);
 }
 
 /* DNA Background Layer 2 - Background helix with different phase */
@@ -980,7 +980,7 @@ body.dark-mode .team-photo-hero::before {
 
 body.dark-mode .team-photo-hero::after {
   opacity: calc(var(--dna-opacity) * 0.15);
-  filter: brightness(1.1);
+  filter: brightness(1.02);
 }
 
 /* DNA Rotation Illusion Animation - Optimized for Performance */
@@ -1069,12 +1069,12 @@ body.dark-mode .team-photo-overlay {
   background: #ffffff;
   margin-top: 65vh;  /* Start after reduced hero height */
   z-index: 1;
-  box-shadow: 0 -8px 32px rgba(0,0,0,0.1);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
 }
 
 body.dark-mode .content-overlay {
   background: #18191a;
-  box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
 }
 
 /* Adjust main content to be inside overlay */
@@ -1169,7 +1169,7 @@ body.dark-mode .team-title {
 }
 
 body.dark-mode .member-card:hover {
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
 }
 
 /* vanSchneider Style - Bold Color Block Header */
@@ -1217,8 +1217,8 @@ body.dark-mode .geometric-accent {
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);           /* Glass effect */
-  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(6px);           /* Minimal glass effect */
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 
@@ -1282,6 +1282,856 @@ body.dark-mode .member-name {
 
 body.dark-mode .member-role {
   color: #cccccc;
+}
+
+/* Team Showcase Container System */
+.team-showcase-container {
+  position: relative;
+  margin: 120px 0;
+  overflow: hidden;
+}
+
+.showcase-layout {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1800px; /* Much larger to accommodate wide spread */
+  margin: 0 auto;
+  padding: 0 80px; /* Large padding to prevent edge overflow */
+}
+
+/* Alternating Layout - Left-Right Staggered */
+.pi-showcase-section .showcase-layout {
+  flex-direction: row; /* PI: Avatar on left, info on right */
+  justify-content: flex-start;
+}
+
+.leaders-showcase-section .showcase-layout {
+  flex-direction: row-reverse; /* Leaders: Avatar on right, info on left */
+  justify-content: flex-end;
+}
+
+.students-showcase-section .showcase-layout {
+  flex-direction: row; /* Students: Avatar on left, info on right */
+  justify-content: flex-start;
+}
+
+/* Staggered positioning for visual rhythm - Left, Right, Left */
+.pi-showcase-section {
+  transform: translateX(-250px); /* PI on the left */
+}
+
+.leaders-showcase-section {
+  transform: translateX(200px); /* Leaders on the right */
+}
+
+.leaders-showcase-section .avatar-frame {
+  transform: translateX(0) scale(1.0); /* Standard size for middle layer */
+}
+
+.students-showcase-section {
+  transform: translateX(-200px); /* Students back to the left */
+}
+
+.students-showcase-section .avatar-frame {
+  transform: translateX(0); /* Equal size with leaders for visual consistency */
+}
+
+/* Clean depth with minimal shadows */
+.pi-showcase-section .avatar-frame {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 4; /* Front layer - PI gets prominence */
+}
+
+.leaders-showcase-section .avatar-frame {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  z-index: 3; /* Middle layer */
+}
+
+.students-showcase-section .avatar-frame {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 2; /* Back layer - creates visual flow */
+}
+
+body.dark-mode .pi-showcase-section .avatar-frame {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .leaders-showcase-section .avatar-frame {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .students-showcase-section .avatar-frame {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Minimal backdrop filters for elegance */
+.pi-showcase-section .avatar-frame {
+  backdrop-filter: blur(8px);
+}
+
+.leaders-showcase-section .avatar-frame {
+  backdrop-filter: blur(6px);
+}
+
+.students-showcase-section .avatar-frame {
+  backdrop-filter: blur(4px);
+}
+
+/* Avatar Frame System - The "Window" Container - Elliptical Design */
+.avatar-frame {
+  position: relative;
+  border-radius: 50%; /* Start as circular, will be overridden to elliptical */
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.dark-mode .avatar-frame {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Elliptical frame shapes for different levels */
+.pi-frame {
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; /* Organic elliptical shape */
+}
+
+.leaders-frame {
+  border-radius: 70% 30% 60% 40% / 40% 70% 30% 60%; /* Different elliptical variant */
+}
+
+.students-frame {
+  border-radius: 50% 70% 30% 50% / 60% 40% 70% 30%; /* Another elliptical variant */
+}
+
+/* Hover effect - expand to rounded rectangle */
+.avatar-frame:hover {
+  border-radius: 16px !important; /* Override elliptical to rounded rectangle */
+  transform: scale(1.05);
+  filter: brightness(1.04);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .avatar-frame:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.avatar-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+/* PI Frame - Single Member Display */
+.pi-frame {
+  width: 280px;
+  height: 320px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.15));
+}
+
+body.dark-mode .pi-frame {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2));
+}
+
+.pi-frame .avatar-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.pi-frame .avatar-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+}
+
+/* Leaders Frame - Scrollable Display */
+.leaders-frame {
+  width: 200px;
+  height: 280px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.12));
+}
+
+body.dark-mode .leaders-frame {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));
+}
+
+.leaders-frame .avatar-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.leaders-frame .avatar-display {
+  height: 280px; /* Match frame height for proper scrolling calculation */
+}
+
+/* Students Frame - Scrollable Display */
+.students-frame {
+  width: 160px;
+  height: 240px;
+  background: linear-gradient(135deg, rgba(0, 120, 215, 0.1), rgba(64, 170, 255, 0.1));
+}
+
+body.dark-mode .students-frame {
+  background: linear-gradient(135deg, rgba(0, 120, 215, 0.15), rgba(64, 170, 255, 0.15));
+}
+
+.students-frame .avatar-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.students-frame .avatar-display {
+  height: 240px; /* Match frame height for proper scrolling calculation */
+}
+
+/* Scrollable Avatar Container */
+.avatar-scroll-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+}
+
+/* Individual Avatar Display */
+.avatar-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 20px;
+  opacity: 0.3;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.avatar-display.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Avatar Sizes and Styles - Simple circular/rounded design inside elliptical frames */
+.member-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px; /* Rounded rectangle */
+  background: linear-gradient(135deg, #8B5CF6, #A855F7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2.5em;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+body.dark-mode .member-avatar-large {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.member-avatar-large:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.member-avatar-medium {
+  width: 75px;
+  height: 75px;
+  border-radius: 12px; /* 统一圆角 */
+  background: linear-gradient(135deg, #667EEA, #764BA2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6em;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+body.dark-mode .member-avatar-medium {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.member-avatar-medium:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.member-avatar-small {
+  width: 75px;
+  height: 75px;
+  border-radius: 12px; /* 统一圆角 */
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6em;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+body.dark-mode .member-avatar-small {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.member-avatar-small:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Member Information Display */
+.member-info-display {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  min-height: 120px;
+}
+
+/* Unified information display for all levels */
+.member-info-display {
+  max-width: 450px;
+  min-height: 250px;
+}
+
+.member-info-content {
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.member-info-content.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Horizontal layout: show all member info by default */
+.member-card-expand .member-info-content {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Directional info animations based on layout */
+.pi-showcase-section .member-info-content {
+  transform: translateX(20px); /* Slide in from right */
+}
+
+/* Override directional animations for horizontal layout */
+.member-card-expand .member-info-content {
+  transform: translateX(0) !important;
+}
+
+/* Text alignment based on layout direction */
+.pi-showcase-section .member-info-display {
+  text-align: left;
+}
+
+.leaders-showcase-section .member-info-display {
+  text-align: right;
+}
+
+.students-showcase-section .member-info-display {
+  text-align: left;
+}
+
+.member-info-content .member-name {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.4em;
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+body.dark-mode .member-info-content .member-name {
+  color: #ffffff;
+}
+
+.member-info-content .member-role {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-size: 0.9em;
+}
+
+body.dark-mode .member-info-content .member-role {
+  color: var(--color-primary-light);
+}
+
+.member-info-content .member-dept {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #666;
+  margin: 0 0 16px 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+body.dark-mode .member-info-content .member-dept {
+  color: #aaa;
+}
+
+.member-info-content .member-description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 0.85em;
+  color: #666;
+  margin: 8px 0 0 0;
+  line-height: 1.6;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+body.dark-mode .member-info-content .member-description {
+  color: #ccc;
+}
+
+/* Horizontal Scroll Container System */
+.members-horizontal-container {
+  position: relative;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.members-scroll-track {
+  display: flex;
+  gap: 30px;
+  padding: 0 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox - 隐藏滚动条 */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.members-scroll-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera - 完全隐藏滚动条 */
+}
+
+/* Member Card with Expand Animation */
+.member-card-expand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(-100px) scale(0.8); /* Default: from left */
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex: 0 0 auto;
+  width: 280px;
+  min-height: 400px;
+}
+
+/* Student Leaders: expand from right to left */
+.leaders-showcase-section .member-card-expand {
+  transform: translateX(100px) scale(0.8); /* From right */
+}
+
+/* Auto-scroll animation hint - continuous movement */
+@keyframes gentle-auto-scroll-left {
+  0% { transform: translateX(30px); }
+  100% { transform: translateX(-30px); }
+}
+
+@keyframes gentle-auto-scroll-right {
+  0% { transform: translateX(-30px); }
+  100% { transform: translateX(30px); }
+}
+
+.members-scroll-track.auto-scroll-hint {
+  animation: gentle-auto-scroll-left 3s linear infinite;
+}
+
+.leaders-showcase-section .members-scroll-track.auto-scroll-hint {
+  animation: gentle-auto-scroll-right 3s linear infinite;
+}
+
+/* Pause animation on hover */
+.members-scroll-track.auto-scroll-paused {
+  animation-play-state: paused !important;
+}
+
+/* Leaders and Students Unified Styling */
+.leaders-showcase-section .members-scroll-track,
+.students-showcase-section .members-scroll-track {
+  gap: 35px; /* 统一间距 */
+}
+
+.leaders-showcase-section .member-card-expand,
+.students-showcase-section .member-card-expand {
+  width: 280px;
+  min-height: 400px;
+}
+
+/* Expanded State - Triggered by JavaScript */
+.member-card-expand.expanded {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Staggered Animation Delay via CSS Custom Properties */
+.member-card-expand {
+  transition-delay: calc(var(--expand-delay, 0) * 0.1s);
+}
+
+
+/* Unified styles for all levels - Visual Equality Principle */
+
+
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+
+body.dark-mode .section-title {
+  color: var(--color-primary-light);
+}
+
+/* Floating Animation for PI */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Avatar scroll state effects */
+.avatar-display:not(.active) .member-avatar-large,
+.avatar-display:not(.active) .member-avatar-medium,
+.avatar-display:not(.active) .member-avatar-small {
+  opacity: 0.3;
+  transform: scale(0.9);
+}
+
+/* Ultra-wide screen optimization */
+@media (min-width: 1600px) {
+  .pi-showcase-section {
+    transform: translateX(-320px); /* PI larger left offset */
+  }
+  
+  .leaders-showcase-section {
+    transform: translateX(280px); /* Leaders larger right offset */
+  }
+  
+  .students-showcase-section {
+    transform: translateX(-280px); /* Students larger left offset */
+  }
+  
+  .showcase-layout {
+    max-width: 2200px; /* Expanded for ultra-wide displays */
+    padding: 0 120px; /* Extra padding for ultra-wide */
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (max-width: 1200px) {
+  .pi-showcase-section {
+    transform: translateX(-180px); /* PI reduced left offset */
+  }
+  
+  .leaders-showcase-section {
+    transform: translateX(150px); /* Leaders reduced right offset */
+  }
+  
+  .students-showcase-section {
+    transform: translateX(-150px); /* Students reduced left offset */
+  }
+  
+  .showcase-layout {
+    max-width: 1400px;
+    padding: 0 60px; /* Reduced padding */
+  }
+}
+
+@media (max-width: 900px) {
+  .pi-showcase-section {
+    transform: translateX(-120px); /* PI further reduced left offset */
+  }
+  
+  .leaders-showcase-section {
+    transform: translateX(100px); /* Leaders further reduced right offset */
+  }
+  
+  .students-showcase-section {
+    transform: translateX(-100px); /* Students further reduced left offset */
+  }
+  
+  .showcase-layout {
+    max-width: 1200px;
+    padding: 0 40px;
+  }
+}
+
+/* Responsive Horizontal Scroll Layout */
+@media (max-width: 1200px) {
+  .members-scroll-track {
+    gap: calc(35px * 0.75); /* Proportional scaling */
+    padding: 0 40px;
+  }
+  
+  .leaders-showcase-section .members-scroll-track,
+  .students-showcase-section .members-scroll-track {
+    gap: calc(35px * 0.75); /* Consistent proportional spacing */
+  }
+  
+  .member-card-expand {
+    width: 260px;
+    min-height: 380px;
+  }
+  
+  .leaders-showcase-section .member-card-expand,
+  .students-showcase-section .member-card-expand {
+    width: 260px;
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 900px) {
+  .members-scroll-track {
+    gap: calc(35px * 0.6); /* Continue proportional scaling */
+    padding: 0 30px;
+  }
+  
+  .member-card-expand {
+    width: 240px;
+    min-height: 360px;
+  }
+  
+  .leaders-showcase-section .member-card-expand,
+  .students-showcase-section .member-card-expand {
+    width: 240px;
+    min-height: 360px;
+  }
+  
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .team-showcase-container {
+    margin: 80px 0;
+  }
+  
+  /* Reset staggered positioning for mobile */
+  .pi-showcase-section,
+  .leaders-showcase-section,
+  .students-showcase-section {
+    transform: none;
+  }
+  
+  .showcase-layout {
+    flex-direction: column !important; /* Override directional layouts */
+    gap: 40px;
+    padding: 0 20px;
+    justify-content: center !important;
+    text-align: center;
+  }
+  
+  /* Mobile Horizontal Scroll Layout */
+  .members-scroll-track {
+    gap: calc(35px * 0.45); /* Maintain proportional scaling on mobile */
+    padding: 0 20px;
+  }
+  
+  .member-card-expand {
+    width: 220px;
+    min-height: 320px;
+  }
+  
+  .leaders-showcase-section .member-card-expand,
+  .students-showcase-section .member-card-expand {
+    width: 220px;
+    min-height: 320px;
+  }
+  
+  
+  /* Reset text alignment for mobile */
+  .pi-showcase-section .member-info-display,
+  .leaders-showcase-section .member-info-display,
+  .students-showcase-section .member-info-display {
+    text-align: center;
+  }
+  
+  /* Reset directional animations for mobile */
+  .pi-showcase-section .member-info-content,
+  .leaders-showcase-section .member-info-content,
+  .students-showcase-section .member-info-content {
+    transform: translateY(20px); /* Slide up from bottom on mobile */
+  }
+  
+  .pi-frame {
+    width: 240px;
+    height: 280px;
+  }
+  
+  .leaders-frame {
+    width: 180px;
+    height: 240px;
+  }
+  
+  .students-frame {
+    width: 140px;
+    height: 200px;
+  }
+  
+  /* Reset elliptical frames to rounded rectangles on mobile */
+  .avatar-frame {
+    border-radius: 12px !important;
+  }
+  
+  .avatar-frame:hover {
+    border-radius: 12px !important;
+    transform: scale(1.02);
+  }
+  
+  .member-avatar-large {
+    width: 100px;
+    height: 100px;
+    font-size: 2em;
+  }
+  
+  .member-avatar-medium,
+  .member-avatar-small {
+    width: 65px;
+    height: 65px;
+    font-size: 1.4em;
+  }
+  
+  
+  /* Mobile unified information display */
+  .member-info-display {
+    max-width: 100%;
+    min-height: auto;
+  }
+  
+  .section-title {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+  }
+}
+
+/* Performance optimizations with will-change */
+.avatar-scroll-container {
+  will-change: transform;
+}
+
+.avatar-frame {
+  will-change: transform;
+}
+
+[class*="member-avatar"] {
+  will-change: transform;
+}
+
+.member-info-content {
+  will-change: opacity, transform;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-scroll-container {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .avatar-frame {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  [class*="member-avatar"] {
+    animation: none !important;
+    transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  /* Disable frame hover animations but preserve elliptical shape */
+  .avatar-frame:hover {
+    transform: none !important;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; /* Keep original elliptical shape */
+    filter: none !important;
+  }
+  
+  .pi-frame {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50% !important;
+  }
+  
+  .leaders-frame {
+    border-radius: 70% 30% 60% 40% / 40% 70% 30% 60% !important;
+  }
+  
+  .students-frame {
+    border-radius: 50% 70% 30% 50% / 60% 40% 70% 30% !important;
+  }
+  
+  .member-info-content {
+    transition: opacity 0.3s ease !important;
+  }
+  
+  .avatar-display {
+    transition: opacity 0.3s ease !important;
+  }
+  
+  /* Reset staggered positioning for reduced motion */
+  .pi-showcase-section {
+    transform: translateX(0) !important;
+  }
+  
+  .leaders-showcase-section {
+    transform: translateX(0) !important;
+  }
+  
+  .students-showcase-section {
+    transform: translateX(0) !important;
+  }
+}
+
+/* Gentle fade-in animation for accessibility */
+@keyframes gentle-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clean up will-change when not needed */
+.team-showcase-container:not(.scrolling) .avatar-scroll-container,
+.team-showcase-container:not(.scrolling) .avatar-frame,
+.team-showcase-container:not(.scrolling) [class*="member-avatar"],
+.team-showcase-container:not(.scrolling) .member-info-content {
+  will-change: auto;
 }
 
 
