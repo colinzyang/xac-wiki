@@ -26,25 +26,60 @@ function initNavbar() {
     const link = li.querySelector('a');
     
     if (dropdown && link) {
+      // 支持点击和键盘导航
       link.addEventListener('click', function(e) {
-        if (window.innerWidth < 900 || 'ontouchstart' in window) {
+        if (window.innerWidth <= 768 || 'ontouchstart' in window) {
           e.preventDefault();
-          
-          navList.querySelectorAll('.dropdown').forEach(d => {
-            if (d !== dropdown) d.style.display = 'none';
-          });
-          
-          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+          toggleDropdown(dropdown, navList);
+        }
+      });
+      
+      // 键盘导航支持
+      link.addEventListener('keydown', function(e) {
+        if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown(dropdown, navList);
+          }
         }
       });
     }
   });
 
+  // 改进的外部点击处理
   document.addEventListener('click', function(e) {
-    if (!navList.contains(e.target)) {
-      navList.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
+    // 确保navbar存在且已加载
+    if (navList && !navList.contains(e.target)) {
+      closeAllDropdowns(navList);
     }
   });
+  
+  // ESC键关闭下拉菜单
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeAllDropdowns(navList);
+    }
+  });
+}
+
+function toggleDropdown(targetDropdown, navList) {
+  const isOpen = targetDropdown.classList.contains('dropdown-active');
+  
+  // 关闭所有其他下拉菜单
+  closeAllDropdowns(navList);
+  
+  // 切换目标下拉菜单
+  if (!isOpen) {
+    targetDropdown.classList.add('dropdown-active');
+  }
+}
+
+function closeAllDropdowns(navList) {
+  if (navList) {
+    navList.querySelectorAll('.dropdown').forEach(d => {
+      d.classList.remove('dropdown-active');
+    });
+  }
 }
 
 function initScrollNavbar() {
@@ -193,7 +228,7 @@ function initParallax() {
     const dnaOpacity = Math.max(0.5, 1 - (scrollProgress * 0.4)); // Fade as user scrolls
     
     // Apply parallax transforms with boundaries
-    if (scrollProgress <= 1.2) {
+    if (scrollProgress <= 1.0) {
       // Photo parallax
       teamPhoto.style.transform = `translateY(${photoRate}px)`;
       
@@ -216,22 +251,23 @@ function initParallax() {
   // Use passive scroll listener for better performance
   window.addEventListener('scroll', requestTick, { passive: true });
   
-  // Handle window resize
+  // Handle window resize with debouncing
+  let resizeTimeout;
   window.addEventListener('resize', function() {
-    const newIsMobile = window.innerWidth <= 768;
-    if (newIsMobile) {
-      teamPhoto.style.transform = 'translateY(0)';
-      teamPhotoHero.style.setProperty('--dna-rotation', '0deg');
-      teamPhotoHero.style.setProperty('--dna-scale', '1');
-      teamPhotoHero.style.setProperty('--dna-opacity', '1');
-    }
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const newIsMobile = window.innerWidth <= 768;
+      if (newIsMobile) {
+        teamPhoto.style.transform = 'translateY(0)';
+        teamPhotoHero.style.setProperty('--dna-rotation', '0deg');
+        teamPhotoHero.style.setProperty('--dna-scale', '1');
+        teamPhotoHero.style.setProperty('--dna-opacity', '1');
+      }
+    }, 100);
   }, { passive: true });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // 全局暗色模式更新函数
-  let globalDarkModeUpdater = null;
-  
   // 早期应用暗色模式到body，避免页面闪烁
   const savedMode = localStorage.getItem('darkMode') === '1';
   document.body.classList.toggle('dark-mode', savedMode);
@@ -239,29 +275,49 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize parallax effect
   initParallax();
   
+  // 组件加载状态追踪
+  let componentsLoaded = {
+    navbar: false,
+    footer: false
+  };
+  let darkModeUpdater = null;
+  
+  function applyDarkModeToFooter() {
+    const isDark = document.body.classList.contains('dark-mode');
+    document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
+      img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
+    });
+    document.querySelectorAll('.footer-bsky-icon').forEach(img => {
+      img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
+    });
+    document.querySelectorAll('.footer-igem-icon').forEach(img => {
+      img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
+    });
+  }
+  
+  function checkAndApplyDarkMode() {
+    if (componentsLoaded.footer) {
+      if (darkModeUpdater && componentsLoaded.navbar) {
+        // 使用统一的暗色模式更新函数
+        const isDark = document.body.classList.contains('dark-mode');
+        darkModeUpdater(isDark);
+      } else {
+        // 直接应用到footer
+        applyDarkModeToFooter();
+      }
+    }
+  }
+  
   loadComponent('navbar-container', '/components/navbar.html', function() {
     initNavbar();
     initScrollNavbar();
-    globalDarkModeUpdater = initDarkMode();
+    darkModeUpdater = initDarkMode();
+    componentsLoaded.navbar = true;
+    checkAndApplyDarkMode();
   });
   
   loadComponent('footer', '/components/footer.html', function() {
-    // Footer加载完成后，如果已经有暗色模式更新函数，重新应用
-    if (globalDarkModeUpdater) {
-      const isDark = document.body.classList.contains('dark-mode');
-      globalDarkModeUpdater(isDark);
-    } else {
-      // 如果navbar还没加载完成，直接应用暗色模式设置到footer图标
-      const isDark = localStorage.getItem('darkMode') === '1';
-      document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
-        img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
-      });
-      document.querySelectorAll('.footer-bsky-icon').forEach(img => {
-        img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
-      });
-      document.querySelectorAll('.footer-igem-icon').forEach(img => {
-        img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
-      });
-    }
+    componentsLoaded.footer = true;
+    checkAndApplyDarkMode();
   });
 });

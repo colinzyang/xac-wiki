@@ -235,19 +235,15 @@ body.dark-mode .dark-mode-toggle:hover, body.dark-mode .dark-mode-toggle:focus {
 @media (max-width: 768px) {
   .dropdown {
     top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-8px);
+    left: 0;
+    transform: translateY(-8px);
     min-width: 160px;
+    right: 0;
+    margin: 0 auto;
   }
   
   .glass-navbar.shrink .dropdown {
     top: calc(100% + 6px);
-  }
-  
-  .nav-list > li:hover .dropdown,
-  .nav-list > li:focus-within .dropdown,
-  .nav-list > li .dropdown:focus {
-    transform: translateX(-50%) translateY(0);
   }
 }
 body.dark-mode .dropdown {
@@ -257,13 +253,30 @@ body.dark-mode .dropdown {
 .dropdown li {
   list-style: none;
 }
-.nav-list > li:hover .dropdown,
-.nav-list > li:focus-within .dropdown,
-.nav-list > li .dropdown:focus {
+/* 桌面端hover效果 - 仅在非触摸设备上生效 */
+@media (hover: hover) and (pointer: fine) {
+  .nav-list > li:hover .dropdown,
+  .nav-list > li:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+/* JavaScript控制的活跃状态 - 适用于所有设备 */
+.dropdown.dropdown-active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* 移动端特殊处理 */
+@media (max-width: 768px) {
+  .dropdown.dropdown-active {
+    transform: translateY(0);
+  }
 }
 .dropdown a {
   display: block;
@@ -308,6 +321,19 @@ body.dark-mode .dropdown a:hover, body.dark-mode .dropdown a:focus {
   background: rgba(21,101,192,0.12);
   outline: none;
 }
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  outline: none;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.logo-link:hover, .logo-link:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
 .navbar-fab-logo {
   display: block;
   width: auto;
