@@ -1288,7 +1288,7 @@ body.dark-mode .member-role {
 .team-showcase-container {
   position: relative;
   margin: 120px 0;
-  overflow: hidden;
+  overflow: visible; /* Allow horizontal expansion */
 }
 
 .showcase-layout {
@@ -1712,6 +1712,8 @@ body.dark-mode .member-info-content .member-description {
   position: relative;
   padding: 40px 0;
   overflow: hidden;
+  width: 100%;
+  max-width: none; /* Allow full width expansion */
 }
 
 .members-scroll-track {
@@ -1723,6 +1725,8 @@ body.dark-mode .member-info-content .member-description {
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox - 隐藏滚动条 */
   -ms-overflow-style: none; /* IE and Edge */
+  width: 100%;
+  min-width: max-content; /* Ensure container expands to fit all items */
 }
 
 .members-scroll-track::-webkit-scrollbar {
@@ -1738,9 +1742,10 @@ body.dark-mode .member-info-content .member-description {
   opacity: 0;
   transform: translateX(-100px) scale(0.8); /* Default: from left */
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  flex: 0 0 auto;
+  flex: 0 0 280px; /* Explicit flex-basis to maintain width */
   width: 280px;
   min-height: 400px;
+  box-sizing: border-box;
 }
 
 /* Student Leaders: expand from right to left */
@@ -1778,8 +1783,18 @@ body.dark-mode .member-info-content .member-description {
   gap: 35px; /* 统一间距 */
 }
 
+/* Ensure sufficient width for all cards */
+.leaders-showcase-section .members-scroll-track {
+  min-width: calc(3 * 280px + 2 * 35px + 100px); /* 3 cards + 2 gaps + padding */
+}
+
+.students-showcase-section .members-scroll-track {
+  min-width: calc(7 * 280px + 6 * 35px + 100px); /* 7 cards + 6 gaps + padding */
+}
+
 .leaders-showcase-section .member-card-expand,
 .students-showcase-section .member-card-expand {
+  flex: 0 0 280px;
   width: 280px;
   min-height: 400px;
 }
@@ -1904,12 +1919,14 @@ body.dark-mode .section-title {
   }
   
   .member-card-expand {
+    flex: 0 0 260px; /* Update flex-basis for responsive width */
     width: 260px;
     min-height: 380px;
   }
   
   .leaders-showcase-section .member-card-expand,
   .students-showcase-section .member-card-expand {
+    flex: 0 0 260px;
     width: 260px;
     min-height: 380px;
   }
@@ -1922,12 +1939,14 @@ body.dark-mode .section-title {
   }
   
   .member-card-expand {
+    flex: 0 0 240px; /* Update flex-basis for responsive width */
     width: 240px;
     min-height: 360px;
   }
   
   .leaders-showcase-section .member-card-expand,
   .students-showcase-section .member-card-expand {
+    flex: 0 0 240px;
     width: 240px;
     min-height: 360px;
   }
@@ -1962,12 +1981,14 @@ body.dark-mode .section-title {
   }
   
   .member-card-expand {
+    flex: 0 0 220px; /* Update flex-basis for responsive width */
     width: 220px;
     min-height: 320px;
   }
   
   .leaders-showcase-section .member-card-expand,
   .students-showcase-section .member-card-expand {
+    flex: 0 0 220px;
     width: 220px;
     min-height: 320px;
   }
