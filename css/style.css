@@ -18,17 +18,17 @@ body.dark-mode {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.25);
   z-index: -1;
   pointer-events: none;
 }
 body.dark-mode #bg-mask {
-  background: rgba(24,25,26,0.45);
+  background: rgba(24,25,26,0.25);
 }
 .main-content {
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 48px 12px 0 12px;
+  padding: 48px 20px 0 20px;
 }
 h1, h2, h3 {
   font-family: var(--font-primary);
@@ -1080,9 +1080,9 @@ body.dark-mode .content-overlay {
 /* Adjust main content to be inside overlay */
 .main-content {
   position: relative;
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 80px 12px 48px 12px;
+  padding: 80px 20px 48px 20px;
 }
 
 /* Remove broken edge */
@@ -2417,4 +2417,702 @@ body.dark-mode .section-title {
     font-size: 1.3em;
   }
   
+}
+
+/* ========================================
+   ROCHE-STYLE TEAM INTERFACE
+   ======================================== */
+
+/* Main Roche Style Container */
+.roche-style {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-primary);
+}
+
+body.dark-mode .roche-style {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Research Hero Section - Roche Style */
+.research-hero {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 100px 0 80px 0;
+  margin-top: 80px;
+  position: relative;
+}
+
+body.dark-mode .research-hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-content {
+  padding-right: 40px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0078d7;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+body.dark-mode .hero-title {
+  color: #4da6ff;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0 0 40px 0;
+}
+
+body.dark-mode .hero-subtitle {
+  color: #cccccc;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0078d7;
+  line-height: 1;
+}
+
+body.dark-mode .stat-number {
+  color: #4da6ff;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+}
+
+body.dark-mode .stat-label {
+  color: #aaaaaa;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.research-badge {
+  background: linear-gradient(135deg, #0078d7 0%, #005a9e 100%);
+  color: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 120, 215, 0.2);
+}
+
+body.dark-mode .research-badge {
+  background: linear-gradient(135deg, #4da6ff 0%, #0078d7 100%);
+  box-shadow: 0 10px 30px rgba(77, 166, 255, 0.2);
+}
+
+.badge-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Section Container */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Section Titles - Roche Style */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+body.dark-mode .section-title {
+  color: #ffffff;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0 0 60px 0;
+  max-width: 800px;
+}
+
+body.dark-mode .section-description {
+  color: #cccccc;
+}
+
+/* Leadership Section */
+.leadership-section {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+body.dark-mode .leadership-section {
+  background: #0a0a0a;
+}
+
+.leader-spotlight {
+  margin-top: 40px;
+}
+
+.leader-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 30px;
+  align-items: center;
+  text-align: left;
+  min-height: 400px;
+}
+
+body.dark-mode .leader-card {
+  background: #1a1a1a;
+  border-color: #2d2d2d;
+}
+
+.leader-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .leader-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.leader-card.primary {
+  background: linear-gradient(135deg, #0078d7 0%, #005a9e 100%);
+  color: white;
+  border: none;
+}
+
+.leader-card.primary .leader-name,
+.leader-card.primary .leader-title,
+.leader-card.primary .leader-department,
+.leader-card.primary .leader-description {
+  color: white;
+}
+
+.leader-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0078d7 0%, #005a9e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 120, 215, 0.2);
+}
+
+body.dark-mode .avatar-circle {
+  background: linear-gradient(135deg, #4da6ff 0%, #0078d7 100%);
+  box-shadow: 0 8px 24px rgba(77, 166, 255, 0.2);
+}
+
+.avatar-circle.small {
+  width: 120px;
+  height: 120px;
+}
+
+.avatar-initials {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.avatar-circle.small .avatar-initials {
+  font-size: 2rem;
+}
+
+.leader-content {
+  padding: 0;
+}
+
+.leader-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+body.dark-mode .leader-name {
+  color: #ffffff;
+}
+
+.leader-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0078d7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
+}
+
+body.dark-mode .leader-title {
+  color: #4da6ff;
+}
+
+.leader-department {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666666;
+  margin: 0 0 16px 0;
+}
+
+body.dark-mode .leader-department {
+  color: #aaaaaa;
+}
+
+.leader-description {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #4a4a4a;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+
+body.dark-mode .leader-description {
+  color: #cccccc;
+}
+
+.leader-expertise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.expertise-tag {
+  background: rgba(0, 120, 215, 0.1);
+  color: #0078d7;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 120, 215, 0.2);
+}
+
+body.dark-mode .expertise-tag {
+  background: rgba(77, 166, 255, 0.2);
+  color: #4da6ff;
+  border-color: rgba(77, 166, 255, 0.3);
+}
+
+.leader-card.primary .expertise-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Research Leaders Section */
+.research-leaders-section {
+  padding: 100px 0;
+  background: #f8f9fa;
+}
+
+body.dark-mode .research-leaders-section {
+  background: #0f0f0f;
+}
+
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.leaders-grid .leader-card {
+  min-height: 400px;
+}
+
+/* Research Team Section */
+.research-team-section {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+body.dark-mode .research-team-section {
+  background: #0a0a0a;
+}
+
+/* Filter Tabs - Roche Style */
+.team-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 40px 0 60px 0;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 50px;
+  border: 1px solid #e9ecef;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.dark-mode .team-filter-tabs {
+  background: #1a1a1a;
+  border-color: #2d2d2d;
+}
+
+.filter-tab {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .filter-tab {
+  color: #aaaaaa;
+}
+
+.filter-tab:hover {
+  color: #0078d7;
+  background: rgba(0, 120, 215, 0.1);
+}
+
+body.dark-mode .filter-tab:hover {
+  color: #4da6ff;
+  background: rgba(77, 166, 255, 0.1);
+}
+
+.filter-tab.active {
+  background: #0078d7;
+  color: white;
+}
+
+body.dark-mode .filter-tab.active {
+  background: #4da6ff;
+  color: #0a0a0a;
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.team-member-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 30px;
+  align-items: center;
+  text-align: left;
+  min-height: 400px;
+}
+
+body.dark-mode .team-member-card {
+  background: #1a1a1a;
+  border-color: #2d2d2d;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .team-member-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.member-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-info {
+  width: 100%;
+}
+
+.member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+body.dark-mode .member-name {
+  color: #ffffff;
+}
+
+.member-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0078d7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
+}
+
+body.dark-mode .member-title {
+  color: #4da6ff;
+}
+
+.member-department {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666666;
+  margin: 0 0 16px 0;
+}
+
+body.dark-mode .member-department {
+  color: #aaaaaa;
+}
+
+.member-focus {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #4a4a4a;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+
+body.dark-mode .member-focus {
+  color: #cccccc;
+}
+
+.research-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.research-tag {
+  background: rgba(0, 120, 215, 0.1);
+  color: #0078d7;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 120, 215, 0.2);
+}
+
+body.dark-mode .research-tag {
+  background: rgba(77, 166, 255, 0.2);
+  color: #4da6ff;
+  border-color: rgba(77, 166, 255, 0.3);
+}
+
+/* Filter Animation */
+.team-member-card[data-category]:not([data-category="all"]) {
+  transition: all 0.3s ease;
+}
+
+.team-member-card.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+/* Ensure all cards are visible by default - no entry animations */
+.team-member-card, .leader-card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Responsive Design - Roche Style */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .hero-content {
+    padding-right: 0;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  .leaders-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .leader-card {
+    grid-template-columns: 140px 1fr;
+    text-align: left;
+    min-height: 400px;
+    gap: 24px;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding: 0 20px;
+  }
+  
+  .research-hero {
+    padding: 80px 0 60px 0;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .leadership-section,
+  .research-leaders-section,
+  .research-team-section {
+    padding: 60px 0;
+  }
+  
+  .team-filter-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .filter-tab {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .team-member-card {
+    padding: 24px;
+    min-height: 380px;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+  
+  .leader-card {
+    min-height: 380px;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .leader-card {
+    padding: 24px;
+    min-height: 360px;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  
+  .team-member-card {
+    min-height: 360px;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  
+  .avatar-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .avatar-circle.small {
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Adjust small avatars for mobile layout */
+  .team-member-card .avatar-circle.small {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .avatar-initials {
+    font-size: 1.6rem;
+  }
+  
+  .avatar-circle.small .avatar-initials {
+    font-size: 1.6rem;
+  }
 } 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team Members - XJTLU iGEM Team 2025</title>
+  <title>Research Team - XJTLU iGEM 2025</title>
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
@@ -12,237 +12,229 @@
 <body>
   <div id="navbar-container"></div>
   
-  <!-- Fixed Team Photo Background -->
-  <section class="team-photo-hero">
-    <div class="team-photo-container">
-      <img src="/assets/images/team/team-photo-minimal.svg" alt="XJTLU iGEM Team 2025 Group Photo" class="team-photo">
-      <div class="team-photo-overlay"></div>
-    </div>
-  </section>
-  
-  <!-- Content Overlay -->
-  <div class="content-overlay">
-    <main class="main-content">
-      <section class="page-header">
-      <h1>Meet the Innovators</h1>
-      <p class="page-description">Interdisciplinary team pioneering AI-driven plastic degradation solutions</p>
-    </section>
+  <main class="main-content roche-style" style="padding-top: 100px;">
     
-    <!-- PI Showcase Container -->
-    <section class="team-showcase-container pi-showcase-section" data-level="pi">
-      <div class="showcase-layout">
-        <!-- Avatar Display Frame -->
-        <div class="avatar-frame pi-frame">
-          <div class="avatar-viewport">
-            <div class="avatar-display" data-member-id="pi-1">
-              <div class="member-avatar-large" data-initials="CC">
-                <span class="avatar-initials">CC</span>
+    <!-- Members Section - Unified -->
+    <section class="research-team-section">
+      <div class="section-container">
+        <h2 class="section-title">Members</h2>
+        <p class="section-description">Our interdisciplinary team advancing synthetic biology research through collaboration and innovation</p>
+        
+        <!-- Filter Tabs -->
+        <div class="team-filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Team</button>
+          <button class="filter-tab" data-filter="leaders">Leaders</button>
+          <button class="filter-tab" data-filter="wetlab">WetLab</button>
+          <button class="filter-tab" data-filter="software-model">Software&Model</button>
+          <button class="filter-tab" data-filter="hp">HP</button>
+        </div>
+        
+        <div class="team-grid">
+          <!-- Zhicheng Yang - Leaders, Software&Model, HP -->
+          <div class="team-member-card" data-category="leaders software-model hp">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">ZY</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Zhicheng Yang</h4>
+              <p class="member-title">Dry Lab Leader</p>
+              <p class="member-department">Computer Science</p>
+              <p class="member-focus">Leading computational modeling and AI-driven enzyme design. Specializes in machine learning algorithms for protein structure prediction and optimization.</p>
+              <div class="research-areas">
+                <span class="research-tag">Computational Biology</span>
+                <span class="research-tag">AI & ML</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yueqing Xin - Leaders, Software&Model -->
+          <div class="team-member-card" data-category="leaders software-model">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">YX</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Yueqing Xin</h4>
+              <p class="member-title">Human Practices Leader</p>
+              <p class="member-department">Environmental Science</p>
+              <p class="member-focus">Managing community engagement and sustainability impact assessment. Focuses on environmental policy analysis and public awareness.</p>
+              <div class="research-areas">
+                <span class="research-tag">Environmental Policy</span>
+                <span class="research-tag">Community Engagement</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zhenyayuan Cao - Leaders, WetLab, HP -->
+          <div class="team-member-card" data-category="leaders wetlab hp">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">ZC</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Zhenyayuan Cao</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Bioinformatics</p>
+              <p class="member-focus">Computational analysis of enzyme structures and bioinformatics pipelines for protein engineering</p>
+              <div class="research-areas">
+                <span class="research-tag">Bioinformatics</span>
+                <span class="research-tag">Protein Engineering</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yichen Tang - WetLab -->
+          <div class="team-member-card" data-category="wetlab">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">YT</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Yichen Tang</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Molecular Biology</p>
+              <p class="member-focus">Protein expression, purification, and enzyme characterization</p>
+              <div class="research-areas">
+                <span class="research-tag">Protein Expression</span>
+                <span class="research-tag">Molecular Cloning</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shulei He - WetLab, Software&Model -->
+          <div class="team-member-card" data-category="wetlab software-model">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">SH</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Shulei He</h4>
+              <p class="member-title">Wet Lab Leader</p>
+              <p class="member-department">Biochemistry</p>
+              <p class="member-focus">Coordinating experimental validation and enzyme characterization. Expert in protein expression, purification, and enzymatic activity assays.</p>
+              <div class="research-areas">
+                <span class="research-tag">Protein Engineering</span>
+                <span class="research-tag">Biochemistry</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yan Long - Software&Model -->
+          <div class="team-member-card" data-category="software-model">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">YL</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Yan Long</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Applied Mathematics</p>
+              <p class="member-focus">Mathematical modeling of enzymatic processes and optimization algorithms</p>
+              <div class="research-areas">
+                <span class="research-tag">Mathematical Modeling</span>
+                <span class="research-tag">Optimization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jiaqi Zheng - Software&Model, HP -->
+          <div class="team-member-card" data-category="software-model hp">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">JZ</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Jiaqi Zheng</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Chemical Engineering</p>
+              <p class="member-focus">Enzyme activity assays and process optimization for plastic degradation</p>
+              <div class="research-areas">
+                <span class="research-tag">Process Optimization</span>
+                <span class="research-tag">Enzyme Assays</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aixue Wang - Software&Model -->
+          <div class="team-member-card" data-category="software-model">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">AW</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Aixue Wang</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Public Policy</p>
+              <p class="member-focus">Policy implications of biotechnology and sustainable waste management</p>
+              <div class="research-areas">
+                <span class="research-tag">Policy Research</span>
+                <span class="research-tag">Sustainability</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shang Wang - Software&Model -->
+          <div class="team-member-card" data-category="software-model">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <span class="avatar-initials">SW</span>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Shang Wang</h4>
+              <p class="member-title">Research Scientist</p>
+              <p class="member-department">Sociology</p>
+              <p class="member-focus">Social impacts of environmental technologies and community engagement</p>
+              <div class="research-areas">
+                <span class="research-tag">Social Impact</span>
+                <span class="research-tag">Community Engagement</span>
               </div>
             </div>
           </div>
         </div>
-        
-        <!-- Member Information Display -->
-        <div class="member-info-display">
-          <div class="member-info-content active" data-member-id="pi-1">
-            <h4 class="member-name">Prof. Chun Chen</h4>
-            <p class="member-role">PRINCIPAL INVESTIGATOR</p>
-            <p class="member-dept">Computer Science & Engineering</p>
-            <p class="member-description">Leading interdisciplinary research at the intersection of artificial intelligence and biotechnology. Specializing in machine learning applications for environmental sustainability and synthetic biology solutions.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Student Leaders Showcase Container -->
-    <section class="team-showcase-container leaders-showcase-section" data-level="leaders">
-      <h2 class="section-title">Student Leaders</h2>
-      <div class="members-horizontal-container">
-        <div class="members-scroll-track">
-        <!-- Leader 1 -->
-        <div class="member-card-expand" data-index="0" data-member-id="leader-1">
-          <div class="avatar-frame leaders-frame">
-            <div class="member-avatar-medium" data-initials="ZY">
-              <span class="avatar-initials">ZY</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Zhicheng Yang</h4>
-              <p class="member-role">DRY LAB LEADER</p>
-              <p class="member-dept">Computer Science</p>
-              <p class="member-description">Leading the computational modeling and AI-driven enzyme design aspects of the project. Specializes in machine learning algorithms for protein structure prediction and optimization.</p>
-            </div>
-          </div>
-        </div>
+    <!-- Leadership Section - Roche Style -->
+    <section class="leadership-section">
+      <div class="section-container">
+        <h2 class="section-title">Leadership</h2>
+        <p class="section-description">Our leadership team brings together diverse expertise in advancing synthetic biology research</p>
         
-        <!-- Leader 2 -->
-        <div class="member-card-expand" data-index="1" data-member-id="leader-2">
-          <div class="avatar-frame leaders-frame">
-            <div class="member-avatar-medium" data-initials="SH">
-              <span class="avatar-initials">SH</span>
+        <div class="leader-spotlight">
+          <div class="leader-card primary">
+            <div class="leader-image">
+              <div class="avatar-circle">
+                <span class="avatar-initials">CC</span>
+              </div>
+            </div>
+            <div class="leader-content">
+              <h3 class="leader-name">Prof. Chun Chen</h3>
+              <p class="leader-title">Principal Investigator</p>
+              <p class="leader-department">Computer Science & Engineering</p>
+              <p class="leader-description">Leading interdisciplinary research at the intersection of artificial intelligence and biotechnology. Specializing in machine learning applications for environmental sustainability and synthetic biology solutions.</p>
+              <div class="leader-expertise">
+                <span class="expertise-tag">AI & Machine Learning</span>
+                <span class="expertise-tag">Biotechnology</span>
+                <span class="expertise-tag">Environmental Science</span>
+              </div>
             </div>
           </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Shulei He</h4>
-              <p class="member-role">WET LAB LEADER</p>
-              <p class="member-dept">Biochemistry</p>
-              <p class="member-description">Coordinating experimental validation and enzyme characterization work. Expert in protein expression, purification, and enzymatic activity assays for plastic degradation research.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Leader 3 -->
-        <div class="member-card-expand" data-index="2" data-member-id="leader-3">
-          <div class="avatar-frame leaders-frame">
-            <div class="member-avatar-medium" data-initials="YX">
-              <span class="avatar-initials">YX</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Yueqing Xin</h4>
-              <p class="member-role">HUMAN PRACTICES LEADER</p>
-              <p class="member-dept">Environmental Science</p>
-              <p class="member-description">Managing community engagement and sustainability impact assessment. Focuses on environmental policy analysis and public awareness initiatives for plastic pollution solutions.</p>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Students Showcase Container -->
-    <section class="team-showcase-container students-showcase-section" data-level="students">
-      <h2 class="section-title">Team Members</h2>
-      <div class="members-horizontal-container">
-        <div class="members-scroll-track">
-        <!-- Student 1 -->
-        <div class="member-card-expand" data-index="0" data-member-id="student-1">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="ZC">
-              <span class="avatar-initials">ZC</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Zhenyayuan Cao</h4>
-              <p class="member-role">DRY LAB RESEARCHER</p>
-              <p class="member-dept">Bioinformatics</p>
-              <p class="member-description">Focuses on computational analysis of enzyme structures and developing bioinformatics pipelines for protein engineering and sequence optimization.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 2 -->
-        <div class="member-card-expand" data-index="1" data-member-id="student-2">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="YL">
-              <span class="avatar-initials">YL</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Yan Long</h4>
-              <p class="member-role">DRY LAB RESEARCHER</p>
-              <p class="member-dept">Applied Mathematics</p>
-              <p class="member-description">Specializes in mathematical modeling of enzymatic processes and optimization algorithms for improving plastic degradation efficiency.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 3 -->
-        <div class="member-card-expand" data-index="2" data-member-id="student-3">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="ZX">
-              <span class="avatar-initials">ZX</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Zimu Xie</h4>
-              <p class="member-role">DRY LAB RESEARCHER</p>
-              <p class="member-dept">Artificial Intelligence</p>
-              <p class="member-description">Develops machine learning models for enzyme design and implements AI-driven approaches for predicting protein-plastic interactions.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 4 -->
-        <div class="member-card-expand" data-index="3" data-member-id="student-4">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="YT">
-              <span class="avatar-initials">YT</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Yichen Tang</h4>
-              <p class="member-role">WET LAB RESEARCHER</p>
-              <p class="member-dept">Molecular Biology</p>
-              <p class="member-description">Conducts protein expression and purification experiments, focusing on enzyme characterization and molecular cloning techniques.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 5 -->
-        <div class="member-card-expand" data-index="4" data-member-id="student-5">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="JZ">
-              <span class="avatar-initials">JZ</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Jiaqi Zheng</h4>
-              <p class="member-role">WET LAB RESEARCHER</p>
-              <p class="member-dept">Chemical Engineering</p>
-              <p class="member-description">Works on enzyme activity assays and process optimization for scaling up plastic degradation reactions in laboratory settings.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 6 -->
-        <div class="member-card-expand" data-index="5" data-member-id="student-6">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="AW">
-              <span class="avatar-initials">AW</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Aixue Wang</h4>
-              <p class="member-role">HUMAN PRACTICES RESEARCHER</p>
-              <p class="member-dept">Public Policy</p>
-              <p class="member-description">Researches policy implications of biotechnology solutions and develops frameworks for sustainable plastic waste management strategies.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Student 7 -->
-        <div class="member-card-expand" data-index="6" data-member-id="student-7">
-          <div class="avatar-frame students-frame">
-            <div class="member-avatar-small" data-initials="SW">
-              <span class="avatar-initials">SW</span>
-            </div>
-          </div>
-          <div class="member-info-display">
-            <div class="member-info-content">
-              <h4 class="member-name">Shang Wang</h4>
-              <p class="member-role">HUMAN PRACTICES RESEARCHER</p>
-              <p class="member-dept">Sociology</p>
-              <p class="member-description">Studies social impacts of environmental technologies and conducts community engagement initiatives for raising plastic pollution awareness.</p>
-            </div>
-          </div>
-        </div>
         </div>
       </div>
     </section>
       
-    </main>
-    <div id="footer"></div>
-  </div>
+  </main>
+  <div id="footer"></div>
   <script src="/js/main.js"></script>
 </body>
 </html>

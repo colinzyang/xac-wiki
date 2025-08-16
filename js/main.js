@@ -554,6 +554,11 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeUpdater = initDarkMode();
         componentsLoaded.navbar = true;
         checkAndApplyDarkMode();
+        
+        // Initialize team interface if on team page
+        if (window.location.pathname.includes('/team/')) {
+          setTimeout(() => initRocheTeamInterface(), 100);
+        }
       } catch (err) {
         console.error('Error initializing navbar:', err);
       }
@@ -576,3 +581,69 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error('Error loading footer component:', err);
   }
 });
+
+// Roche-Style Team Interface Functions
+function initRocheTeamInterface() {
+  // Initialize team filter functionality
+  initTeamFilter();
+}
+
+function initTeamFilter() {
+  console.log('Initializing team filter...');
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const teamCards = document.querySelectorAll('.team-member-card');
+  
+  console.log('Found filter tabs:', filterTabs.length);
+  console.log('Found team cards:', teamCards.length);
+  
+  if (filterTabs.length === 0 || teamCards.length === 0) {
+    console.error('Missing elements - tabs:', filterTabs.length, 'cards:', teamCards.length);
+    return;
+  }
+  
+  // Add click event listeners to filter tabs
+  filterTabs.forEach((tab, index) => {
+    console.log(`Adding listener to tab ${index}: ${tab.getAttribute('data-filter')}`);
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      const filter = this.getAttribute('data-filter');
+      console.log('Filter clicked:', filter);
+      
+      // Update active tab
+      filterTabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filter team cards
+      filterTeamCards(teamCards, filter);
+    });
+    
+    // Keyboard support
+    tab.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+  
+  console.log('Team filter initialization completed');
+}
+
+function filterTeamCards(cards, filter) {
+  console.log(`Filtering ${cards.length} cards with filter: ${filter}`);
+  cards.forEach((card, index) => {
+    const categories = card.getAttribute('data-category').split(' ');
+    const shouldShow = filter === 'all' || categories.includes(filter);
+    const memberName = card.querySelector('.member-name')?.textContent || `Card ${index}`;
+    
+    console.log(`${memberName}: categories=[${categories.join(', ')}], shouldShow=${shouldShow}`);
+    
+    if (shouldShow) {
+      card.classList.remove('hidden');
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
