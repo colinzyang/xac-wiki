@@ -40,7 +40,8 @@ function initNavbar() {
     if (dropdown && link) {
       // 支持点击和键盘导航
       link.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+        // 如果链接是 # 或者是移动设备，阻止默认行为并切换下拉菜单
+        if (link.getAttribute('href') === '#' || window.innerWidth <= 768 || 'ontouchstart' in window) {
           e.preventDefault();
           toggleDropdown(dropdown, navList);
         }
@@ -48,8 +49,9 @@ function initNavbar() {
       
       // 键盘导航支持
       link.addEventListener('keydown', function(e) {
-        if (window.innerWidth <= 768 || 'ontouchstart' in window) {
-          if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === 'Enter' || e.key === ' ') {
+          // 如果链接是 # 或者是移动设备，阻止默认行为并切换下拉菜单
+          if (link.getAttribute('href') === '#' || window.innerWidth <= 768 || 'ontouchstart' in window) {
             e.preventDefault();
             toggleDropdown(dropdown, navList);
           }
