@@ -1711,7 +1711,8 @@ body.dark-mode .member-info-content .member-description {
 .members-horizontal-container {
   position: relative;
   padding: 40px 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   width: 100%;
   max-width: none; /* Allow full width expansion */
 }
@@ -1730,7 +1731,28 @@ body.dark-mode .member-info-content .member-description {
 }
 
 .members-scroll-track::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera - 完全隐藏滚动条 */
+  height: 8px; /* Show thin scrollbar on larger screens */
+}
+
+.members-scroll-track::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+.members-scroll-track::-webkit-scrollbar-thumb {
+  background: rgba(0,120,215,0.6);
+  border-radius: 4px;
+}
+
+.members-scroll-track::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,120,215,0.8);
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  .members-scroll-track::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Member Card with Expand Animation */
@@ -1764,10 +1786,12 @@ body.dark-mode .member-info-content .member-description {
 /* Ensure sufficient width for all cards */
 .leaders-showcase-section .members-scroll-track {
   min-width: calc(3 * 280px + 2 * 35px + 100px); /* 3 cards + 2 gaps + padding */
+  width: max-content; /* Allow natural expansion */
 }
 
 .students-showcase-section .members-scroll-track {
   min-width: calc(7 * 280px + 6 * 35px + 100px); /* 7 cards + 6 gaps + padding */
+  width: max-content; /* Allow natural expansion */
 }
 
 .leaders-showcase-section .member-card-expand,
@@ -1894,6 +1918,7 @@ body.dark-mode .section-title {
   .leaders-showcase-section .members-scroll-track,
   .students-showcase-section .members-scroll-track {
     gap: calc(35px * 0.75); /* Consistent proportional spacing */
+    width: max-content; /* Ensure full member display */
   }
   
   .member-card-expand {
@@ -1914,6 +1939,11 @@ body.dark-mode .section-title {
   .members-scroll-track {
     gap: calc(35px * 0.6); /* Continue proportional scaling */
     padding: 0 30px;
+  }
+  
+  .leaders-showcase-section .members-scroll-track,
+  .students-showcase-section .members-scroll-track {
+    width: max-content; /* Ensure full member display */
   }
   
   .member-card-expand {
@@ -1956,6 +1986,11 @@ body.dark-mode .section-title {
   .members-scroll-track {
     gap: calc(35px * 0.45); /* Maintain proportional scaling on mobile */
     padding: 0 20px;
+  }
+  
+  .leaders-showcase-section .members-scroll-track,
+  .students-showcase-section .members-scroll-track {
+    width: max-content; /* Ensure full member display on mobile */
   }
   
   .member-card-expand {

@@ -1,17 +1,29 @@
 function loadComponent(id, url, callback) {
+  const container = document.getElementById(id);
+  if (!container) {
+    console.warn(`Container with id "${id}" not found`);
+    return;
+  }
+  
   fetch(url)
     .then(res => {
-      if (!res.ok) throw new Error(`Failed to load ${url}`);
+      if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status} ${res.statusText}`);
       return res.text();
     })
     .then(html => {
-      const container = document.getElementById(id);
-      if (container) {
-        container.innerHTML = html;
-        if (typeof callback === 'function') callback();
+      container.innerHTML = html;
+      if (typeof callback === 'function') {
+        try {
+          callback();
+        } catch (err) {
+          console.error(`Error in callback for ${id}:`, err);
+        }
       }
     })
-    .catch(err => console.error('Component loading error:', err));
+    .catch(err => {
+      console.error('Component loading error:', err);
+      container.innerHTML = `<div class="error-placeholder">Failed to load component</div>`;
+    });
 }
 
 function initNavbar() {
@@ -152,47 +164,71 @@ function initDarkMode() {
   const toggleButtons = document.querySelectorAll('.dark-mode-toggle');
   
   function updateDarkMode(isDark) {
-    document.body.classList.toggle('dark-mode', isDark);
-    localStorage.setItem('darkMode', isDark ? '1' : '0');
-    
-    // 更新导航栏logo
-    document.querySelectorAll('.navbar-fab-logo').forEach(img => {
-      img.src = isDark ? '/assets/logos/logo-white.png' : '/assets/logos/logo-blue.png';
-    });
-    
-    // 更新导航栏切换按钮图标
-    toggleButtons.forEach(btn => {
-      const icon = btn.querySelector('img');
-      if (icon) {
-        icon.src = isDark ? '/assets/icons/moon2.svg' : '/assets/icons/sun.svg';
-        icon.alt = isDark ? 'Dark Mode' : 'Light Mode';
-      }
-    });
-    
-    // 更新Footer logo
-    document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
-      img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
-    });
-    
-    // 更新Bluesky图标
-    document.querySelectorAll('.footer-bsky-icon').forEach(img => {
-      img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
-    });
-    
-    // 更新iGEM图标
-    document.querySelectorAll('.footer-igem-icon').forEach(img => {
-      img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
-    });
+    try {
+      document.body.classList.toggle('dark-mode', isDark);
+      localStorage.setItem('darkMode', isDark ? '1' : '0');
+      
+      // 更新导航栏logo
+      document.querySelectorAll('.navbar-fab-logo').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/logo-white.png' : '/assets/logos/logo-blue.png';
+        }
+      });
+      
+      // 更新导航栏切换按钮图标
+      toggleButtons.forEach(btn => {
+        const icon = btn?.querySelector('img');
+        if (icon) {
+          icon.src = isDark ? '/assets/icons/moon2.svg' : '/assets/icons/sun.svg';
+          icon.alt = isDark ? 'Dark Mode' : 'Light Mode';
+        }
+      });
+      
+      // 更新Footer logo
+      document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
+        }
+      });
+      
+      // 更新Bluesky图标
+      document.querySelectorAll('.footer-bsky-icon').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
+        }
+      });
+      
+      // 更新iGEM图标
+      document.querySelectorAll('.footer-igem-icon').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
+        }
+      });
+    } catch (err) {
+      console.error('Error updating dark mode:', err);
+    }
   }
 
   toggleButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const isDark = !document.body.classList.contains('dark-mode');
-      updateDarkMode(isDark);
-    });
+    if (btn) {
+      btn.addEventListener('click', () => {
+        try {
+          const isDark = !document.body.classList.contains('dark-mode');
+          updateDarkMode(isDark);
+        } catch (err) {
+          console.error('Error toggling dark mode:', err);
+        }
+      });
+    }
   });
 
-  const savedMode = localStorage.getItem('darkMode') === '1';
+  // Safely get saved mode from localStorage
+  let savedMode = false;
+  try {
+    savedMode = localStorage.getItem('darkMode') === '1';
+  } catch (err) {
+    console.warn('Could not access localStorage for dark mode preference:', err);
+  }
   updateDarkMode(savedMode);
   
   // 返回updateDarkMode函数，供外部调用
@@ -202,7 +238,7 @@ function initDarkMode() {
 function initParallax() {
   const teamPhoto = document.querySelector('.team-photo');
   const teamPhotoHero = document.querySelector('.team-photo-hero');
-  if (!teamPhoto || !teamPhotoHero) return;
+  if (!teamPhoto && !teamPhotoHero) return;
   
   // Check if device prefers reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -230,12 +266,16 @@ function initParallax() {
     // Apply parallax transforms with boundaries
     if (scrollProgress <= 1.0) {
       // Photo parallax
-      teamPhoto.style.transform = `translateY(${photoRate}px)`;
+      if (teamPhoto) {
+        teamPhoto.style.transform = `translateY(${photoRate}px)`;
+      }
       
       // DNA background effects - create visual illusion with scroll
-      teamPhotoHero.style.setProperty('--dna-rotation', `${dnaRotation}deg`);
-      teamPhotoHero.style.setProperty('--dna-scale', dnaScale);
-      teamPhotoHero.style.setProperty('--dna-opacity', dnaOpacity);
+      if (teamPhotoHero) {
+        teamPhotoHero.style.setProperty('--dna-rotation', `${dnaRotation}deg`);
+        teamPhotoHero.style.setProperty('--dna-scale', dnaScale);
+        teamPhotoHero.style.setProperty('--dna-opacity', dnaOpacity);
+      }
     }
     
     ticking = false;
@@ -258,10 +298,14 @@ function initParallax() {
     resizeTimeout = setTimeout(() => {
       const newIsMobile = window.innerWidth <= 768;
       if (newIsMobile) {
-        teamPhoto.style.transform = 'translateY(0)';
-        teamPhotoHero.style.setProperty('--dna-rotation', '0deg');
-        teamPhotoHero.style.setProperty('--dna-scale', '1');
-        teamPhotoHero.style.setProperty('--dna-opacity', '1');
+        if (teamPhoto) {
+          teamPhoto.style.transform = 'translateY(0)';
+        }
+        if (teamPhotoHero) {
+          teamPhotoHero.style.setProperty('--dna-rotation', '0deg');
+          teamPhotoHero.style.setProperty('--dna-scale', '1');
+          teamPhotoHero.style.setProperty('--dna-opacity', '1');
+        }
       }
     }, 100);
   }, { passive: true });
@@ -447,8 +491,12 @@ function initTeamShowcase() {
 
 document.addEventListener('DOMContentLoaded', function() {
   // 早期应用暗色模式到body，避免页面闪烁
-  const savedMode = localStorage.getItem('darkMode') === '1';
-  document.body.classList.toggle('dark-mode', savedMode);
+  try {
+    const savedMode = localStorage.getItem('darkMode') === '1';
+    document.body.classList.toggle('dark-mode', savedMode);
+  } catch (err) {
+    console.warn('Could not access localStorage during initialization:', err);
+  }
   
   // Initialize parallax effects
   initParallax();
@@ -462,16 +510,26 @@ document.addEventListener('DOMContentLoaded', function() {
   let darkModeUpdater = null;
   
   function applyDarkModeToFooter() {
-    const isDark = document.body.classList.contains('dark-mode');
-    document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
-      img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
-    });
-    document.querySelectorAll('.footer-bsky-icon').forEach(img => {
-      img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
-    });
-    document.querySelectorAll('.footer-igem-icon').forEach(img => {
-      img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
-    });
+    try {
+      const isDark = document.body.classList.contains('dark-mode');
+      document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/logo-n-white.png' : '/assets/logos/logo-n-blue.png';
+        }
+      });
+      document.querySelectorAll('.footer-bsky-icon').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/bsky-g.svg' : '/assets/logos/bsky.svg';
+        }
+      });
+      document.querySelectorAll('.footer-igem-icon').forEach(img => {
+        if (img) {
+          img.src = isDark ? '/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/assets/logos/Igem-logo-fullcolorblack@1x.png';
+        }
+      });
+    } catch (err) {
+      console.error('Error applying dark mode to footer:', err);
+    }
   }
   
   function checkAndApplyDarkMode() {
@@ -487,16 +545,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  loadComponent('navbar-container', '/components/navbar.html', function() {
-    initNavbar();
-    initScrollNavbar();
-    darkModeUpdater = initDarkMode();
-    componentsLoaded.navbar = true;
-    checkAndApplyDarkMode();
-  });
+  // Load navbar component
+  try {
+    loadComponent('navbar-container', '/components/navbar.html', function() {
+      try {
+        initNavbar();
+        initScrollNavbar();
+        darkModeUpdater = initDarkMode();
+        componentsLoaded.navbar = true;
+        checkAndApplyDarkMode();
+      } catch (err) {
+        console.error('Error initializing navbar:', err);
+      }
+    });
+  } catch (err) {
+    console.error('Error loading navbar component:', err);
+  }
   
-  loadComponent('footer', '/components/footer.html', function() {
-    componentsLoaded.footer = true;
-    checkAndApplyDarkMode();
-  });
+  // Load footer component
+  try {
+    loadComponent('footer', '/components/footer.html', function() {
+      try {
+        componentsLoaded.footer = true;
+        checkAndApplyDarkMode();
+      } catch (err) {
+        console.error('Error initializing footer:', err);
+      }
+    });
+  } catch (err) {
+    console.error('Error loading footer component:', err);
+  }
 });
