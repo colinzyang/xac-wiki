@@ -1753,29 +1753,7 @@ body.dark-mode .member-info-content .member-description {
   transform: translateX(100px) scale(0.8); /* From right */
 }
 
-/* Auto-scroll animation hint - continuous movement */
-@keyframes gentle-auto-scroll-left {
-  0% { transform: translateX(30px); }
-  100% { transform: translateX(-30px); }
-}
-
-@keyframes gentle-auto-scroll-right {
-  0% { transform: translateX(-30px); }
-  100% { transform: translateX(30px); }
-}
-
-.members-scroll-track.auto-scroll-hint {
-  animation: gentle-auto-scroll-left 3s linear infinite;
-}
-
-.leaders-showcase-section .members-scroll-track.auto-scroll-hint {
-  animation: gentle-auto-scroll-right 3s linear infinite;
-}
-
-/* Pause animation on hover */
-.members-scroll-track.auto-scroll-paused {
-  animation-play-state: paused !important;
-}
+/* Auto-scroll animation removed for cleaner experience */
 
 /* Leaders and Students Unified Styling */
 .leaders-showcase-section .members-scroll-track,

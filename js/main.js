@@ -349,11 +349,6 @@ function initTeamShowcase() {
       // Enable smooth scrolling
       track.style.scrollBehavior = 'smooth';
       
-      // Add permanent auto-scroll hint animation after cards are expanded
-      setTimeout(() => {
-        track.classList.add('auto-scroll-hint');
-      }, 1500); // Start 500ms earlier for better UX flow
-      
       // Optional: Add scroll snap for better UX on touch devices
       if ('ontouchstart' in window) {
         track.style.scrollSnapType = 'x mandatory';
@@ -374,16 +369,6 @@ function initTeamShowcase() {
       if (!scrollTrack) return;
       
       let isScrolling = false;
-      
-      container.addEventListener('mouseenter', () => {
-        // Pause auto-scroll hint when user hovers
-        scrollTrack.classList.add('auto-scroll-paused');
-      });
-      
-      container.addEventListener('mouseleave', () => {
-        // Resume auto-scroll hint when user leaves
-        scrollTrack.classList.remove('auto-scroll-paused');
-      });
       
       container.addEventListener('wheel', (e) => {
         // Prevent default vertical scroll
