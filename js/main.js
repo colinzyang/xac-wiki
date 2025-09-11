@@ -500,6 +500,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.warn('Could not access localStorage during initialization:', err);
   }
   
+  // Initialize carousel for homepage
+  window.carousel = initCarousel();
+  
   // Initialize parallax effects
   initParallax();
   initTeamShowcase();
@@ -588,6 +591,105 @@ document.addEventListener('DOMContentLoaded', function() {
 function initRocheTeamInterface() {
   // Initialize team filter functionality
   initTeamFilter();
+}
+
+function initCarousel() {
+  const carousel = document.querySelector('.hero-carousel');
+  if (!carousel) {
+    console.warn('Carousel not found');
+    return;
+  }
+
+  const track = carousel.querySelector('.carousel-track');
+  const slides = carousel.querySelectorAll('.carousel-slide');
+
+  if (!track) {
+    console.warn('Carousel track not found');
+    return null;
+  }
+  
+  if (slides.length === 0) {
+    console.warn('No carousel slides found');
+    return null;
+  }
+  
+  if (slides.length === 1) {
+    console.log('Only one slide found, auto-play not needed');
+    return null;
+  }
+
+  console.log(`Initializing carousel with ${slides.length} slides`);
+
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+
+  // Auto-play settings
+  let autoPlayInterval;
+  const autoPlayDelay = 4000; // 4 seconds for faster transitions
+
+  function updateCarousel(slideIndex) {
+    console.log(`Moving to slide ${slideIndex}`);
+    
+    // Update slides
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === slideIndex);
+    });
+
+    // Update track position for smooth sliding effect
+    const translateX = -slideIndex * 100;
+    track.style.transform = `translateX(${translateX}%)`;
+
+    currentSlide = slideIndex;
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % totalSlides;
+    updateCarousel(next);
+  }
+
+  function startAutoPlay() {
+    // Clear any existing interval first
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+    }
+    console.log('Starting carousel auto-play');
+    autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      console.log('Stopping carousel auto-play');
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+
+  // Pause auto-play when tab is not visible for performance
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoPlay();
+    } else {
+      startAutoPlay();
+    }
+  });
+
+  // Initialize carousel - ensure first slide is active
+  console.log('Setting up initial carousel state');
+  updateCarousel(0);
+  
+  // Start auto-play after a short delay to ensure DOM is ready
+  setTimeout(() => {
+    startAutoPlay();
+  }, 500);
+
+  // Return control functions for debugging
+  return {
+    next: nextSlide,
+    goTo: updateCarousel,
+    start: startAutoPlay,
+    stop: stopAutoPlay,
+    getCurrentSlide: () => currentSlide
+  };
 }
 
 function initTeamFilter() {

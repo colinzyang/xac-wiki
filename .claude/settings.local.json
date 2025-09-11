@@ -5,7 +5,9 @@
       "Bash(git push:*)",
       "Bash(git add:*)",
       "WebFetch(domain:www.roche.com.cn)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(python:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }
