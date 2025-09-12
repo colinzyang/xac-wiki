@@ -1,3 +1,6 @@
+// 缓存已加载的组件
+const componentCache = new Map();
+
 function loadComponent(id, url, callback) {
   const container = document.getElementById(id);
   if (!container) {
@@ -5,16 +8,39 @@ function loadComponent(id, url, callback) {
     return;
   }
   
-  fetch(url)
+  // 检查缓存
+  if (componentCache.has(url)) {
+    container.innerHTML = componentCache.get(url);
+    if (typeof callback === 'function') {
+      try {
+        requestAnimationFrame(() => callback());
+      } catch (err) {
+        console.error(`Error in callback for ${id}:`, err);
+      }
+    }
+    return;
+  }
+  
+  // 使用AbortController防止重复请求
+  if (container.dataset.loading === 'true') return;
+  container.dataset.loading = 'true';
+  
+  fetch(url, {
+    cache: 'force-cache'  // 强制使用浏览器缓存
+  })
     .then(res => {
       if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status} ${res.statusText}`);
       return res.text();
     })
     .then(html => {
+      // 缓存组件HTML
+      componentCache.set(url, html);
       container.innerHTML = html;
+      container.dataset.loading = 'false';
+      
       if (typeof callback === 'function') {
         try {
-          callback();
+          requestAnimationFrame(() => callback());
         } catch (err) {
           console.error(`Error in callback for ${id}:`, err);
         }
@@ -23,6 +49,7 @@ function loadComponent(id, url, callback) {
     .catch(err => {
       console.error('Component loading error:', err);
       container.innerHTML = `<div class="error-placeholder">Failed to load component</div>`;
+      container.dataset.loading = 'false';
     });
 }
 
@@ -103,30 +130,45 @@ function initScrollNavbar() {
   let isScrolled = false;
   let ticking = false;
   const shrinkThreshold = 80;
-  const expandThreshold = 60; // 添加差异阈值防止抖动
+  const expandThreshold = 60;
   let lastScrollY = window.scrollY;
+  
+  // 使用Intersection Observer优化滚动性能
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navbar.classList.remove('shrink');
+        isScrolled = false;
+      }
+    });
+  }, { rootMargin: '0px 0px -80px 0px' });
+  
+  // 观察页面顶部元素
+  const pageTop = document.createElement('div');
+  pageTop.style.height = '80px';
+  pageTop.style.position = 'absolute';
+  pageTop.style.top = '0';
+  pageTop.style.pointerEvents = 'none';
+  document.body.prepend(pageTop);
+  observer.observe(pageTop);
   
   function updateNavbar() {
     const scrollY = window.scrollY;
     const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
     
-    // 计算滚动进度百分比
-    const documentHeight = document.documentElement.scrollHeight;
-    const windowHeight = window.innerHeight;
-    const scrollHeight = documentHeight - windowHeight;
-    const scrollProgress = scrollHeight > 0 ? Math.min((scrollY / scrollHeight) * 100, 100) : 0;
+    // 减少DOM操作频率
+    if (Math.abs(scrollY - lastScrollY) < 5) {
+      ticking = false;
+      return;
+    }
     
-    // 更新进度条CSS变量
-    navbar.style.setProperty('--scroll-progress', `${scrollProgress}%`);
-    
-    // 向下滚动时使用较高阈值，向上滚动时使用较低阈值
     const threshold = scrollDirection === 'down' ? shrinkThreshold : expandThreshold;
     const shouldShrink = scrollY > threshold;
     
     if (shouldShrink && !isScrolled) {
       navbar.classList.add('shrink');
       isScrolled = true;
-    } else if (!shouldShrink && isScrolled) {
+    } else if (!shouldShrink && isScrolled && scrollY < expandThreshold) {
       navbar.classList.remove('shrink');  
       isScrolled = false;
     }
@@ -142,21 +184,21 @@ function initScrollNavbar() {
     }
   }
   
-  // 添加节流处理
-  let scrollTimeout;
+  // 优化的滚动处理
+  let scrollTimer;
   function handleScroll() {
     requestTick();
     
-    // 清除之前的timeout
-    clearTimeout(scrollTimeout);
+    // 减少will-change的使用
+    if (!scrollTimer) {
+      navbar.style.willChange = 'transform';
+    }
     
-    // 设置新的timeout来处理滚动结束
-    scrollTimeout = setTimeout(() => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
       navbar.style.willChange = 'auto';
-    }, 200);
-    
-    // 开始滚动时启用硬件加速
-    navbar.style.willChange = 'transform, width, height, border-radius';
+      scrollTimer = null;
+    }, 150);
   }
   
   window.addEventListener('scroll', handleScroll, { passive: true });
