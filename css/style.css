@@ -27,7 +27,7 @@ body.dark-mode #bg-mask {
 }
 
 /* ================================
-   Catalyst Title Component Styles - 简洁版
+   Catalyst Title Component Styles 
    ================================ */
 
 /* 主容器 - 居中醒目位置 */
@@ -38,19 +38,40 @@ body.dark-mode #bg-mask {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .catalyst-title-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 大脑背景图像 */
+.brain-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.brain-image {
+  width: 400px;
+  height: auto;
+  opacity: 0.15;
+  filter: blur(1px);
 }
 
 /* 主标题样式 - 固定合理字号，无视所有断点 */
 .catalyst-main-title {
   font-family: var(--font-primary);
   font-size: 6rem !important; /* 约96px - 合理的固定字号，无视断点 */
-  font-weight: 800 !important; /* Extra Bold */
+  font-weight: 700 !important; /* Bold - 用于强调 */
   line-height: 1.1 !important;
   margin: 0 0 60px 0 !important; /* 增加下边距让副标题更下移 */
   color: #222 !important; /* 浅色模式下深色文字 */
@@ -156,6 +177,11 @@ body.dark-mode .catalyst-subtitle {
 
 body.dark-mode .brand-name {
   color: inherit; /* 暗色模式下也统一颜色 */
+}
+
+body.dark-mode .brain-image {
+  opacity: 0.07;
+  filter: blur(1px) brightness(1.5);
 }
 
 /* Hero Section Layout */
@@ -482,8 +508,7 @@ body.dark-mode .slide-image-container {
   image-rendering: crisp-edges;
   backface-visibility: hidden;
   transform: translateZ(0);
-  /* Preload and lazy loading support */
-  loading: lazy;
+  /* Note: loading attribute should be set in HTML, not CSS */
 }
 
 /* Image hover effect for better interactivity */

@@ -7,7 +7,9 @@
       "WebFetch(domain:www.roche.com.cn)",
       "WebSearch",
       "Bash(python:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   }

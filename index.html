@@ -52,7 +52,12 @@
   <main class="main-content" style="padding-top:80px;min-height:60vh;">
     
     <!-- 简洁标题组件 -->
-    <section class="catalyst-title-section">
+    <section class="catalyst-title-section" aria-label="主页标题区域">
+      <!-- 背景大脑图像 -->
+      <div class="brain-background" aria-hidden="true">
+        <img src="/assets/images/Background/brain.png" alt="" class="brain-image" loading="lazy">
+      </div>
+      
       <div class="catalyst-title-container">
         <!-- 主标题 -->
         <h1 class="catalyst-main-title">
@@ -69,6 +74,30 @@
     </section>
 
   </main>
+  
+  <!-- Project Promotion Video Section -->
+  <section class="video-section" style="padding: 60px 20px; text-align: center; position: relative;">
+    <div class="video-container" style="max-width: 800px; margin: 0 auto;">
+      <h1 style="font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 4rem; line-height: 1.1; margin: 0 0 40px 0; color: #222; letter-spacing: 0.02em; text-shadow: 0 0 20px rgba(0, 120, 215, 0.15);">
+        <div style="text-align: left; margin-bottom: -15px; padding-left: 40px; font-size: 3.5rem; font-weight: 500;">So what's the</div>
+        <div style="text-align: right; color: #005a9e; padding-right: 40px; font-size: 4rem; font-weight: 800;">SOLUTION?</div>
+      </h1>
+      <h2 style="font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 2rem; margin-bottom: 30px; color: #005a9e;">Project Promotion</h2>
+      <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+        <iframe 
+          title="XJTLU-AI-China: Plaszyme：An intelligent platform for plastic-degradation enzyme ... (2025) - Project Promotion [English]" 
+          width="560" 
+          height="315" 
+          src="https://video.igem.org/videos/embed/mcdxrRKUXkVeD1GEEePQx9" 
+          allow="fullscreen" 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms" 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0px;"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+  
   <div id="footer"></div>
   <script defer src="/js/main.js"></script>
   
