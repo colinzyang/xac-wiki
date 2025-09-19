@@ -549,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initParallax();
   initTeamShowcase();
   
+  
   // 组件加载状态追踪
   let componentsLoaded = {
     navbar: false,
@@ -638,7 +639,6 @@ function initRocheTeamInterface() {
 function initCarousel() {
   const carousel = document.querySelector('.hero-carousel');
   if (!carousel) {
-    console.warn('Carousel not found');
     return;
   }
 
@@ -646,21 +646,17 @@ function initCarousel() {
   const slides = carousel.querySelectorAll('.carousel-slide');
 
   if (!track) {
-    console.warn('Carousel track not found');
     return null;
   }
   
   if (slides.length === 0) {
-    console.warn('No carousel slides found');
     return null;
   }
   
   if (slides.length === 1) {
-    console.log('Only one slide found, auto-play not needed');
     return null;
   }
 
-  console.log(`Initializing carousel with ${slides.length} slides`);
 
   let currentSlide = 0;
   const totalSlides = slides.length;
@@ -670,7 +666,6 @@ function initCarousel() {
   const autoPlayDelay = 4000; // 4 seconds for faster transitions
 
   function updateCarousel(slideIndex) {
-    console.log(`Moving to slide ${slideIndex}`);
     
     // Update slides
     slides.forEach((slide, index) => {
@@ -694,13 +689,11 @@ function initCarousel() {
     if (autoPlayInterval) {
       clearInterval(autoPlayInterval);
     }
-    console.log('Starting carousel auto-play');
     autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
   }
 
   function stopAutoPlay() {
     if (autoPlayInterval) {
-      console.log('Stopping carousel auto-play');
       clearInterval(autoPlayInterval);
       autoPlayInterval = null;
     }
@@ -716,7 +709,6 @@ function initCarousel() {
   });
 
   // Initialize carousel - ensure first slide is active
-  console.log('Setting up initial carousel state');
   updateCarousel(0);
   
   // Start auto-play after a short delay to ensure DOM is ready
@@ -735,25 +727,18 @@ function initCarousel() {
 }
 
 function initTeamFilter() {
-  console.log('Initializing team filter...');
   const filterTabs = document.querySelectorAll('.filter-tab');
   const teamCards = document.querySelectorAll('.team-member-card');
   
-  console.log('Found filter tabs:', filterTabs.length);
-  console.log('Found team cards:', teamCards.length);
-  
   if (filterTabs.length === 0 || teamCards.length === 0) {
-    console.error('Missing elements - tabs:', filterTabs.length, 'cards:', teamCards.length);
     return;
   }
   
   // Add click event listeners to filter tabs
   filterTabs.forEach((tab, index) => {
-    console.log(`Adding listener to tab ${index}: ${tab.getAttribute('data-filter')}`);
     tab.addEventListener('click', function(e) {
       e.preventDefault();
       const filter = this.getAttribute('data-filter');
-      console.log('Filter clicked:', filter);
       
       // Update active tab
       filterTabs.forEach(t => t.classList.remove('active'));
@@ -771,18 +756,12 @@ function initTeamFilter() {
       }
     });
   });
-  
-  console.log('Team filter initialization completed');
 }
 
 function filterTeamCards(cards, filter) {
-  console.log(`Filtering ${cards.length} cards with filter: ${filter}`);
   cards.forEach((card, index) => {
     const categories = card.getAttribute('data-category').split(' ');
     const shouldShow = filter === 'all' || categories.includes(filter);
-    const memberName = card.querySelector('.member-name')?.textContent || `Card ${index}`;
-    
-    console.log(`${memberName}: categories=[${categories.join(', ')}], shouldShow=${shouldShow}`);
     
     if (shouldShow) {
       card.classList.remove('hidden');
@@ -793,3 +772,4 @@ function filterTeamCards(cards, filter) {
     }
   });
 }
+
