@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contribution - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+</head>
+<body class="article-page contribution-page">
+  <div id="menu-container"></div>
+  
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="container">
+      <h1>Contribution</h1>
+      <p>Giving Back to the SynBio Community</p>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <div class="article-container">
+    <!-- Sidebar -->
+    <div class="article-sidebar">
+      <nav class="catalog">
+        <h4 id="contents">Contents</h4>
+        <ul class="catalog-list">
+          <li><a href="#giving-back">Giving Back to the SynBio Community</a></li>
+          <li><a href="#plaszymedb">PlaszymeDB: Our Dedicated Database</a></li>
+          <li><a href="#ai-models">Our Two Core AI Models</a>
+            <ul class="sub-catalog">
+              <li><a href="#plaszyme-proto" class="sub-heading">PlaszymeAlpha</a></li>
+              <li><a href="#plaszyme-gnn" class="sub-heading">PlaszymeX</a></li>
+            </ul>
+          </li>
+          <li><a href="#platform">The Plaszyme Platform</a></li>
+          <li><a href="#educational-contributions">Educational Contributions</a></li>
+          <li><a href="#future-directions">Ideas for Future iGEM Teams</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Article Content -->
+    <article class="article-content">
+      <h2 id="giving-back">Giving Back to the SynBio Community</h2>
+      <p>We have always recognized that our project's success is deeply rooted in the spirit of generous collaboration and open sharing cultivated by the synthetic biology and iGEM communities. Countless iGEM teams, including our own, have benefited from this ethos, allowing us to build upon the work of others and navigate a smoother development path. We truly believe that access to resources and the dissemination of knowledge can lead to great achievements. This is constantly proven by the world around us; as the old saying goes, "Unity is strength."</p>
+      <p>Throughout our public engagement activities, we were often asked about the "value" of our work. This prompted us to reflect deeply on how we could make our project valuable to future iGEM teams and the broader synthetic biology community. We hope that the work detailed here, and throughout our wiki, will offer valuable insights and help facilitate future projects.</p>
+
+      <h2 id="plaszymedb">PlaszymeDB: Our Dedicated Plastic-Degrading Enzyme Database</h2>
+      <p>The cornerstone of our work is PlaszymeDB, a database we meticulously built. Early in our project, we identified that while public databases are vast, they suffer from fragmented data and inconsistent annotations, especially in the niche field of plastic-degrading enzymes. To address this critical pain point, we developed a focused, high-quality, and specialized resource from the ground up.</p>
+      <p>PlaszymeDB currently contains 474 curated sequences of verified plastic-degrading enzymes. For every entry, we have not only generated an accurate predicted structure but also integrated experimentally determined structural data (e.g., from X-ray crystallography) where available. More importantly, each entry has been carefully annotated with key information, including the type of plastic it degrades (e.g., PET, PE) and its EC number.</p>
+      <p>This database is our gift to the community. It is fully open and accessible through our WebApp, supporting online browsing, searching, and full data export and download functions. We believe PlaszymeDB serves as a rare, ready-to-use data resource that can significantly accelerate the research workflows of all iGEMers and synthetic biology researchers. Explore it at its dedicated portal: <a href="http://plaszyme.org/plaszymedb" target="_blank" rel="noopener">PlaszymeDB</a>.</p>
+
+      <h2 id="ai-models">Our 2 Core AI Models</h2>
+      <p>Leveraging the solid data foundation of PlaszymeDB, we have sequentially engineered two distinct AI models. These innovative contributions, each with unique advantages on different metrics, act as the core intelligence and driving force of our project. Discover more on our <a href="https://gitlab.igem.org/2025/software-tools/xjtlu-ai-china" target="_blank" rel="noopener">GitLab homepage</a>.</p>
+      
+      <h3 id="plaszyme-proto">PlaszymeAlpha: A Sequence-Based Model for Rapid Screening</h3>
+      <p>Our pioneering machine learning model, which laid the foundation for PDE prediction, utilizes the large protein language model ESM for feature extraction and has experimented with various advanced machine learning algorithms. It demonstrates excellent ranking capability on known enzyme–plastic pairs, making it ideal for prioritization and validation tasks.</p>
+      
+      <h3 id="plaszyme-gnn">PlaszymeX: A Structure-Based Model for High-Precision Evaluation</h3>
+      <p>PlaszymeX, featuring a dual-tower Graph Neural Network (GNN) architecture that integrates enzyme structural features with polymer descriptors. This model provides superior generalization, supports predictions on novel plastics, and achieves the state-of-the-art performance (e.g., F1-score) across all metrics, making it the most comprehensive solution.</p>
+
+      <h2 id="platform">The Plaszyme Platform</h2>
+      <p>To make our database and AI models easily accessible to all researchers, we created the Plaszyme WebApp. It integrates all the main functions of our tool suite—including running AI predictions, searching the database, and exploring screening pipelines—into a single, user-friendly interface. It is the easiest way to experience our project, requiring no setup.</p>
+      <p>Within the WebApp, users can input an enzyme's FASTA sequence, PDB file, or even metagenomic data to leverage our models and database. We believe the Plaszyme platform significantly lowers the barrier to entry for using advanced AI models, empowering more teams dedicated to solving the global plastic pollution crisis.</p>
+      <p>We invite you to visit the Plaszyme - <a href="http://plaszyme.org/plaszyme" target="_blank" rel="noopener">Plastic Degradation Prediction Platform</a> to explore and use our complete tool suite!</p>
+
+      <h2 id="educational-contributions">Educational Contributions</h2>
+      <p>Recognizing that effective education must be tailored to the audience, we designed a multi-level outreach strategy targeting different age groups, from primary school students to university undergraduates. Our goal was not only to disseminate knowledge but also to create reproducible teaching frameworks for future iGEM teams.</p>
+      <p><strong>Engaging Primary School Students with Hands-On Science:</strong> Faced with their short attention spans and difficulty with abstract concepts like "AI," we used common objects as tangible teaching aids. We designed simple, hands-on experiments, allowing them to directly observe the vitality of microorganisms. This approach transformed complex knowledge into an intuitive and fun experience, sparking their foundational interest in life sciences.</p>
+      <p><strong>Connecting SynBio to Daily Life for Junior High Students:</strong> As students in this age group begin to develop abstract thinking, we aimed to bridge the gap between textbook knowledge and the real world. Our sessions focused on explaining concepts through relatable, everyday examples. Through guided questioning and interactive discussions, we helped them connect abstract scientific terms to their lived experiences, making the knowledge more meaningful.</p>
+      <p><strong>Fostering Critical Thinking in High School Students:</strong> For high schoolers who are developing critical and logical thinking skills, we conducted specialized lectures on cutting-edge topics that linked synthetic biology with societal issues. We adopted participatory formats like group discussions and debates, encouraging them not just to receive information, but to scientifically analyze, question, and form their own perspectives.</p>
+      <p><strong>Empowering University Peers with Real-World Project Experience:</strong> At the university level, we provided practical, in-depth learning opportunities. We organized an open-source Machine Learning course and held presentations for our Plaszyme project, which were integrated with real data from our research. In collaboration with university art clubs, we also co-created science communication works, promoting interdisciplinary approaches to public engagement.</p>
+
+      <h2 id="future-directions">Ideas for Future iGEM Teams</h2>
+      <p>Our work provides a blueprint for AI-driven enzyme discovery and engineering. We encourage future teams to build upon it:</p>
+      <p><strong>Expanding the Database:</strong> Incorporate data for other types of plastic-degrading enzymes (e.g., for polyurethane or PVC) or other industrial enzymes (e.g., amylases, lipases) into PlaszymeDB.</p>
+      <p><strong>Model Fusion and Upgrades:</strong> Attempt to fuse sequence and structural information into a single, more powerful AI model, or train models to predict additional properties like optimal temperature and pH.</p>
+      <p><strong>Guiding Protein Engineering:</strong> Use our platform to guide the directed evolution of enzymes by predicting which mutations are most likely to enhance performance.</p>
+      <p><strong>Expanding Educational Outreach:</strong> Develop new hands-on modules based on our age-specific teaching frameworks, or translate our educational resources to reach a broader, global audience.</p>
+      <p>This comprehensive contribution reflects our commitment to advancing synthetic biology through innovative technologies, community engagement, and educational outreach. Our efforts aim to leave a lasting impact on both the scientific community and the broader public.</p>
+    </article>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <img src="/static/assets/icons/up.svg" alt="Scroll to top" />
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Enhanced catalog functionality with sub-menu expansion
+    // Wait for components to load before initializing catalog  
+    function initCatalogFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Enhanced highlight active section with improved detection for subsections
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 100;
+        let currentActiveSection = null;
+        let currentMainSection = null;
+        
+        // Get all headings and sort by position
+        const headingsArray = Array.from(headings);
+        let candidates = [];
+        
+        // Find all possible active sections with improved logic for short paragraphs
+        headings.forEach(function(heading, index) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const id = section.getAttribute('id');
+          
+          if (!id) return; // Skip headings without IDs
+          
+          // Calculate section bottom based on next heading
+          let sectionBottom;
+          if (index < headingsArray.length - 1) {
+            sectionBottom = headingsArray[index + 1].offsetTop;
+          } else {
+            sectionBottom = document.body.scrollHeight;
+          }
+          
+          // For short sections, ensure minimum detection range
+          const sectionHeight = sectionBottom - sectionTop;
+          const minRange = 300; // Minimum detection range for short sections
+          let effectiveBottom = sectionBottom;
+          
+          if (sectionHeight < minRange) {
+            effectiveBottom = sectionTop + minRange;
+            // But don't overlap with next section too much
+            if (index < headingsArray.length - 1) {
+              const nextSectionTop = headingsArray[index + 1].offsetTop;
+              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
+            }
+          }
+          
+          // Enhanced detection range with better tolerance
+          const topOffset = -100; // Start detecting 100px before section
+          const bottomOffset = -80; // Continue detecting 80px after section starts
+          
+          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
+            candidates.push({
+              id: id,
+              distance: Math.abs(scrollPos - sectionTop),
+              top: sectionTop,
+              element: heading,
+              isSubsection: heading.tagName.toLowerCase() !== 'h2'
+            });
+          }
+        });
+        
+        // Choose the best candidate based on priority and distance
+        if (candidates.length > 0) {
+          // Sort by distance, prioritizing closer sections
+          candidates.sort((a, b) => {
+            // Prefer subsections over main sections when close
+            if (Math.abs(a.distance - b.distance) < 50) {
+              if (a.isSubsection && !b.isSubsection) return -1;
+              if (!a.isSubsection && b.isSubsection) return 1;
+            }
+            return a.distance - b.distance;
+          });
+          
+          currentActiveSection = candidates[0].id;
+        }
+        
+        // Determine main section for expansion
+        const h2Headings = document.querySelectorAll('.article-content h2');
+        h2Headings.forEach(function(heading) {
+          const sectionTop = heading.offsetTop;
+          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
+          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
+          
+          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
+            currentMainSection = heading.id;
+          }
+        });
+        
+        // Remove all active states
+        catalogLinks.forEach(function(link) {
+          link.classList.remove('active');
+          const parentLi = link.closest('li');
+          if (parentLi) {
+            parentLi.classList.remove('active');
+          }
+        });
+        
+        // Set active state for current section (including sub-headings)
+        if (currentActiveSection) {
+          // Try to find exact match first
+          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
+          
+          // If no exact match, try to find a sub-heading that matches
+          if (!activeLink) {
+            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
+            subHeadings.forEach(function(subLink) {
+              const href = subLink.getAttribute('href');
+              if (href === '#' + currentActiveSection) {
+                activeLink = subLink;
+              }
+            });
+          }
+          
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+        
+        // Keep main section expanded if we're anywhere within it
+        if (currentMainSection) {
+          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
+          if (mainSectionLink) {
+            const parentLi = mainSectionLink.closest('li');
+            if (parentLi) {
+              parentLi.classList.add('active');
+            }
+          }
+        }
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+
+    // Initialize catalog after a short delay to ensure components are loaded
+    setTimeout(initCatalogFunctionality, 500);
+  </script>
+</body>
+</html>

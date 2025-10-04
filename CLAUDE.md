@@ -17,44 +17,58 @@ Since this is a static website with no build system:
 
 ### Component System
 The site uses a modular HTML component system loaded via JavaScript:
-- **Components location**: `/components/` directory
-- **Loading mechanism**: `loadComponent()` function in `js/main.js:1-11`
+- **Components location**: `/wiki/` directory
+- **Loading mechanism**: `loadComponent()` function in `static/main.js:1-11`
 - **Main components**: 
-  - `navbar.html` - Unified responsive navigation bar with shrink animation
+  - `menu.html` - Unified responsive navigation menu with shrink animation
   - `footer.html` - Site footer with contact info and nav links
 
 ### Navigation System
-- **Single navbar system**: Navbar transforms with CSS classes on scroll (60px threshold)
-- **Scroll animation**: Managed in `js/main.js:initScrollNavbar()`
+- **Single menu system**: Menu transforms with CSS classes on scroll (60px threshold)
+- **Scroll animation**: Managed in `static/main.js:initScrollNavbar()`
 - **Responsive dropdowns**: Mobile/touch-friendly dropdowns with click handling
 - **Dark mode integration**: Logo and icon switching based on theme
 
 ### Dark Mode Implementation
-- **Toggle mechanism**: Managed by `initDarkMode()` in `js/main.js`
+- **Toggle mechanism**: Managed by `initDarkMode()` in `static/main.js`
 - **Persistence**: Uses localStorage to remember user preference
 - **Theme switching**: CSS classes and asset swapping (logos, icons)
 - **Accessibility**: Proper alt text and ARIA labels for mode indicators
 
 ### Page Structure
 ```
-/pages/
-├── team/ (Members, Attributions)
-├── project/ (Description, Design, Engineering, Safety)  
-├── drylab/ (Design, Database, Model, Webapp)
-├── wetlab/ (Design, Protocol, Notebook, Result)
-└── activities/ (Human Practices, Education, Community, Sustainable)
+/wiki/pages/ (flat structure)
+├── home.html (Main page)
+├── members.html (Team Members)
+├── attributions.html (Team Attributions)
+├── description.html (Project Description)
+├── engineering.html (Project Engineering) 
+├── contribution.html (Project Contribution)
+├── safety.html (Project Safety)
+├── model.html (Model Overview)
+├── database.html (Model Database)
+├── predictor.html (Model Predictor)
+├── webapp.html (Model Webapp)
+├── wetlab-design.html (Wetlab Overview)
+├── protocol.html (Wetlab Protocol)
+├── notebook.html (Wetlab Notebook)
+├── result.html (Wetlab Result)
+├── human-practices.html (Activities Human Practices)
+├── education.html (Activities Education)
+└── sustainability.html (Activities Sustainability)
 ```
 
 ### Styling System
-- **Main styles**: `css/style.css` - Base typography, layout, dark mode, responsive design
-- **Navigation styles**: `css/glass-navbar.css` - Glass-morphism navbar styling with shrink animation
+- **Main styles**: `static/style.css` - Base typography, layout, dark mode, responsive design
+- **Navigation styles**: `static/glass-menu.css` - Glass-morphism menu styling with shrink animation
+- **Article styles**: `static/article.css` - Styling for content pages
 - **Responsive design**: Mobile-first approach with breakpoints at 768px and 480px
 - **Color scheme**: Consistent blue theme (#0078d7) with dark mode variants
 - **Component styling**: Feature cards, page headers, and hero sections with glass-morphism effects
 
 ### Asset Organization
 ```
-/assets/
+/static/assets/
 ├── fonts/ (Web fonts - Source Sans Pro recommended)
 ├── icons/ (UI icons for dark mode toggle)
 ├── images/ (Content images)
@@ -63,7 +77,7 @@ The site uses a modular HTML component system loaded via JavaScript:
 
 ### Typography System
 - **Primary Font**: Source Sans Pro (科学学术网站的理想选择)
-- **Font Loading**: `css/fonts.css` with @font-face declarations
+- **Font Loading**: `static/fonts.css` with @font-face declarations
 - **Weight Usage**: 
   - Light (300): 描述文本
   - Regular (400): 正文内容  
@@ -75,7 +89,7 @@ The site uses a modular HTML component system loaded via JavaScript:
 ## Key Implementation Details
 
 ### Component Loading Pattern
-Components are loaded asynchronously with error handling and proper initialization sequence. All initialization happens in `js/main.js` after DOM content is loaded.
+Components are loaded asynchronously with error handling and proper initialization sequence. All initialization happens in `static/main.js` after DOM content is loaded.
 
 ### Mobile Considerations  
 - Responsive grid layouts that stack vertically on mobile devices

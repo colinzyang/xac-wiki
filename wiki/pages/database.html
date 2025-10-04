@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+</head>
+<body class="article-page database-page">
+  <div id="menu-container"></div>
+  
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="container">
+      <h1>Plaszyme Database</h1>
+      <p>Comprehensive database and data analysis platform for plastic-degrading enzymes</p>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <div class="article-container">
+    <!-- Sidebar -->
+    <div class="article-sidebar">
+      <nav class="catalog">
+        <h4 id="contents">Contents</h4>
+        <ul class="catalog-list">
+          <li><a href="#background">1. Background</a></li>
+          <li><a href="#introduction">2. Introduction</a>
+            <ul class="sub-catalog">
+              <li><a href="#plaszymedb" class="sub-heading">PlaszymeDB</a></li>
+            </ul>
+          </li>
+          <li><a href="#design-objectives">3. Design Objectives</a></li>
+          <li><a href="#overall-workflow">4. Overall Workflow</a>
+            <ul class="sub-catalog">
+              <li><a href="#data-collection" class="sub-heading">4.1. Data Collection</a></li>
+              <li><a href="#data-standardization" class="sub-heading">4.2. Data Standardization and Cleaning</a></li>
+              <li><a href="#information-integration" class="sub-heading">4.3. Information Integration</a></li>
+              <li><a href="#quality-assurance" class="sub-heading">4.4. Quality Assurance and Review</a></li>
+              <li><a href="#phylogenetics" class="sub-heading">4.5. Phylogenetics and Visualization</a></li>
+              <li><a href="#database-implementation" class="sub-heading">4.6. Database Implementation</a></li>
+            </ul>
+          </li>
+          <li><a href="#validation">5. Validation</a></li>
+          <li><a href="#conclusion">6. Conclusion</a></li>
+          <li><a href="#references">References</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Article Content -->
+    <article class="article-content">
+      <h2 id="background">1. Background</h2>
+      <p>Plastic pollution has become a global environmental challenge. Despite ongoing efforts in recycling and the development of alternative materials, vast amounts of single-use plastics have already entered the natural environment, where they are resistant to degradation and pose threats to ecosystems. Microbial degradation offers a sustainable and green solution, with enzymes capable of breaking down different plastic polymers at the core of this process.</p>
+      <p>However, relevant research findings are scattered across various publications and databases. This fragmentation makes it difficult for researchers to search, compare, and apply plastic-degrading enzymes, raising the data threshold in this field. Researchers urgently need a systematic, interactive platform to integrate and present this information. To address this demand, we developed PlaszymeDB—a comprehensive database of plastic-degrading enzymes.</p>
+
+      <h2 id="introduction">2. Introduction</h2>
+      <h3 id="plaszymedb">PlaszymeDB <a href="https://github.com/Tsutayaaa/PlaszymeDB"><img src="https://img.shields.io/badge/GitHub-PlaszymeDB-black?logo=github" alt="GitHub Repo" style="margin-left: 8px; vertical-align: middle;"></a></h3>
+      <p>PlaszymeDB aims to provide an open, intuitive, and sustainably updated resource for researchers worldwide. It is a specialized and comprehensive database dedicated to plastic-degrading enzymes, compiling X enzyme records reported up to 2025, covering X types of plastics (e.g., PET, PE, PP, PVC), and including X structural entries.</p>
+      <p>The database not only provides basic information (e.g., sequence, EC number, host organism) but also integrates structural analysis, functional annotations, and phylogenetic insights. Its goal is to enable systematic management of plastic-degrading enzymes.</p>
+
+      <h2 id="design-objectives">3. Design Objectives</h2>
+        <p>PlaszymeDB is more than just an information platform—it is closely linked to our downstream research. On one hand, it provides standardized datasets for machine learning model training, ensuring accuracy and reliability. On the other hand, in our project, five test sequences used in model training were directly screened from PlaszymeDB for wet-lab validation. By combining data-driven approaches with experimental confirmation, the database serves as a practical bridge between theoretical research and real-world applications.</p>
+        <p>PlaszymeDB aims to:</p>
+        <ol>
+          <li>Provide a new integrated data source for researchers worldwide, reducing redundant efforts caused by dispersed information;</li>
+          <li>Innovatively combine structural data, laying the groundwork for enzyme engineering and environmental remediation;</li>
+          <li>Supply candidate sequences and annotations for laboratory studies, shortening the path from data to experimental validation;</li>
+          <li>Serve as a dataset for artificial intelligence model training;</li>
+          <li>Lower the barrier to data use through open access and interactive design, enabling researchers from diverse backgrounds and disciplines to benefit and fostering global academic exchange and interdisciplinary collaboration.</li>
+        </ol>
+
+      <h2 id="overall-workflow">4. Overall Workflow</h2>
+      <p>The construction of PlaszymeDB follows a strict data collection and processing procedure to ensure the accuracy and reproducibility of the database content.</p>
+        
+      <h3 id="data-collection">4.1. Data Collection</h3>
+      <p>We integrated enzyme information from PlasticDB, PAZy, PMBD, two open-source GitHub projects, and one relevant research article. All collected entries were cross-validated with UniProt, NCBI, and PDB to ensure the reliability of existing sequences and annotations.</p>
+                
+      <h3 id="data-standardization">4.2. Data Standardization and Cleaning</h3>
+      <p>Plastic type names were unified, a systematic ID coding scheme was designed, and redundant or anomalous sequences were removed to ensure data consistency and scientific value.</p>
+      <p>Deduplication was implemented via two approaches:</p>
+          
+      <h4>4.2.1. Script-based cleaning:</h4>
+      <p>By means of a self-developed script, batch processing was carried out through four main steps:</p>
+      <ul>
+        <li><strong>Data Preprocessing:</strong> The first step was to organize datasets collected from six different sources (the professional databases PlasticDB, PAZy, and PMBD, two open-source GitHub projects, and one research article on plastic-degrading enzymes), ensuring preliminary consistency in field formats and content.</li>
+        <li><strong>Data Integration:</strong> The datasets were merged by mapping to a unified set of key fields (plastic, label, sequence, genbank_ids, uniprot_ids, pdb_ids, refseq_ids, mgnify_ids, enzyme_name, ec_number, gene_name, host_organism, taxonomy, reference, source_name), resulting in a comprehensive integrated dataset.</li>
+        <li><strong>Sequence Completion:</strong> For entries lacking sequence information, the missing sequences were retrieved using available ID data through external database APIs, in the order of UniProt → GenBank → PDB → RefSeq, thereby minimizing missing values.</li>
+        <li><strong>Deduplication and Quality Control:</strong> Records without any sequence information were first removed. Deduplication was then performed using ["plastic", "label", "sequence"] as a composite key; entries were merged only if plastic type, sample label (positive/negative), and sequence were completely identical. In addition, the script standardized and merged synonymous plastic names, checked field formats and filled missing values, and validated sequence quality (retaining only standard amino acid letters while discarding sequences containing non-standard characters, low-complexity regions, or abnormal lengths).</li>
+      </ul>
+                    
+      <h4>4.2.2. Manual curation:</h4>
+      <p>Suspect entries flagged by scripts (e.g., ambiguous synonyms, anomalous EC numbers, host names with misspellings or incorrect Latin formatting, broken references, or invalid database links) were manually verified. This was achieved by cross-checking original publications against UniProt, NCBI, and PDB records.</p>
+      <p>Throughout the process, all operations were logged, and version updates were documented to form a complete audit trail. The combination of "scripted automation + manual curation" enhanced both efficiency and reliability.</p>
+                          
+      <h3 id="information-integration">4.3. Information Integration</h3>
+          
+      <h4>4.3.1. Functional Annotation</h4>
+      <p>The database includes enzyme annotations such as EC numbers, plastic degradation relationships, and host organisms. Annotations were supplemented according to data availability, which refers to the varying richness of information across database records and literature. Wherever possible, PlaszymeDB enriched incomplete entries with additional references.</p>
+                    
+      <h4>4.3.2. Structural Information</h4>
+      <p>For every protein entry, PlaszymeDB provides predicted 3D structures generated by AlphaFold (developed by DeepMind). In addition, some entries include high-resolution structures determined experimentally via X-ray crystallography, serving as critical validation for predictions.</p>
+      <p>By integrating experimental and computational structures, PlaszymeDB offers a panoramic resource for investigating enzyme features and mechanisms.</p>
+      <p>The following structural files are selected from PlaszymeDB, providing a visual representation of the protein sequence structure:</p>
+      <div class="structure-gallery">
+        <div class="structure-item">
+          <img src="/static/assets/images/matching_pictures/X0267.svg" alt="Structure X0267" class="structure-image">
+          <p class="structure-id">XID:X0267</p>
+        </div>
+        <div class="structure-item">
+          <img src="/static/assets/images/matching_pictures/X0264.svg" alt="Structure X0264" class="structure-image">
+          <p class="structure-id">XID:X0264</p>
+        </div>
+        <div class="structure-item">
+          <img src="/static/assets/images/matching_pictures/X0200.svg" alt="Structure X0200" class="structure-image">
+          <p class="structure-id">XID:X0200</p>
+        </div>
+      </div>
+                    
+      <h4>4.3.3. Source Tracing</h4>
+      <p>PlaszymeDB establishes a systematic traceability mechanism for every protein entry:</p>
+            
+      <h5>4.3.3.1. Database links</h5>
+      <p>Direct connections to UniProt, NCBI, and PDB enable quick verification of original data.</p>
+            
+      <h5>4.3.3.2. Research references</h5>
+      <p>Each entry is accompanied by citation information, ensuring annotation credibility and respect for intellectual property.</p>
+            
+      <p>This combination of database links and literature validation enhances both the credibility and accessibility of the resource.</p>
+          
+      <h3 id="quality-assurance">4.4. Quality Assurance and Review</h3>
+      <p>All entries were cross-validated with UniProt, NCBI, and PDB to ensure sequence and annotation reliability. Final review followed a "two reviewers plus one arbitrator" system: two curators independently assessed the data; if they agreed, the result was confirmed; in case of disagreement, a third reviewer arbitrated through discussion to finalize the decision.</p>
+        
+      <h3 id="phylogenetics">4.5. Phylogenetics and Visualization</h3>
+      <p>Sequences were aligned using the MUSCLE algorithm, and phylogenetic trees were built with the Maximum Likelihood method. Results were visualized on iTOL, with color-coded annotations for degradable plastic types. Users can explore relationships by plastic type, enzyme family, or host organism, facilitating intuitive interpretation of evolutionary patterns.</p>
+        
+      <h3 id="database-implementation">4.6. Database Implementation</h3>
+      <p>PlaszymeDB provides a user-friendly interface supporting fast search and multidimensional filtering. It also integrates a local BLAST tool, allowing users to submit new sequences for similarity analysis. In addition, downloadable .csv tables are available for diverse research applications.</p>
+        
+      <h2 id="validation">5. Validation</h2>
+      <p>Using curated datasets from PlaszymeDB, we trained multiple machine learning models, including ExtraTrees, RandomForest, XGBoost, and HistGradientBoosting, evaluated via 10-fold cross-validation.</p>
+      <p>Results showed high performance across accuracy, precision, recall, F1-score, and MCC, with XGBoost and HistGradientBoosting achieving the best overall results. This demonstrates that PlaszymeDB not only supports model training effectively but also validates the intrinsic quality and reliability of the data itself.</p>
+      
+      <h2 id="conclusion">6. Conclusion</h2>
+      <p>The establishment of PlaszymeDB provides researchers with a high-quality, sustainably updated database of plastic-degrading enzymes.</p>
+      <p>By integrating sequence data, structural information, phylogenetic relationships, and functional annotations, PlaszymeDB lowers data barriers for future applications in synthetic biology, enzyme engineering, and environmental remediation.</p>
+      <p>As an open-access platform (<a href="http://plaszyme.org/plaszymedb">www.plaszyme.org/plaszymedb</a>), freely available without registration, PlaszymeDB accelerates research on plastic pollution mitigation while promoting academic exchange and interdisciplinary collaboration.</p>
+      <p>We envision PlaszymeDB not only as a data repository, but also as a catalyst for innovation and knowledge exchange, bridging data, experiments, and real-world solutions.</p>
+      
+      <h2 id="references">References</h2>
+      <ol>
+        <li>Victor Gambarini, Olga Pantos, Joanne M Kingsbury, Louise Weaver, Kim M Handley, Gavin Lear, PlasticDB: a database of microorganisms and proteins linked to plastic biodegradation, Database, Volume 2022, 2022, baac008, DOI: doi.org/10.1093/database/baac008.</li>
+        <li>Buchholz PCF, Feuerriegel G, Zhang H, et al. Plastics degradation by hydrolytic enzymes: The plastics-active enzymes database—PAZy. Proteins. 2022; 90(7): 1443-1456. doi:10.1002/prot.26325</li>
+        <li>Jiang, R., Shang, L., Wang, R., Wang, D., & Wei, N. (2023). Machine learning based prediction of enzymatic degradation of plastics using encoded protein sequence and effective feature representation. Environmental Science & Technology Letters, 10(6), 464–470. <a href="https://doi.org/10.1021/acs.estlett.3c00293">https://doi.org/10.1021/acs.estlett.3c00293</a></li>
+        <li>David Medina-Ortiz, Diego Alvares-Saravia, Nicole Soto-García, Diego Sandoval-Vargas, Jacqueline Aldridge, Sebastián Rodríguez, Bárbara Andrews, Juan A. Asenjo Anamaría Daza. Discovering potential plastic degrading enzymes using machine learning strategies. <a href="https://doi.org/10.1101/2025.02.09.637306">https://doi.org/10.1101/2025.02.09.637306</a></li>
+        <li>Zrimec J, Kokina M, Jonasson S, Zorrilla F, Zelezniak A, 2021. Plastic-Degrading Potential across the Global Microbiome Correlates with Recent Pollution Trends. mBio12:10.1128/mbio.02155-21. <a href="https://doi.org/10.1128/mbio.02155-21">https://doi.org/10.1128/mbio.02155-21</a><br>Jan Zrimec, & Aleksej Zelezniak. (2021). Plastic-degrading potential across the global microbiome correlates with recent pollution trends. <a href="https://doi.org/10.5281/zenodo.5112372">https://doi.org/10.5281/zenodo.5112372</a></li>
+        <li>PMBD Database: <a href="http://pmbd.genome-mining.cn/home/">http://pmbd.genome-mining.cn/home/</a> (Note: This database became unavailable in August and the link is currently not accessible)</li>
+      </ol>
+    </article>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <img src="/static/assets/icons/up.svg" alt="Scroll to top" />
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Enhanced catalog functionality with sub-menu expansion  
+    // Wait for components to load before initializing catalog
+    function initCatalogFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Enhanced highlight active section with improved detection for subsections
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 100;
+        let currentActiveSection = null;
+        let currentMainSection = null;
+        
+        // Get all headings and sort by position
+        const headingsArray = Array.from(headings);
+        let candidates = [];
+        
+        // Find all possible active sections with improved logic for short paragraphs
+        headings.forEach(function(heading, index) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const id = section.getAttribute('id');
+          
+          if (!id) return; // Skip headings without IDs
+          
+          // Calculate section bottom based on next heading
+          let sectionBottom;
+          if (index < headingsArray.length - 1) {
+            sectionBottom = headingsArray[index + 1].offsetTop;
+          } else {
+            sectionBottom = document.body.scrollHeight;
+          }
+          
+          // For short sections, ensure minimum detection range
+          const sectionHeight = sectionBottom - sectionTop;
+          const minRange = 300; // Minimum detection range for short sections
+          let effectiveBottom = sectionBottom;
+          
+          if (sectionHeight < minRange) {
+            effectiveBottom = sectionTop + minRange;
+            // But don't overlap with next section too much
+            if (index < headingsArray.length - 1) {
+              const nextSectionTop = headingsArray[index + 1].offsetTop;
+              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
+            }
+          }
+          
+          // Enhanced detection range with better tolerance
+          const topOffset = -100; // Start detecting 100px before section
+          const bottomOffset = -80; // Continue detecting 80px after section starts
+          
+          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
+            candidates.push({
+              id: id,
+              distance: Math.abs(scrollPos - sectionTop),
+              top: sectionTop,
+              element: heading,
+              isSubsection: heading.tagName.toLowerCase() !== 'h2'
+            });
+          }
+        });
+        
+        // Choose the best candidate based on priority and distance
+        if (candidates.length > 0) {
+          // Sort by distance, prioritizing closer sections
+          candidates.sort((a, b) => {
+            // Prefer subsections over main sections when close
+            if (Math.abs(a.distance - b.distance) < 50) {
+              if (a.isSubsection && !b.isSubsection) return -1;
+              if (!a.isSubsection && b.isSubsection) return 1;
+            }
+            return a.distance - b.distance;
+          });
+          
+          currentActiveSection = candidates[0].id;
+        }
+        
+        // Determine main section for expansion
+        const h2Headings = document.querySelectorAll('.article-content h2');
+        h2Headings.forEach(function(heading) {
+          const sectionTop = heading.offsetTop;
+          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
+          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
+          
+          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
+            currentMainSection = heading.id;
+          }
+        });
+        
+        // Remove all active states
+        catalogLinks.forEach(function(link) {
+          link.classList.remove('active');
+          const parentLi = link.closest('li');
+          if (parentLi) {
+            parentLi.classList.remove('active');
+          }
+        });
+        
+        // Set active state for current section (including sub-headings)
+        if (currentActiveSection) {
+          // Try to find exact match first
+          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
+          
+          // If no exact match, try to find a sub-heading that matches
+          if (!activeLink) {
+            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
+            subHeadings.forEach(function(subLink) {
+              const href = subLink.getAttribute('href');
+              if (href === '#' + currentActiveSection) {
+                activeLink = subLink;
+              }
+            });
+          }
+          
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+        
+        // Keep main section expanded if we're anywhere within it
+        if (currentMainSection) {
+          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
+          if (mainSectionLink) {
+            const parentLi = mainSectionLink.closest('li');
+            if (parentLi) {
+              parentLi.classList.add('active');
+            }
+          }
+        }
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+
+    // Initialize catalog after a short delay to ensure components are loaded
+    setTimeout(initCatalogFunctionality, 500);
+  </script>
+</body>
+</html>

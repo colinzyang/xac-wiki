@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    src: url(https://static.igem.wiki/teams/4134/wiki/wiki/font/300.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://static.igem.wiki/teams/4134/wiki/wiki/font/400.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    src: url(https://static.igem.wiki/teams/4134/wiki/wiki/font/500.woff2) format('woff2');
+
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    src: url(https://static.igem.wiki/teams/4134/wiki/wiki/font/800.woff2) format('woff2');
+
+}
+
+html {
+    scroll-padding-top: 100px;
+}
+
+body {
+    padding-top: 100px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    /*color: #fff;*/
+    /*background-color: #1f2029;*/
+    background-color: var(--primary-color);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 7%;
+    overflow-x: hidden;
+    transition: all 200ms linear;
+}
+
+::selection {
+    color: #000;
+    background-color: #fff143; 
+}
+
+::-moz-selection {
+    color: #000;
+    background-color: #fff143;
+}
+
+.left-aligned {
+    margin-left: auto;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.bg-hero {
+    background-color: #ffffff;
+}
+
+.headerbase h1 {
+    text-align: center;
+    font-weight: 800!important;
+    color: #000;
+    text-shadow: 3px 7px 9px #d0d9e2;
+    z-index: 1000;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 800!important;
+    color: #000;
+}
+
+.lead {
+    text-align: center;
+}
+
+/* CALLOUT */
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-radius: .25rem
+}
+
+.bd-callout h4 {
+    margin-bottom: .25rem
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bd-callout code {
+    border-radius: .25rem
+}
+
+.bd-callout+.bd-callout {
+    margin-top: -.25rem
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f
+}
+
+
+.headerbase{
+    /*background-image: url('https://static.igem.wiki/teams/4134/wiki/wiki/header3.jpg');*/
+    background-image: url('https://static.igem.wiki/teams/4134/wiki/wiki/header-element.svg');
+    background-size: 56px;
+    
+}
+
+.header-mask{
+    padding: 3rem 0;
+    margin: 0 0;
+    background: var(--mask);
+}
+
+.top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+.darkmode {
+    position: fixed;
+    right: 2rem;
+    bottom: 6.2rem;
+}
+
+.toplink {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.toplink:hover {
+    color: #ffffff;
+}
+
+.btn-circle {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.sponsor {
+    background-color:#ffffff;
+}
+
+.logo-box {
+    max-width: 70%;
+    margin: 10px;
+    text-align: center;
+}
+
+.s-logo {
+    filter: grayscale(var(--logo-gray)) brightness(var(--logo-darkmode));
+}
+
+.p-logo {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+/* footer */
+footer a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+

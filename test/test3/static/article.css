@@ -1,0 +1,280 @@
+:root {
+    --catalog-bg: #0f59a4;
+    --catalog-bg-black: #000000;
+    --catalog-heading: #fff;
+    --catalog-heading-active: #fff143;
+    --catalog-heading-black: #fff;
+    --dark-blue: #4d5b7a;
+    --orange: #f8b425;
+}
+
+/*正文样式*/
+
+article {
+    padding: 5rem 5rem 5rem;
+    margin-left: 1rem;
+    color: var(--text-color);
+    box-shadow: 0 1.25rem 1rem .3125rem var(--shadow);
+}
+
+@media (max-width: 992px) {
+    article {
+        padding: 0 0;
+        margin-left: 0;
+    }
+}
+
+article p {
+    line-height: 1.8;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+    width: auto;
+    line-height: 2;
+    font-style: normal;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    color: var(--text-color);
+}
+
+article h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--theme-color);
+    padding-top: 10px;
+}
+
+article h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+article h4 {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+article h5 {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+article a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color ease 300ms;
+    /*border-bottom: 2px solid var(--theme-color);*/
+}
+
+article a:after {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    background-color: var(--theme-color);
+    height: 2px;
+    transition: all ease 600ms;
+}
+
+article a:hover {
+    color: var(--text-color);
+}
+
+article a:hover::after {
+    left: 100%;
+    width: 0%;
+    transition: all ease 200ms;
+}
+
+article a:before {
+    width: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    background-color: var(--theme-color);
+    height: 2px;
+    transition: width ease 400ms;
+}
+
+article a:hover::before {
+    width: 100%;
+}
+
+/*
+article a:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--theme-color);
+}*/
+
+
+article strong {
+    font-weight: 800;
+}
+
+article img {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px 2px #bdcee0;
+    max-width: 80%;
+    height: auto;
+    box-sizing: content-box;
+    background-color: #ffffff;
+    display: block;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    filter: brightness(var(--img-dark));
+}
+
+article .img-note {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #808183;
+}
+
+article table {
+    width: auto;
+    min-width: 80%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+article table tr:nth-child(2n),
+article table thead {
+    background-color: rgba(66, 133, 244, 0.03);
+}
+
+article table thead {
+    font-weight: 600;
+}
+
+article table tbody tr {
+    border-bottom: 1px solid #DADCDE;
+}
+
+article table tr:first-of-type {
+    border-top: 1px solid #DADCDE;
+}
+
+article table tr th,
+article table tr td {
+    border-left: 1px solid #DADCDE;
+    padding: 6px 13px;
+}
+
+article table tr th:last-of-type,
+article table tr td:last-of-type {
+    border-right: 1px solid #DADCDE;
+}
+
+article ul,
+article ol {
+    line-height: 1.6;
+}
+
+article ol>li::marker,
+article ul>li::marker {
+    font-weight: 800;
+}
+
+/*目录样式*/
+
+.sidebar {
+    padding-top: 5rem;
+    
+}
+
+.catalog {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 150px;
+    visibility: visible;
+    flex-direction: column;
+    background-color: var(--primary-color);
+}
+
+#contents {
+    color: var(--text-color);
+    text-align: center;
+    font-weight: 800;
+}
+
+.catalog-list {
+    line-height: 2.2;
+    margin-top: 1rem;
+}
+
+.catalog ul>li {
+    list-style-type: '> ';
+}
+
+.catalog ul {
+    color: var(--orange);
+    line-height: 1.4;
+}
+
+.catalog li {
+    margin-bottom: 1rem;
+}
+
+.catalog a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    
+}
+
+.catalog a:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: var(--dark-blue);
+    transition: all .3s;
+}
+
+.catalog a:hover {
+    color: var(--dark-blue);
+}
+
+.catalog a:hover:before {
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.catalog-H2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.catalog-H3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.catalog .active {
+    color: var(--orange);
+    transition: all 50ms;
+}
+
+.catalog a:before .active{
+    background: var(--orange) !important;
+}
+
+.catalog a:hover .active{
+    color: var(--orange) !important;
+}

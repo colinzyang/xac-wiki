@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attributions - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+  <style>
+    .attributions-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('/static/assets/images/Background/attributions.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .attributions-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for attributions header */
+    body.dark-mode .attributions-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .attributions-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    /* Ensure header content is above overlay */
+    .attributions-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .attributions-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .attributions-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .attributions-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .attributions-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    
+    .attributions-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      width: 95%;
+    }
+    
+    .iframe-container {
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    #igem-attribution-form {
+      border: none;
+      border-radius: 8px;
+      height: 800px;
+      width: 100%;
+      overflow: auto;
+      display: block;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .attributions-content {
+        max-width: 1100px;
+        padding: 1.5rem;
+      }
+      
+      .iframe-container {
+        padding: 1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .attributions-content {
+        max-width: 100%;
+        padding: 1rem;
+        width: 98%;
+      }
+      
+      .iframe-container {
+        padding: 0.8rem;
+        margin-top: 1rem;
+      }
+      
+      #igem-attribution-form {
+        height: 600px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .attributions-content {
+        padding: 0.5rem;
+        width: 99%;
+      }
+      
+      .iframe-container {
+        padding: 0.5rem;
+        border-radius: 8px;
+      }
+      
+      #igem-attribution-form {
+        height: 500px;
+        border-radius: 6px;
+      }
+    }
+    
+    /* Section title styling - left-aligned with larger font */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin: 0 0 20px 0;
+      margin-left: 1.5rem;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--color-primary);
+      text-align: left;
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Extended underline using pseudo-element */
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: calc(100% + 60px);
+      height: 3px;
+      background: var(--color-primary);
+    }
+    
+    /* Responsive adjustments for the title */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+        margin-left: 1rem;
+        padding-bottom: 10px;
+        border-bottom-width: 2px;
+      }
+      
+      .section-title::after {
+        width: calc(100% + 40px);
+        height: 2px;
+        bottom: -2px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section-title {
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+      }
+      
+      .section-title::after {
+        width: calc(100% + 30px);
+        height: 2px;
+        bottom: -2px;
+      }
+    }
+    
+  </style>
+</head>
+<body class="article-page attributions-page">
+  <div id="menu-container"></div>
+  
+  <!-- Article Header with increased height -->
+  <header class="article-header attributions-header">
+    <div class="container">
+      <h1>Attributions</h1>
+      <p>Acknowledging the mentors, institutions, and partners who made our project possible</p>
+    </div>
+  </header>
+
+  <!-- Single Column Content Container -->
+  <div class="attributions-content">
+    <h2 class="section-title">Who did what?</h2>
+    <div class="iframe-container">
+      
+      <script type="text/javascript">
+        // Simple iframe initialization - no automatic height adjustment
+        function initPageSpecificFunctionality() {
+          const iframe = document.getElementById('igem-attribution-form');
+          if (iframe) {
+            iframe.addEventListener('load', function() {
+              console.log('iGEM Attribution iframe loaded successfully');
+            });
+          }
+        }
+        setTimeout(initPageSpecificFunctionality, 500);
+      </script>
+      <iframe
+        style="width: 100%;"
+        id="igem-attribution-form"
+        src="https://teams.igem.org/wiki/5580/attributions"
+        title="iGEM Attributions Form"
+        frameborder="0"
+      >
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <img src="/static/assets/icons/up.svg" alt="Scroll to top" />
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Enhanced catalog functionality with sub-menu expansion
+    function initPageSpecificFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Enhanced highlight active section with improved detection for subsections
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 100;
+        let currentActiveSection = null;
+        let currentMainSection = null;
+        
+        // Get all headings and sort by position
+        const headingsArray = Array.from(headings);
+        let candidates = [];
+        
+        // Find all possible active sections with improved logic for short paragraphs
+        headings.forEach(function(heading, index) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const id = section.getAttribute('id');
+          
+          if (!id) return; // Skip headings without IDs
+          
+          // Calculate section bottom based on next heading
+          let sectionBottom;
+          if (index < headingsArray.length - 1) {
+            sectionBottom = headingsArray[index + 1].offsetTop;
+          } else {
+            sectionBottom = document.body.scrollHeight;
+          }
+          
+          // For short sections, ensure minimum detection range
+          const sectionHeight = sectionBottom - sectionTop;
+          const minRange = 300; // Minimum detection range for short sections
+          let effectiveBottom = sectionBottom;
+          
+          if (sectionHeight < minRange) {
+            effectiveBottom = sectionTop + minRange;
+            // But don't overlap with next section too much
+            if (index < headingsArray.length - 1) {
+              const nextSectionTop = headingsArray[index + 1].offsetTop;
+              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
+            }
+          }
+          
+          // Enhanced detection range with better tolerance
+          const topOffset = -100; // Start detecting 100px before section
+          const bottomOffset = -80; // Continue detecting 80px after section starts
+          
+          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
+            candidates.push({
+              id: id,
+              distance: Math.abs(scrollPos - sectionTop),
+              top: sectionTop,
+              element: heading,
+              isSubsection: heading.tagName.toLowerCase() !== 'h2'
+            });
+          }
+        });
+        
+        // Choose the best candidate based on priority and distance
+        if (candidates.length > 0) {
+          // Sort by distance, prioritizing closer sections
+          candidates.sort((a, b) => {
+            // Prefer subsections over main sections when close
+            if (Math.abs(a.distance - b.distance) < 50) {
+              if (a.isSubsection && !b.isSubsection) return -1;
+              if (!a.isSubsection && b.isSubsection) return 1;
+            }
+            return a.distance - b.distance;
+          });
+          
+          currentActiveSection = candidates[0].id;
+        }
+        
+        // Determine main section for expansion
+        const h2Headings = document.querySelectorAll('.article-content h2');
+        h2Headings.forEach(function(heading) {
+          const sectionTop = heading.offsetTop;
+          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
+          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
+          
+          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
+            currentMainSection = heading.id;
+          }
+        });
+        
+        // Remove all active states
+        catalogLinks.forEach(function(link) {
+          link.classList.remove('active');
+          const parentLi = link.closest('li');
+          if (parentLi) {
+            parentLi.classList.remove('active');
+          }
+        });
+        
+        // Set active state for current section (including sub-headings)
+        if (currentActiveSection) {
+          // Try to find exact match first
+          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
+          
+          // If no exact match, try to find a sub-heading that matches
+          if (!activeLink) {
+            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
+            subHeadings.forEach(function(subLink) {
+              const href = subLink.getAttribute('href');
+              if (href === '#' + currentActiveSection) {
+                activeLink = subLink;
+              }
+            });
+          }
+          
+          if (activeLink) {
+            activeLink.classList.add('active');
+          }
+        }
+        
+        // Keep main section expanded if we're anywhere within it
+        if (currentMainSection) {
+          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
+          if (mainSectionLink) {
+            const parentLi = mainSectionLink.closest('li');
+            if (parentLi) {
+              parentLi.classList.add('active');
+            }
+          }
+        }
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+    setTimeout(initPageSpecificFunctionality, 500);
+  </script>
+</body>
+</html>

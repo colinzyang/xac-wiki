@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+</head>
+<body class="article-page">
+  <div id="menu-container"></div>
+  
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="container">
+      <h1>Mathematical Modeling</h1>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <div class="article-container">
+    <!-- Sidebar -->
+    <div class="article-sidebar">
+      <nav class="catalog">
+        <h4 id="contents">Contents</h4>
+        <ul class="catalog-list">
+          <li><a href="#modeling-overview">Modeling Overview</a></li>
+          <li><a href="#kinetic-models">Kinetic Models</a></li>
+          <li><a href="#machine-learning">Machine Learning Models</a></li>
+          <li><a href="#systems-biology">Systems Biology Models</a></li>
+          <li><a href="#optimization-models">Optimization Models</a></li>
+          <li><a href="#model-validation">Model Validation</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Article Content -->
+    <article class="article-content">
+      <h2 id="modeling-overview">Modeling Overview</h2>
+      <p>Mathematical modeling is an important tool for understanding and optimizing plastic-degrading enzyme systems. We have developed multi-level, multi-scale modeling approaches, from molecular-level enzyme catalytic mechanisms to system-level metabolic networks, providing quantitative theoretical guidance for enzyme engineering.</p>
+      
+      <h3>Modeling Methodology</h3>
+      <p>We have adopted a systematic modeling methodology:</p>
+      <ul>
+        <li><strong>Mechanistic Modeling</strong>: First-principles models based on physicochemical principles</li>
+        <li><strong>Data-driven Modeling</strong>: Statistical learning models based on experimental data</li>
+        <li><strong>Hybrid Modeling</strong>: Hybrid approaches combining mechanistic knowledge and data-driven methods</li>
+        <li><strong>Multi-scale Modeling</strong>: Cross-scale modeling from molecular to system level</li>
+      </ul>
+      
+      <h3>Model Hierarchical Structure</h3>
+      <p>Established hierarchical model systems:</p>
+      <ul>
+        <li>Quantum mechanics level: Electronic structure and chemical reactions</li>
+        <li>Molecular mechanics level: Protein conformation and dynamics</li>
+        <li>Enzyme kinetics level: Catalytic reactions and kinetic parameters</li>
+        <li>Cellular level: Metabolic pathways and cell growth</li>
+        <li>Reactor level: Biological processes and engineering optimization</li>
+      </ul>
+
+      <h2 id="kinetic-models">Kinetic Models</h2>
+      <p>Kinetic models are core tools for describing enzyme catalytic reaction rates and mechanisms, providing quantitative foundations for understanding enzyme catalytic performance and optimization strategies.</p>
+      
+      <h3>Classical Kinetic Models</h3>
+      <p>Models established based on classical enzyme kinetics theory:</p>
+      <ul>
+        <li><strong>Michaelis-Menten Model</strong>: Describes single-substrate enzyme reaction kinetics</li>
+        <li><strong>Competitive Inhibition Model</strong>: Considers the effect of inhibitors on enzyme activity</li>
+        <li><strong>Synergistic Effect Model</strong>: Describes multi-enzyme synergistic catalytic processes</li>
+        <li><strong>Product Inhibition Model</strong>: Considers feedback inhibition from reaction products</li>
+      </ul>
+      
+      <h3>Complex Reaction Mechanism Modeling</h3>
+      <p>Specialized models for complex reaction mechanisms of plastic degradation:</p>
+      <ul>
+        <li>Kinetic description of multi-step reactions</li>
+        <li>Formation and dissociation of enzyme-substrate complexes</li>
+        <li>Accumulation and conversion of intermediate products</li>
+        <li>Effects of side reactions and non-specific reactions</li>
+      </ul>
+      
+      <h3>Environmental Factor Impact Modeling</h3>
+      <p>Mathematical models for environmental condition effects on enzyme activity:</p>
+      <ul>
+        <li><strong>Temperature Effects</strong>: Arrhenius equation and thermal inactivation models</li>
+        <li><strong>pH Effects</strong>: Henderson-Hasselbalch equation and ionization models</li>
+        <li><strong>Ionic Strength</strong>: Debye-Hückel theory and charge effects</li>
+        <li><strong>Co-solvent Effects</strong>: Organic solvent impacts on enzyme structure and activity</li>
+      </ul>
+
+      <h2 id="machine-learning">Machine Learning Models</h2>
+      <p>Machine learning methods provide powerful tools for enzyme performance prediction and optimization, particularly with unique advantages in handling high-dimensional complex data and nonlinear relationships.</p>
+      
+      <h3>Deep Learning Models</h3>
+      <p>Multiple deep learning models developed for enzyme performance prediction:</p>
+      <ul>
+        <li><strong>Convolutional Neural Networks (CNN)</strong>: For protein sequence and structural feature extraction</li>
+        <li><strong>Recurrent Neural Networks (RNN)</strong>: Processing sequence data and time series prediction</li>
+        <li><strong>Transformer Models</strong>: For protein language modeling and function prediction</li>
+        <li><strong>Graph Neural Networks (GNN)</strong>: Processing protein structure graphs and interaction networks</li>
+      </ul>
+      
+      <h3>Ensemble Learning Methods</h3>
+      <p>Combining multiple algorithms to improve prediction accuracy:</p>
+      <ul>
+        <li>Random forests for feature importance analysis</li>
+        <li>Gradient boosting algorithms to optimize prediction performance</li>
+        <li>Stacking ensemble methods to combine different models</li>
+        <li>Bayesian model averaging for uncertainty handling</li>
+      </ul>
+      
+      <h3>Feature Engineering</h3>
+      <p>Design and extraction of effective features for machine learning:</p>
+      <ul>
+        <li><strong>Sequence Features</strong>: Amino acid composition, k-mer frequency, sequence patterns</li>
+        <li><strong>Structural Features</strong>: Secondary structure, solvent accessibility, domain composition</li>
+        <li><strong>Physicochemical Features</strong>: Hydrophobicity, charge distribution, molecular weight</li>
+        <li><strong>Evolutionary Features</strong>: Conservation scores, phylogenetic information</li>
+      </ul>
+
+      <h2 id="systems-biology">Systems Biology Models</h2>
+      <p>Systems biology models integrate information from multiple levels including molecular, cellular, and ecosystem levels, providing a systematic perspective for understanding complex biological processes of plastic degradation.</p>
+      
+      <h3>Metabolic Network Modeling</h3>
+      <p>Construction of metabolic network models related to plastic degradation:</p>
+      <ul>
+        <li><strong>Genome-scale Models</strong>: Whole-genome metabolic network reconstruction</li>
+        <li><strong>Flux Balance Analysis</strong>: Metabolic flux distribution calculation and optimization</li>
+        <li><strong>Kinetic Models</strong>: Dynamic changes in metabolite concentrations</li>
+        <li><strong>Regulatory Networks</strong>: Gene expression regulation and metabolic regulation</li>
+      </ul>
+      
+      <h3>Cell Growth Models</h3>
+      <p>Mathematical models for engineered microbial growth and enzyme production:</p>
+      <ul>
+        <li>Monod model describing cell growth kinetics</li>
+        <li>Product formation kinetic models</li>
+        <li>Nutrient consumption and limitation models</li>
+        <li>Cell density and biomass models</li>
+      </ul>
+      
+      <h3>Population Dynamics Models</h3>
+      <p>Study of microbial population behavior and interactions:</p>
+      <ul>
+        <li>Modeling of competitive and cooperative relationships</li>
+        <li>Quorum sensing and signal transduction</li>
+        <li>Spatial distribution and diffusion processes</li>
+        <li>Population genetics and evolutionary dynamics</li>
+      </ul>
+
+      <h2 id="optimization-models">Optimization Models</h2>
+      <p>Optimization models are used to find optimal enzyme design parameters and process conditions, achieving maximum system performance.</p>
+      
+      <h3>Multi-objective Optimization</h3>
+      <p>Balancing multiple conflicting optimization objectives:</p>
+      <ul>
+        <li><strong>Enzyme Activity Maximization</strong>: Improving catalytic efficiency and reaction rates</li>
+        <li><strong>Stability Optimization</strong>: Enhancing thermostability and pH stability</li>
+        <li><strong>Cost Minimization</strong>: Reducing production costs and energy consumption</li>
+        <li><strong>Environmental Friendliness</strong>: Reducing by-products and environmental impact</li>
+      </ul>
+      
+      <h3>Constrained Optimization</h3>
+      <p>Optimization under realistic constraint conditions:</p>
+      <ul>
+        <li>Protein structural stability constraints</li>
+        <li>Solubility and expression level constraints</li>
+        <li>Safety and toxicity constraints</li>
+        <li>Process technology and economic constraints</li>
+      </ul>
+      
+      <h3>Optimization Algorithms</h3>
+      <p>Advanced optimization algorithms for solving complex problems:</p>
+      <ul>
+        <li><strong>Genetic Algorithms</strong>: Global optimization simulating natural evolution</li>
+        <li><strong>Particle Swarm Optimization</strong>: Swarm intelligence optimization algorithms</li>
+        <li><strong>Simulated Annealing</strong>: Probabilistic algorithms avoiding local optima</li>
+        <li><strong>Bayesian Optimization</strong>: Efficient black-box function optimization</li>
+      </ul>
+
+      <h2 id="model-validation">Model Validation</h2>
+      <p>Establishment of comprehensive model validation systems to ensure model accuracy and reliability.</p>
+      
+      <h3>Validation Strategies</h3>
+      <p>Multi-level validation strategies:</p>
+      <ul>
+        <li><strong>Internal Validation</strong>: Cross-validation and bootstrap validation</li>
+        <li><strong>External Validation</strong>: Independent dataset validation</li>
+        <li><strong>Experimental Validation</strong>: Experimental data comparison validation</li>
+        <li><strong>Literature Validation</strong>: Published results comparison validation</li>
+      </ul>
+      
+      <h3>Performance Evaluation Metrics</h3>
+      <p>Establishment of quantitative model performance evaluation systems:</p>
+      <ul>
+        <li>Prediction accuracy: RMSE, MAE, R² and other metrics</li>
+        <li>Classification performance: Precision, recall, F1 score</li>
+        <li>Model stability: Confidence intervals and uncertainty quantification</li>
+        <li>Computational efficiency: Time complexity and space complexity</li>
+      </ul>
+      
+      <h3>Model Improvement and Iteration</h3>
+      <p>Continuous model improvement based on validation results:</p>
+      <ul>
+        <li>Identifying model weaknesses and improvement directions</li>
+        <li>Collecting new data to expand training sets</li>
+        <li>Adjusting model structure and parameters</li>
+        <li>Implementing model version management and updates</li>
+      </ul>
+      
+      <p>Through this complete mathematical modeling system, we can deeply understand the properties and behaviors of plastic-degrading enzymes from multiple perspectives, provide precise theoretical guidance for enzyme engineering, and continuously optimize model performance to address new challenges.</p>
+    </article>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L8 8H11V16H13V8H16L12 4Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Auto-generate catalog based on headings
+    function initPageSpecificFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
+      
+      // Clear existing links
+      catalogList.innerHTML = '';
+      
+      headings.forEach(function(heading) {
+        if (heading.id) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + heading.id;
+          a.textContent = heading.textContent;
+          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
+          li.appendChild(a);
+          catalogList.appendChild(li);
+        }
+      });
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Highlight active section on scroll
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 150;
+        headings.forEach(function(heading) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const id = section.getAttribute('id');
+          
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            catalogLinks.forEach(function(link) {
+              link.classList.remove('active');
+            });
+            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+    setTimeout(initPageSpecificFunctionality, 500);
+  </script>
+</body>
+</html>

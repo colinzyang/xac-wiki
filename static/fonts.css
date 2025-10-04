@@ -1,0 +1,40 @@
+/* Source Sans Pro - Modern font recommended for scientific and academic websites */
+/* Using system fonts as fallback since font files are missing */
+
+/* Fallback font configuration - Scientific academic website font priority */
+:root {
+  /* Font system - Using system fonts as fallback */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                  'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 
+               'Courier New', monospace;
+  
+  /* Unified color system - Blue theme (#0078d7) */
+  --color-primary: #0078d7;        /* Primary blue - For brand and important elements */
+  --color-primary-light: #4da6ff;  /* Light blue - For hover and emphasis */
+  --color-primary-dark: #005a9e;   /* Dark blue - For link hover and dark variants */
+  
+  /* Neutral colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-background: #ffffff;
+  --color-background-dark: #18191a;
+  
+  /* Text colors */
+  --color-text: #2d3748;           /* Primary text color - softer dark gray */
+  --color-text-secondary: #718096; /* Secondary text color - warmer gray */
+  --color-text-light: #a0aec0;     /* Light text color - subtle gray */
+  --color-text-dark: #1a202c;      /* Dark text color - deep but not pure black */
+  
+  /* Dark mode text colors */
+  --color-text-dark-mode: #eeeeee;
+  --color-text-secondary-dark-mode: #cccccc;
+  
+  /* Borders and dividers */
+  --color-border: rgba(0, 120, 215, 0.2);
+  --color-border-light: rgba(0, 120, 215, 0.1);
+  
+  /* Shadow colors */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-dark: rgba(0, 0, 0, 0.3);
+}

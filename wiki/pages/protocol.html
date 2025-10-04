@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocols - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+</head>
+<body class="article-page">
+  <div id="menu-container"></div>
+  
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="container">
+      <h1>实验方案</h1>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <div class="article-container">
+    <!-- Sidebar -->
+    <div class="article-sidebar">
+      <nav class="catalog">
+        <h4 id="contents">目录</h4>
+        <ul class="catalog-list">
+          <li><a href="#molecular-cloning">分子克隆</a></li>
+          <li><a href="#protein-expression">蛋白表达</a></li>
+          <li><a href="#protein-purification">蛋白纯化</a></li>
+          <li><a href="#activity-assays">活性检测</a></li>
+          <li><a href="#analytical-methods">分析方法</a></li>
+          <li><a href="#safety-protocols">安全规程</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Article Content -->
+    <article class="article-content">
+      <h2 id="molecular-cloning">分子克隆</h2>
+      <p>本部分详细描述塑料降解酶基因的克隆和表达载体构建的标准操作程序。</p>
+      
+      <h3>基因合成与载体准备</h3>
+      <p><strong>材料与试剂：</strong></p>
+      <ul>
+        <li>目标基因序列（经密码子优化）</li>
+        <li>pET-28a(+)表达载体</li>
+        <li>限制性内切酶：NdeI、XhoI</li>
+        <li>T4 DNA连接酶</li>
+        <li>碱性磷酸酶(CIP)</li>
+        <li>DNA聚合酶（高保真）</li>
+      </ul>
+      
+      <p><strong>操作步骤：</strong></p>
+      <ol>
+        <li><strong>载体线性化</strong>
+          <ul>
+            <li>取5μg pET-28a(+)载体</li>
+            <li>用NdeI和XhoI双酶切4小时（37°C）</li>
+            <li>加入CIP处理30分钟（37°C）</li>
+            <li>琼脂糖凝胶电泳回收线性化载体</li>
+          </ul>
+        </li>
+        <li><strong>目标基因扩增</strong>
+          <ul>
+            <li>设计含有NdeI/XhoI位点的引物</li>
+            <li>PCR扩增目标基因（95°C 3min → 35个循环：95°C 30s, 58°C 30s, 72°C 1min → 72°C 10min）</li>
+            <li>琼脂糖凝胶电泳验证并回收产物</li>
+          </ul>
+        </li>
+        <li><strong>连接反应</strong>
+          <ul>
+            <li>设置连接反应：载体:插入片段 = 1:3（摩尔比）</li>
+            <li>加入T4 DNA连接酶，16°C过夜连接</li>
+            <li>转化感受态DH5α细胞</li>
+            <li>卡那霉素抗性平板筛选阳性克隆</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <h3>克隆验证</h3>
+      <p><strong>菌落PCR筛选：</strong></p>
+      <ol>
+        <li>挑取单菌落用T7启动子和T7终止子引物进行PCR</li>
+        <li>电泳检查PCR产物大小</li>
+        <li>选择阳性克隆进行测序验证</li>
+      </ol>
+      
+      <p><strong>质粒提取与验证：</strong></p>
+      <ol>
+        <li>过夜培养阳性克隆</li>
+        <li>碱裂解法提取质粒DNA</li>
+        <li>限制性内切酶验证</li>
+        <li>全序列测序确认</li>
+      </ol>
+
+      <h2 id="protein-expression">蛋白表达</h2>
+      <p>描述大肠杆菌中重组塑料降解酶的表达优化与大规模制备流程。</p>
+      
+      <h3>表达菌株准备</h3>
+      <p><strong>材料与试剂：</strong></p>
+      <ul>
+        <li>BL21(DE3)感受态细胞</li>
+        <li>重组表达载体</li>
+        <li>LB培养基</li>
+        <li>卡那霉素(50 μg/mL)</li>
+        <li>IPTG(异丙基-β-D-硫代半乳糖苷)</li>
+      </ul>
+      
+      <p><strong>操作步骤：</strong></p>
+      <ol>
+        <li><strong>转化</strong>
+          <ul>
+            <li>取100μL BL21(DE3)感受态细胞</li>
+            <li>加入100ng重组质粒，冰浴30分钟</li>
+            <li>42°C热激90秒，立即冰浴2分钟</li>
+            <li>加入800μL SOC培养基，37°C摇晃1小时</li>
+            <li>涂布含卡那霉素的LB平板，37°C过夜培养</li>
+          </ul>
+        </li>
+        <li><strong>表达条件测试</strong>
+          <ul>
+            <li>挑取单菌落接种5mL LB培养基</li>
+            <li>37°C摇晃至OD600 = 0.6-0.8</li>
+            <li>加入IPTG至终浓度0.1-1.0mM</li>
+            <li>不同温度（16°C、25°C、37°C）诱导4-16小时</li>
+            <li>SDS-PAGE分析表达效果</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <h3>大规模表达</h3>
+      <p><strong>操作流程：</strong></p>
+      <ol>
+        <li><strong>种子培养</strong>
+          <ul>
+            <li>用单菌落接种50mL LB培养基</li>
+            <li>37°C摇晃过夜培养</li>
+          </ul>
+        </li>
+        <li><strong>扩大培养</strong>
+          <ul>
+            <li>按1:100比例接种1L LB培养基</li>
+            <li>37°C摇晃至OD600 = 0.6-0.8</li>
+            <li>降温至25°C</li>
+          </ul>
+        </li>
+        <li><strong>诱导表达</strong>
+          <ul>
+            <li>加入IPTG至终浓度0.5mM</li>
+            <li>25°C摇晃诱导16小时</li>
+            <li>6000rpm离心收集菌体</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h2 id="protein-purification">蛋白纯化</h2>
+      <p>采用His标签亲和层析结合离子交换层析的策略纯化重组酶蛋白。</p>
+      
+      <h3>细胞破碎与蛋白粗提</h3>
+      <p><strong>材料与试剂：</strong></p>
+      <ul>
+        <li>结合缓冲液：20mM Tris-HCl(pH 8.0), 500mM NaCl, 10mM咪唑</li>
+        <li>洗涤缓冲液：20mM Tris-HCl(pH 8.0), 500mM NaCl, 50mM咪唑</li>
+        <li>洗脱缓冲液：20mM Tris-HCl(pH 8.0), 500mM NaCl, 250mM咪唑</li>
+        <li>蛋白酶抑制剂混合液</li>
+        <li>PMSF(苯甲基磺酰氟)</li>
+      </ul>
+      
+      <p><strong>操作步骤：</strong></p>
+      <ol>
+        <li><strong>菌体破碎</strong>
+          <ul>
+            <li>用结合缓冲液重悬菌体(1g湿重:5mL缓冲液)</li>
+            <li>加入蛋白酶抑制剂和1mM PMSF</li>
+            <li>冰浴超声破碎(20分钟，工作3秒停3秒)</li>
+            <li>12000rpm离心30分钟，收集上清</li>
+          </ul>
+        </li>
+        <li><strong>His标签亲和纯化</strong>
+          <ul>
+            <li>预平衡Ni-NTA琼脂糖珠</li>
+            <li>上清与树脂在4°C孵育1小时</li>
+            <li>装柱并用结合缓冲液洗涤</li>
+            <li>用洗涤缓冲液去除非特异结合蛋白</li>
+            <li>用洗脱缓冲液梯度洗脱目标蛋白</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <h3>进一步纯化</h3>
+      <p><strong>离子交换层析：</strong></p>
+      <ol>
+        <li>将洗脱蛋白透析至起始缓冲液</li>
+        <li>上样至阴离子交换柱(DEAE-Sepharose)</li>
+        <li>用盐梯度洗脱纯化蛋白</li>
+        <li>SDS-PAGE分析各流分</li>
+      </ol>
+      
+      <p><strong>分子筛层析：</strong></p>
+      <ol>
+        <li>合并纯化蛋白并浓缩至适当体积</li>
+        <li>上样至Superdex 200凝胶过滤柱</li>
+        <li>等度洗脱收集目标峰</li>
+        <li>分析蛋白纯度和活性</li>
+      </ol>
+
+      <h2 id="activity-assays">活性检测</h2>
+      <p>建立标准化的酶活性检测方法，用于评估塑料降解酶的催化性能。</p>
+      
+      <h3>PET薄膜降解活性检测</h3>
+      <p><strong>材料与试剂：</strong></p>
+      <ul>
+        <li>PET薄膜(厚度125μm，1cm×1cm)</li>
+        <li>反应缓冲液：50mM Tris-HCl(pH 8.5), 150mM NaCl</li>
+        <li>纯化的塑料降解酶</li>
+        <li>对硝基苯酚标准品</li>
+        <li>HPLC级甲醇和乙腈</li>
+      </ul>
+      
+      <p><strong>操作步骤：</strong></p>
+      <ol>
+        <li><strong>反应体系建立</strong>
+          <ul>
+            <li>在1.5mL离心管中加入1mL反应缓冲液</li>
+            <li>加入预处理的PET薄膜</li>
+            <li>加入酶蛋白(终浓度10-100μg/mL)</li>
+            <li>55°C水浴震荡反应</li>
+          </ul>
+        </li>
+        <li><strong>样品收集</strong>
+          <ul>
+            <li>在特定时间点(0.5, 1, 2, 4, 8, 24小时)取样</li>
+            <li>立即冰浴终止反应</li>
+            <li>12000rpm离心收集上清</li>
+          </ul>
+        </li>
+        <li><strong>产物分析</strong>
+          <ul>
+            <li>HPLC分析降解产物(TPA和EG)</li>
+            <li>流动相：甲醇-水梯度洗脱</li>
+            <li>检测波长：280nm</li>
+            <li>定量分析产物浓度</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <h3>对硝基苯酚酯活性检测</h3>
+      <p><strong>快速活性筛选方法：</strong></p>
+      <ol>
+        <li><strong>反应体系</strong>
+          <ul>
+            <li>96孔板中加入180μL反应缓冲液</li>
+            <li>加入10μL酶液(不同浓度)</li>
+            <li>加入10μL对硝基苯酚丁酸酯(2mM)</li>
+            <li>37°C孵育反应</li>
+          </ul>
+        </li>
+        <li><strong>活性测定</strong>
+          <ul>
+            <li>每分钟测定一次405nm处吸光度</li>
+            <li>记录吸光度变化速率</li>
+            <li>计算比活力(U/mg蛋白质)</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <h3>动力学参数测定</h3>
+      <p><strong>Km和Vmax测定：</strong></p>
+      <ol>
+        <li>设置一系列不同底物浓度(0.1-10×Km)</li>
+        <li>保持酶浓度不变</li>
+        <li>测定初始反应速率</li>
+        <li>用Lineweaver-Burk图或Michaelis-Menten图拟合数据</li>
+        <li>计算动力学参数</li>
+      </ol>
+
+      <h2 id="analytical-methods">分析方法</h2>
+      <p>描述用于蛋白质和产物分析的各种分析技术和标准操作流程。</p>
+      
+      <h3>蛋白质分析</h3>
+      <p><strong>SDS-PAGE电泳：</strong></p>
+      <ol>
+        <li><strong>凝胶制备</strong>
+          <ul>
+            <li>制备12%分离胶和5%浓缩胶</li>
+            <li>安装凝胶于电泳槽中</li>
+            <li>加入电泳缓冲液</li>
+          </ul>
+        </li>
+        <li><strong>样品处理</strong>
+          <ul>
+            <li>样品与5×SDS上样缓冲液混合</li>
+            <li>100°C煮沸5分钟变性</li>
+            <li>上样量10-20μL</li>
+          </ul>
+        </li>
+        <li><strong>电泳和染色</strong>
+          <ul>
+            <li>80V电泳至蛋白进入分离胶</li>
+            <li>120V电泳至溴酚蓝到达胶底</li>
+            <li>考马斯亮蓝R-250染色</li>
+            <li>脱色至背景透明</li>
+          </ul>
+        </li>
+      </ol>
+      
+      <p><strong>蛋白质浓度测定：</strong></p>
+      <ul>
+        <li><strong>Bradford法</strong>：适用于常规蛋白质浓度测定</li>
+        <li><strong>BCA法</strong>：适用于含还原剂的样品</li>
+        <li><strong>A280法</strong>：基于蛋白质紫外吸收</li>
+      </ul>
+      
+      <h3>产物分析</h3>
+      <p><strong>HPLC分析条件：</strong></p>
+      <ul>
+        <li><strong>色谱柱</strong>：C18反相柱(4.6×250mm, 5μm)</li>
+        <li><strong>流动相A</strong>：0.1%甲酸水溶液</li>
+        <li><strong>流动相B</strong>：0.1%甲酸乙腈溶液</li>
+        <li><strong>梯度程序</strong>：0-5min(5%B), 5-25min(5-95%B), 25-30min(95%B)</li>
+        <li><strong>流速</strong>：1.0 mL/min</li>
+        <li><strong>检测波长</strong>：280nm</li>
+        <li><strong>柱温</strong>：30°C</li>
+      </ul>
+      
+      <p><strong>质谱分析：</strong></p>
+      <ol>
+        <li>样品经C18固相萃取富集</li>
+        <li>LC-MS/MS分析降解产物</li>
+        <li>正负离子模式扫描</li>
+        <li>数据库检索确认产物结构</li>
+      </ol>
+
+      <h2 id="safety-protocols">安全规程</h2>
+      <p>实验室安全是所有实验操作的前提，必须严格遵守以下安全规程。</p>
+      
+      <h3>实验室通用安全规则</h3>
+      <ul>
+        <li><strong>个人防护</strong>：实验时必须穿实验服、戴护目镜和手套</li>
+        <li><strong>通风设备</strong>：在通风橱内进行有机溶剂和有毒试剂操作</li>
+        <li><strong>设备使用</strong>：使用前检查设备状态，使用后及时清洁</li>
+        <li><strong>废料处理</strong>：按规定分类收集和处理实验废料</li>
+        <li><strong>紧急情况</strong>：熟悉实验室紧急设备位置和使用方法</li>
+      </ul>
+      
+      <h3>化学品安全</h3>
+      <p><strong>危险化学品处理：</strong></p>
+      <ul>
+        <li><strong>IPTG</strong>：避免直接接触，戴手套操作</li>
+        <li><strong>PMSF</strong>：剧毒，在通风橱内配制和使用</li>
+        <li><strong>甲醇</strong>：易燃有毒，远离火源，通风橱内使用</li>
+        <li><strong>乙腈</strong>：有毒，避免吸入和皮肤接触</li>
+        <li><strong>考马斯蓝染色液</strong>：含甲醇和醋酸，注意通风</li>
+      </ul>
+      
+      <h3>生物安全</h3>
+      <p><strong>微生物操作安全：</strong></p>
+      <ul>
+        <li>所有微生物操作在BSL-1级实验室进行</li>
+        <li>使用酒精灯火焰无菌操作</li>
+        <li>实验后用70%乙醇消毒工作台面</li>
+        <li>培养物和感染材料经高温高压灭菌后处理</li>
+      </ul>
+      
+      <h3>设备安全</h3>
+      <p><strong>主要设备安全要点：</strong></p>
+      <ul>
+        <li><strong>高温高压灭菌器</strong>：检查密封圈，注意排气</li>
+        <li><strong>离心机</strong>：平衡样品，检查转子</li>
+        <li><strong>超声波破碎仪</strong>：冰浴操作，佩戴耳塞</li>
+        <li><strong>HPLC系统</strong>：检查管路连接，注意高压</li>
+      </ul>
+      
+      <h3>应急处理</h3>
+      <p><strong>常见意外处理：</strong></p>
+      <ul>
+        <li><strong>化学品溅洒</strong>：立即用大量清水冲洗，必要时就医</li>
+        <li><strong>割伤</strong>：压迫止血，用创可贴处理轻微伤口</li>
+        <li><strong>烫伤</strong>：立即用冷水冲洗15-20分钟</li>
+        <li><strong>火灾</strong>：切断电源，使用适当的灭火设备</li>
+      </ul>
+      
+      <p>通过严格遵循这些实验方案和安全规程，我们能够安全高效地进行塑料降解酶的研究工作，获得可靠的实验数据，为项目的成功实施提供坚实的技术支撑。</p>
+    </article>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <img src="/static/assets/icons/up.svg" alt="Scroll to top" />
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Auto-generate catalog based on headings
+    function initPageSpecificFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
+      
+      // Clear existing links
+      catalogList.innerHTML = '';
+      
+      headings.forEach(function(heading) {
+        if (heading.id) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + heading.id;
+          a.textContent = heading.textContent;
+          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
+          li.appendChild(a);
+          catalogList.appendChild(li);
+        }
+      });
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Highlight active section on scroll
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 150;
+        headings.forEach(function(heading) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const id = section.getAttribute('id');
+          
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            catalogLinks.forEach(function(link) {
+              link.classList.remove('active');
+            });
+            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+    setTimeout(initPageSpecificFunctionality, 500);
+  </script>
+</body>
+</html>

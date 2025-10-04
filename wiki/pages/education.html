@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education - XJTLU iGEM Team 2025</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/fonts.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/glass-menu.css">
+  <link rel="stylesheet" href="/static/article.css">
+</head>
+<body class="article-page">
+  <div id="menu-container"></div>
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="container">
+      <h1>科学教育</h1>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <div class="article-container">
+    <!-- Sidebar -->
+    <div class="article-sidebar">
+      <nav class="catalog">
+        <h4 id="contents">目录</h4>
+        <ul class="catalog-list">
+          <li><a href="#education-vision">教育愿景</a></li>
+          <li><a href="#curriculum-development">课程开发</a></li>
+          <li><a href="#outreach-activities">科普活动</a></li>
+          <li><a href="#educational-impact">教育成果</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Article Content -->
+    <article class="article-content">
+      <h2 id="education-vision">教育愿景</h2>
+      <p>我们致力于通过创新的教育方式，向青少年传播合成生物学知识，启发他们对科学的兴趣，培养未来的科学家和创新者。</p>
+      
+      <h3>核心目标</h3>
+      <ul>
+        <li>提高青少年对生物技术的认知和理解</li>
+        <li>培养科学思维和解决问题的能力</li>
+        <li>激发对环境保护和可持续发展的关注</li>
+        <li>促进国际交流与合作</li>
+      </ul>
+
+      <h2 id="curriculum-development">课程开发</h2>
+      <p>我们开发了一套完整的合成生物学教育课程，适合不同年龄段的学生。</p>
+      
+      <h3>初级课程（高中生）</h3>
+      <ul>
+        <li>生物学基础知识介绍</li>
+        <li>DNA和蛋白质的结构与功能</li>
+        <li>塑料污染问题及生物解决方案</li>
+        <li>简单的实验演示</li>
+      </ul>
+      
+      <h3>中级课程（本科生）</h3>
+      <ul>
+        <li>合成生物学原理和方法</li>
+        <li>基因工程和蛋白质设计</li>
+        <li>生物安全和伦理问题</li>
+        <li>实验技能培训</li>
+      </ul>
+
+      <h2 id="outreach-activities">科普活动</h2>
+      <p>我们组织了多样化的科普活动，让更多人了解和参与到科学中来。</p>
+      
+      <h3>主要活动</h3>
+      <ul>
+        <li>科学讲座和研讨会</li>
+        <li>实验室参观和体验</li>
+        <li>科学展览和演示</li>
+        <li>在线教育资源分享</li>
+      </ul>
+
+      <h2 id="educational-impact">教育成果</h2>
+      <p>通过我们的教育活动，我们成功地提高了青少年对科学的兴趣和理解。</p>
+      
+      <p>我们将继续致力于科学教育事业，为培养未来的科学人才做出贡献。</p>
+    </article>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
+      <img src="/static/assets/icons/up.svg" alt="Scroll to top" />
+    </button>
+  </div>
+
+  <div id="footer"></div>
+  <script src="/static/main.js"></script>
+  <script>
+    // Enhanced scroll to top functionality with smart visibility
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    // Scroll to top click handler
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smart visibility based on scroll position with throttling
+    let ticking = false;
+    
+    function updateScrollButtonVisibility() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+      ticking = false;
+    }
+    
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollButtonVisibility);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+
+
+
+    // Auto-generate catalog based on headings
+    function initPageSpecificFunctionality() {
+      const catalogList = document.querySelector('.catalog-list');
+      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
+      
+      // Clear existing links
+      catalogList.innerHTML = '';
+      
+      headings.forEach(function(heading) {
+        if (heading.id) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + heading.id;
+          a.textContent = heading.textContent;
+          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
+          li.appendChild(a);
+          catalogList.appendChild(li);
+        }
+      });
+      
+      // Add smooth scrolling and active state
+      const catalogLinks = document.querySelectorAll('.catalog-list a');
+      catalogLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Highlight active section on scroll
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 150;
+        headings.forEach(function(heading) {
+          const section = heading;
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const id = section.getAttribute('id');
+          
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            catalogLinks.forEach(function(link) {
+              link.classList.remove('active');
+            });
+            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection();
+    }
+    setTimeout(initPageSpecificFunctionality, 500);
+  </script>
+</body>
+</html>

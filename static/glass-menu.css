@@ -1,0 +1,351 @@
+.glass-menu {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 72px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 100;
+  padding: 0 40px;
+  border: 1px solid transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  --scroll-progress: 0%;
+  /* Performance optimization - Hardware acceleration and anti-jitter */
+  will-change: transform, width, height, border-radius;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+body.dark-mode .glass-menu {
+  background: rgba(24,25,26,0.92);
+}
+
+.glass-menu.shrink {
+  will-change: auto;
+}
+
+/* Prevent blur in child elements during transformation */
+.nav-list,
+.menu-fab-logo,
+.dark-mode-toggle {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.glass-menu.shrink {
+  width: 860px;
+  max-width: 96vw;
+  height: 64px;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.95);
+  padding: 0 32px;
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
+    linear-gradient(90deg, 
+      var(--color-primary) var(--scroll-progress, 0%), 
+      rgba(0,79,148,0.2) var(--scroll-progress, 0%)
+    );
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+body.dark-mode .glass-menu.shrink {
+  background: rgba(24,25,26,0.95);
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(rgba(24,25,26,0.95), rgba(24,25,26,0.95)),
+    linear-gradient(90deg, 
+      var(--color-primary-light) var(--scroll-progress, 0%), 
+      rgba(21,101,192,0.3) var(--scroll-progress, 0%)
+    );
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nav-list > li {
+  position: relative;
+  margin-right: 32px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-list > li:last-child {
+  margin-right: 0;
+}
+
+.glass-menu.shrink .nav-list > li {
+  margin-right: 24px;
+}
+.nav-list a {
+  color: #222;
+  font-size: 1.08em;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  outline: none;
+}
+
+.glass-menu.shrink .nav-list a {
+  font-size: 1.05em;
+  padding: 8px 14px;
+}
+body.dark-mode .nav-list a {
+  color: #eee;
+}
+/* Navigation link hover effect - Minimalist tech style */
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.25s ease-out;
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+.nav-list a:hover, .nav-list a:focus {
+  color: var(--color-primary);
+  background: rgba(0,79,148,0.06);
+  outline: none;
+}
+
+body.dark-mode .nav-list a::after {
+  background: var(--color-primary-light);
+}
+
+body.dark-mode .nav-list a:hover, body.dark-mode .nav-list a:focus {
+  color: var(--color-primary-light);
+  background: rgba(21,101,192,0.08);
+  outline: none;
+}
+.dark-mode-toggle {
+  background: rgba(240,240,240,0.8);
+  border: none;
+  margin-left: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-mode-toggle img {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+  position: relative;
+}
+
+/* Dark mode button hover effect - Minimalist tech style */
+
+.glass-menu.shrink .dark-mode-toggle {
+  width: 36px;
+  height: 36px;
+  margin-left: 12px;
+}
+
+.glass-menu.shrink .dark-mode-toggle img {
+  width: 18px;
+  height: 18px;
+}
+.dark-mode-toggle:hover, .dark-mode-toggle:focus {
+  background: rgba(0,79,148,0.08);
+  box-shadow: 0 2px 12px rgba(0,79,148,0.2);
+}
+body.dark-mode .dark-mode-toggle {
+  background: rgba(40,40,40,0.8);
+  color: #eee;
+}
+body.dark-mode .dark-mode-toggle:hover, body.dark-mode .dark-mode-toggle:focus {
+  background: rgba(21,101,192,0.08);
+  box-shadow: 0 2px 12px rgba(21,101,192,0.25);
+}
+.dropdown {
+  z-index: 1000;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 180px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(-8px);
+  list-style: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,79,148,0.1);
+  /* Ensure it doesn't affect page scrolling and animations */
+  will-change: opacity, visibility, transform;
+}
+
+/* Dropdown menu position adjustment in shrink state - Maintain visual consistency */
+.glass-menu.shrink .dropdown {
+  top: calc(100% + 8px);
+}
+
+/* Responsive optimization - Mobile dropdown menu positioning */
+@media (max-width: 768px) {
+  .dropdown {
+    top: calc(100% + 10px);
+    left: 0;
+    transform: translateY(-8px);
+    min-width: 160px;
+    right: 0;
+    margin: 0 auto;
+  }
+  
+  .glass-menu.shrink .dropdown {
+    top: calc(100% + 6px);
+  }
+}
+body.dark-mode .dropdown {
+  background: rgba(24,25,26,0.95);
+  border-color: rgba(21,101,192,0.2);
+}
+.dropdown li {
+  list-style: none;
+}
+/* Desktop hover effect - Only active on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .nav-list > li:hover .dropdown,
+  .nav-list > li:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+/* JavaScript-controlled active state - Applicable to all devices */
+.dropdown.dropdown-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Mobile-specific handling */
+@media (max-width: 768px) {
+  .dropdown.dropdown-active {
+    transform: translateY(0);
+  }
+}
+.dropdown a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 0.95em;
+  border-radius: 8px;
+  margin: 2px 8px;
+  text-decoration: none;
+  outline: none;
+  transition: all 0.2s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.25s ease-out;
+}
+
+.dropdown a:hover::after {
+  width: 100%;
+}
+
+.dropdown a:hover, .dropdown a:focus {
+  color: var(--color-primary);
+  background: rgba(0,79,148,0.08);
+  outline: none;
+}
+
+body.dark-mode .dropdown a::after {
+  background: var(--color-primary-light);
+}
+
+body.dark-mode .dropdown a:hover, body.dark-mode .dropdown a:focus {
+  color: var(--color-primary-light);
+  background: rgba(21,101,192,0.12);
+  outline: none;
+}
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  outline: none;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.logo-link:hover, .logo-link:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.menu-fab-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-right: 10px;
+}
+
+.glass-menu.shrink .menu-fab-logo {
+  height: 44px;
+  margin-right: 8px;
+}
+
+.glass-menu.shrink .nav-list a {
+  letter-spacing: -0.02em;
+} 
