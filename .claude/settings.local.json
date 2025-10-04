@@ -37,7 +37,12 @@
       "Bash(for file in description.html safety.html members.html education.html)",
       "Bash(for file in attributions.html contribution.html database.html)",
       "Bash(for file in attributions.html contribution.html database.html education.html engineering.html human-practices.html members.html model.html notebook.html predictor.html protocol.html result.html safety.html sustainability.html webapp.html wetlab-design.html)",
-      "Bash(do sed -i 's|<svg width=\"\"16\"\" height=\"\"16\"\" viewBox=\"\"0 0 24 24\"\" fill=\"\"none\"\" xmlns=\"\"http://www.w3.org/2000/svg\"\">.*</svg>|<img src=\"\"/static/assets/icons/up.svg\"\" alt=\"\"Scroll to top\"\" />|g' \"$file\")"
+      "Bash(do sed -i 's|<svg width=\"\"16\"\" height=\"\"16\"\" viewBox=\"\"0 0 24 24\"\" fill=\"\"none\"\" xmlns=\"\"http://www.w3.org/2000/svg\"\">.*</svg>|<img src=\"\"/static/assets/icons/up.svg\"\" alt=\"\"Scroll to top\"\" />|g' \"$file\")",
+      "Bash(for file in attributions.html contribution.html database.html description.html education.html engineering.html home.html human-practices.html members.html model.html notebook.html predictor.html protocol.html result.html safety.html sustainability.html webapp.html wetlab-design.html)",
+      "Bash(do sed -i 's|href=\"\"/static/|href=\"\"../../static/|g' \"wiki/pages/$file\")",
+      "Bash(do sed -i 's|href=\"\"/favicon.ico\"\"|href=\"\"../../favicon.ico\"\"|g' \"wiki/pages/$file\")",
+      "Bash(do sed -i 's|src=\"\"/static/|src=\"\"../../static/|g' \"wiki/pages/$file\")",
+      "Bash(do sed -i 's|src=\"\"/static/assets/|src=\"\"../../static/assets/|g' \"wiki/pages/$file\")"
     ],
     "deny": []
   }
