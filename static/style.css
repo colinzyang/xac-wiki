@@ -1,3 +1,40 @@
+:root {
+  /* Font system - Pure system fonts */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                  'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 
+               'Courier New', monospace;
+  
+  /* Unified color system - Blue theme (#0078d7) */
+  --color-primary: #0078d7;        /* Primary blue - For brand and important elements */
+  --color-primary-light: #4da6ff;  /* Light blue - For hover and emphasis */
+  --color-primary-dark: #005a9e;   /* Dark blue - For link hover and dark variants */
+  
+  /* Neutral colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-background: #ffffff;
+  --color-background-dark: #18191a;
+  
+  /* Text colors */
+  --color-text: #2d3748;           /* Primary text color - softer dark gray */
+  --color-text-secondary: #718096; /* Secondary text color - warmer gray */
+  --color-text-light: #a0aec0;     /* Light text color - subtle gray */
+  --color-text-dark: #1a202c;      /* Dark text color - deep but not pure black */
+  
+  /* Dark mode text colors */
+  --color-text-dark-mode: #eeeeee;
+  --color-text-secondary-dark-mode: #cccccc;
+  
+  /* Borders and dividers */
+  --color-border: rgba(0, 120, 215, 0.2);
+  --color-border-light: rgba(0, 120, 215, 0.1);
+  
+  /* Shadow colors */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-dark: rgba(0, 0, 0, 0.3);
+}
+
 html, body {
   font-family: var(--font-primary);
   background: #fff;
@@ -270,7 +307,7 @@ body.dark-mode .page-content::before {
 
 /* Unified title styles */
 .section-title {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 2.4rem;
   line-height: 1.2;
@@ -281,7 +318,7 @@ body.dark-mode .page-content::before {
 
 /* Unified description styles */
 .section-description {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 1.6;
@@ -291,7 +328,7 @@ body.dark-mode .page-content::before {
 
 /* Unified detailed information styles */
 .section-detail {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 400;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -595,7 +632,7 @@ body.dark-mode .keyword-card:hover {
 }
 
 .animation-section-title {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
   color: #005a9e;
@@ -604,7 +641,7 @@ body.dark-mode .keyword-card:hover {
 }
 
 .animation-description {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6;
@@ -1294,7 +1331,7 @@ body.dark-mode .slide-content p {
   
 }
 
-/* Color variables are now defined in fonts.css */
+/* Color variables are now defined at the top of this file */
 .main-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -6354,6 +6391,48 @@ body.dark-mode .structure-image {
 
 body.dark-mode .structure-image:hover {
   border-color: var(--color-primary-light);
+}
+
+/* ================================
+   Global Dark Mode Shadow Adjustments
+   ================================ */
+
+/* System dark mode preference */
+@media (prefers-color-scheme: dark) {
+  img, .card, .container, iframe, .video-container {
+    box-shadow: none !important;
+  }
+  
+  img[style*="box-shadow"], .card[style*="box-shadow"] {
+    border: 1px solid rgba(255,255,255,0.1) !important;
+  }
+}
+
+/* Manual dark mode class */
+.dark-mode img[style*="box-shadow"],
+.dark-mode .card[style*="box-shadow"],
+.dark-mode .container[style*="box-shadow"],
+.dark-mode iframe[style*="box-shadow"],
+.dark-mode .video-container[style*="box-shadow"] {
+  box-shadow: none !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-mode .challenge-card,
+.dark-mode .step-item,
+.dark-mode .feature-card,
+.dark-mode .solution-card {
+  box-shadow: none !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-mode .challenge-card:hover,
+.dark-mode .step-item:hover,
+.dark-mode .feature-card:hover,
+.dark-mode .solution-card:hover {
+  box-shadow: none !important;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
 }
 
 /* Responsive design for structure gallery */

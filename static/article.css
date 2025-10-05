@@ -296,11 +296,20 @@
     font-weight: 500;
 }
 
-/* Sub-catalog styling */
+/* Sub-catalog styling with auto expand/collapse */
 .sub-catalog {
     list-style: none;
     padding: 0;
     margin: 0.5rem 0 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.sub-catalog.expanded {
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
 }
 
 .sub-catalog a {
@@ -311,6 +320,20 @@
 
 .sub-catalog a:hover {
     color: var(--theme-accent);
+}
+
+/* Nested sub-catalog (for DBTL sections) */
+.sub-catalog .sub-catalog {
+    margin-left: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+}
+
+.sub-catalog .sub-catalog.expanded {
+    max-height: 200px;
+    opacity: 1;
 }
 
 /* Article Header Styling */
@@ -435,19 +458,142 @@ body.dark-mode .btn-circle {
     background: rgba(24, 25, 26, 0.95);
     color: #60a5fa;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        0 2px 8px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: none;
 }
 
 body.dark-mode .btn-circle:hover {
     background: rgba(24, 25, 26, 0.98);
     color: #93c5fd;
-    box-shadow: 
-        0 12px 40px rgba(96, 165, 250, 0.2),
-        0 4px 16px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Manual dark mode class shadow adjustments for article content */
+.dark-mode .article-content {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .article-content img {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .article-content img:hover {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .article-content table {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .article-content .note-box, 
+.dark-mode .article-content .info-box,
+.dark-mode .article-content .warning-box {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Additional card types shadow removal for dark mode */
+.dark-mode .team-member-card,
+.dark-mode .feature-card,
+.dark-mode .project-card,
+.dark-mode .info-card,
+.dark-mode .stats-card,
+.dark-mode .timeline-card,
+.dark-mode .achievement-card {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .team-member-card:hover,
+.dark-mode .feature-card:hover,
+.dark-mode .project-card:hover,
+.dark-mode .info-card:hover,
+.dark-mode .stats-card:hover,
+.dark-mode .timeline-card:hover,
+.dark-mode .achievement-card:hover {
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* System dark mode preference for floating buttons */
+@media (prefers-color-scheme: dark) {
+    .btn-circle {
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .btn-circle:hover {
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Remove shadows from article content */
+    .article-content {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .article-content img {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .article-content img:hover {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .article-content table {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .article-content .note-box, 
+    .article-content .info-box,
+    .article-content .warning-box {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Additional card types shadow removal for system dark mode */
+    .team-member-card,
+    .feature-card,
+    .project-card,
+    .info-card,
+    .stats-card,
+    .timeline-card,
+    .achievement-card {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .team-member-card:hover,
+    .feature-card:hover,
+    .project-card:hover,
+    .info-card:hover,
+    .stats-card:hover,
+    .timeline-card:hover,
+    .achievement-card:hover {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Comprehensive shadow removal fallback for any missed elements */
+@media (prefers-color-scheme: dark) {
+    * [style*="box-shadow"] {
+        box-shadow: none !important;
+    }
+}
+
+.dark-mode * [style*="box-shadow"] {
+    box-shadow: none !important;
 }
 
 /* SVG and IMG icon styling */

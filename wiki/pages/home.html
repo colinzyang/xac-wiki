@@ -7,7 +7,7 @@
   <link rel="icon" href="../../favicon.ico">
   
   <!-- 资源预加载 -->
-  <link rel="preload" href="../../static/fonts.css" as="style">
+  
   <link rel="preload" href="../../static/style.css" as="style">
   <link rel="preload" href="../../static/glass-menu.css" as="style">
   <link rel="preload" href="../../static/main.js" as="script">
@@ -24,7 +24,7 @@
   <style>
     /* Critical CSS for instant rendering */
     body { 
-      font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; 
       margin: 0; 
       transition: none; 
     }
@@ -47,7 +47,7 @@
     }
   </style>
   
-  <link rel="stylesheet" href="../../static/fonts.css">
+  
   <link rel="stylesheet" href="../../static/style.css">
   <link rel="stylesheet" href="../../static/glass-menu.css">
   
@@ -79,93 +79,158 @@
       </div>
     </section>
 
-    <!-- Garbage Zone Image Section -->
-    <section class="unified-image-section" aria-label="垃圾环境图片展示">
-      <div class="text-image-layout">
-        <div class="left-text-content">
-          <h3 class="section-title">"The 8th Continent"</h3>
-          <p class="section-description">The Great Pacific Garbage Patch, with an area estimated to be over 1.6 million square kilometers, is a severe consequence of the excessive proliferation of single-use plastic products.</p>
-          <p class="section-detail">Due to the lack and inefficiency of recycling, the vast majority of plastic waste is not effectively processed and ultimately enters the ocean through the water cycle. This type of pollution problem occurs in many parts of the Earth, posing immense challenges to ecosystems.</p>
-        </div>
-        <div class="right-image-container">
-          <img src="../../static/assets/images/Background/Garbage Zone.png" alt="垃圾区域环境展示" class="section-image" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section class="animation-image-section" aria-label="动画图片展示">
-      <!-- 文字介绍部分 -->
-      <div class="animation-text-intro">
-        <h3 class="animation-section-title">Breakthrough Discovery</h3>
-        <p class="animation-description">Scientists have discovered enzyme-based green degradation solutions that offer unprecedented potential for breaking down plastic waste sustainably and efficiently.</p>
-      </div>
-      
-      <div class="animation-container">
-        <div class="sliding-image left-slide">
-          <img src="../../static/assets/images/Background/SCIENTIST.png" alt="科学家图片" class="animation-image" loading="lazy">
-        </div>
-        <div class="sliding-image right-slide">
-          <img src="../../static/assets/images/Background/ENZYME.png" alt="酶神图片" class="animation-image" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <!-- Additional Image Container Section -->
-    <section class="unified-image-section" aria-label="补充图片展示区域">
-      <div class="text-image-layout">
-        <div class="left-text-content">
-          <h3 class="section-title">Environmental Challenge</h3>
-          <p class="section-description">The scale of plastic pollution demands immediate action. Our innovative approach combines cutting-edge biotechnology with AI-driven enzyme prediction to tackle this global crisis.</p>
-          <p class="section-detail">Through advanced machine learning algorithms, we're developing more effective plastic-degrading enzymes that can break down various types of plastic waste in natural environments.</p>
-          
-          <!-- Keywords Cards Container -->
-          <div class="keywords-cards-container">
-            <div class="keyword-card">
-              <img src="../../static/assets/images/Background/HIGHCOST.png" alt="高成本问题" class="keyword-image" loading="lazy">
-            </div>
-            
-            <div class="keyword-card">
-              <img src="../../static/assets/images/Background/INEFFICIENT.png" alt="低效率问题" class="keyword-image" loading="lazy">
-            </div>
-            
-            <div class="keyword-card">
-              <img src="../../static/assets/images/Background/TIME_CONSUMING.png" alt="耗时问题" class="keyword-image" loading="lazy">
-            </div>
+    <!-- Image Gallery Section -->
+    <section class="image-gallery-section" style="margin-top: 150px; padding: 60px 20px; background: transparent;">
+      <div class="gallery-container" style="max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Image 1: PETaseget - Left aligned -->
+        <div class="image-item left-aligned" data-delay="0" style="display: flex; align-items: center; margin-bottom: 120px; opacity: 0; transform: translateX(-200px); transition: all 1.8s ease;">
+          <div class="image-content" style="flex: 1; max-width: 500px;">
+            <img src="../../static/assets/images/matching-pictures/petaseget.jpg" 
+                 alt="PETase Get" 
+                 style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);" 
+                 loading="lazy">
+          </div>
+          <div class="text-content" style="flex: 1; padding-left: 60px;">
+            <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--color-text);">PETase Discovery</h3>
+            <p style="font-size: 1.125rem; line-height: 1.6; color: var(--color-text-secondary);">Since 2016, when scientists first reported PETase - an enzyme with high specificity for PET plastic - related synthetic biology research has seemingly opened a door:</p>
           </div>
         </div>
-        <div class="right-image-container" style="position: relative;">
-          <img src="../../static/assets/images/Background/WANTED.png" alt="WANTED 海报图片" class="section-image" loading="lazy">
-          
-          <!-- 观众图片叠加层 -->
-          <div class="audience-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: visible;">
-            
-            <!-- 左侧观众 M SCT -->
-            <img src="../../static/assets/images/Background/M SCT.png" alt="观众1" 
-                 style="position: absolute; top: 45%; left: -15%; width: 28%; height: auto; opacity: 0.9; z-index: 3;" 
-                 loading="lazy">
-            
-            <!-- 右侧观众 O SCT -->
-            <img src="../../static/assets/images/Background/O SCT.png" alt="观众2" 
-                 style="position: absolute; top: 50%; right: -10%; width: 26%; height: auto; opacity: 0.9; z-index: 3;" 
+        
+        <!-- Statistics Section between images -->
+        <div class="statistics-section" style="text-align: center; margin: 0 0 120px 0; padding: 30px 20px; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+          <p class="statistics-text" style="font-size: 2.2rem; line-height: 1.4; color: var(--color-text); max-width: 900px; margin: 0 auto; font-weight: 500; letter-spacing: 0.02em; text-align: center;">
+            Until now: <span class="animated-number" data-target="4290" style="font-weight: bold; color: var(--color-primary-dark);">0</span> Papers about PETase have been published. In 2025, we have: <span class="animated-number" data-target="879" style="font-weight: bold; color: var(--color-primary-dark);">0</span>.
+          </p>
+        </div>
+        
+        <!-- Image 2: Discover - Right aligned -->
+        <div class="image-item right-aligned" data-delay="600" style="display: flex; align-items: center; margin-bottom: 120px; opacity: 0; transform: translateX(200px); transition: all 1.8s ease;">
+          <div class="text-content" style="flex: 1; padding-right: 60px; text-align: right;">
+            <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--color-text);">In-depth Study</h3>
+            <p style="font-size: 1.125rem; line-height: 1.6; color: var(--color-text-secondary);">A large number of synthetic biologists are focused on engineering plastic hydrolases via methods like protein engineering, while concurrently, many researchers are trying to uncover novel degradation enzymes for various polymer types from natural environments.</p>
+          </div>
+          <div class="image-content" style="flex: 1; max-width: 500px;">
+            <img src="../../static/assets/images/matching-pictures/discover.jpg" 
+                 alt="Discover" 
+                 style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);" 
                  loading="lazy">
           </div>
         </div>
+        
+        <!-- Image 3: Where Are You - Left aligned -->
+        <div class="image-item left-aligned" data-delay="400" style="display: flex; align-items: center; margin-bottom: 120px; opacity: 0; transform: translateX(-200px); transition: all 1.8s ease;">
+          <div class="image-content" style="flex: 1; max-width: 500px;">
+            <img src="../../static/assets/images/matching-pictures/whereareyou.png" 
+                 alt="Where Are You" 
+                 style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);" 
+                 loading="lazy">
+          </div>
+          <div class="text-content" style="flex: 1; padding-left: 60px;">
+            <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--color-text);">The Hurdles to Promise</h3>
+            <p style="font-size: 1.125rem; line-height: 1.6; color: var(--color-text-secondary);">The increasing depth of related research offers promising prospects for a more sustainable resolution to the plastic pollution crisis. Nevertheless, numerous studies are frequently constrained by the inherent limitations of conventional bench-scale (or "wet lab") experimentation, particularly concerning cost, time commitment, and throughput efficiency.</p>
+          </div>
+        </div>
+        
+        <!-- Challenge Cards Section - Separate row below image+text -->
+        <div class="challenge-cards-section" style="margin: 0 0 60px 0; padding: 0 20px;">
+          <div class="challenge-cards-container" style="display: flex; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; flex-wrap: nowrap;">
+            
+            <!-- Cost Card -->
+            <div class="challenge-card" data-card="cost" style="flex: 1; min-width: 0; max-width: 300px; background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,107,107,0.05)); border: 1px solid rgba(255,107,107,0.2); border-radius: 12px; padding: 25px 20px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; opacity: 0; transform: translateY(30px);">
+              <h4 style="color: #ff6b6b; font-size: 1.2rem; font-weight: 600; margin: 0 0 12px 0; letter-spacing: 0.5px;">HIGH COST</h4>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.5; margin: 0;">Laboratory equipment, reagents, and personnel expenses limit research scale</p>
+            </div>
+            
+            <!-- Time Card -->
+            <div class="challenge-card" data-card="time" style="flex: 1; min-width: 0; max-width: 300px; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(255,193,7,0.05)); border: 1px solid rgba(255,193,7,0.2); border-radius: 12px; padding: 25px 20px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; opacity: 0; transform: translateY(30px);">
+              <h4 style="color: #ffc107; font-size: 1.2rem; font-weight: 600; margin: 0 0 12px 0; letter-spacing: 0.5px;">TIME INTENSIVE</h4>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.5; margin: 0;">Lengthy experimental cycles slow down discovery and optimization processes</p>
+            </div>
+            
+            <!-- Throughput Card -->
+            <div class="challenge-card" data-card="throughput" style="flex: 1; min-width: 0; max-width: 300px; background: linear-gradient(135deg, rgba(108,117,125,0.1), rgba(108,117,125,0.05)); border: 1px solid rgba(108,117,125,0.2); border-radius: 12px; padding: 25px 20px; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; opacity: 0; transform: translateY(30px);">
+              <h4 style="color: #6c757d; font-size: 1.2rem; font-weight: 600; margin: 0 0 12px 0; letter-spacing: 0.5px;">LOW THROUGHPUT</h4>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.5; margin: 0;">Limited parallel testing capabilities restrict comprehensive screening</p>
+            </div>
+            
+          </div>
+        </div>
+        
       </div>
     </section>
+
+
 
   </main>
   
   <!-- Project Promotion Video Section -->
-  <section class="video-section" style="padding: 100px 20px 60px 20px; text-align: center; position: relative;">
+  <section class="video-section" style="padding: 120px 20px 60px 20px; text-align: center; position: relative;">
     <div class="video-container" style="max-width: 800px; margin: 0 auto;">
       
-      <h1 style="font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 4rem; line-height: 1.1; margin: 0 0 40px 0; color: var(--color-text); letter-spacing: 0.02em; text-shadow: 0 0 20px var(--color-border-light);">
+      <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 4rem; line-height: 1.1; margin: 0 0 40px 0; color: var(--color-text); letter-spacing: 0.02em; text-shadow: 0 0 20px var(--color-border-light);">
         <div style="text-align: left; margin-bottom: -15px; padding-left: 40px; font-size: 3.5rem; font-weight: 500;">So what's the</div>
         <div style="text-align: right; color: var(--color-primary-dark); padding-right: 40px; font-size: 4rem; font-weight: 800;">SOLUTION?</div>
       </h1>
       
-      <h2 style="font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 2rem; margin-top: 60px; margin-bottom: 30px; color: var(--color-primary-dark);">Project Promotion</h2>
+      <!-- Solution Steps Flow Container -->
+      <div class="solution-steps-section" style="margin: 80px 0; padding: 60px 20px;">
+        <div class="steps-container" style="max-width: 1400px; margin: 0 auto; position: relative;">
+          
+          <!-- Three Steps Flow -->
+          <div class="steps-flow" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 60px; position: relative;">
+            
+            <!-- Step 1 -->
+            <div class="step-item" data-step="1" style="flex: 1; max-width: 420px; opacity: 0; transform: translateX(-100px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
+              <div style="text-align: center;">
+                <img src="../../static/assets/images/matching-pictures/step1.png" 
+                     alt="Step 1" 
+                     style="width: 100%; max-width: 400px; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease; margin-bottom: 25px;"
+                     loading="lazy">
+                <div class="step-description" style="opacity: 0; transition: opacity 0.6s ease; padding: 0 20px;">
+                  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin: 0; text-align: justify;">
+                    Starting with the exploration of <strong style="color: var(--color-text); font-weight: 600;">how AI can understand and predict enzyme function</strong>, the project aims to transition from mere <strong style="color: var(--color-primary-dark); font-weight: 600;">"prediction"</strong> to genuine <strong style="color: var(--color-primary-dark); font-weight: 600;">"understanding"</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="step-item" data-step="2" style="flex: 1; max-width: 420px; opacity: 0; transform: translateX(-100px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
+              <div style="text-align: center;">
+                <img src="../../static/assets/images/matching-pictures/step2.png" 
+                     alt="Step 2" 
+                     style="width: 100%; max-width: 400px; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease; margin-bottom: 25px;"
+                     loading="lazy">
+                <div class="step-description" style="opacity: 0; transition: opacity 0.6s ease; padding: 0 20px;">
+                  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin: 0; text-align: justify;">
+                    By harnessing the analytical power of AI, we aim to determine if it can effectively capture the key biological principle of <strong style="color: var(--color-text); font-weight: 600;">how enzyme sequence and structure collaboratively define its catalytic activity</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="step-item" data-step="3" style="flex: 1; max-width: 420px; opacity: 0; transform: translateX(-100px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
+              <div style="text-align: center;">
+                <img src="../../static/assets/images/matching-pictures/step3.png" 
+                     alt="Step 3" 
+                     style="width: 100%; max-width: 400px; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease; margin-bottom: 25px;"
+                     loading="lazy">
+                <div class="step-description" style="opacity: 0; transition: opacity 0.6s ease; padding: 0 20px;">
+                  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin: 0; text-align: justify;">
+                    The long-term goal is to elevate AI from <strong style="color: var(--color-primary-dark); font-weight: 600;">"assisting research"</strong> to <strong style="color: var(--color-primary-dark); font-weight: 600;">"empowering science"</strong>, allowing it to serve as a bridge connecting data and biological comprehension.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; font-size: 2rem; margin-top: 60px; margin-bottom: 30px; color: var(--color-primary-dark);">Project Promotion</h2>
       <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
         <iframe 
           title="XJTLU-AI-China: Plaszyme：An intelligent platform for plastic-degradation enzyme ... (2025) - Project Promotion [English]" 
@@ -184,6 +249,351 @@
   <div id="footer"></div>
   <script defer src="../../static/main.js"></script>
   
+  <!-- Image Gallery Animation Script -->
+  <script>
+    // Slide-in animation for image gallery
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageItems = document.querySelectorAll('.image-item');
+      
+      // Add responsive styles and challenge card styles
+      function addResponsiveStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+          /* Challenge Cards Hover Effects */
+          .challenge-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+          }
+          
+          .challenge-card[data-card="cost"]:hover {
+            border-color: rgba(255,107,107,0.4);
+            box-shadow: 0 12px 25px rgba(255,107,107,0.25);
+          }
+          
+          .challenge-card[data-card="time"]:hover {
+            border-color: rgba(255,193,7,0.4);
+            box-shadow: 0 12px 25px rgba(255,193,7,0.25);
+          }
+          
+          .challenge-card[data-card="throughput"]:hover {
+            border-color: rgba(108,117,125,0.4);
+            box-shadow: 0 12px 25px rgba(108,117,125,0.25);
+          }
+          
+          /* Solution Steps Hover Effects */
+          .step-item img:hover {
+            transform: scale(1.05);
+          }
+          
+          .step-item:hover {
+            transform: translateX(0) translateY(-8px);
+          }
+          
+          /* Dark Mode Shadow Adjustments */
+          @media (prefers-color-scheme: dark) {
+            /* Remove shadows from gallery images */
+            .image-content img {
+              box-shadow: none !important;
+              border: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Remove shadows from step images */
+            .step-item img {
+              box-shadow: none !important;
+              border: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Remove shadows from video container */
+            .video-section > div {
+              box-shadow: none !important;
+              border: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Adjust challenge card shadows */
+            .challenge-card {
+              box-shadow: none !important;
+              border: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .challenge-card:hover {
+              box-shadow: none !important;
+              border: 1px solid rgba(255,255,255,0.2);
+              background: rgba(255,255,255,0.05);
+            }
+            
+            .challenge-card[data-card="cost"]:hover {
+              border-color: rgba(255,107,107,0.4);
+              box-shadow: none !important;
+            }
+            
+            .challenge-card[data-card="time"]:hover {
+              border-color: rgba(255,193,7,0.4);
+              box-shadow: none !important;
+            }
+            
+            .challenge-card[data-card="throughput"]:hover {
+              border-color: rgba(108,117,125,0.4);
+              box-shadow: none !important;
+            }
+          }
+          
+          /* Manual Dark Mode Class Shadow Adjustments */
+          .dark-mode .image-content img {
+            box-shadow: none !important;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          
+          .dark-mode .step-item img {
+            box-shadow: none !important;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          
+          .dark-mode .video-section > div {
+            box-shadow: none !important;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          
+          .dark-mode .challenge-card {
+            box-shadow: none !important;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          
+          .dark-mode .challenge-card:hover {
+            box-shadow: none !important;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+          }
+          
+          .dark-mode .challenge-card[data-card="cost"]:hover {
+            border-color: rgba(255,107,107,0.4);
+            box-shadow: none !important;
+          }
+          
+          .dark-mode .challenge-card[data-card="time"]:hover {
+            border-color: rgba(255,193,7,0.4);
+            box-shadow: none !important;
+          }
+          
+          .dark-mode .challenge-card[data-card="throughput"]:hover {
+            border-color: rgba(108,117,125,0.4);
+            box-shadow: none !important;
+          }
+          
+          @media (max-width: 768px) {
+            .image-item {
+              flex-direction: column !important;
+              text-align: center !important;
+            }
+            .image-item.right-aligned {
+              flex-direction: column !important;
+            }
+            .text-content {
+              padding: 30px 0 0 0 !important;
+              text-align: center !important;
+            }
+            .image-content {
+              max-width: 100% !important;
+            }
+            .statistics-section {
+              margin: 40px 0 !important;
+              padding: 20px 15px !important;
+              min-height: 120px !important;
+            }
+            .statistics-text {
+              font-size: 1.6rem !important;
+              line-height: 1.3 !important;
+              max-width: 100% !important;
+            }
+            .challenge-cards-section {
+              margin: 40px 0 40px 0 !important;
+            }
+            .challenge-cards-container {
+              flex-direction: column !important;
+              gap: 15px !important;
+              max-width: 100% !important;
+            }
+            .challenge-card {
+              padding: 15px !important;
+            }
+            .solution-steps-section {
+              margin: 40px 0 !important;
+              padding: 30px 15px !important;
+            }
+            .steps-container {
+              max-width: 100% !important;
+            }
+            .steps-flow {
+              flex-direction: column !important;
+              gap: 40px !important;
+              justify-content: center !important;
+            }
+            .step-item {
+              flex: none !important;
+              width: 100% !important;
+              max-width: 380px !important;
+              margin: 0 auto !important;
+            }
+            .step-item img {
+              max-width: 350px !important;
+            }
+            .step-description {
+              padding: 0 15px !important;
+            }
+            .step-description p {
+              font-size: 1rem !important;
+              text-align: left !important;
+              line-height: 1.6 !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      addResponsiveStyles();
+      
+      function handleScrollAnimation() {
+        imageItems.forEach((item) => {
+          const itemRect = item.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Check if item is in viewport
+          if (itemRect.top <= windowHeight * 0.8) {
+            const delay = parseInt(item.getAttribute('data-delay')) || 0;
+            
+            // Add delay for sequential animation
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateX(0)';
+            }, delay);
+          }
+        });
+        
+        // Handle challenge cards animation
+        handleChallengeCardsAnimation();
+        
+        // Handle number animation
+        handleNumberAnimation();
+        
+        // Handle solution content animation
+        handleSolutionContentAnimation();
+      }
+      
+      function handleSolutionContentAnimation() {
+        const stepsSection = document.querySelector('.solution-steps-section');
+        const stepItems = document.querySelectorAll('.step-item');
+        
+        if (stepsSection && !stepsSection.hasAttribute('data-animated')) {
+          const rect = stepsSection.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Check if steps section is in viewport
+          if (rect.top <= windowHeight * 0.8) {
+            stepsSection.setAttribute('data-animated', 'true');
+            
+            // Animate steps with sequential delays
+            stepItems.forEach((step, index) => {
+              // Animate step container (image slides in)
+              setTimeout(() => {
+                step.style.opacity = '1';
+                step.style.transform = 'translateX(0)';
+                
+                // Animate description text after image is visible
+                const description = step.querySelector('.step-description');
+                if (description) {
+                  setTimeout(() => {
+                    description.style.opacity = '1';
+                  }, 250); // 250ms delay after image appears
+                }
+              }, index * 300); // 300ms delay between each step
+            });
+          }
+        }
+      }
+      
+      function handleChallengeCardsAnimation() {
+        const challengeCards = document.querySelectorAll('.challenge-card');
+        const imageTextSection = document.querySelector('.image-item.left-aligned[data-delay="400"]');
+        
+        // Check if image+text section is visible and has completed its animation
+        const imageTextRect = imageTextSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const isImageTextVisible = imageTextRect.top <= windowHeight * 0.6;
+        const hasImageTextAnimated = imageTextSection.style.opacity === '1';
+        
+        // Only start card animation if image+text is visible and has completed its animation
+        if (isImageTextVisible && hasImageTextAnimated) {
+          challengeCards.forEach((card, index) => {
+            // Check if card hasn't been animated yet
+            if (!card.hasAttribute('data-animated')) {
+              card.setAttribute('data-animated', 'true');
+              
+              // Add sequential delay: 400ms initial delay + 200ms between cards
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 400 + (index * 200)); // 400ms delay after image+text, then 200ms between cards
+            }
+          });
+        }
+      }
+      
+      function handleNumberAnimation() {
+        const animatedNumbers = document.querySelectorAll('.animated-number');
+        
+        animatedNumbers.forEach((numberElement) => {
+          const rect = numberElement.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Check if element is in viewport and hasn't been animated yet
+          if (rect.top <= windowHeight * 0.8 && !numberElement.hasAttribute('data-animated')) {
+            numberElement.setAttribute('data-animated', 'true');
+            animateNumber(numberElement);
+          }
+        });
+      }
+      
+      function animateNumber(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const startTime = Date.now();
+        
+        function updateNumber() {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Use easing function for smooth animation
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const currentValue = Math.floor(target * easedProgress);
+          
+          element.textContent = currentValue.toLocaleString();
+          
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            element.textContent = target.toLocaleString();
+          }
+        }
+        
+        requestAnimationFrame(updateNumber);
+      }
+      
+      // Listen for scroll events with throttling
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(function() {
+            handleScrollAnimation();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+      
+      // Handle initial load
+      handleScrollAnimation();
+    });
+  </script>
+  
   <!-- 服务端缓存控制 -->
   <script>
     // 设置页面缓存策略
@@ -191,7 +601,6 @@
       const CACHE_NAME = 'xjtlu-igem-v1';
       const urlsToCache = [
         '/',
-        '../../static/fonts.css',
         '../../static/style.css', 
         '../../static/glass-menu.css',
         '../../static/main.js',

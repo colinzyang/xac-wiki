@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protocols - XJTLU iGEM Team 2025</title>
   <link rel="icon" href="../../favicon.ico">
-  <link rel="stylesheet" href="../../static/fonts.css">
+  
   <link rel="stylesheet" href="../../static/style.css">
   <link rel="stylesheet" href="../../static/glass-menu.css">
   <link rel="stylesheet" href="../../static/article.css">
@@ -390,7 +390,7 @@
   <!-- Floating Buttons -->
   <div class="floating-buttons">
     <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
-      <img src="../../static/assets/icons/up.svg" alt="Scroll to top" />
+      <span style="font-weight: 600; font-size: 0.9rem; color: var(--color-text);">up</span>
     </button>
   </div>
 
@@ -419,12 +419,88 @@
     
     function handleScroll() {
       if (!ticking) {
-        requestAnimationFrame(updateScrollButtonVisibility);
+        requestAnimationFrame(() => {
+          updateScrollButtonVisibility();
+          updateSidebarExpansion();
+        });
         ticking = true;
       }
     }
     
     window.addEventListener('scroll', handleScroll);
+
+    // Auto expand/collapse sidebar based on scroll position - chapter-wide logic
+    function updateSidebarExpansion() {
+      const currentScroll = window.pageYOffset;
+      const mainSections = document.querySelectorAll('.article-content h2');
+      const subSections = document.querySelectorAll('.article-content h3');
+      
+      // Reset all sub-catalogs
+      const allSubCatalogs = document.querySelectorAll('.sub-catalog');
+      allSubCatalogs.forEach(subCatalog => {
+        subCatalog.classList.remove('expanded');
+      });
+      
+      // Check each main section for chapter-wide expansion
+      mainSections.forEach((section, index) => {
+        const sectionId = section.getAttribute('id');
+        const sectionStart = section.offsetTop;
+        
+        // Get the end position of this chapter (start of next main section or page end)
+        const nextMainSection = index < mainSections.length - 1 ? mainSections[index + 1] : null;
+        const sectionEnd = nextMainSection ? nextMainSection.offsetTop : document.body.scrollHeight;
+        
+        // Check if current scroll position is within this chapter's range
+        const tolerance = 100; // Add some tolerance for better UX
+        const isInChapter = currentScroll >= sectionStart - tolerance && currentScroll < sectionEnd - tolerance;
+        
+        if (isInChapter && sectionId) {
+          // Find corresponding menu item and expand its sub-catalog
+          const menuLink = document.querySelector(`.catalog-list > li > a[href="#${sectionId}"]`);
+          if (menuLink) {
+            const parentLi = menuLink.closest('li');
+            if (parentLi) {
+              const subCatalog = parentLi.querySelector('.sub-catalog');
+              if (subCatalog) {
+                subCatalog.classList.add('expanded');
+                
+                // Also expand nested sub-catalogs for sub-sections within this chapter
+                subSections.forEach(subSection => {
+                  const subSectionStart = subSection.offsetTop;
+                  const subSectionId = subSection.getAttribute('id');
+                  
+                  // Check if this sub-section belongs to the current main section
+                  if (subSectionStart >= sectionStart && subSectionStart < sectionEnd) {
+                    // Find next sub-section to determine range
+                    const nextSubSection = Array.from(subSections).find(s => 
+                      s.offsetTop > subSectionStart && s.offsetTop >= sectionStart && s.offsetTop < sectionEnd
+                    );
+                    const subSectionEnd = nextSubSection ? nextSubSection.offsetTop : sectionEnd;
+                    
+                    // Check if current scroll is within this sub-section range
+                    const isInSubSection = currentScroll >= subSectionStart - tolerance && currentScroll < subSectionEnd - tolerance;
+                    
+                    if (isInSubSection && subSectionId) {
+                      // Find corresponding sub-menu item and expand its nested sub-catalog
+                      const subMenuLink = document.querySelector(`.sub-catalog a[href="#${subSectionId}"]`);
+                      if (subMenuLink) {
+                        const subParentLi = subMenuLink.closest('li');
+                        if (subParentLi) {
+                          const nestedSubCatalog = subParentLi.querySelector('.sub-catalog');
+                          if (nestedSubCatalog) {
+                            nestedSubCatalog.classList.add('expanded');
+                          }
+                        }
+                      }
+                    }
+                  }
+                });
+              }
+            }
+          }
+        }
+      });
+    }
 
 
 
@@ -484,6 +560,11 @@
       
       window.addEventListener('scroll', updateActiveSection);
       updateActiveSection();
+      
+      // Initialize sidebar expansion on page load
+      setTimeout(() => {
+        updateSidebarExpansion();
+      }, 100);
     }
     setTimeout(initPageSpecificFunctionality, 500);
   </script>
