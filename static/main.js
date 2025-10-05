@@ -242,12 +242,6 @@ function initDarkMode() {
         }
       });
       
-      // Update iGEM icon
-      document.querySelectorAll('.footer-igem-icon').forEach(img => {
-        if (img) {
-          img.src = isDark ? '/static/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/static/assets/logos/Igem-logo-fullcolorblack@1x.png';
-        }
-      });
     } catch (err) {
       console.error('Error updating dark mode:', err);
     }
@@ -615,11 +609,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.footer-bsky-icon').forEach(img => {
         if (img) {
           img.src = isDark ? '/static/assets/logos/bsky-g.svg' : '/static/assets/logos/bsky.svg';
-        }
-      });
-      document.querySelectorAll('.footer-igem-icon').forEach(img => {
-        if (img) {
-          img.src = isDark ? '/static/assets/logos/Igem-logo-fullcolorwhite@1x.png' : '/static/assets/logos/Igem-logo-fullcolorblack@1x.png';
         }
       });
     } catch (err) {

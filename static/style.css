@@ -1774,9 +1774,7 @@ body.dark-mode .igem-footer {
   background: #888;
   transition: background 0.2s;
 }
-.footer-social-icon.xhs { background: linear-gradient(135deg, #f43f5e 60%, #fbbf24 100%); }
 .footer-social-icon.bsky { background: #4fc3f7; }
-.footer-social-icon.igem { background: #8bc34a; }
 .footer-social-icon:hover { filter: brightness(1.05); }
 .footer-col-newsletter strong {
   font-size: 1.1em;
@@ -6434,6 +6432,7 @@ body.dark-mode .structure-image:hover {
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.05);
 }
+
 
 /* Responsive design for structure gallery */
 @media (max-width: 768px) {
