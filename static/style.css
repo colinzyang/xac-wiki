@@ -6434,6 +6434,42 @@ body.dark-mode .structure-image:hover {
 }
 
 
+/* Menu logo dark mode controls - with higher specificity */
+.menu-fab-logo.menu-logo-light {
+  display: block !important;
+}
+
+.menu-fab-logo.menu-logo-dark {
+  display: none !important;
+}
+
+body.dark-mode .menu-fab-logo.menu-logo-light {
+  display: none !important;
+}
+
+body.dark-mode .menu-fab-logo.menu-logo-dark {
+  display: block !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .menu-fab-logo.menu-logo-light {
+    display: none !important;
+  }
+  
+  .menu-fab-logo.menu-logo-dark {
+    display: block !important;
+  }
+}
+
+/* Override system dark mode when manual light mode is set */
+body:not(.dark-mode) .menu-fab-logo.menu-logo-light {
+  display: block !important;
+}
+
+body:not(.dark-mode) .menu-fab-logo.menu-logo-dark {
+  display: none !important;
+}
+
 /* Responsive design for structure gallery */
 @media (max-width: 768px) {
   .structure-gallery {

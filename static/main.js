@@ -212,18 +212,12 @@ function initDarkMode() {
       document.body.classList.toggle('dark-mode', isDark);
       localStorage.setItem('darkMode', isDark ? '1' : '0');
       
-      // Update menu logo
-      document.querySelectorAll('.menu-fab-logo').forEach(img => {
-        if (img) {
-          img.src = isDark ? '/static/assets/logos/logo-white.png' : '/static/assets/logos/logo-blue.png';
-        }
-      });
       
       // Update menu toggle button icon
       toggleButtons.forEach(btn => {
         const icon = btn?.querySelector('img');
         if (icon) {
-          icon.src = isDark ? '/static/assets/icons/moon2.svg' : '/static/assets/icons/sun.svg';
+          icon.src = isDark ? 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/moon.webp' : 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/son.webp';
           icon.alt = isDark ? 'Dark Mode' : 'Light Mode';
         }
       });
@@ -231,7 +225,19 @@ function initDarkMode() {
       // Update Footer logo
       document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
         if (img) {
-          img.src = isDark ? '/static/assets/logos/logo-n-white.png' : '/static/assets/logos/logo-n-blue.png';
+          img.src = isDark ? 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-n-white.webp' : 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-n-blue.webp';
+        }
+      });
+      
+      // Update Menu logo - toggle between light and dark versions
+      document.querySelectorAll('.menu-logo-light').forEach(img => {
+        if (img) {
+          img.style.display = isDark ? 'none' : 'block';
+        }
+      });
+      document.querySelectorAll('.menu-logo-dark').forEach(img => {
+        if (img) {
+          img.style.display = isDark ? 'block' : 'none';
         }
       });
       
@@ -603,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const isDark = document.body.classList.contains('dark-mode');
       document.querySelectorAll('.footer-logo-adaptive').forEach(img => {
         if (img) {
-          img.src = isDark ? '/static/assets/logos/logo-n-white.png' : '/static/assets/logos/logo-n-blue.png';
+          img.src = isDark ? 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-n-white.webp' : 'https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-n-blue.webp';
         }
       });
       document.querySelectorAll('.footer-bsky-icon').forEach(img => {
