@@ -14,7 +14,7 @@
   <div id="menu-container"></div>
   
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header" style="background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/engineeringcycle.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container">
       <h1>Engineering</h1>
     </div>
@@ -27,7 +27,7 @@
       <nav class="catalog">
         <h4 id="contents">Contents</h4>
         <ul class="catalog-list">
-          <li><a href="#cycle-1">1. Cycle 1 — Data Integration & Benchmark Preparation</a>
+          <li><a href="#cycle-1">Cycle 1 — Data Integration & Benchmark Preparation</a>
             <ul class="sub-catalog">
               <li><a href="#status-quo" class="sub-heading">1.1. Status Quo</a></li>
               <li><a href="#goal" class="sub-heading">1.2. Goal</a></li>
@@ -58,7 +58,7 @@
               <li><a href="#conclusion-1" class="sub-heading">1.6. Conclusion</a></li>
             </ul>
           </li>
-          <li><a href="#cycle-2">2. Cycle 2 — Baseline ML with ESM Embeddings</a>
+          <li><a href="#cycle-2">Cycle 2 — Baseline ML with ESM Embeddings</a>
             <ul class="sub-catalog">
               <li><a href="#goal-2" class="sub-heading">2.1. Goal</a></li>
               <li><a href="#sub-cycle-2a" class="sub-heading">2.2. Sub-Cycle 2A — Embedding Comparison</a>
@@ -80,7 +80,7 @@
               <li><a href="#conclusion-2" class="sub-heading">2.4. Conclusion</a></li>
             </ul>
           </li>
-          <li><a href="#cycle-3">3. Cycle 3 — Dual-Tower with Plastic Features</a>
+          <li><a href="#cycle-3">Cycle 3 — Dual-Tower with Plastic Features</a>
             <ul class="sub-catalog">
               <li><a href="#goal-3" class="sub-heading">3.1. Goal</a></li>
               <li><a href="#sub-cycle-3a" class="sub-heading">3.2. Sub-Cycle 3A — Plastic Embedding</a>
@@ -102,7 +102,7 @@
               <li><a href="#conclusion-3" class="sub-heading">3.4. Conclusion</a></li>
             </ul>
           </li>
-          <li><a href="#cycle-4">4. Cycle 4 — Structure-Aware Backbones</a>
+          <li><a href="#cycle-4">Cycle 4 — Structure-Aware Backbones</a>
             <ul class="sub-catalog">
               <li><a href="#goal-4" class="sub-heading">4.1. Goal</a></li>
               <li><a href="#sub-cycle-4a" class="sub-heading">4.2. Sub-Cycle 4A — Structure Sources</a>
@@ -132,7 +132,7 @@
               <li><a href="#conclusion-4" class="sub-heading">4.5. Conclusion</a></li>
             </ul>
           </li>
-          <li><a href="#cycle-5">5. Cycle 5 — User-Friendly Web Application</a>
+          <li><a href="#cycle-5">Cycle 5 — User-Friendly Web Application</a>
             <ul class="sub-catalog">
               <li><a href="#goal-5" class="sub-heading">5.1. Goal</a></li>
               <li><a href="#design-5" class="sub-heading">5.2. Design</a></li>
@@ -198,6 +198,10 @@
       <p><strong>Wet-lab:</strong></p>
       <p>We selected five representative enzyme sequences using a semi-random stratified sampling strategy. On the one hand, we included well-documented entries from the literature to cover established representatives; on the other, we incorporated underexplored candidates to ensure representativeness and diversity. The chosen genes were cloned into expression plasmids and heterologously expressed in the standard E. coli host via the pelB signal peptide pathway (widely used and previously reported in literature for periplasmic secretion). The expressed proteins were subsequently purified for downstream validation.</p>
       
+      <figure class="article-figure" style="text-align: center;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/petplasmid.webp" alt="PET plasmid construction and expression strategy" loading="lazy" style="max-width: 75%; height: auto;">
+      </figure>
+      
       <p><strong>Bioinformatics:</strong></p>
       <p>All entries were standardized and redundancy-removed before analysis. Family assignments were performed using Pfam/InterPro domain and HMM-based annotations. Representative sequences were then aligned with MAFFT/Clustal Omega, and a phylogenetic tree was constructed using the maximum-likelihood method with bootstrap support, to assess the consistency of family composition and evolutionary structure.</p>
       
@@ -225,6 +229,11 @@
       <p>In our first modeling attempt, we adopted the most straightforward design: treating plastics as labels and using enzyme sequences as inputs. The central question was whether sequence information alone is sufficient to predict the corresponding plastic type. To make the model truly "understand" sequences, we needed to transform the amino acid strings into numerical embeddings. Therefore, we tested multiple embedding approaches to explore which representation would be most suitable as the starting point for baseline prediction.</p>
       
       <h4 id="build-2a">Build</h4>
+      
+      <figure class="article-figure">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/complex.webp" alt="Embedding comparison methodology" loading="lazy">
+      </figure>
+      
       <ul>
         <li>One-hot encoding: each amino acid is treated as an isolated symbol, without any notion of biochemical similarity.</li>
         <li>Physicochemical descriptors: each amino acid is described by properties such as charge, hydropathy, or secondary structure tendencies, giving more biological meaning.</li>
@@ -234,6 +243,10 @@
       
       <h4 id="test-2a">Test</h4>
       <p>The comparison showed a consistent ranking: ESM embeddings > physicochemical features > one-hot. More complex representations like ESM contained richer hidden information, which allowed the classifier to achieve higher F1 and AUROC scores on the same dataset.</p>
+      
+      <figure class="article-figure">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/f1.webp" alt="F1 score comparison across different embedding methods" loading="lazy">
+      </figure>
       
       <h4 id="learn-2a">Learn</h4>
       <p>We learned that advanced embeddings such as ESM capture hidden evolutionary and structural signals that simpler encodings miss, leading to stronger performance. This highlights that in biological prediction tasks, the choice of embedding method can substantially influence model outcomes. At the same time, the experiment validated that our dataset (from Cycle 1) supports meaningful learning, providing a solid baseline for future model iterations.</p>
@@ -266,9 +279,19 @@
       <p>Molecular descriptors are widely used for chemical modeling tasks — they are numerical summaries of a molecule's properties (e.g., charge, hydrophobicity, or atom counts). These usually perform well on small molecules. However, most existing descriptors (e.g., RDKit features) were originally designed with small molecules in mind. When applied directly to polymers, they show strong correlation with molecular size, making dimensionality reduction maps cluster by chain length rather than true chemical similarity between plastics. The central challenge became: how to design embeddings that reflect the intrinsic chemical properties of plastics, instead of trivial size bias?</p>
       
       <h4 id="build-3a">Build</h4>
+      
+      <figure class="article-figure">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plasticpolymer.webp" alt="Plastic polymer embedding methodology" loading="lazy">
+      </figure>
+      
       <p>To address this, we introduced density normalization, dividing descriptors by the number of heavy atoms, which reduced the dominance of molecular weight. Intuitively, this means turning descriptors into an "average per atom" representation, so that embeddings focus on chemical composition rather than sheer size. Additionally, we leveraged co-degradation relationships as a weak supervision signal: plastics that are reported to degrade together were encouraged to form closer embeddings. This was implemented by pre-training a plastic encoder with contrastive-style objectives, allowing embeddings to reflect both chemical logic and biological relevance.</p>
       
       <h4 id="test-3a">Test</h4>
+      
+      <figure class="article-figure">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/pca.webp" alt="PCA analysis of plastic polymer embeddings" loading="lazy">
+      </figure>
+      
       <p>Dimensionality reduction with PCA and UMAP revealed that normalized embeddings produced more chemically coherent clusters. Polyesters grouped closely, polyolefins formed a separate cluster, and importantly, members of the PHA (polyhydroxyalkanoate) family began to cluster together in line with their shared biochemical properties. Unlike raw RDKit descriptors, the embeddings no longer simply followed molecular weight gradients.</p>
       
       <h4 id="learn-3a">Learn</h4>
@@ -311,6 +334,11 @@
       <p>We systematically retrieved AlphaFold models for enzymes in our dataset. Confidence scores (pLDDT) were inspected, showing consistently high values for plastic-degrading families. Where available, experimental PDBs were retained as gold standards, but the majority of entries were supplemented with AlphaFold structures. All structures were processed into residue contact graphs, ensuring consistency regardless of origin.</p>
       
       <h4 id="test-4a">Test</h4>
+      
+      <figure class="article-figure" style="text-align: center;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plddt.webp" alt="AlphaFold pLDDT confidence scores" loading="lazy" style="max-width: 70%; height: auto;">
+      </figure>
+      
       <p>Benchmark comparisons showed that models trained with AlphaFold-predicted structures performed on par with those using experimental PDBs. This demonstrated that AlphaFold is reliable for our dataset. Moreover, the graph construction pipeline worked seamlessly across both sources, producing consistent node/edge features.</p>
       
       <h4 id="learn-4a">Learn</h4>
@@ -323,6 +351,10 @@
       
       <h4 id="build-4b">Build</h4>
       <p>Instead of discarding sequence embeddings, we reorganized them into a graph representation. Each residue's initial embedding was obtained from ESM, preserving evolutionary and biochemical context. These embeddings were then assigned to graph nodes, while edges encoded spatial proximity (e.g., Cα–Cα distances within 10Å). In this way, the model could jointly leverage sequence-derived residue embeddings and their 3D spatial relationships, making the enzyme backbone structure-aware.</p>
+      
+      <figure class="article-figure" style="text-align: center;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/protein-graph-representation.webp" alt="Protein graph representation with ESM embeddings" loading="lazy" style="max-width: 90%; height: auto;">
+      </figure>
       
       <h4 id="test-4b">Test</h4>
       <p>Initial experiments showed that models with structural graphs achieved more balanced performance across difficulty tiers compared to sequence-only baselines. Notably, enzymes with low sequence similarity but similar folds were better recognized, suggesting that structural context improved generalization.</p>
