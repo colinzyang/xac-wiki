@@ -20,7 +20,14 @@
       "Bash(__NEW_LINE__ echo \"2. How fonts are applied:\")",
       "Bash(__NEW_LINE__ grep \"font-family.*var(--font-primary)\" static/style.css)",
       "Bash(__NEW_LINE__ echo \"3. Any remaining custom font mentions:\")",
-      "Bash(__NEW_LINE__ grep -ri \"source.*sans\\|font.*face\\|woff\\|ttf\" static/)"
+      "Bash(__NEW_LINE__ grep -ri \"source.*sans\\|font.*face\\|woff\\|ttf\" static/)",
+      "Bash(grep:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"=== Processing $file.html ===\")",
+      "Bash(head:*)",
+      "Bash(done)",
+      "Bash(do echo \"Processing $file.html...\")",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

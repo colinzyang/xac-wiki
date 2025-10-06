@@ -6,46 +6,46 @@
         <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-white.webp" alt="XJTLU iGEM Logo" class="menu-fab-logo menu-logo-dark">
       </a>
     </li>
-    <li><a href="home.html">HOME</a></li>
+    <li><a href="{{ url_for('pages',page='home') }}">HOME</a></li>
     <li>
       <a href="#" aria-haspopup="true" aria-expanded="false">TEAM</a>
       <ul class="dropdown" role="menu">
-        <li role="none"><a href="members.html" role="menuitem">Members</a></li>
-        <li role="none"><a href="attributions.html" role="menuitem">Attributions</a></li>
+        <li role="none"><a href="{{ url_for('pages',page='members') }}" role="menuitem">Members</a></li>
+        <li role="none"><a href="{{ url_for('pages',page='attributions') }}" role="menuitem">Attributions</a></li>
       </ul>
     </li>
     <li>
       <a href="#" aria-haspopup="true">PROJECT</a>
       <ul class="dropdown">
-        <li><a href="description.html">Description</a></li>
-        <li><a href="engineering.html">Engineering</a></li>
-        <li><a href="contribution.html">Contribution</a></li>
-        <li><a href="safety.html">Safety</a></li>
+        <li><a href="{{ url_for('pages',page='description') }}">Description</a></li>
+        <li><a href="{{ url_for('pages',page='engineering') }}">Engineering</a></li>
+        <li><a href="{{ url_for('pages',page='contribution') }}">Contribution</a></li>
+        <li><a href="{{ url_for('pages',page='Safety') }}">Safety</a></li>
       </ul>
     </li>
     <li>
       <a href="#" aria-haspopup="true">MODEL</a>
       <ul class="dropdown">
-        <li><a href="model.html">Overview</a></li>
-        <li><a href="database.html">Database</a></li>
-        <li><a href="predictor.html">Predictor</a></li>
-        <li><a href="webapp.html">Webapp</a></li>
+        <li><a href="{{ url_for('pages',page='model') }}">Overview</a></li>
+        <li><a href="{{ url_for('pages',page='database') }}">Database</a></li>
+        <li><a href="{{ url_for('pages',page='predictor') }}">Predictor</a></li>
+        <li><a href="{{ url_for('pages',page='webapp') }}">Webapp</a></li>
       </ul>
     </li>
     <li>
       <a href="#" aria-haspopup="true">WET</a>
       <ul class="dropdown">
-        <li><a href="wetlab-design.html">Overview</a></li>
-        <li><a href="protocol.html">Protocol</a></li>
-        <li><a href="notebook.html">Notebook</a></li>
+        <li><a href="{{ url_for('pages',page='overview') }}">Overview</a></li>
+        <li><a href="{{ url_for('pages',page='protocol') }}">Protocol</a></li>
+        <li><a href="{{ url_for('pages',page='notebook') }}">Notebook</a></li>
       </ul>
     </li>
     <li>
       <a href="#" aria-haspopup="true">ACTIVITIES</a>
       <ul class="dropdown">
-        <li><a href="human-practices.html">Human Practices</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="{{ url_for('pages',page='human-practices') }}">Human Practices</a></li>
+        <li><a href="{{ url_for('pages',page='education') }}">Education</a></li>
+        <li><a href="{{ url_for('pages',page='sustainbility') }}">Sustainability</a></li>
       </ul>
     </li>
     <li class="toggle-li">

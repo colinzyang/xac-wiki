@@ -4,30 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static HTML website for the XJTLU iGEM Team 2025. The site is built using vanilla HTML, CSS, and JavaScript without any build system or package manager. It's a multi-page website with a modular component architecture.
+This is a Flask-based website for the XJTLU iGEM Team 2025 that uses Jinja2 template inheritance. The site is built to be frozen into static files for deployment using Frozen-Flask. It combines dynamic Flask templating with static file generation for optimal performance and deployment.
 
 ## Development Commands
 
-Since this is a static website with no build system:
-- **Local development**: Use a local HTTP server like `python -m http.server` or Live Server extension
-- **No build process**: Files are served directly as static assets
-- **No package manager**: No npm, yarn, or other dependency management
+**Local development**:
+- `python app.py` - Run Flask development server on port 8080
+- `flask serve` - Alternative development server using Frozen-Flask
+- `pip install -r dependencies.txt` - Install Python dependencies
+
+**Build and deployment**:
+- `FLASK_APP=app.py flask freeze` - Generate static files to `/public` directory
+- GitLab CI automatically builds and deploys on main branch
+
+**Dependencies**:
+- Python 3.6+ required
+- Flask and Frozen-Flask (see `dependencies.txt`)
 
 ## Architecture & Structure
 
-### Component System
-The site uses a modular HTML component system loaded via JavaScript:
-- **Components location**: `/wiki/` directory
-- **Loading mechanism**: `loadComponent()` function in `static/main.js:1-11`
-- **Main components**: 
-  - `menu.html` - Unified responsive navigation menu with shrink animation
-  - `footer.html` - Site footer with contact info and nav links
+### Flask Template System
+The site uses Flask with Jinja2 template inheritance:
+- **Flask app**: `app.py` - Main application with routes and Frozen-Flask configuration
+- **Template directory**: `/wiki/` (configured in Flask app)
+- **Base template**: `wiki/layout.html` - Main layout with CSS/JS includes
+- **Template inheritance**: Uses `{% extends %}`, `{% include %}`, and `{% block %}` patterns
 
-### Navigation System
-- **Single menu system**: Menu transforms with CSS classes on scroll (60px threshold)
-- **Scroll animation**: Managed in `static/main.js:initScrollNavbar()`
-- **Responsive dropdowns**: Mobile/touch-friendly dropdowns with click handling
-- **Dark mode integration**: Logo and icon switching based on theme
+### Component Templates
+- **Base layout**: `layout.html` - Main HTML structure, CSS imports, and JavaScript includes
+- **Shared components**: 
+  - `menu.html` - Responsive navigation menu (included in layout)
+  - `footer.html` - Site footer (included in layout)
+- **Page templates**: All in `/wiki/pages/` directory, extend base layout
+
+### Route System
+- **Home route**: `/` → `pages/home.html`
+- **Dynamic routes**: `/<page>` → `pages/<page>.html` (case-insensitive)
+- **Static files**: Served from `/static/` directory via Flask
+- **Frozen output**: Generated to `/public/` directory for deployment
+
+### Frontend JavaScript System
+- **Main functionality**: `static/main.js` - Core site functionality and navigation
+- **Article system**: `static/article.js` - Article-specific features and sidebar navigation
+- **Navigation behavior**: Responsive menu with scroll animations and dark mode toggle
+- **Component loading**: JavaScript-based dynamic content loading for enhanced UX
 
 ### Dark Mode Implementation
 - **Toggle mechanism**: Managed by `initDarkMode()` in `static/main.js`
@@ -38,7 +58,7 @@ The site uses a modular HTML component system loaded via JavaScript:
 ### Page Structure
 ```
 /wiki/pages/ (flat structure)
-├── home.html (Main page)
+├── home.html (Main homepage)
 ├── members.html (Team Members)
 ├── attributions.html (Team Attributions)
 ├── description.html (Project Description)
@@ -52,7 +72,6 @@ The site uses a modular HTML component system loaded via JavaScript:
 ├── wetlab-design.html (Wetlab Overview)
 ├── protocol.html (Wetlab Protocol)
 ├── notebook.html (Wetlab Notebook)
-├── result.html (Wetlab Result)
 ├── human-practices.html (Activities Human Practices)
 ├── education.html (Activities Education)
 └── sustainability.html (Activities Sustainability)
@@ -61,9 +80,10 @@ The site uses a modular HTML component system loaded via JavaScript:
 ### Styling System
 - **Main styles**: `static/style.css` - Base typography, layout, dark mode, responsive design
 - **Navigation styles**: `static/glass-menu.css` - Glass-morphism menu styling with shrink animation
-- **Article styles**: `static/article.css` - Styling for content pages
+- **Article styles**: `static/article.css` - Styling for content pages with sidebar navigation
+- **Font definitions**: `static/fonts.css` - Font declarations and unified CSS variable system
 - **Responsive design**: Mobile-first approach with breakpoints at 768px and 480px
-- **Color scheme**: Consistent blue theme (#0078d7) with dark mode variants
+- **Color scheme**: Consistent blue theme (#004F94 primary) with CSS variables for unified colors
 - **Component styling**: Feature cards, page headers, and hero sections with glass-morphism effects
 
 ### Asset Organization
@@ -77,7 +97,8 @@ The site uses a modular HTML component system loaded via JavaScript:
 
 ### Typography System
 - **Primary Font**: Source Sans Pro (科学学术网站的理想选择)
-- **Font Loading**: `static/fonts.css` with @font-face declarations
+- **Font Loading**: `static/fonts.css` with @font-face declarations and CSS variables
+- **CSS Variable**: `--font-primary` for consistent font family usage
 - **Weight Usage**: 
   - Light (300): 描述文本
   - Regular (400): 正文内容  
@@ -85,11 +106,21 @@ The site uses a modular HTML component system loaded via JavaScript:
   - SemiBold (600): 标题
   - Bold (700): 强调文本
 - **Performance**: font-display: swap for fast text rendering
+- **Unified Color System**: All colors defined as CSS variables in `static/fonts.css`
 
 ## Key Implementation Details
 
-### Component Loading Pattern
-Components are loaded asynchronously with error handling and proper initialization sequence. All initialization happens in `static/main.js` after DOM content is loaded.
+### Template Development Pattern
+- **New pages**: Create in `/wiki/pages/` directory following existing naming conventions
+- **Template inheritance**: All pages should extend `layout.html` base template
+- **Block structure**: Use `{% block title %}`, `{% block page_content %}` for content areas
+- **Static file references**: Use `{{ url_for('static', filename='...') }}` for assets
+
+### GitLab CI/CD Pipeline
+- **Build process**: Automated on main branch commits using Python 3.6 Docker image
+- **Freeze command**: `FLASK_APP=app.py flask freeze` generates static site
+- **Output**: Static files deployed to GitLab Pages from `/public` directory
+- **Dependencies**: Installed from `dependencies.txt` during build
 
 ### Mobile Considerations  
 - Responsive grid layouts that stack vertically on mobile devices

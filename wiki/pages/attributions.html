@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attributions - XJTLU iGEM Team 2025</title>
-  <link rel="icon" href="../../favicon.ico">
-  
-  <link rel="stylesheet" href="../../static/style.css">
-  <link rel="stylesheet" href="../../static/glass-menu.css">
-  <link rel="stylesheet" href="../../static/article.css">
+{% extends "layout.html" %}
+
+{% block title %}Attributions{% endblock %}
+
+{% block page_content %}
   <style>
     .attributions-header {
       height: 320px; /* 25% increase from typical 250px */
@@ -214,9 +208,6 @@
     }
     
   </style>
-</head>
-<body class="article-page attributions-page">
-  <div id="menu-container"></div>
   
   <!-- Article Header with increased height -->
   <header class="article-header attributions-header">
@@ -261,8 +252,6 @@
     </button>
   </div>
 
-  <div id="footer"></div>
-  <script src="../../static/main.js"></script>
   <script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
@@ -442,5 +431,4 @@
     }
     setTimeout(initPageSpecificFunctionality, 500);
   </script>
-</body>
-</html>
+{% endblock %}

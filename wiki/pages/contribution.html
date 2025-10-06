@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contribution - XJTLU iGEM Team 2025</title>
-  <link rel="icon" href="../../favicon.ico">
-  
-  <link rel="stylesheet" href="../../static/style.css">
-  <link rel="stylesheet" href="../../static/glass-menu.css">
-  <link rel="stylesheet" href="../../static/article.css">
-</head>
-<body class="article-page contribution-page">
-  <div id="menu-container"></div>
+{% extends "layout.html" %}
+
+{% block title %}Contribution{% endblock %}
+
+{% block page_content %}
   
   <!-- Article Header -->
   <header class="article-header" style="background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/contribution/contribution.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -92,8 +83,6 @@
     </button>
   </div>
 
-  <div id="footer"></div>
-  <script src="../../static/main.js"></script>
   <script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
@@ -276,5 +265,4 @@
     // Initialize catalog after a short delay to ensure components are loaded
     setTimeout(initCatalogFunctionality, 500);
   </script>
-</body>
-</html>
+{% endblock %}

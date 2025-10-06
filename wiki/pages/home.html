@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XJTLU iGEM Team 2025 - Advancing Synthetic Biology</title>
-  <link rel="icon" href="../../favicon.ico">
-  
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+{% block lead %}<b>Welcome to iGEM 2025!</b> Your team has been approved and you are ready to start the iGEM season!{% endblock %}
+
+{% block page_content %}  
   <!-- 资源预加载 -->
   
-  <link rel="preload" href="../../static/style.css" as="style">
-  <link rel="preload" href="../../static/glass-menu.css" as="style">
-  <link rel="preload" href="../../static/main.js" as="script">
-  <link rel="preload" href="../menu.html" as="fetch" crossorigin>
-  <link rel="preload" href="../footer.html" as="fetch" crossorigin>
-  <link rel="preload" href="../../static/assets/logos/logo-blue.png" as="image">
-  <link rel="preload" href="../../static/assets/images/Background/SCIENTIST.png" as="image">
-  <link rel="preload" href="../../static/assets/images/Background/ENZYME.png" as="image">
-  <link rel="preload" href="../../static/assets/images/Background/HIGHCOST.png" as="image">
-  <link rel="preload" href="../../static/assets/images/Background/INEFFICIENT.png" as="image">
-  <link rel="preload" href="../../static/assets/images/Background/TIME_CONSUMING.png" as="image">
+  <link rel="preload" href="{{ url_for('static', filename = 'style.css') }}" as="style">
+  <link rel="preload" href="{{ url_for('static', filename = 'glass-menu.css') }}" as="style">
+  <link rel="preload" href="{{ url_for('static', filename = 'main.js') }}" as="script">
+  <!-- <link rel="preload" href="../menu.html" as="fetch" crossorigin>
+  <link rel="preload" href="../footer.html" as="fetch" crossorigin> -->
+  <link rel="preload" href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-blue.webp" as="image">
   
   <!-- 关键CSS内联优化 -->
   <style>
@@ -246,9 +239,9 @@
     </div>
   </section>
   
-  <div id="footer"></div>
+  <!-- <div id="footer"></div>
   <script defer src="../../static/main.js"></script>
-  
+   -->
   <!-- Image Gallery Animation Script -->
   <script>
     // Slide-in animation for image gallery
@@ -595,7 +588,7 @@
   </script>
   
   <!-- 服务端缓存控制 -->
-  <script>
+  <!-- <script>
     // 设置页面缓存策略
     if ('caches' in window) {
       const CACHE_NAME = 'xjtlu-igem-v1';
@@ -617,6 +610,6 @@
           .catch(err => console.log('Cache failed:', err));
       });
     }
-  </script>
+  </script> -->
 </body>
-</html>
+{% endblock %}
