@@ -1,7 +1,7 @@
 <nav class="glass-menu" id="menu">
   <ul class="nav-list">
     <li class="logo-li">
-      <a href="home.html" class="logo-link" title="XJTLU iGEM Team 2025 - Home">
+      <a href="{{ url_for('home') }}" class="logo-link" title="XJTLU iGEM Team 2025 - Home">
         <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-blue.webp" alt="XJTLU iGEM Logo" class="menu-fab-logo menu-logo-light">
         <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/logos/logo-white.webp" alt="XJTLU iGEM Logo" class="menu-fab-logo menu-logo-dark">
       </a>
@@ -20,7 +20,7 @@
         <li><a href="{{ url_for('pages',page='description') }}">Description</a></li>
         <li><a href="{{ url_for('pages',page='engineering') }}">Engineering</a></li>
         <li><a href="{{ url_for('pages',page='contribution') }}">Contribution</a></li>
-        <li><a href="{{ url_for('pages',page='Safety') }}">Safety</a></li>
+        <li><a href="{{ url_for('pages',page='safety') }}">Safety</a></li>
       </ul>
     </li>
     <li>
@@ -45,7 +45,7 @@
       <ul class="dropdown">
         <li><a href="{{ url_for('pages',page='human-practices') }}">Human Practices</a></li>
         <li><a href="{{ url_for('pages',page='education') }}">Education</a></li>
-        <li><a href="{{ url_for('pages',page='sustainbility') }}">Sustainability</a></li>
+        <li><a href="{{ url_for('pages',page='sustainability') }}">Sustainability</a></li>
       </ul>
     </li>
     <li class="toggle-li">

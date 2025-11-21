@@ -635,40 +635,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Load menu component
+  // Initialize static components (no dynamic loading needed with Flask templates)
   try {
-    loadComponent('menu-container', '/wiki/menu.html', function() {
-      try {
-        initNavbar();
-        initScrollNavbar();
-        darkModeUpdater = initDarkMode();
-        componentsLoaded.menu = true;
-        checkAndApplyDarkMode();
-        
-        // Initialize team interface if on team page
-        if (window.location.pathname.includes('/team/')) {
-          setTimeout(() => initRocheTeamInterface(), 100);
-        }
-      } catch (err) {
-        console.error('Error initializing menu:', err);
-      }
-    });
+    initNavbar();
+    initScrollNavbar();
+    darkModeUpdater = initDarkMode();
+    componentsLoaded.menu = true;
+    componentsLoaded.footer = true;
+    checkAndApplyDarkMode();
+    
+    // Initialize team interface if on team page
+    if (window.location.pathname.includes('/team/')) {
+      setTimeout(() => initRocheTeamInterface(), 100);
+    }
   } catch (err) {
-    console.error('Error loading menu component:', err);
-  }
-  
-  // Load footer component
-  try {
-    loadComponent('footer', '/wiki/footer.html', function() {
-      try {
-        componentsLoaded.footer = true;
-        checkAndApplyDarkMode();
-      } catch (err) {
-        console.error('Error initializing footer:', err);
-      }
-    });
-  } catch (err) {
-    console.error('Error loading footer component:', err);
+    console.error('Error initializing components:', err);
   }
 });
 

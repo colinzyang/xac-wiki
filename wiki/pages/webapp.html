@@ -3,231 +3,727 @@
 {% block title %}Web App{% endblock %}
 
 {% block page_content %}
+  <style>
+    .webapp-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/webappback.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .webapp-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for webapp header */
+    body.dark-mode .webapp-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .webapp-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .webapp-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .webapp-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .webapp-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .webapp-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .webapp-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
   
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header webapp-header">
     <div class="container">
       <h1>Web Application Platform</h1>
+      <p>Interactive platform for enzyme prediction and database</p>
     </div>
   </header>
 
   <!-- Article Container -->
-  <div class="article-container">
+<div class="article-container">
     <!-- Sidebar -->
     <div class="article-sidebar">
-      <nav class="catalog">
-        <h4 id="contents">Contents</h4>
-        <ul class="catalog-list">
-          <li><a href="#platform-overview">Platform Overview</a></li>
-          <li><a href="#enzyme-designer">Enzyme Design Tools</a></li>
-          <li><a href="#performance-predictor">Performance Predictor</a></li>
-          <li><a href="#data-visualization">Data Visualization</a></li>
-          <li><a href="#user-interface">User Interface</a></li>
-          <li><a href="#technical-architecture">Technical Architecture</a></li>
-        </ul>
-      </nav>
+        <nav class="catalog">
+            <h4 id="contents">Contents</h4>
+            <ul class="catalog-list">
+                <li><a href="#modeling-overview">Modeling Overview</a></li>
+                <li><a href="#kinetic-models">Kinetic Models</a></li>
+                <li><a href="#machine-learning">Machine Learning Models</a></li>
+                <li><a href="#systems-biology">Systems Biology Models</a></li>
+                <li><a href="#optimization-models">Optimization Models</a></li>
+                <li><a href="#model-validation">Model Validation</a></li>
+            </ul>
+        </nav>
     </div>
-    
+
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="platform-overview">Platform Overview</h2>
-      <p>We have developed a comprehensive web application platform that provides intuitive and easy-to-use enzyme design and analysis tools for researchers and educators. The platform integrates advanced computational biology methods, machine learning algorithms, and interactive visualization technologies, making plastic-degrading enzyme research and development more efficient and convenient.</p>
-      
-      <h3>Platform Features</h3>
-      <p>Our web application platform has the following core features:</p>
-      <ul>
-        <li><strong>User-Friendly</strong>: Intuitive graphical interface, usable without programming experience</li>
-        <li><strong>Comprehensive Functionality</strong>: Covers the complete workflow from enzyme design to performance prediction</li>
-        <li><strong>Real-time Interactivity</strong>: Instant feedback and real-time computational result display</li>
-        <li><strong>Cross-platform Compatibility</strong>: Supports access from various devices and browsers</li>
-        <li><strong>Data Security</strong>: Strict data protection and privacy safeguard mechanisms</li>
-      </ul>
-      
-      <h3>Target User Groups</h3>
-      <p>The platform is designed for multiple user groups:</p>
-      <ul>
-        <li>Biotechnology researchers and scientists</li>
-        <li>Engineers in the field of synthetic biology</li>
-        <li>Teachers and students in higher education institutions</li>
-        <li>R&D teams from biotechnology companies</li>
-        <li>Practitioners in environmental science and sustainable development</li>
-      </ul>
-
-      <h2 id="enzyme-designer">Enzyme Design Tools</h2>
-      <p>The enzyme design tools are the core functional modules of the platform, providing complete enzyme engineering solutions from sequence design to structural optimization.</p>
-      
-      <h3>Sequence Design Functions</h3>
-      <p>Powerful sequence design and editing capabilities:</p>
-      <ul>
-        <li><strong>Sequence Editor</strong>: Visual amino acid sequence editing interface</li>
-        <li><strong>Mutation Design</strong>: Intelligent mutation site recommendations and effect predictions</li>
-        <li><strong>Sequence Optimization</strong>: Automatic sequence optimization based on target performance</li>
-        <li><strong>Homology Modeling</strong>: Sequence design guidance based on known structures</li>
-      </ul>
-      
-      <h3>Structural Design Assistance</h3>
-      <p>Integrated structural biology tools supporting enzyme structure design:</p>
-      <ul>
-        <li>3D structure visualization and interactive operations</li>
-        <li>Active site analysis and design optimization</li>
-        <li>Molecular docking and binding affinity prediction</li>
-        <li>Structural stability assessment and improvement suggestions</li>
-      </ul>
-      
-      <h3>Design Workflow</h3>
-      <p>Standardized enzyme design workflow:</p>
-      <ul>
-        <li><strong>Requirements Analysis</strong>: Determine target performance and constraint conditions</li>
-        <li><strong>Template Selection</strong>: Choose appropriate starting enzyme sequences or structures</li>
-        <li><strong>Design Iteration</strong>: Through multiple rounds of design-prediction-optimization cycles</li>
-        <li><strong>Candidate Evaluation</strong>: Comprehensive evaluation of design candidate strengths and weaknesses</li>
-        <li><strong>Experimental Guidance</strong>: Generate specific experimental validation protocols</li>
-      </ul>
-
-      <h2 id="performance-predictor">Performance Predictor</h2>
-      <p>The performance predictor is based on advanced machine learning models and can accurately predict various biochemical properties and catalytic performance of enzymes.</p>
-      
-      <h3>Prediction Function Scope</h3>
-      <p>Covering multiple key dimensions of enzyme performance:</p>
-      <ul>
-        <li><strong>Catalytic Activity</strong>: Kinetic parameters such as kcat, Km, catalytic efficiency</li>
-        <li><strong>Stability Indicators</strong>: Thermostability, pH stability, storage stability</li>
-        <li><strong>Substrate Specificity</strong>: Degradation ability against different plastic substrates</li>
-        <li><strong>Expression Levels</strong>: Expression effects in different host systems</li>
-        <li><strong>Solubility</strong>: Protein folding and soluble expression prediction</li>
-      </ul>
-      
-      <h3>Prediction Model Technologies</h3>
-      <p>Employing multiple advanced prediction technologies:</p>
-      <ul>
-        <li>Deep neural network models for complex nonlinear relationship modeling</li>
-        <li>Ensemble learning methods to improve prediction accuracy and robustness</li>
-        <li>Transfer learning techniques utilizing knowledge from related domains</li>
-        <li>Bayesian methods providing prediction uncertainty quantification</li>
-      </ul>
-      
-      <h3>Result Display and Interpretation</h3>
-      <p>Rich result display and interpretation functions:</p>
-      <ul>
-        <li>Intuitive prediction result charts and scores</li>
-        <li>Important feature and influencing factor analysis</li>
-        <li>Prediction confidence and uncertainty assessment</li>
-        <li>Performance comparison analysis with known enzymes</li>
-        <li>Improvement suggestions and optimization direction guidance</li>
-      </ul>
-
-      <h2 id="data-visualization">Data Visualization</h2>
-      <p>The platform provides powerful data visualization capabilities to help users better understand and analyze complex biological data.</p>
-      
-      <h3>Molecular Visualization</h3>
-      <p>Professional molecular structure visualization tools:</p>
-      <ul>
-        <li><strong>3D Structure Display</strong>: High-quality three-dimensional molecular structure rendering</li>
-        <li><strong>Interactive Operations</strong>: Rotation, zoom, cross-section and other operational functions</li>
-        <li><strong>Surface Property Mapping</strong>: Visualization of charge distribution, hydrophobicity and other properties</li>
-        <li><strong>Active Site Highlighting</strong>: Key amino acids and binding site annotations</li>
-        <li><strong>Animation Demonstrations</strong>: Molecular dynamics trajectories and conformational change animations</li>
-      </ul>
-      
-      <h3>Data Analysis Charts</h3>
-      <p>Rich statistical charts and analysis tools:</p>
-      <ul>
-        <li>Scatter plots, bar charts, heat maps and other basic charts</li>
-        <li>Correlation analysis and regression analysis graphs</li>
-        <li>Principal component analysis and clustering analysis visualization</li>
-        <li>Dynamic display of time series data</li>
-        <li>Dimensionality reduction visualization of multi-dimensional data</li>
-      </ul>
-      
-      <h3>Interactive Dashboards</h3>
-      <p>Customized data dashboard systems:</p>
-      <ul>
-        <li>Drag-and-drop dashboard builder</li>
-        <li>Real-time data updates and monitoring</li>
-        <li>Multi-view linkage and filtering functions</li>
-        <li>Export and sharing capabilities</li>
-        <li>Responsive design adapted to different screens</li>
-      </ul>
-
-      <h2 id="user-interface">User Interface</h2>
-      <p>We have carefully designed an intuitive and easy-to-use user interface to ensure that users with different backgrounds can efficiently use the platform functions.</p>
-      
-      <h3>Interface Design Principles</h3>
-      <p>Following modern UI/UX design best practices:</p>
-      <ul>
-        <li><strong>Simplicity</strong>: Clear layout and clean visual design</li>
-        <li><strong>Consistency</strong>: Unified design language and interaction patterns</li>
-        <li><strong>Accessibility</strong>: Support for keyboard navigation and screen readers</li>
-        <li><strong>Responsiveness</strong>: Adaptive to different devices and screen sizes</li>
-        <li><strong>Efficiency</strong>: Optimized workflows and reduced operational steps</li>
-      </ul>
-      
-      <h3>Core Interface Components</h3>
-      <p>Carefully designed interface components to enhance user experience:</p>
-      <ul>
-        <li><strong>Navigation Bar</strong>: Clear functional module navigation and user status display</li>
-        <li><strong>Workspace</strong>: Customizable main work area and tool panels</li>
-        <li><strong>Sidebar</strong>: Quick access to frequently used functions and project management</li>
-        <li><strong>Status Bar</strong>: Real-time display of system status and progress information</li>
-        <li><strong>Dialog Boxes</strong>: Elegant modal windows and confirmation prompts</li>
-      </ul>
-      
-      <h3>User Experience Optimization</h3>
-      <p>Continuous optimization of user experience:</p>
-      <ul>
-        <li>Loading speed optimization and progressive loading</li>
-        <li>Smart tips and contextual help</li>
-        <li>Shortcut key support and efficiency tools</li>
-        <li>User preference memory and personalization settings</li>
-        <li>Error handling and user feedback mechanisms</li>
-      </ul>
-
-      <h2 id="technical-architecture">Technical Architecture</h2>
-      <p>The platform adopts modern technical architecture to ensure system performance, scalability, and maintainability.</p>
-      
-      <h3>Frontend Technology Stack</h3>
-      <p>Using advanced frontend technologies to build user interfaces:</p>
-      <ul>
-        <li><strong>React</strong>: Component-based user interface development framework</li>
-        <li><strong>TypeScript</strong>: Type-safe JavaScript superset</li>
-        <li><strong>Three.js</strong>: High-performance 3D graphics rendering engine</li>
-        <li><strong>D3.js</strong>: Powerful data visualization library</li>
-        <li><strong>Material-UI</strong>: Modern component library and design system</li>
-      </ul>
-      
-      <h3>Backend Service Architecture</h3>
-      <p>Building high-performance backend service systems:</p>
-      <ul>
-        <li><strong>Node.js/Express</strong>: Lightweight server runtime environment</li>
-        <li><strong>Python/FastAPI</strong>: Machine learning model deployment and scientific computing</li>
-        <li><strong>PostgreSQL</strong>: Reliable relational database system</li>
-        <li><strong>Redis</strong>: High-performance caching and session management</li>
-        <li><strong>Docker</strong>: Containerized deployment and microservices architecture</li>
-      </ul>
-      
-      <h3>Cloud Service Integration</h3>
-      <p>Utilizing cloud computing resources to provide stable and reliable services:</p>
-      <ul>
-        <li>Elastic computing resources adapting to different load requirements</li>
-        <li>Distributed storage ensuring data security and availability</li>
-        <li>Content Delivery Network (CDN) optimizing global access speed</li>
-        <li>Load balancing and auto-scaling mechanisms</li>
-        <li>Monitoring and logging systems ensuring service quality</li>
-      </ul>
-      
-      <h3>Security and Privacy Protection</h3>
-      <p>Implementing comprehensive security measures to protect user data:</p>
-      <ul>
-        <li>HTTPS encrypted transmission and data storage encryption</li>
-        <li>User authentication and access permission control</li>
-        <li>API security and protection mechanisms</li>
-        <li>Data backup and disaster recovery plans</li>
-        <li>Privacy compliance and data protection policies</li>
-      </ul>
-      
-      <p>Through this comprehensive web application platform, we provide powerful digital tools for plastic-degrading enzyme research and development, promoting scientific research efficiency improvement and knowledge sharing, and driving innovation and application of sustainable development technologies.</p>
-    </article>
+        <div><h2 id="background">Background</h2>
+            <p>The transition from specialized research frameworks to accessible web platforms represents a critical
+                step in democratizing computational enzyme discovery. Prior to this cycle, our tools—while
+                scientifically rigorous—required local installation, programming expertise, and significant
+                computational resources. This created barriers for wet-lab researchers, environmental scientists, and
+                interdisciplinary teams who needed quick access to predictive models and comprehensive enzyme
+                databases.</p>
+            <p>Our core idea is to <strong>build a user-friendly platform</strong>. Through extensive consultations with
+                researchers across microbiology, environmental science, synthetic biology, and chemistry, we identified
+                a shared need: a unified, installation-free online environment that integrates predictive modeling with
+                database exploration. The platform needed to serve those purposes: (1) enable rapid prediction of
+                enzyme–plastic interactions from user-provided sequences or structures, and (2) facilitate knowledge
+                discovery through a searchable database of curated enzyme–plastic relationships.</p>
+            <h3 id="core-requirements">Core Requirements: </h3><h4>Model Platform Requirements </h4>
+            <ul>
+                <li><strong>Multi-Input Support</strong>: Accept protein sequences (FASTA format, raw text) and 3D
+                    structures (PDB files)
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Dual-Model Architecture</strong>: Integrate both sequence-based (PlaszymeAlpha) and
+                    structure-informed (PlaszymeX) predictors
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Automated Workflow</strong>: Eliminate manual structure prediction steps—users provide
+                    sequences once, system handles structure generation
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Scalability</strong>: Support large-scale metagenomic analyses with custom HMM pipelines for
+                    enzyme discovery
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Interpretability</strong>: Provide confidence scores, degradation probabilities, and
+                    interactive 3D visualization
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Export Functionality</strong>: Enable CSV export for downstream computational analysis</li>
+            </ul>
+            <ul>
+                <li><strong>Asynchronous Processing</strong>: Long-running structure predictions should not block user
+                    interface
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Global Accessibility</strong>: Deploy on cloud infrastructure for worldwide availability
+                </li>
+            </ul>
+            <h4>Database Platform Requirements</h4>
+            <ul>
+                <li><strong>High-Performance Search</strong>: Implement efficient traversal-based search algorithm
+                    across enzyme properties
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Sequence Alignment</strong>: Provide BLAST-like local sequence similarity
+                    search<br/><strong>3D Structure Visualization</strong>: Interactive molecular viewer for
+                    experimental and predicted structures
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Phylogenetic Context</strong>: Dynamic display of evolutionary relationships via embedded
+                    phylogenetic trees
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Chemical Information</strong>: Render plastic chemical structures with standard nomenclature
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Comprehensive Metadata</strong>: Include EC annotations, literature citations, taxonomy, and
+                    database cross-references
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Filtering &amp; Sorting</strong>: Multi-criteria filtering (plastic type, organism, EC
+                    class, structure availability)
+                </li>
+            </ul>
+            <p>
+            </p>
+            <h2 id="user-interface-design">User interface design</h2>
+            <h3 id="predictor-platform-design">Predictor Platform design</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/dashboardpage.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/dashboardpage.avif"/></a>
+            </figure>
+            <blockquote><strong>Dashboard Page<br/></strong>User-friendly features conducive to management</blockquote>
+            <p>The <strong>dashboard page</strong> is designed for visualizing the project operation and basic
+                management. Here, researcher could directly view information such as the ongoing projects, completed
+                projects, and the total number of projects. When making the prediction input, users can customize the
+                project name. We also used a variety of colors in the page design to distinguish the status of different
+                tasks. Help to address the specific work management issues mentioned by the researchers. </p>
+            <p>
+            </p>
+            <p>
+            </p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/model-selector-function.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/model-selector-function.avif"/></a>
+            </figure>
+            <blockquote><strong>“Model selector” function<br/></strong>Help users make the appropriate model selection
+            </blockquote>
+            <p>When conducting the Plastic Degradation Prediction task, users can select the model based on their
+                specific task requirements in the<strong> model selector</strong>. Different models have different
+                functions, and the selector <strong>provides helpful descriptions</strong> to address users' concerns.
+                This feature is designed to enable each model to be better selected and to truly utilize its strengths.
+                And this also provided feedback on the additional usage guidelines mentioned by the users during the
+                interview.<br/><br/></p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/plastic-selector-function.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/plastic-selector-function.avif"/></a>
+            </figure>
+            <blockquote><strong>“Plastic selector” function<br/></strong>Offer plastic options to facilitate specific
+                research
+            </blockquote>
+            <p>Through the plastic selector on the PlaszymeX input interface, users can select the specific type of
+                study they are expecting to conduct. This in total provides 34 types of plastics. This function is
+                designed to assist users in conducting precise research without generating redundant results.</p>
+            <p>
+            </p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/metagenome-hmm-scan.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/metagenome-hmm-scan.avif"/></a>
+            </figure>
+            <blockquote><strong>Metagenome HMM Scan<br/></strong>Using PlaszymeHMM, we combine the Plaszyme model with
+                the actual usage environment
+            </blockquote>
+            <p>In the <strong>Metagenome HMM Scan</strong> task type, users are still provided with detailed
+                descriptions in the interface. During the task process, <strong>PlaszymeHMM</strong> will play a
+                powerful role, which will help users handle complex Metagenome data. <strong>Potential plastic-degrading
+                    enzyme sequences</strong> will be identified and read by the HMM model, and then automatically
+                processed as the model's input.</p>
+            <p>The design of this section is mainly based on the communication with the professor. This has enabled most
+                of the current researchers who utilize environmental samples to utilize the model, helping them
+                accelerate their research.</p>
+            <p>
+            </p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/result-page.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/result-page.avif"/></a>
+            </figure>
+            <blockquote><strong>Result Page<br/></strong>The page for displaying and exporting the output results of the
+                model
+            </blockquote>
+            <p>After obtaining the output of one's own prediction results, one can "View" this output through the
+                Dashboard project management. Users will be able to see the degradation probabilities and Confidence for
+                different plastic types, and can also export the results in CSV format for next stage use.</p>
+            <p>
+            </p>
+            <h3 id="plaszymedb-platform-design">PlaszymeDB Platform design</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/blast-professional-tool-and-result.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/blast-professional-tool-and-result.avif"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/blast-professional-tool-and-result-2.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/blast-professional-tool-and-result-2.avif"/></a>
+            </figure>
+            <blockquote><strong>BLAST Professional Tool And Result<br/></strong>Actual screenshots showing the input and
+                output of the BLAST function
+            </blockquote>
+            <p>The specialized sequence alignment tool built into the database platform is a function that effectively
+                enhances convenience. To facilitate the one-stop use by researchers, we have packaged our tool based on
+                the <strong>BLAST</strong> algorithm and <strong>local</strong> sequence data for users. We have also
+                set up various parameters and threshold options to facilitate diverse usage.</p>
+            <p>
+            </p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/itol-embedded-visualization-tool.avif"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/itol-embedded-visualization-tool.avif"/></a>
+            </figure>
+            <blockquote><strong>iTOL Embedded Visualization Tool<br/></strong>Screenshot of statistical tool for
+                visualizing the phylogenetic tree embedded in the webpage
+            </blockquote>
+            <p>During our communication with users and the examination of the online platform, we learned about the
+                function of embedding the <strong>iTOL</strong> phylogenetic tree display. This statistical feature
+                enables users to visually view the data. Based on its rich content and the plastic type labels we added,
+                users can conveniently search for and locate the information they are interested in
+                <strong>without</strong> leaving the website. Such a feature further enhances the <strong>user-friendliness</strong>
+                of the platform.</p>
+            <p>
+            </p>
+            <h2 id="design">Design</h2>
+            <h3 id="design-philosophy">Design Philosophy </h3>
+            <p>The platform design adheres to three core principles:</p>
+            <ol>
+                <li><strong>“Less is More” Interaction Design</strong>: Minimize user input requirements while
+                    maximizing output richness. Users should provide data once and receive comprehensive, multi-faceted
+                    results.
+                </li>
+            </ol>
+            <ol>
+                <li><strong>Professional Rigor Without Complexity</strong>: Maintain scientific accuracy and
+                    comprehensive functionality without overwhelming users unfamiliar with computational tools. The
+                    interface should guide users naturally through prediction workflows without requiring manual
+                    reading.
+                </li>
+            </ol>
+            <ol>
+                <li><strong>Modular Architecture</strong>: Design independent but complementary modules—model prediction
+                    and database exploration—that can evolve separately while sharing common data standards.
+                </li>
+            </ol>
+            <h3 id="system-architecture">System Architecture </h3><h4>Plaszyme Model Platform Architecture </h4>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/webapp/database-platform-architecture.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/webapp/database-platform-architecture.webp"/></a>
+            </figure>
+            <h4><strong>Key Design Features</strong></h4>
+            <ul>
+                <li><strong>Isolated Environments</strong>: V1 model runs in <code>plaszyme_env</code>, X1 model runs in
+                    <code>plaszyme_gpu</code> (completely isolated conda environments)
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Smart Model Routing</strong>: Automatic model selection—PDB files → X1 (structure-based),
+                    sequences → V1 (sequence-based)
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Background Processing</strong>: Long-running X1 predictions execute in daemon threads with
+                    real-time status polling
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Resource Management</strong>: Automatic cleanup triggers when project count reaches 50
+                    (deletes oldest 20 projects)
+                </li>
+            </ul>
+            <p>
+            </p>
+            <h3 id="plaszymedb-database-platform-architecture">PlaszymeDB Database Platform Architecture </h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/webapp/plaszyme-model-platform-architecture.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/webapp/plaszyme-model-platform-architecture.webp"/></a>
+            </figure>
+            <h4><strong>Key Design Features</strong></h4>
+            <p>- <strong>Custom BLAST Implementation</strong>: PHP-based sequence similarity algorithm using sliding
+                window approach (avoids external BLAST+ dependencies)<br/>- <strong>Dual Structure Repository</strong>:
+                Separate directories for experimental (<code>pdb_experimental/</code>) and predicted (<code>pdb_predicted/</code>)
+                structures<br/>- <strong>Embedded Visualization</strong>: Iframe-based integration of Mol* viewer,
+                Ketcher chemical editor, and iTOL phylogenetic trees<br/>- <strong>Comprehensive Metadata</strong>: EC
+                numbers from both literature curation and DeepEC predictions</p>
+            <p>
+            </p>
+            <h2 id="implementation">Implementation</h2>
+            <h3 id="plaszyme-model-platform-implementation-core-technologies">Plaszyme Model Platform Implementation
+                Core Technologies </h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Specification</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Backend Framework</strong></td>
+                    <td>Flask (Python 3.9+)</td>
+                    <td>Lightweight WSGI application with CORS support</td>
+                </tr>
+                <tr>
+                    <td><strong>Deep Learning</strong></td>
+                    <td>PyTorch 1.13+</td>
+                    <td>CUDA-enabled for GPU acceleration (optional)</td>
+                </tr>
+                <tr>
+                    <td><strong>Protein Language Model</strong></td>
+                    <td>ESM-1b (650M parameters)</td>
+                    <td>Pre-trained on UniRef50, 1280-dimensional embeddings</td>
+                </tr>
+                <tr>
+                    <td><strong>Sequence Classifier</strong></td>
+                    <td>HistGradientBoostingClassifier</td>
+                    <td>Scikit-learn implementation, supports multi-label prediction</td>
+                </tr>
+                <tr>
+                    <td><strong>Structure Prediction</strong></td>
+                    <td>ColabFold (AlphaFold2)</td>
+                    <td>Integrated via subprocess in isolated conda environment</td>
+                </tr>
+                <tr>
+                    <td><strong>Graph Neural Network</strong></td>
+                    <td>Custom GNN Bilinear Model</td>
+                    <td>Protein-plastic interaction scoring (X1 model)</td>
+                </tr>
+                <tr>
+                    <td><strong>Async Task Queue</strong></td>
+                    <td>Threading + BackgroundTaskManager</td>
+                    <td>Custom implementation with status tracking</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Format</strong></td>
+                    <td>CSV, FASTA, PDB</td>
+                    <td>Standardized input/output formats</td>
+                </tr>
+                <tr>
+                    <td><strong>Deployment</strong></td>
+                    <td>AWS EC2</td>
+                    <td>DCloud-hosted for global accessibility</td>
+                </tr>
+                </tbody>
+            </table>
+            <h4><strong>Technical Details</strong></h4>
+            <ul>
+                <li><strong>ESM Embedding Extraction</strong> (from <code>utils.py</code>):</li>
+            </ul>
+            <pre><code># ESM-1b model: 650M parameters, 33 transformer layers, 1280-dim embeddingsmodel, alphabet = esm.pretrained.esm1b_t33_650M_UR50S()
+model.eval().to(device)
+# Mean-pooling strategy for sequence-level representationfor batch in sequences:
+    tokens = batch_converter(batch).to(device)
+    with torch.no_grad():
+        output = model(tokens, repr_layers=[33])  # Last layer    embeddings = output["representations"][33][:, 1:-1].mean(1)</code></pre>
+            <ul>
+                <li><strong>Background Task Management</strong> (from <code>app.py</code>):</li>
+            </ul>
+            <pre><code>class BackgroundTaskManager:
+    """Manages async PDB predictions to prevent UI blocking"""
+    def __init__(self):
+        self.tasks = {}  # {task_id: {status, progress, result, error}}        self.lock = threading.Lock()
+    def create_task(self, task_id, project_name, task_type='pdb'):
+        # Thread-safe task creation        with self.lock:
+            self.tasks[task_id] = {
+                'status': 'processing',
+                'progress': 0,
+                'created_at': datetime.now().isoformat()
+            }</code></pre>
+            <ul>
+                <li><strong>Automatic Resource Cleanup</strong>:</li>
+            </ul>
+            <pre><code>def auto_cleanup_old_projects():
+    """Delete oldest 20 projects when count reaches 50"""    if total_projects &gt;= 50:
+        cycles = total_projects // 50        to_delete = cycles * 20        # Sort by creation time, delete oldest        projects.sort(key=lambda x: x['ctime'])
+        for project in projects[:to_delete]:
+            shutil.rmtree(project['path'])</code></pre>
+            <ul>
+                <li><strong>ColabFold Integration</strong>:</li>
+            </ul>
+            <pre><code># X1 model uses isolated 'plaszyme_gpu' conda environment# Prevents dependency conflicts between V1/X1 modelssubprocess.run([
+    str(PLASZYME_GPU_PYTHON),  # Dedicated Python interpreter    str(prediction_script),
+    '--pdb', pdb_file,
+    '--output', output_dir
+], timeout=600)</code></pre>
+            <p>
+            </p>
+            <h3 id="deployment-infrastructure">Deployment &amp; Infrastructure</h3><h4>AWS Deployment Architecture</h4>
+            <ul>
+                <li><strong>Plaszyme Model Platform</strong>:<br/>- <strong>Instance Type</strong>: AWS EC2 g4dn.xlarge
+                    (1 NVIDIA T4 GPU, 16GB GPU memory, 4 vCPUs, 16GB RAM)<br/>- <strong>Operating System</strong>:
+                    Ubuntu 20.04 LTS<br/>- <strong>Web Server</strong>: Gunicorn (4 workers) + Nginx reverse proxy<br/>-
+                    <strong>SSL/TLS</strong>: Let’s Encrypt certificate with automatic renewal<br/>-
+                    <strong>Domain</strong>: http://plaszyme.org/plaszyme<br/>- <strong>Storage</strong>: 100GB EBS SSD
+                    for model weights and results cache
+                </li>
+            </ul>
+            <ul>
+                <li><strong>PlaszymeDB Database Platform</strong>:<br/>- <strong>Instance Type</strong>: AWS EC2
+                    t3.medium (2 vCPUs, 4GB RAM)<br/>- <strong>Operating System</strong>: Ubuntu 20.04 LTS<br/>-
+                    <strong>Web Server</strong>: Apache 2.4 + PHP 7.4-FPM<br/>- <strong>Database</strong>: MySQL 8.0
+                    (local, not RDS for cost optimization)<br/>- <strong>Domain</strong>: http://plaszyme.org/plaszymedb<br/>-
+                    <strong>Storage</strong>: 50GB EBS SSD for database and PDB files
+                </li>
+            </ul>
+            <p><strong>Load Balancing</strong>: Both platforms currently run on single instances; future scalability can
+                be achieved via AWS Elastic Load Balancer for horizontal scaling.</p><h4>Performance Optimization</h4>
+            <ul>
+                <li><strong>Model Prediction</strong>:
+                    <ul>
+                        <li>GPU acceleration reduces PlaszymeAlpha inference time from ~30s/100 sequences (CPU) to ~10s
+                            (GPU)
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>ESM model caching: Pre-load ESM-1b weights on server startup to avoid repeated downloads
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>Batch processing: Group sequences into batches of 4 for optimal GPU utilization</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Database Queries</strong>:
+                    <ul>
+                        <li>MySQL query caching enabled (256MB cache)</li>
+                    </ul>
+                    <ul>
+                        <li>Composite indexes on frequently filtered columns (<code>plastic + ec_number</code>)</li>
+                    </ul>
+                    <ul>
+                        <li>LIMIT 50 on search results to reduce data transfer and rendering time</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li><strong>3D Visualization</strong>:
+                    <ul>
+                        <li>Mol* viewer lazy-loading: Initialize only when structure tab is clicked</li>
+                    </ul>
+                    <ul>
+                        <li>PDB file compression: Gzip compression reduces transfer size by ~70%</li>
+                    </ul>
+                    <ul>
+                        <li>CDN for Mol* library assets (reduces load time from ~2s to ~0.3s)</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Frontend Optimization</strong>:
+                    <ul>
+                        <li>Minified JavaScript/CSS bundles</li>
+                    </ul>
+                    <ul>
+                        <li>AJAX pagination for large result sets</li>
+                    </ul>
+                    <ul>
+                        <li>Debounced search input (300ms delay) to reduce API calls</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>
+            </p>
+            <h2 id="technical-innovations">Technical Innovations </h2>
+            <ul>
+                <li><strong>Dual-Model Integration</strong>: Seamless switching between sequence-based (PlaszymeAlpha)
+                    and structure-based (PlaszymeX) predictors based on input type, using isolated conda environments to
+                    prevent dependency conflicts.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Automated Structure Prediction</strong>: Eliminated manual ColabFold execution—users submit
+                    sequences, system automatically generates structures for X1 model inference.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Custom BLAST Implementation</strong>: Pure PHP sequence similarity algorithm enables
+                    BLAST-like searches without external binary dependencies, simplifying deployment on shared hosting
+                    environments.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Asynchronous Task Management</strong>: Background thread architecture prevents UI blocking
+                    during long-running predictions (PDB structure generation ~5-10 minutes).
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Intelligent Resource Management</strong>: Automatic cleanup mechanism (delete 20 oldest
+                    projects when count reaches 50) prevents server storage exhaustion.
+                </li>
+            </ul>
+            <h2 id="lessons-learned">Lessons Learned </h2>
+            <h3 id="design-insights">Design Insights</h3>
+            <ul>
+                <li><strong>User-Centered Design is Non-Negotiable</strong>: Early user interviews revealed that
+                    computational barriers (installation, dependencies) were greater obstacles than scientific
+                    complexity. Prioritizing web deployment from the start would have accelerated adoption.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>“Less is More” Requires Backend Complexity</strong>: Simplifying user workflows (e.g.,
+                    automatic structure prediction) necessitates sophisticated backend orchestration (isolated
+                    environments, task queuing, error handling). The trade-off is worthwhile—users need not understand
+                    underlying technical details.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Transparency Builds Trust</strong>: Providing real-time task status, confidence scores, and
+                    algorithm explanations helps users trust AI predictions, especially in high-stakes research
+                    contexts.
+                </li>
+            </ul>
+            <h3 id="technical-learnings">Technical Learnings </h3>
+            <ul>
+                <li><strong>Conda Environment Isolation is Critical</strong>: Initially, V1 and X1 models shared
+                    dependencies, causing version conflicts (e.g., PyTorch 1.13 vs. 2.0). Complete isolation via
+                    separate environments eliminated instability.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Custom BLAST Trade-offs</strong>: PHP implementation is ~8x slower than NCBI BLAST but
+                    avoids binary dependencies and simplifies deployment. For databases &gt;10,000 entries, migrating to
+                    BLAST+ would be necessary.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Cloud Cost Optimization</strong>: GPU instances (g4dn.xlarge) cost ~$0.50/hour; using CPU
+                    for PlaszymeAlpha and GPU only for X1 reduced costs by 40% while maintaining acceptable performance.
+                </li>
+            </ul>
+            <h3 id="future-directions">Future Directions </h3>
+            <ul>
+                <li><strong>API for Programmatic Access</strong>: Enable command-line tool users to submit jobs via REST
+                    API (currently web-only).
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Enhanced Interpretability</strong>: Integrate attention visualization for ESM embeddings to
+                    show which sequence regions contribute most to predictions.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Multi-Plastic Expansion</strong>: Extend prediction targets beyond current 15 plastic types
+                    to include emerging materials (e.g., bioplastics, composites).
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Community Contribution Portal</strong>: Allow users to submit newly discovered enzymes to
+                    PlaszymeDB after literature validation.
+                </li>
+            </ul>
+            <h2 id="conclusion">Conclusion </h2>
+            <p>The development of the Plaszyme model platform and PlaszymeDB database represents a successful transition
+                from specialized research tools to accessible, production-grade web applications. By integrating
+                advanced AI models (ESM-1b, graph neural networks), automated workflows (ColabFold structure
+                prediction), and user-friendly interfaces, we have created a “one-stop” platform that serves both
+                computational and experimental researchers.</p>
+            <p><strong>Key achievements include: </strong></p>
+            <p>(1) dual-model architecture supporting both sequence- and structure-based predictions, (2) custom BLAST
+                implementation for dependency-free deployment, (3) asynchronous task management for long-running
+                computations, and (4) comprehensive database with 749 curated enzyme entries and integrated 3D
+                visualization.</p>
+            <blockquote style="margin-top: 1.5rem; font-style: italic;">
+    Explore the full interactive platform at:
+    <a href="http://plaszyme.org/plaszyme/" style="color: var(--theme-accent); text-decoration: none;"
+       target="_blank">
+        http://plaszyme.org/plaszyme/
+    </a>
+</blockquote>
+            <h2 id="reference">Reference</h2>
+            <ul>
+                <li>Letunic, I., &amp; Bork, P. (2024). <em>Interactive Tree of Life (iTOL) v6: Recent updates to the
+                    phylogenetic tree display and annotation tool.</em> <em>Nucleic Acids Research, 52</em>(W1),
+                    W78–W82. <a href="https://doi.org/10.1093/nar/gkae268">https://doi.org/10.1093/nar/gkae268</a></li>
+            </ul>
+            <ul>
+                <li>Altschul, S. F., Gish, W., Miller, W., Myers, E. W., &amp; Lipman, D. J. (1990). <em>Basic local
+                    alignment search tool.</em> <em>Journal of Molecular Biology, 215</em>(3), 403–410. <a
+                        href="https://doi.org/10.1016/S0022-2836(05)80360-2">https://doi.org/10.1016/S0022-2836(05)80360-2</a>
+                </li>
+            </ul>
+            <p>
+            </p></div>
+            <!-- === Chapter Navigation === -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.1);">
+    <a href="{{ url_for('pages', page='predictor') }}" style="text-decoration: none;">
+        <div style="font-size: 0.85em; color: var(--text-primary, inherit); opacity: 0.85; font-weight: 400;">←
+            Previous
+        </div>
+        <div style="font-size: 1.25em; font-weight: 600; color: var(--theme-accent);">Predictor</div>
+    </a>
+  <!-- Disabled placeholder to keep layout -->
+  <div aria-hidden="true" style="text-decoration:none; pointer-events:none; visibility:hidden;">
+    <div style="font-size:0.85em; color:var(--text-primary,inherit); opacity:0.85; font-weight:400;">← Previous</div>
+    <div style="font-size:1.25em; font-weight:600; color:var(--theme-accent);">Database</div>
   </div>
+</div>
+    </article>
+</div>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -266,65 +762,5 @@
     
     window.addEventListener('scroll', handleScroll);
 
-
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

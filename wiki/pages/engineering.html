@@ -3,412 +3,784 @@
 {% block title %}Engineering{% endblock %}
 
 {% block page_content %}
-  
-  <!-- Article Header -->
-  <header class="article-header" style="background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/engineeringcycle.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <style>
+    /* ========= Engineering Header（与 HP 逻辑一致） ========= */
+    .engineering-header {
+      height: 320px;
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/engineeringcycle.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      /* 不在这里写 header 内部的 padding，让 .article-header 负责通用外观 */
+      margin-bottom: 0;
+    }
+
+    /* 渐变遮罩（同 HP） */
+    .engineering-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+
+    /* 暗色模式（同 HP） */
+    body.dark-mode .engineering-header {
+      background-color: #212121;
+    }
+    body.dark-mode .engineering-header::before {
+      background: linear-gradient(
+        rgba(33,33,33,0.3) 0%,
+        rgba(33,33,33,0.05) 30%,
+        rgba(33,33,33,0.05) 70%,
+        rgba(33,33,33,0.6) 100%
+      );
+    }
+
+    /* 只做层级定位，不自定义字体，交给 article.css 统一管理 */
+    .engineering-header .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* 居中标题 */
+      text-align: center;
+    }
+
+    /* 可选：如果你想保留和 HP 同款的图片对比可读性阴影，就留着这两段；
+       如果想完全走 article.css 的标题配色/阴影，删除它们即可（不影响布局） */
+    .engineering-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    body.dark-mode .engineering-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      .engineering-header {
+        height: 250px;
+        min-height: 250px;
+      }
+    }
+
+    /* ===== 侧边目录滚动条（保持与 HP 一致） ===== */
+    .catalog { max-height: calc(100vh - 180px); overflow-y: auto; }
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto; overflow-x: hidden; padding-left: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+    .catalog-list::-webkit-scrollbar { width: 2px; }
+    .catalog-list::-webkit-scrollbar-track { background: var(--bg-secondary, #f8f9fa); border-radius: 10px; }
+    .catalog-list::-webkit-scrollbar-thumb { background: var(--theme-accent, #0078d7); border-radius: 10px; transition: background 0.3s ease; }
+    .catalog-list::-webkit-scrollbar-thumb:hover { background: #005a9e; }
+    body.dark-mode .catalog-list { scrollbar-color: #4dabf7 #2d2d30; }
+    body.dark-mode .catalog-list::-webkit-scrollbar-track { background: #2d2d30; }
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb { background: #4dabf7; }
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover { background: #339af0; }
+  </style>
+
+  <!-- Article Header：添加通用类 article-header，与 HP 一致 -->
+  <header class="article-header engineering-header">
     <div class="container">
       <h1>Engineering</h1>
     </div>
   </header>
 
   <!-- Article Container -->
-  <div class="article-container">
+<div class="article-container">
     <!-- Sidebar -->
     <div class="article-sidebar">
-      <nav class="catalog">
-        <h4 id="contents">Contents</h4>
-        <ul class="catalog-list">
-          <li><a href="#cycle-1">Cycle 1 — Data Integration & Benchmark Preparation</a>
-            <ul class="sub-catalog">
-              <li><a href="#status-quo" class="sub-heading">1.1. Status Quo</a></li>
-              <li><a href="#goal" class="sub-heading">1.2. Goal</a></li>
-              <li><a href="#sub-cycle-1a" class="sub-heading">1.3. Sub-Cycle 1A — Data Standardization & Cleaning</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-1a" class="sub-heading">Design</a></li>
-                  <li><a href="#build-1a" class="sub-heading">Build</a></li>
-                  <li><a href="#test-1a" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-1a" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-1b" class="sub-heading">1.4. Sub-Cycle 1B — Benchmark Design</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-1b" class="sub-heading">Design</a></li>
-                  <li><a href="#build-1b" class="sub-heading">Build</a></li>
-                  <li><a href="#test-1b" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-1b" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-1c" class="sub-heading">1.5. Sub-Cycle 1C — Biological Validation</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-1c" class="sub-heading">Design</a></li>
-                  <li><a href="#build-1c" class="sub-heading">Build</a></li>
-                  <li><a href="#test-1c" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-1c" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#conclusion-1" class="sub-heading">1.6. Conclusion</a></li>
+        <nav class="catalog">
+            <h4 id="contents">Contents</h4>
+            <ul class="catalog-list">
+                <li><a href="#cycle-1">Cycle 1 — Data Integration & Benchmark Preparation</a>
+                    <ul class="sub-catalog">
+                        <li><a class="sub-heading" href="#status-quo">1.1. Status Quo</a></li>
+                        <li><a class="sub-heading" href="#goal">1.2. Goal</a></li>
+                        <li><a class="sub-heading" href="#sub-cycle-1a">1.3. Sub-Cycle 1A — Data Standardization &
+                            Cleaning</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-1a">Design</a></li>
+                                <li><a class="sub-heading" href="#build-1a">Build</a></li>
+                                <li><a class="sub-heading" href="#test-1a">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-1a">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-1b">1.4. Sub-Cycle 1B — Benchmark Design</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-1b">Design</a></li>
+                                <li><a class="sub-heading" href="#build-1b">Build</a></li>
+                                <li><a class="sub-heading" href="#test-1b">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-1b">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-1c">1.5. Sub-Cycle 1C — Biological Validation</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-1c">Design</a></li>
+                                <li><a class="sub-heading" href="#build-1c">Build</a></li>
+                                <li><a class="sub-heading" href="#test-1c">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-1c">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#conclusion-1">1.6. Conclusion</a></li>
+                    </ul>
+                </li>
+                <li><a href="#cycle-2">Cycle 2 — Baseline ML with ESM Embeddings</a>
+                    <ul class="sub-catalog">
+                        <li><a class="sub-heading" href="#goal-2">2.1. Goal</a></li>
+                        <li><a class="sub-heading" href="#sub-cycle-2a">2.2. Sub-Cycle 2A — Embedding Comparison</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-2a">Design</a></li>
+                                <li><a class="sub-heading" href="#build-2a">Build</a></li>
+                                <li><a class="sub-heading" href="#test-2a">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-2a">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-2b">2.3. Sub-Cycle 2B — Handling Class Imbalance</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-2b">Design</a></li>
+                                <li><a class="sub-heading" href="#build-2b">Build</a></li>
+                                <li><a class="sub-heading" href="#test-2b">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-2b">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#conclusion-2">2.4. Conclusion</a></li>
+                    </ul>
+                </li>
+                <li><a href="#cycle-3">Cycle 3 — Dual-Tower with Plastic Features</a>
+                    <ul class="sub-catalog">
+                        <li><a class="sub-heading" href="#goal-3">3.1. Goal</a></li>
+                        <li><a class="sub-heading" href="#sub-cycle-3a">3.2. Sub-Cycle 3A — Plastic Embedding</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-3a">Design</a></li>
+                                <li><a class="sub-heading" href="#build-3a">Build</a></li>
+                                <li><a class="sub-heading" href="#test-3a">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-3a">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-3b">3.3. Sub-Cycle 3B — Interactive Model</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-3b">Design</a></li>
+                                <li><a class="sub-heading" href="#build-3b">Build</a></li>
+                                <li><a class="sub-heading" href="#test-3b">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-3b">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#conclusion-3">3.4. Conclusion</a></li>
+                    </ul>
+                </li>
+                <li><a href="#cycle-4">Cycle 4 — Structure-Aware Backbones</a>
+                    <ul class="sub-catalog">
+                        <li><a class="sub-heading" href="#goal-4">4.1. Goal</a></li>
+                        <li><a class="sub-heading" href="#sub-cycle-4a">4.2. Sub-Cycle 4A — Structure Sources</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-4a">Design</a></li>
+                                <li><a class="sub-heading" href="#build-4a">Build</a></li>
+                                <li><a class="sub-heading" href="#test-4a">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-4a">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-4b">4.3. Sub-Cycle 4B — Graph Representation</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-4b">Design</a></li>
+                                <li><a class="sub-heading" href="#build-4b">Build</a></li>
+                                <li><a class="sub-heading" href="#test-4b">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-4b">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#sub-cycle-4c">4.4. Sub-Cycle 4C — GNN vs. GVP</a>
+                            <ul class="sub-catalog">
+                                <li><a class="sub-heading" href="#design-4c">Design</a></li>
+                                <li><a class="sub-heading" href="#build-4c">Build</a></li>
+                                <li><a class="sub-heading" href="#test-4c">Test</a></li>
+                                <li><a class="sub-heading" href="#learn-4c">Learn</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sub-heading" href="#conclusion-4">4.5. Conclusion</a></li>
+                    </ul>
+                </li>
+                <li><a href="#cycle-5">Cycle 5 — User-Friendly Web Application</a>
+                    <ul class="sub-catalog">
+                        <li><a class="sub-heading" href="#goal-5">5.1. Goal</a></li>
+                        <li><a class="sub-heading" href="#design-5">5.2. Design</a></li>
+                        <li><a class="sub-heading" href="#build-5">5.3. Build</a></li>
+                        <li><a class="sub-heading" href="#test-5">5.4. Test</a></li>
+                        <li><a class="sub-heading" href="#learn-5">5.5. Learn</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-          <li><a href="#cycle-2">Cycle 2 — Baseline ML with ESM Embeddings</a>
-            <ul class="sub-catalog">
-              <li><a href="#goal-2" class="sub-heading">2.1. Goal</a></li>
-              <li><a href="#sub-cycle-2a" class="sub-heading">2.2. Sub-Cycle 2A — Embedding Comparison</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-2a" class="sub-heading">Design</a></li>
-                  <li><a href="#build-2a" class="sub-heading">Build</a></li>
-                  <li><a href="#test-2a" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-2a" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-2b" class="sub-heading">2.3. Sub-Cycle 2B — Handling Class Imbalance</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-2b" class="sub-heading">Design</a></li>
-                  <li><a href="#build-2b" class="sub-heading">Build</a></li>
-                  <li><a href="#test-2b" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-2b" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#conclusion-2" class="sub-heading">2.4. Conclusion</a></li>
-            </ul>
-          </li>
-          <li><a href="#cycle-3">Cycle 3 — Dual-Tower with Plastic Features</a>
-            <ul class="sub-catalog">
-              <li><a href="#goal-3" class="sub-heading">3.1. Goal</a></li>
-              <li><a href="#sub-cycle-3a" class="sub-heading">3.2. Sub-Cycle 3A — Plastic Embedding</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-3a" class="sub-heading">Design</a></li>
-                  <li><a href="#build-3a" class="sub-heading">Build</a></li>
-                  <li><a href="#test-3a" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-3a" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-3b" class="sub-heading">3.3. Sub-Cycle 3B — Interactive Model</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-3b" class="sub-heading">Design</a></li>
-                  <li><a href="#build-3b" class="sub-heading">Build</a></li>
-                  <li><a href="#test-3b" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-3b" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#conclusion-3" class="sub-heading">3.4. Conclusion</a></li>
-            </ul>
-          </li>
-          <li><a href="#cycle-4">Cycle 4 — Structure-Aware Backbones</a>
-            <ul class="sub-catalog">
-              <li><a href="#goal-4" class="sub-heading">4.1. Goal</a></li>
-              <li><a href="#sub-cycle-4a" class="sub-heading">4.2. Sub-Cycle 4A — Structure Sources</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-4a" class="sub-heading">Design</a></li>
-                  <li><a href="#build-4a" class="sub-heading">Build</a></li>
-                  <li><a href="#test-4a" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-4a" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-4b" class="sub-heading">4.3. Sub-Cycle 4B — Graph Representation</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-4b" class="sub-heading">Design</a></li>
-                  <li><a href="#build-4b" class="sub-heading">Build</a></li>
-                  <li><a href="#test-4b" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-4b" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#sub-cycle-4c" class="sub-heading">4.4. Sub-Cycle 4C — GNN vs. GVP</a>
-                <ul class="sub-catalog">
-                  <li><a href="#design-4c" class="sub-heading">Design</a></li>
-                  <li><a href="#build-4c" class="sub-heading">Build</a></li>
-                  <li><a href="#test-4c" class="sub-heading">Test</a></li>
-                  <li><a href="#learn-4c" class="sub-heading">Learn</a></li>
-                </ul>
-              </li>
-              <li><a href="#conclusion-4" class="sub-heading">4.5. Conclusion</a></li>
-            </ul>
-          </li>
-          <li><a href="#cycle-5">Cycle 5 — User-Friendly Web Application</a>
-            <ul class="sub-catalog">
-              <li><a href="#goal-5" class="sub-heading">5.1. Goal</a></li>
-              <li><a href="#design-5" class="sub-heading">5.2. Design</a></li>
-              <li><a href="#build-5" class="sub-heading">5.3. Build</a></li>
-              <li><a href="#test-5" class="sub-heading">5.4. Test</a></li>
-              <li><a href="#learn-5" class="sub-heading">5.5. Learn</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+        </nav>
     </div>
-    
+
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="cycle-1">Cycle 1 — Data Integration & Benchmark Preparation</h2>
-      
-      <h3 id="status-quo">Status Quo</h3>
-      <p>Existing plastic-degrading enzyme databases were fragmented, inconsistent, and often incomplete. Many entries lacked standardization, with missing sequences, structures, or annotations, making them difficult to use for systematic modeling.</p>
-      
-      <h3 id="goal">Goal</h3>
-      <p>To construct a standardized, unified, and large-scale dataset for enzyme–plastic interactions, with rigorous train/test isolation, difficulty-stratified benchmarks, and biological validation, so that downstream models can be developed and evaluated objectively.</p>
-      
-      <h3 id="sub-cycle-1a">Sub-Cycle 1A — Data Standardization & Cleaning</h3>
-      
-      <h4 id="design-1a">Design</h4>
-      <p>Before dataset expansion, we first needed to define what counts as a valid entry. Many existing databases contained fragmented or inconsistent records, with missing EC annotations, structures, or partial sequences. We asked: what is the minimal requirement for inclusion?</p>
-      
-      <h4 id="build-1a">Build</h4>
-      <p>We set enzyme sequence as the minimal requirement, since it carries sufficient biological information and is the easiest to retrieve reliably. To achieve this, we used a specialized database of plastic-degrading enzymes as the primary reference. From this starting point, we developed multiple retrieval scripts to query large-scale resources such as UniProt and NCBI, aiming to supplement missing information (e.g., structures, metadata). All retrieved data were then cross-validated against the original annotations to detect inconsistencies and remove redundancies. This systematic approach allowed us to reconstruct a coherent and enriched dataset.</p>
-      
-      <h4 id="test-1a">Test</h4>
-      <p>We ensured that no duplicate sequences remained and that every plastic-degradation entry contained at least its corresponding enzyme sequence. Sequence length distributions became more coherent, and all retrievable metadata (e.g., structures, annotations) were systematically added back.</p>
-      
-      <h4 id="learn-1a">Learn</h4>
-      <p>We learned that defining a minimal entry standard (sequence) early not only prevented data collapse but also ensured feasibility for downstream model training. Through automated cross-database cleaning combined with manual review, we identified and corrected multiple issues in raw resources, including mismatched IDs, misannotated plastic types, and uneven classification granularity. This process improved dataset quality and reproducibility, laying a robust foundation for future cycles.</p>
-      
-      <h3 id="sub-cycle-1b">Sub-Cycle 1B — Benchmark Design (Isolation + Stratification)</h3>
-      
-      <h4 id="design-1b">Design</h4>
-      <p>Since our ultimate goal is to build a predictive model for plastic-degrading enzymes, the first step must be to fix an independent test set from the very beginning. This is a necessary step for engineering-grade projects, ensuring that evaluation metrics remain objective and not artificially inflated by models indirectly "seeing" similar data during training. Once the test set is fixed, the next challenge is how to split it more meaningfully: a purely random hold-out cannot capture the true biological challenge of enzyme prediction. To address this, we proposed using sequence similarity as the guiding metric, since similarity reflects evolutionary and functional relationships between enzymes. This allows the test set to represent real biological diversity and stratified difficulty levels, rather than being just a leftover subset.</p>
-      
-      <h4 id="build-1b">Build</h4>
-      <p>Following the design principle, we developed an algorithmic pipeline for test set stratification based on sequence similarity. For each candidate enzyme, we computed its nearest sequence identity to the training set using global alignment. This ensured that classification into difficulty tiers reflected the hardest comparison it would face in practice. Using iterative calibration, we finalized two thresholds—0.9 and 0.7—which divided the benchmark into three levels:</p>
-      <ul>
-        <li>Easy: identity ≥ 0.9 (high similarity to training sequences)</li>
-        <li>Medium: 0.7 ≤ identity < 0.9 (moderate similarity)</li>
-        <li>Hard: identity < 0.7 (low similarity, distant from training data)</li>
-      </ul>
-      <p>In addition, the algorithm included balancing constraints, ensuring that the number of samples across the three tiers was as even as possible. The entire process was automated and reproducible, generating stratified FASTA files and metadata tables for downstream modeling.</p>
-      
-      <h4 id="test-1b">Test</h4>
-      <p>After constructing the benchmark, we carried out additional validation to ensure its correctness. Using independent scripts, we confirmed that no duplicate entries existed between training and test sets, eliminating any risk of data leakage. We also re-calculated the sequence similarity values to cross-check the automated pipeline, ensuring that each sample was assigned to the correct difficulty tier. Finally, analysis of the distribution across tiers showed that the benchmark achieved a nearly balanced ratio (~1:1:1) among easy, medium, and hard levels. Together, these results indicate that the benchmark not only preserves biological meaning but also provides strong evaluation capacity, capable of reliably distinguishing true performance differences between models.</p>
-      
-      <h4 id="learn-1b">Learn</h4>
-      <p>From this sub-cycle, we learned that designing a benchmark is not just about splitting data into training and test sets, but about embedding biological logic into evaluation. By using sequence similarity as the splitting criterion, we ensured that the test set represents realistic levels of biological diversity. The near-balanced distribution across easy, medium, and hard tiers confirmed the robustness of our pipeline. Importantly, this setup enables tier-specific evaluation: by separately analyzing performance on each difficulty level, we can better judge a model's generalization ability and its biological interpretability, rather than relying on a single aggregated score.</p>
-      
-      <h3 id="sub-cycle-1c">Sub-Cycle 1C — Biological Validation of Dataset</h3>
-      
-      <h4 id="design-1c">Design</h4>
-      <p>To ensure that our dataset is not only computationally consistent but also biologically reliable, we designed a two-pronged validation strategy: (1) wet-lab experiments to confirm that selected enzymes truly exhibit degradation activity, and (2) bioinformatic analyses to examine family composition and evolutionary structure.</p>
-      
-      <h4 id="build-1c">Build</h4>
-      <p><strong>Wet-lab:</strong></p>
-      <p>We selected five representative enzyme sequences using a semi-random stratified sampling strategy. On the one hand, we included well-documented entries from the literature to cover established representatives; on the other, we incorporated underexplored candidates to ensure representativeness and diversity. The chosen genes were cloned into expression plasmids and heterologously expressed in the standard E. coli host via the pelB signal peptide pathway (widely used and previously reported in literature for periplasmic secretion). The expressed proteins were subsequently purified for downstream validation.</p>
-      
-      <figure class="article-figure" style="text-align: center;">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/petplasmid.webp" alt="PET plasmid construction and expression strategy" loading="lazy" style="max-width: 75%; height: auto;">
-      </figure>
-      
-      <p><strong>Bioinformatics:</strong></p>
-      <p>All entries were standardized and redundancy-removed before analysis. Family assignments were performed using Pfam/InterPro domain and HMM-based annotations. Representative sequences were then aligned with MAFFT/Clustal Omega, and a phylogenetic tree was constructed using the maximum-likelihood method with bootstrap support, to assess the consistency of family composition and evolutionary structure.</p>
-      
-      <h4 id="test-1c">Test</h4>
-      <p><strong>Wet-lab:</strong></p>
-      <p>Soluble expression of the target proteins was confirmed by SDS-PAGE, which showed clear bands at the expected molecular weights. Western Blot (WB) further validated the presence of the expressed enzymes. The purified proteins were subjected to activity assays using substrates relevant to ester-bond and polyester hydrolysis. All five samples exhibited significant enzymatic activity compared with negative controls, with distinct differences in substrate degradation patterns, confirming that the selected dataset entries correspond to biologically functional enzymes.</p>
-      
-      <p><strong>Bioinformatics:</strong></p>
-      <p>Statistical profiling confirmed that the dataset is consistent and biologically meaningful: sequence length distributions, taxonomic coverage, and plastic-category coverage were coherent, and redundancies were successfully removed. Family assignment revealed that α/β-hydrolases constitute the majority, accompanied by cutinase-like and lipase-like families known for polyester degradation. Phylogenetic analysis further supported this: representative sequences clustered into clades consistent with annotated families, and the overall evolutionary structure was in line with prior literature on plastic-degrading enzymes.</p>
-      
-      <h4 id="learn-1c">Learn</h4>
-      <p>This validation confirmed that our curated entries are biologically meaningful: the selected enzymes showed real activity, and bioinformatic analysis revealed family and evolutionary structures consistent with literature. Importantly, we observed that enzyme sequences are often dominated by conserved, structure-maintaining regions, reflecting evolutionary constraints. At the same time, we recognized that plastic-degrading enzymes are not products of purposeful evolution but rather cases of fortuitous adaptive gain, where the natural substrates of hydrolases share structural similarity with synthetic plastics. This helps explain why small mutations in catalytic regions can sometimes unlock unexpected plastic-degrading activity.</p>
-      
-      <h3 id="conclusion-1">Conclusion</h3>
-      <p>Through this cycle, we successfully constructed a standardized, unified, and large-scale dataset for enzyme–plastic interactions. The dataset was built with rigorous train/test isolation, designed difficulty-stratified benchmarks using sequence similarity, and validated through both wet-lab experiments and bioinformatic analyses. As a result, we achieved a dataset of high completeness, reliability, and biological grounding, which can now be packaged and shared as a milestone deliverable. This foundation ensures that downstream models can be developed and evaluated in an objective, reproducible, and biologically meaningful manner.</p>
-      
-      <h2 id="cycle-2">Cycle 2 — Baseline ML with ESM Embeddings</h2>
-      
-      <h3 id="goal-2">Goal</h3>
-      <p>To design and implement the first predictive baseline for enzyme–plastic interactions by framing the problem as a supervised classification task (enzyme sequence → plastic type). This cycle focused on exploring different enzyme sequence embeddings within a fixed ML framework and on testing strategies to handle class imbalance between common and rare plastics. The objective was to assess the feasibility of prediction, establish an initial baseline, and prepare insights for further model development.</p>
-      
-      <h3 id="sub-cycle-2a">Sub-Cycle 2A — Embedding Comparison</h3>
-      
-      <h4 id="design-2a">Design</h4>
-      <p>In our first modeling attempt, we adopted the most straightforward design: treating plastics as labels and using enzyme sequences as inputs. The central question was whether sequence information alone is sufficient to predict the corresponding plastic type. To make the model truly "understand" sequences, we needed to transform the amino acid strings into numerical embeddings. Therefore, we tested multiple embedding approaches to explore which representation would be most suitable as the starting point for baseline prediction.</p>
-      
-      <h4 id="build-2a">Build</h4>
-      
-      <figure class="article-figure">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/complex.webp" alt="Embedding comparison methodology" loading="lazy">
-      </figure>
-      
-      <ul>
-        <li>One-hot encoding: each amino acid is treated as an isolated symbol, without any notion of biochemical similarity.</li>
-        <li>Physicochemical descriptors: each amino acid is described by properties such as charge, hydropathy, or secondary structure tendencies, giving more biological meaning.</li>
-        <li>ESM embeddings: large protein language models (ESM) are trained on millions of sequences, learning evolutionary context — e.g., conserved regions, motifs, and functional patterns — and output rich numerical vectors for each sequence.</li>
-        <li>All three representations were used as inputs to a fixed Histogram-based Gradient Boosting (HistGB) classifier.</li>
-      </ul>
-      
-      <h4 id="test-2a">Test</h4>
-      <p>The comparison showed a consistent ranking: ESM embeddings > physicochemical features > one-hot. More complex representations like ESM contained richer hidden information, which allowed the classifier to achieve higher F1 and AUROC scores on the same dataset.</p>
-      
-      <figure class="article-figure">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/f1.webp" alt="F1 score comparison across different embedding methods" loading="lazy">
-      </figure>
-      
-      <h4 id="learn-2a">Learn</h4>
-      <p>We learned that advanced embeddings such as ESM capture hidden evolutionary and structural signals that simpler encodings miss, leading to stronger performance. This highlights that in biological prediction tasks, the choice of embedding method can substantially influence model outcomes. At the same time, the experiment validated that our dataset (from Cycle 1) supports meaningful learning, providing a solid baseline for future model iterations.</p>
-      
-      <h3 id="sub-cycle-2b">Sub-Cycle 2B — Handling Class Imbalance (SMOTE)</h3>
-      
-      <h4 id="design-2b">Design</h4>
-      <p>In plastic-degradation research, a few plastics such as PET or PLA have been extensively studied, resulting in many training samples, while most plastics remain rarely represented. This long-tail distribution caused the classifier to overfit frequent plastics and underperform on rare ones. Our goal in this sub-cycle was to reduce imbalance so that rare plastics could be predicted more fairly.</p>
-      
-      <h4 id="build-2b">Build</h4>
-      <p>We applied SMOTE (Synthetic Minority Oversampling Technique) on the training set. SMOTE generates synthetic samples by interpolating between existing minority-class samples in feature space. Conceptually, this is like imagining plausible intermediate enzymes between rare sequences. Importantly, the validation and test sets remained untouched to preserve a realistic distribution for evaluation.</p>
-      
-      <h4 id="test-2b">Test</h4>
-      <p>After applying SMOTE, rare plastics achieved clear improvements in F1 scores, while frequent plastics remained stable. Confusion matrices showed fewer cases of rare labels being systematically misclassified as common ones.</p>
-      
-      <h4 id="learn-2b">Learn</h4>
-      <p>We confirmed that class imbalance strongly reduces rare-class performance, and that SMOTE can partially compensate for this effect. However, treating plastics solely as labels still limits biological interpretability, especially given the large number of small classes.</p>
-      
-      <h3 id="conclusion-2">Conclusion</h3>
-      <p>In Cycle 2, we completed the first end-to-end predictive baseline for enzyme–plastic interactions. By testing different embeddings under a fixed ML framework and applying SMOTE to handle imbalance, we achieved solid predictive performance and confirmed the feasibility of our dataset for modeling. This established a practical baseline benchmark. Building on this success, our next step is to move beyond the "labels-only" framing and design models that incorporate biochemical principles and interpretable structures, enabling deeper biological insight.</p>
-      
-      <h2 id="cycle-3">Cycle 3 — Dual-Tower with Plastic Features</h2>
-      
-      <h3 id="goal-3">Goal</h3>
-      <p>In earlier attempts, plastics were treated only as labels, which caused imbalance and limited interpretability. In reality, degradability arises from the interaction between enzyme properties and plastic properties. The goal of this cycle is to design a model framework that can explicitly incorporate plastic information, so predictions move beyond label-only learning and become more biochemically grounded.</p>
-      
-      <h3 id="sub-cycle-3a">Sub-Cycle 3A — Plastic Embedding Representation</h3>
-      
-      <h4 id="design-3a">Design</h4>
-      <p>Molecular descriptors are widely used for chemical modeling tasks — they are numerical summaries of a molecule's properties (e.g., charge, hydrophobicity, or atom counts). These usually perform well on small molecules. However, most existing descriptors (e.g., RDKit features) were originally designed with small molecules in mind. When applied directly to polymers, they show strong correlation with molecular size, making dimensionality reduction maps cluster by chain length rather than true chemical similarity between plastics. The central challenge became: how to design embeddings that reflect the intrinsic chemical properties of plastics, instead of trivial size bias?</p>
-      
-      <h4 id="build-3a">Build</h4>
-      
-      <figure class="article-figure">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plasticpolymer.webp" alt="Plastic polymer embedding methodology" loading="lazy">
-      </figure>
-      
-      <p>To address this, we introduced density normalization, dividing descriptors by the number of heavy atoms, which reduced the dominance of molecular weight. Intuitively, this means turning descriptors into an "average per atom" representation, so that embeddings focus on chemical composition rather than sheer size. Additionally, we leveraged co-degradation relationships as a weak supervision signal: plastics that are reported to degrade together were encouraged to form closer embeddings. This was implemented by pre-training a plastic encoder with contrastive-style objectives, allowing embeddings to reflect both chemical logic and biological relevance.</p>
-      
-      <h4 id="test-3a">Test</h4>
-      
-      <figure class="article-figure">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/pca.webp" alt="PCA analysis of plastic polymer embeddings" loading="lazy">
-      </figure>
-      
-      <p>Dimensionality reduction with PCA and UMAP revealed that normalized embeddings produced more chemically coherent clusters. Polyesters grouped closely, polyolefins formed a separate cluster, and importantly, members of the PHA (polyhydroxyalkanoate) family began to cluster together in line with their shared biochemical properties. Unlike raw RDKit descriptors, the embeddings no longer simply followed molecular weight gradients.</p>
-      
-      <h4 id="learn-3a">Learn</h4>
-      <p>We learned that polymer-specific adjustments are essential for meaningful representations. Density normalization effectively reduced molecular-weight artifacts, while co-degradation pre-training aligned embeddings with known biological behavior. Together, these strategies provided a chemically interpretable and biologically relevant representation of plastics.</p>
-      
-      <h3 id="sub-cycle-3b">Sub-Cycle 3B — Interactive Model Architecture</h3>
-      
-      <h4 id="design-3b">Design</h4>
-      <p>In previous cycles, plastics were treated purely as labels, which meant the model learned only from enzyme features. However, degradability is the result of an interaction between enzyme and plastic properties. This raised a key design question: instead of predicting labels, can we build a framework where both enzymes and plastics are explicitly represented, and their compatibility is learned through interaction?</p>
-      
-      <h4 id="build-3b">Build</h4>
-      <p>Inspired by recommendation systems (e.g., user–item models), we constructed a dual-tower architecture. The enzyme tower encodes proteins using backbones, while the plastic tower encodes polymers using the newly developed embeddings (density-normalized + co-degradation pre-trained). An interaction head was then implemented to combine the two towers, with different strategies tested:</p>
-      <ul>
-        <li>Dot product (measuring similarity directly)</li>
-        <li>Bilinear layer (capturing feature-specific interactions)</li>
-        <li>MLP fusion (nonlinear combination of features)</li>
-      </ul>
-      <p>This design allowed enzyme–plastic compatibility scores to be learned in a structured and interpretable manner.</p>
-      
-      <h4 id="test-3b">Test</h4>
-      <p>Evaluation showed that the dual-tower framework achieved more balanced performance across easy, medium, and hard tiers, compared with the label-only baseline. This indicates stronger generalization: the model was not only fitting frequent cases but also extending to more challenging, less-represented plastics.</p>
-      
-      <h4 id="learn-3b">Learn</h4>
-      <p>We learned that enzyme–plastic interactions are best modeled as a two-sided problem, where both enzymes and plastics contribute features. This interactive framework moved beyond simple label classification and laid the foundation for biochemically interpretable predictions, bridging molecular representation with functional outcomes.</p>
-      
-      <h3 id="conclusion-3">Conclusion</h3>
-      <p>In this cycle, we moved beyond treating plastics as mere labels and introduced dedicated plastic embeddings. With density-normalized descriptors and co-degradation signals, the embeddings captured chemical and biological relevance more faithfully. Integrated into a dual-tower framework, enzymes and plastics were encoded separately and combined through interaction heads, which improved interpretability and yielded more balanced performance across difficulty tiers. However, the increased complexity of the architecture also highlighted the limitations of current backbones, as overall metrics still showed room for improvement.</p>
-      
-      <h2 id="cycle-4">Cycle 4 — Structure-Aware Backbones</h2>
-      
-      <h3 id="goal-4">Goal</h3>
-      <p>In the previous cycle, we improved interpretability by introducing plastic features. However, the enzyme side was still represented only by sequences, which inevitably lose critical information. Since enzyme activity is fundamentally determined by its 3D structure—including folds, catalytic pockets, and binding sites—this cycle shifts focus to building structure-aware backbones, aiming to capture spatial and geometric features essential for plastic degradation.</p>
-      
-      <h3 id="sub-cycle-4a">Sub-Cycle 4A — Structure Sources & Reliability</h3>
-      
-      <h4 id="design-4a">Design</h4>
-      <p>In the previous cycle, we realized that relying on sequences alone leaves out critical information. Enzyme activity is fundamentally tied to 3D structure, such as folding, catalytic pockets, and binding residues. To incorporate structural knowledge into modeling, we first had to decide where these structures would come from. Protein structures can be obtained either from experiments (e.g., X-ray, Cryo-EM) or from computational prediction (e.g., AlphaFold). For plastic-degrading enzymes, which mostly belong to well-studied hydrolase families, AlphaFold provides high-confidence predictions. Since its method is based on residue–residue contact patterns, naturally aligned with our graph construction, we asked: Can AlphaFold-predicted structures serve as a reliable default for introducing structural backbones into our model?</p>
-      
-      <h4 id="build-4a">Build</h4>
-      <p>We systematically retrieved AlphaFold models for enzymes in our dataset. Confidence scores (pLDDT) were inspected, showing consistently high values for plastic-degrading families. Where available, experimental PDBs were retained as gold standards, but the majority of entries were supplemented with AlphaFold structures. All structures were processed into residue contact graphs, ensuring consistency regardless of origin.</p>
-      
-      <h4 id="test-4a">Test</h4>
-      
-      <figure class="article-figure" style="text-align: center;">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plddt.webp" alt="AlphaFold pLDDT confidence scores" loading="lazy" style="max-width: 70%; height: auto;">
-      </figure>
-      
-      <p>Benchmark comparisons showed that models trained with AlphaFold-predicted structures performed on par with those using experimental PDBs. This demonstrated that AlphaFold is reliable for our dataset. Moreover, the graph construction pipeline worked seamlessly across both sources, producing consistent node/edge features.</p>
-      
-      <h4 id="learn-4a">Learn</h4>
-      <p>We confirmed that AlphaFold can serve as a robust default source of structures, freeing the project from the bottleneck of limited experimental PDB coverage. This not only increased the dataset's completeness but also ensured scalability, as any new enzyme sequence can directly be assigned a predicted structure. Thus, structure-aware modeling becomes practical at scale, without being constrained by experimental availability.</p>
-      
-      <h3 id="sub-cycle-4b">Sub-Cycle 4B — Graph Representation of Enzyme Structures</h3>
-      
-      <h4 id="design-4b">Design</h4>
-      <p>To move beyond sequence-only inputs, we needed a way to represent enzyme 3D structures in a machine-readable format. Proteins can be naturally modeled as graphs, where residues are nodes and contacts define edges. This raised the central question: how can we construct residue-level contact graphs that preserve both biochemical and spatial information?</p>
-      
-      <h4 id="build-4b">Build</h4>
-      <p>Instead of discarding sequence embeddings, we reorganized them into a graph representation. Each residue's initial embedding was obtained from ESM, preserving evolutionary and biochemical context. These embeddings were then assigned to graph nodes, while edges encoded spatial proximity (e.g., Cα–Cα distances within 10Å). In this way, the model could jointly leverage sequence-derived residue embeddings and their 3D spatial relationships, making the enzyme backbone structure-aware.</p>
-      
-      <figure class="article-figure" style="text-align: center;">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/protein-graph-representation.webp" alt="Protein graph representation with ESM embeddings" loading="lazy" style="max-width: 90%; height: auto;">
-      </figure>
-      
-      <h4 id="test-4b">Test</h4>
-      <p>Initial experiments showed that models with structural graphs achieved more balanced performance across difficulty tiers compared to sequence-only baselines. Notably, enzymes with low sequence similarity but similar folds were better recognized, suggesting that structural context improved generalization.</p>
-      
-      <h4 id="learn-4b">Learn</h4>
-      <p>From an engineering synthetic biology perspective, this step confirmed that proteins can be represented not just as linear sequences but as residue contact graphs, where biochemical properties are grounded in a physical 3D scaffold. By embedding structural constraints into the model, we move closer to capturing the true determinants of enzyme activity — pockets, binding sites, and catalytic environments — which sequences alone cannot fully describe. This validates that structural embeddings add essential information missing from pure sequence models, and provides a foundation for building interpretable, design-oriented predictive frameworks in future cycles.</p>
-      
-      <h3 id="sub-cycle-4c">Sub-Cycle 4C — GNN vs. GVP Backbones</h3>
-      
-      <h4 id="design-4c">Design</h4>
-      <p>After confirming that residue contact graphs provide structural value, the next question was: is it enough to only know which residues are in contact, or do we also need to encode their 3D orientation? Standard GNNs (GCN, GraphSAGE, GAT) propagate scalar features across graph edges, but they cannot directly represent vector information such as bond directions or spatial orientation. Geometric Vector Perceptrons (GVPs) extend this idea by introducing both scalar and vector channels, enabling models to capture structural geometry.</p>
-      
-      <h4 id="build-4c">Build</h4>
-      <p>We implemented two enzyme backbones:</p>
-      <ul>
-        <li>GNN-based: residue graphs with scalar node features (AA identity, charge, hydrophobicity) and distance-based edges.</li>
-        <li>GVP-based: same residue graphs, but augmented with 3D vector channels (residue coordinates, orientation vectors) to encode spatial geometry.</li>
-      </ul>
-      <p>Both were trained within the dual-tower framework, ensuring a fair comparison.</p>
-      
-      <h4 id="test-4c">Test</h4>
-      <p>Both GNN and GVP backbones outperformed sequence-only baselines, especially on medium/hard tiers. Among them, GVP showed the most consistent improvements, yielding higher F1 and AUROC, and more stable predictions across rare plastics.</p>
-      
-      <h4 id="learn-4c">Learn</h4>
-      <p>We learned that while GNNs capture who contacts whom, GVPs go further by encoding how residues are oriented in 3D. This geometric sensitivity not only improved accuracy but also enhanced interpretability, as important catalytic residues were better highlighted. From an engineering perspective, this confirmed that integrating geometric structure is essential for biochemically meaningful models.</p>
-      
-      <h3 id="conclusion-4">Conclusion</h3>
-      <p>By integrating structure-aware backbones—retrieving reliable 3D structures (with AlphaFold as default), representing them as residue contact graphs, and adopting geometry-aware GVP networks—our model achieved its best F1 scores to date, with more stable performance across difficulty tiers. More importantly, it gained biochemical interpretability, as predictions naturally highlighted catalytic residues and structural motifs. At this stage, our framework has matured into its most complete form: accurate, robust, and biologically consistent. However, the project remains highly specialized, and the current technical complexity still sets a high barrier for many intended users in the biological community.</p>
-      
-      <h2 id="cycle-5">Cycle 5 — User-Friendly Web Application</h2>
-      
-      <h3 id="goal-5">Goal</h3>
-      <p>To evolve the specialized research framework into a more accessible and user-friendly "one-stop" online platform, making it easier for researchers across diverse backgrounds — including those primarily engaged in wet-lab or experimental work — to explore enzyme–plastic interactions. The goal was to create an intuitive web application that integrates both model prediction and database exploration, offering a seamless, installation-free experience for users worldwide.</p>
-      
-      <h3 id="design-5">Design</h3>
-      <p>The platform's design process was grounded in extensive feedback from its target users — including researchers in microbiology, environmental science, synthetic biology, and chemistry. These discussions revealed a shared need for an integrated "one-stop" online environment that combines predictive modeling with a comprehensive enzyme–plastic database. The guiding design principle was to achieve usability and efficiency without compromising scientific rigor. The platform had to be approachable for users unfamiliar with computational tools, yet powerful enough to meet the standards of professional research.</p>
-      
-      <h3 id="build-5">Build</h3>
-      <p>The platform is deployed on AWS cloud servers to ensure global accessibility and stable performance. It consists of two primary components: the Plaszyme model platform and the PlaszymeDB online database.</p>
-      
-      <p>The model platform integrates two complementary predictors: PlaszymeAlpha, a sequence-based model for rapid predictions directly from FASTA files, and PlaszymeX, a structure-informed model designed for higher interpretability.</p>
-      
-      <p>To simplify user interaction, we built an automated backend workflow that integrates colabfold_batch for 3D structure prediction. This design follows the "less is more" principle — users only need to provide sequences once, and the system automatically handles structure generation and model inference. It also supports direct prediction from user-uploaded PDB files when available.</p>
-      
-      <p>To meet the needs of large-scale research scenarios, the platform also includes a metagenomic analysis module, which employs a custom HMM pipeline to discover potential enzyme candidates from environmental datasets for prediction. All model outputs follow a standardized format, providing degradation probabilities, confidence scores, an interactive 3D molecular viewer (Mol* API), and CSV export options for further analysis.</p>
-      
-      <p>The PlaszymeDB online database complements the model platform by serving as a centralized, searchable knowledge base. It offers a high-performance search algorithm based on traversal logic, interactive data visualizations, and a locally developed BLAST alignment tool tailored to our curated database. Phylogenetic relationships are dynamically displayed via an embedded iTOL tree, while detailed enzyme pages integrate multiple interactive modules through iframes — including a 3D structure viewer (Mol* API), a chemical formula renderer (Ketcher API), full amino acid sequences, literature citations, and EC annotations derived from both curated references and our DeepEC-based functional predictions.</p>
-      
-      <h3 id="test-5">Test</h3>
-      <p>We conducted a two-stage validation process to ensure both technical correctness and user usability.</p>
-      
-      <p><strong>(1) Internal functional testing:</strong> Using established benchmark datasets, we performed end-to-end predictions directly on the live platform. The system successfully reproduced expected outcomes, verifying the model's accuracy and confirming that the backend workflow operated as intended. Additional simulations were conducted for the metagenomic input pipeline, confirming that large-scale sequence inputs were correctly processed from structure prediction to output generation.</p>
-      
-      <p><strong>(2) User acceptance testing:</strong> We invited several researchers from our earlier user interviews—representing the microbiology, environmental, synthetic biology, and chemistry communities—to test the public platforms (http://plaszyme.org/plaszyme and http://plaszyme.org/plaszymedb). They completed full prediction and database exploration workflows without prior instruction, providing direct usability feedback. Their responses consistently highlighted that the system was intuitive, efficient, and practical for real laboratory workflows, validating that our design successfully met its accessibility goals.</p>
-      
-      <h3 id="learn-5">Learn</h3>
-      <p>Throughout this process, we realized that developing an effective scientific tool must begin with understanding the real-world research contexts it is meant to serve—such as the metagenomic analysis of environmental samples and microbial communities.</p>
-      
-      <p>Continuous dialogue with microbiology, environmental, chemistry, and synthetic biology researchers helped us recognize that accessibility and professionalism must coexist. Their feedback shaped our guiding principle: a platform should be easy to use without oversimplifying the science behind it.</p>
-      
-      <p>The consistently positive responses to the platform's clarity and smooth workflow validated this approach. Ultimately, we learned that the real value of computational frameworks lies not only in prediction accuracy, but in bridging advanced algorithms with practical usability, enabling researchers to focus on discovery rather than deployment. This experience also revealed the platform's potential to expand toward more specialized applications in the future.</p>
+        <h2 id="cycle-1">Cycle 1 — Data Integration & Benchmark Preparation</h2>
+
+        <h3 id="status-quo">Status Quo</h3>
+        <p>Existing plastic-degrading enzyme databases were fragmented, inconsistent, and often incomplete. Many entries
+            lacked standardization, with missing sequences, structures, or annotations, making them difficult to use for
+            systematic modeling.</p>
+
+        <h3 id="goal">Goal</h3>
+        <p>To construct a standardized, unified, and large-scale dataset for enzyme–plastic interactions, with rigorous
+            train/test isolation, difficulty-stratified benchmarks, and biological validation, so that downstream models
+            can be developed and evaluated objectively.</p>
+
+        <h3 id="sub-cycle-1a">Sub-Cycle 1A — Data Standardization & Cleaning</h3>
+
+        <h4 id="design-1a">Design</h4>
+        <p>Before dataset expansion, we first needed to define what counts as a valid entry. Many existing databases
+            contained fragmented or inconsistent records, with missing EC annotations, structures, or partial sequences.
+            We asked: what is the minimal requirement for inclusion?</p>
+
+        <h4 id="build-1a">Build</h4>
+        <p>We set enzyme sequence as the minimal requirement, since it carries sufficient biological information and is
+            the easiest to retrieve reliably. To achieve this, we used a specialized database of plastic-degrading
+            enzymes as the primary reference. From this starting point, we developed multiple retrieval scripts to query
+            large-scale resources such as UniProt and NCBI, aiming to supplement missing information (e.g., structures,
+            metadata). All retrieved data were then cross-validated against the original annotations to detect
+            inconsistencies and remove redundancies. This systematic approach allowed us to reconstruct a coherent and
+            enriched dataset.</p>
+
+        <h4 id="test-1a">Test</h4>
+        <p>We ensured that no duplicate sequences remained and that every plastic-degradation entry contained at least
+            its corresponding enzyme sequence. Sequence length distributions became more coherent, and all retrievable
+            metadata (e.g., structures, annotations) were systematically added back.</p>
+
+        <h4 id="learn-1a">Learn</h4>
+        <p>We learned that defining a minimal entry standard (sequence) early not only prevented data collapse but also
+            ensured feasibility for downstream model training. Through automated cross-database cleaning combined with
+            manual review, we identified and corrected multiple issues in raw resources, including mismatched IDs,
+            misannotated plastic types, and uneven classification granularity. This process improved dataset quality and
+            reproducibility, laying a robust foundation for future cycles.</p>
+
+        <h3 id="sub-cycle-1b">Sub-Cycle 1B — Benchmark Design (Isolation + Stratification)</h3>
+
+        <h4 id="design-1b">Design</h4>
+        <p>Since our ultimate goal is to build a predictive model for plastic-degrading enzymes, the first step must be
+            to fix an independent test set from the very beginning. This is a necessary step for engineering-grade
+            projects, ensuring that evaluation metrics remain objective and not artificially inflated by models
+            indirectly "seeing" similar data during training. Once the test set is fixed, the next challenge is how to
+            split it more meaningfully: a purely random hold-out cannot capture the true biological challenge of enzyme
+            prediction. To address this, we proposed using sequence similarity as the guiding metric, since similarity
+            reflects evolutionary and functional relationships between enzymes. This allows the test set to represent
+            real biological diversity and stratified difficulty levels, rather than being just a leftover subset.</p>
+
+        <h4 id="build-1b">Build</h4>
+        <p>Following the design principle, we developed an algorithmic pipeline for test set stratification based on
+            sequence similarity. For each candidate enzyme, we computed its nearest sequence identity to the training
+            set using global alignment. This ensured that classification into difficulty tiers reflected the hardest
+            comparison it would face in practice. Using iterative calibration, we finalized two thresholds—0.9 and
+            0.7—which divided the benchmark into three levels:</p>
+        <ul>
+            <li>Easy: identity ≥ 0.9 (high similarity to training sequences)</li>
+            <li>Medium: 0.7 ≤ identity < 0.9 (moderate similarity)</li>
+            <li>Hard: identity < 0.7 (low similarity, distant from training data)</li>
+        </ul>
+        <p>In addition, the algorithm included balancing constraints, ensuring that the number of samples across the
+            three tiers was as even as possible. The entire process was automated and reproducible, generating
+            stratified FASTA files and metadata tables for downstream modeling.</p>
+
+        <h4 id="test-1b">Test</h4>
+        <p>After constructing the benchmark, we carried out additional validation to ensure its correctness. Using
+            independent scripts, we confirmed that no duplicate entries existed between training and test sets,
+            eliminating any risk of data leakage. We also re-calculated the sequence similarity values to cross-check
+            the automated pipeline, ensuring that each sample was assigned to the correct difficulty tier. Finally,
+            analysis of the distribution across tiers showed that the benchmark achieved a nearly balanced ratio
+            (~1:1:1) among easy, medium, and hard levels. Together, these results indicate that the benchmark not only
+            preserves biological meaning but also provides strong evaluation capacity, capable of reliably
+            distinguishing true performance differences between models.</p>
+
+        <h4 id="learn-1b">Learn</h4>
+        <p>From this sub-cycle, we learned that designing a benchmark is not just about splitting data into training and
+            test sets, but about embedding biological logic into evaluation. By using sequence similarity as the
+            splitting criterion, we ensured that the test set represents realistic levels of biological diversity. The
+            near-balanced distribution across easy, medium, and hard tiers confirmed the robustness of our pipeline.
+            Importantly, this setup enables tier-specific evaluation: by separately analyzing performance on each
+            difficulty level, we can better judge a model's generalization ability and its biological interpretability,
+            rather than relying on a single aggregated score.</p>
+
+        <h3 id="sub-cycle-1c">Sub-Cycle 1C — Biological Validation of Dataset</h3>
+
+        <h4 id="design-1c">Design</h4>
+        <p>To ensure that our dataset is not only computationally consistent but also biologically reliable, we designed
+            a two-pronged validation strategy: (1) wet-lab experiments to confirm that selected enzymes truly exhibit
+            degradation activity, and (2) bioinformatic analyses to examine family composition and evolutionary
+            structure.</p>
+
+        <h4 id="build-1c">Build</h4>
+        <p><strong>Wet-lab:</strong></p>
+        <p>We selected five representative enzyme sequences using a semi-random stratified sampling strategy. On the one
+            hand, we included well-documented entries from the literature to cover established representatives; on the
+            other, we incorporated underexplored candidates to ensure representativeness and diversity. The chosen genes
+            were cloned into expression plasmids and heterologously expressed in the standard E. coli host via the pelB
+            signal peptide pathway (widely used and previously reported in literature for periplasmic secretion). The
+            expressed proteins were subsequently purified for downstream validation.</p>
+
+        <figure class="article-figure" style="text-align: center;">
+            <img alt="PET plasmid construction and expression strategy"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/petplasmid.webp"
+                 style="max-width: 75%; height: auto;">
+        </figure>
+
+        <p><strong>Bioinformatics:</strong></p>
+        <p>All entries were standardized and redundancy-removed before analysis. Family assignments were performed using
+            Pfam/InterPro domain and HMM-based annotations. Representative sequences were then aligned with
+            MAFFT/Clustal Omega, and a phylogenetic tree was constructed using the maximum-likelihood method with
+            bootstrap support, to assess the consistency of family composition and evolutionary structure.</p>
+
+        <h4 id="test-1c">Test</h4>
+        <p><strong>Wet-lab:</strong></p>
+        <p>Soluble expression of the target proteins was confirmed by SDS-PAGE, which showed clear bands at the expected
+            molecular weights. Western Blot (WB) further validated the presence of the expressed enzymes. The purified
+            proteins were subjected to activity assays using substrates relevant to ester-bond and polyester hydrolysis.
+            All five samples exhibited significant enzymatic activity compared with negative controls, with distinct
+            differences in substrate degradation patterns, confirming that the selected dataset entries correspond to
+            biologically functional enzymes.</p>
+
+        <p><strong>Bioinformatics:</strong></p>
+        <p>Statistical profiling confirmed that the dataset is consistent and biologically meaningful: sequence length
+            distributions, taxonomic coverage, and plastic-category coverage were coherent, and redundancies were
+            successfully removed. Family assignment revealed that α/β-hydrolases constitute the majority, accompanied by
+            cutinase-like and lipase-like families known for polyester degradation. Phylogenetic analysis further
+            supported this: representative sequences clustered into clades consistent with annotated families, and the
+            overall evolutionary structure was in line with prior literature on plastic-degrading enzymes.</p>
+
+        <h4 id="learn-1c">Learn</h4>
+        <p>This validation confirmed that our curated entries are biologically meaningful: the selected enzymes showed
+            real activity, and bioinformatic analysis revealed family and evolutionary structures consistent with
+            literature. Importantly, we observed that enzyme sequences are often dominated by conserved,
+            structure-maintaining regions, reflecting evolutionary constraints. At the same time, we recognized that
+            plastic-degrading enzymes are not products of purposeful evolution but rather cases of fortuitous adaptive
+            gain, where the natural substrates of hydrolases share structural similarity with synthetic plastics. This
+            helps explain why small mutations in catalytic regions can sometimes unlock unexpected plastic-degrading
+            activity.</p>
+
+        <h3 id="conclusion-1">Conclusion</h3>
+        <p>Through this cycle, we successfully constructed a standardized, unified, and large-scale dataset for
+            enzyme–plastic interactions. The dataset was built with rigorous train/test isolation, designed
+            difficulty-stratified benchmarks using sequence similarity, and validated through both wet-lab experiments
+            and bioinformatic analyses. As a result, we achieved a dataset of high completeness, reliability, and
+            biological grounding, which can now be packaged and shared as a milestone deliverable. This foundation
+            ensures that downstream models can be developed and evaluated in an objective, reproducible, and
+            biologically meaningful manner.</p>
+
+        <h2 id="cycle-2">Cycle 2 — Baseline ML with ESM Embeddings</h2>
+
+        <h3 id="goal-2">Goal</h3>
+        <p>To design and implement the first predictive baseline for enzyme–plastic interactions by framing the problem
+            as a supervised classification task (enzyme sequence → plastic type). This cycle focused on exploring
+            different enzyme sequence embeddings within a fixed ML framework and on testing strategies to handle class
+            imbalance between common and rare plastics. The objective was to assess the feasibility of prediction,
+            establish an initial baseline, and prepare insights for further model development.</p>
+
+        <h3 id="sub-cycle-2a">Sub-Cycle 2A — Embedding Comparison</h3>
+
+        <h4 id="design-2a">Design</h4>
+        <p>In our first modeling attempt, we adopted the most straightforward design: treating plastics as labels and
+            using enzyme sequences as inputs. The central question was whether sequence information alone is sufficient
+            to predict the corresponding plastic type. To make the model truly "understand" sequences, we needed to
+            transform the amino acid strings into numerical embeddings. Therefore, we tested multiple embedding
+            approaches to explore which representation would be most suitable as the starting point for baseline
+            prediction.</p>
+
+        <h4 id="build-2a">Build</h4>
+
+        <figure class="article-figure">
+            <img alt="Embedding comparison methodology"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/complex102.webp">
+        </figure>
+
+        <ul>
+            <li>One-hot encoding: each amino acid is treated as an isolated symbol, without any notion of biochemical
+                similarity.
+            </li>
+            <li>Physicochemical descriptors: each amino acid is described by properties such as charge, hydropathy, or
+                secondary structure tendencies, giving more biological meaning.
+            </li>
+            <li>ESM embeddings: large protein language models (ESM) are trained on millions of sequences, learning
+                evolutionary context — e.g., conserved regions, motifs, and functional patterns — and output rich
+                numerical vectors for each sequence.
+            </li>
+            <li>All three representations were used as inputs to a fixed Histogram-based Gradient Boosting (HistGB)
+                classifier.
+            </li>
+        </ul>
+
+        <h4 id="test-2a">Test</h4>
+        <p>The comparison showed a consistent ranking: ESM embeddings > physicochemical features > one-hot. More complex
+            representations like ESM contained richer hidden information, which allowed the classifier to achieve higher
+            F1 and AUROC scores on the same dataset.</p>
+
+        <figure class="article-figure">
+            <img alt="F1 score comparison across different embedding methods"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/f1.webp">
+        </figure>
+
+        <h4 id="learn-2a">Learn</h4>
+        <p>We learned that advanced embeddings such as ESM capture hidden evolutionary and structural signals that
+            simpler encodings miss, leading to stronger performance. This highlights that in biological prediction
+            tasks, the choice of embedding method can substantially influence model outcomes. At the same time, the
+            experiment validated that our dataset (from Cycle 1) supports meaningful learning, providing a solid
+            baseline for future model iterations.</p>
+
+        <h3 id="sub-cycle-2b">Sub-Cycle 2B — Handling Class Imbalance (SMOTE)</h3>
+
+        <h4 id="design-2b">Design</h4>
+        <p>In plastic-degradation research, a few plastics such as PET or PLA have been extensively studied, resulting
+            in many training samples, while most plastics remain rarely represented. This long-tail distribution caused
+            the classifier to overfit frequent plastics and underperform on rare ones. Our goal in this sub-cycle was to
+            reduce imbalance so that rare plastics could be predicted more fairly.</p>
+
+        <h4 id="build-2b">Build</h4>
+        <p>We applied SMOTE (Synthetic Minority Oversampling Technique) on the training set. SMOTE generates synthetic
+            samples by interpolating between existing minority-class samples in feature space. Conceptually, this is
+            like imagining plausible intermediate enzymes between rare sequences. Importantly, the validation and test
+            sets remained untouched to preserve a realistic distribution for evaluation.</p>
+
+        <h4 id="test-2b">Test</h4>
+        <p>After applying SMOTE, rare plastics achieved clear improvements in F1 scores, while frequent plastics
+            remained stable. Confusion matrices showed fewer cases of rare labels being systematically misclassified as
+            common ones.</p>
+
+        <h4 id="learn-2b">Learn</h4>
+        <p>We confirmed that class imbalance strongly reduces rare-class performance, and that SMOTE can partially
+            compensate for this effect. However, treating plastics solely as labels still limits biological
+            interpretability, especially given the large number of small classes.</p>
+
+        <h3 id="conclusion-2">Conclusion</h3>
+        <p>In Cycle 2, we completed the first end-to-end predictive baseline for enzyme–plastic interactions. By testing
+            different embeddings under a fixed ML framework and applying SMOTE to handle imbalance, we achieved solid
+            predictive performance and confirmed the feasibility of our dataset for modeling. This established a
+            practical baseline benchmark. Building on this success, our next step is to move beyond the "labels-only"
+            framing and design models that incorporate biochemical principles and interpretable structures, enabling
+            deeper biological insight.</p>
+
+        <h2 id="cycle-3">Cycle 3 — Dual-Tower with Plastic Features</h2>
+
+        <h3 id="goal-3">Goal</h3>
+        <p>In earlier attempts, plastics were treated only as labels, which caused imbalance and limited
+            interpretability. In reality, degradability arises from the interaction between enzyme properties and
+            plastic properties. The goal of this cycle is to design a model framework that can explicitly incorporate
+            plastic information, so predictions move beyond label-only learning and become more biochemically
+            grounded.</p>
+
+        <h3 id="sub-cycle-3a">Sub-Cycle 3A — Plastic Embedding Representation</h3>
+
+        <h4 id="design-3a">Design</h4>
+        <p>Molecular descriptors are widely used for chemical modeling tasks — they are numerical summaries of a
+            molecule's properties (e.g., charge, hydrophobicity, or atom counts). These usually perform well on small
+            molecules. However, most existing descriptors (e.g., RDKit features) were originally designed with small
+            molecules in mind. When applied directly to polymers, they show strong correlation with molecular size,
+            making dimensionality reduction maps cluster by chain length rather than true chemical similarity between
+            plastics. The central challenge became: how to design embeddings that reflect the intrinsic chemical
+            properties of plastics, instead of trivial size bias?</p>
+
+        <h4 id="build-3a">Build</h4>
+
+        <figure class="article-figure">
+            <img alt="Plastic polymer embedding methodology"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plasticpolymer.webp">
+        </figure>
+
+        <p>To address this, we introduced density normalization, dividing descriptors by the number of heavy atoms,
+            which reduced the dominance of molecular weight. Intuitively, this means turning descriptors into an
+            "average per atom" representation, so that embeddings focus on chemical composition rather than sheer size.
+            Additionally, we leveraged co-degradation relationships as a weak supervision signal: plastics that are
+            reported to degrade together were encouraged to form closer embeddings. This was implemented by pre-training
+            a plastic encoder with contrastive-style objectives, allowing embeddings to reflect both chemical logic and
+            biological relevance.</p>
+
+        <h4 id="test-3a">Test</h4>
+
+        <figure class="article-figure">
+            <img alt="PCA analysis of plastic polymer embeddings"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/pca.webp">
+        </figure>
+
+        <p>Dimensionality reduction with PCA and UMAP revealed that normalized embeddings produced more chemically
+            coherent clusters. Polyesters grouped closely, polyolefins formed a separate cluster, and importantly,
+            members of the PHA (polyhydroxyalkanoate) family began to cluster together in line with their shared
+            biochemical properties. Unlike raw RDKit descriptors, the embeddings no longer simply followed molecular
+            weight gradients.</p>
+
+        <h4 id="learn-3a">Learn</h4>
+        <p>We learned that polymer-specific adjustments are essential for meaningful representations. Density
+            normalization effectively reduced molecular-weight artifacts, while co-degradation pre-training aligned
+            embeddings with known biological behavior. Together, these strategies provided a chemically interpretable
+            and biologically relevant representation of plastics.</p>
+
+        <h3 id="sub-cycle-3b">Sub-Cycle 3B — Interactive Model Architecture</h3>
+
+        <h4 id="design-3b">Design</h4>
+        <p>In previous cycles, plastics were treated purely as labels, which meant the model learned only from enzyme
+            features. However, degradability is the result of an interaction between enzyme and plastic properties. This
+            raised a key design question: instead of predicting labels, can we build a framework where both enzymes and
+            plastics are explicitly represented, and their compatibility is learned through interaction?</p>
+
+        <h4 id="build-3b">Build</h4>
+        <p>Inspired by recommendation systems (e.g., user–item models), we constructed a dual-tower architecture. The
+            enzyme tower encodes proteins using backbones, while the plastic tower encodes polymers using the newly
+            developed embeddings (density-normalized + co-degradation pre-trained). An interaction head was then
+            implemented to combine the two towers, with different strategies tested:</p>
+        <ul>
+            <li>Dot product (measuring similarity directly)</li>
+            <li>Bilinear layer (capturing feature-specific interactions)</li>
+            <li>MLP fusion (nonlinear combination of features)</li>
+        </ul>
+        <p>This design allowed enzyme–plastic compatibility scores to be learned in a structured and interpretable
+            manner.</p>
+
+        <h4 id="test-3b">Test</h4>
+        <p>Evaluation showed that the dual-tower framework achieved more balanced performance across easy, medium, and
+            hard tiers, compared with the label-only baseline. This indicates stronger generalization: the model was not
+            only fitting frequent cases but also extending to more challenging, less-represented plastics.</p>
+
+        <h4 id="learn-3b">Learn</h4>
+        <p>We learned that enzyme–plastic interactions are best modeled as a two-sided problem, where both enzymes and
+            plastics contribute features. This interactive framework moved beyond simple label classification and laid
+            the foundation for biochemically interpretable predictions, bridging molecular representation with
+            functional outcomes.</p>
+
+        <h3 id="conclusion-3">Conclusion</h3>
+        <p>In this cycle, we moved beyond treating plastics as mere labels and introduced dedicated plastic embeddings.
+            With density-normalized descriptors and co-degradation signals, the embeddings captured chemical and
+            biological relevance more faithfully. Integrated into a dual-tower framework, enzymes and plastics were
+            encoded separately and combined through interaction heads, which improved interpretability and yielded more
+            balanced performance across difficulty tiers. However, the increased complexity of the architecture also
+            highlighted the limitations of current backbones, as overall metrics still showed room for improvement.</p>
+
+        <h2 id="cycle-4">Cycle 4 — Structure-Aware Backbones</h2>
+
+        <h3 id="goal-4">Goal</h3>
+        <p>In the previous cycle, we improved interpretability by introducing plastic features. However, the enzyme side
+            was still represented only by sequences, which inevitably lose critical information. Since enzyme activity
+            is fundamentally determined by its 3D structure—including folds, catalytic pockets, and binding sites—this
+            cycle shifts focus to building structure-aware backbones, aiming to capture spatial and geometric features
+            essential for plastic degradation.</p>
+
+        <h3 id="sub-cycle-4a">Sub-Cycle 4A — Structure Sources & Reliability</h3>
+
+        <h4 id="design-4a">Design</h4>
+        <p>In the previous cycle, we realized that relying on sequences alone leaves out critical information. Enzyme
+            activity is fundamentally tied to 3D structure, such as folding, catalytic pockets, and binding residues. To
+            incorporate structural knowledge into modeling, we first had to decide where these structures would come
+            from. Protein structures can be obtained either from experiments (e.g., X-ray, Cryo-EM) or from
+            computational prediction (e.g., AlphaFold). For plastic-degrading enzymes, which mostly belong to
+            well-studied hydrolase families, AlphaFold provides high-confidence predictions. Since its method is based
+            on residue–residue contact patterns, naturally aligned with our graph construction, we asked: Can
+            AlphaFold-predicted structures serve as a reliable default for introducing structural backbones into our
+            model?</p>
+
+        <h4 id="build-4a">Build</h4>
+        <p>We systematically retrieved AlphaFold models for enzymes in our dataset. Confidence scores (pLDDT) were
+            inspected, showing consistently high values for plastic-degrading families. Where available, experimental
+            PDBs were retained as gold standards, but the majority of entries were supplemented with AlphaFold
+            structures. All structures were processed into residue contact graphs, ensuring consistency regardless of
+            origin.</p>
+
+        <h4 id="test-4a">Test</h4>
+
+        <figure class="article-figure" style="text-align: center;">
+            <img alt="AlphaFold pLDDT confidence scores"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/plddt.webp" style="max-width: 70%; height: auto;">
+        </figure>
+        <blockquote>
+            <p><strong> pLDDT-colored predicted enzyme structure.</strong></p>
+            <p>
+                The predominance of deep blue regions (mean pLDDT = 97.7) indicates a highly confident
+                and accurate structural prediction.
+            </p>
+        </blockquote>
+
+        <p>Benchmark comparisons showed that models trained with AlphaFold-predicted structures performed on par with
+            those using experimental PDBs. This demonstrated that AlphaFold is reliable for our dataset. Moreover, the
+            graph construction pipeline worked seamlessly across both sources, producing consistent node/edge
+            features.</p>
+
+        <h4 id="learn-4a">Learn</h4>
+        <p>We confirmed that AlphaFold can serve as a robust default source of structures, freeing the project from the
+            bottleneck of limited experimental PDB coverage. This not only increased the dataset's completeness but also
+            ensured scalability, as any new enzyme sequence can directly be assigned a predicted structure. Thus,
+            structure-aware modeling becomes practical at scale, without being constrained by experimental
+            availability.</p>
+
+        <h3 id="sub-cycle-4b">Sub-Cycle 4B — Graph Representation of Enzyme Structures</h3>
+
+        <h4 id="design-4b">Design</h4>
+        <p>To move beyond sequence-only inputs, we needed a way to represent enzyme 3D structures in a machine-readable
+            format. Proteins can be naturally modeled as graphs, where residues are nodes and contacts define edges.
+            This raised the central question: how can we construct residue-level contact graphs that preserve both
+            biochemical and spatial information?</p>
+
+        <h4 id="build-4b">Build</h4>
+        <p>Instead of discarding sequence embeddings, we reorganized them into a graph representation. Each residue's
+            initial embedding was obtained from ESM, preserving evolutionary and biochemical context. These embeddings
+            were then assigned to graph nodes, while edges encoded spatial proximity (e.g., Cα–Cα distances within 10Å).
+            In this way, the model could jointly leverage sequence-derived residue embeddings and their 3D spatial
+            relationships, making the enzyme backbone structure-aware.</p>
+
+        <figure class="article-figure" style="text-align: center;">
+            <img alt="Protein graph representation with ESM embeddings"
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/engineering/protein-graph-representation.webp"
+                 style="max-width: 90%; height: auto;">
+        </figure>
+
+        <h4 id="test-4b">Test</h4>
+        <p>Initial experiments showed that models with structural graphs achieved more balanced performance across
+            difficulty tiers compared to sequence-only baselines. Notably, enzymes with low sequence similarity but
+            similar folds were better recognized, suggesting that structural context improved generalization.</p>
+
+        <h4 id="learn-4b">Learn</h4>
+        <p>From an engineering synthetic biology perspective, this step confirmed that proteins can be represented not
+            just as linear sequences but as residue contact graphs, where biochemical properties are grounded in a
+            physical 3D scaffold. By embedding structural constraints into the model, we move closer to capturing the
+            true determinants of enzyme activity — pockets, binding sites, and catalytic environments — which sequences
+            alone cannot fully describe. This validates that structural embeddings add essential information missing
+            from pure sequence models, and provides a foundation for building interpretable, design-oriented predictive
+            frameworks in future cycles.</p>
+
+        <h3 id="sub-cycle-4c">Sub-Cycle 4C — GNN vs. GVP Backbones</h3>
+
+        <h4 id="design-4c">Design</h4>
+        <p>After confirming that residue contact graphs provide structural value, the next question was: is it enough to
+            only know which residues are in contact, or do we also need to encode their 3D orientation? Standard GNNs
+            (GCN, GraphSAGE, GAT) propagate scalar features across graph edges, but they cannot directly represent
+            vector information such as bond directions or spatial orientation. Geometric Vector Perceptrons (GVPs)
+            extend this idea by introducing both scalar and vector channels, enabling models to capture structural
+            geometry.</p>
+
+        <h4 id="build-4c">Build</h4>
+        <p>We implemented two enzyme backbones:</p>
+        <ul>
+            <li>GNN-based: residue graphs with scalar node features (AA identity, charge, hydrophobicity) and
+                distance-based edges.
+            </li>
+            <li>GVP-based: same residue graphs, but augmented with 3D vector channels (residue coordinates, orientation
+                vectors) to encode spatial geometry.
+            </li>
+        </ul>
+        <p>Both were trained within the dual-tower framework, ensuring a fair comparison.</p>
+
+        <h4 id="test-4c">Test</h4>
+        <p>Both GNN and GVP backbones outperformed sequence-only baselines, especially on medium/hard tiers. Among them,
+            GVP showed the most consistent improvements, yielding higher F1 and AUROC, and more stable predictions
+            across rare plastics.</p>
+
+        <h4 id="learn-4c">Learn</h4>
+        <p>We learned that while GNNs capture who contacts whom, GVPs go further by encoding how residues are oriented
+            in 3D. This geometric sensitivity not only improved accuracy but also enhanced interpretability, as
+            important catalytic residues were better highlighted. From an engineering perspective, this confirmed that
+            integrating geometric structure is essential for biochemically meaningful models.</p>
+
+        <h3 id="conclusion-4">Conclusion</h3>
+        <p>By integrating structure-aware backbones—retrieving reliable 3D structures (with AlphaFold as default),
+            representing them as residue contact graphs, and adopting geometry-aware GVP networks—our model achieved its
+            best F1 scores to date, with more stable performance across difficulty tiers. More importantly, it gained
+            biochemical interpretability, as predictions naturally highlighted catalytic residues and structural motifs.
+            At this stage, our framework has matured into its most complete form: accurate, robust, and biologically
+            consistent. However, the project remains highly specialized, and the current technical complexity still sets
+            a high barrier for many intended users in the biological community.</p>
+
+        <h2 id="cycle-5">Cycle 5 — User-Friendly Web Application</h2>
+
+        <h3 id="goal-5">Goal</h3>
+        <p>To evolve the specialized research framework into a more accessible and user-friendly "one-stop" online
+            platform, making it easier for researchers across diverse backgrounds — including those primarily engaged in
+            wet-lab or experimental work — to explore enzyme–plastic interactions. The goal was to create an intuitive
+            web application that integrates both model prediction and database exploration, offering a seamless,
+            installation-free experience for users worldwide.</p>
+
+        <h3 id="design-5">Design</h3>
+        <p>The platform's design process was grounded in extensive feedback from its target users — including
+            researchers in microbiology, environmental science, synthetic biology, and chemistry. These discussions
+            revealed a shared need for an integrated "one-stop" online environment that combines predictive modeling
+            with a comprehensive enzyme–plastic database. The guiding design principle was to achieve usability and
+            efficiency without compromising scientific rigor. The platform had to be approachable for users unfamiliar
+            with computational tools, yet powerful enough to meet the standards of professional research.</p>
+
+        <h3 id="build-5">Build</h3>
+        <figure class="article-figure" style="text-align: center;">
+            <img
+                 loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/webapp/model-selector-function.avif"
+                 style="max-width: 100%; height: auto;">
+        </figure>
+        <p>The platform is deployed on AWS cloud servers to ensure global accessibility and stable performance. It
+            consists of two primary components: the Plaszyme model platform and the PlaszymeDB online database.</p>
+
+        <p>The model platform integrates two complementary predictors: PlaszymeAlpha, a sequence-based model for rapid
+            predictions directly from FASTA files, and PlaszymeX, a structure-informed model designed for higher
+            interpretability.</p>
+
+        <p>To simplify user interaction, we built an automated backend workflow that integrates colabfold_batch for 3D
+            structure prediction. This design follows the "less is more" principle — users only need to provide
+            sequences once, and the system automatically handles structure generation and model inference. It also
+            supports direct prediction from user-uploaded PDB files when available.</p>
+
+        <p>To meet the needs of large-scale research scenarios, the platform also includes a metagenomic analysis
+            module, which employs a custom HMM pipeline to discover potential enzyme candidates from environmental
+            datasets for prediction. All model outputs follow a standardized format, providing degradation
+            probabilities, confidence scores, an interactive 3D molecular viewer (Mol* API), and CSV export options for
+            further analysis.</p>
+
+        <p>The PlaszymeDB online database complements the model platform by serving as a centralized, searchable
+            knowledge base. It offers a high-performance search algorithm based on traversal logic, interactive data
+            visualizations, and a locally developed BLAST alignment tool tailored to our curated database. Phylogenetic
+            relationships are dynamically displayed via an embedded iTOL tree, while detailed enzyme pages integrate
+            multiple interactive modules through iframes — including a 3D structure viewer (Mol* API), a chemical
+            formula renderer (Ketcher API), full amino acid sequences, literature citations, and EC annotations derived
+            from both curated references and our DeepEC-based functional predictions.</p>
+
+        <h3 id="test-5">Test</h3>
+        <p>We conducted a two-stage validation process to ensure both technical correctness and user usability.</p>
+
+        <p><strong>(1) Internal functional testing:</strong> Using established benchmark datasets, we performed
+            end-to-end predictions directly on the live platform. The system successfully reproduced expected outcomes,
+            verifying the model's accuracy and confirming that the backend workflow operated as intended. Additional
+            simulations were conducted for the metagenomic input pipeline, confirming that large-scale sequence inputs
+            were correctly processed from structure prediction to output generation.</p>
+
+        <p><strong>(2) User acceptance testing:</strong> We invited several researchers from our earlier user
+            interviews—representing the microbiology, environmental, synthetic biology, and chemistry communities—to
+            test the public platforms (http://plaszyme.org/plaszyme and http://plaszyme.org/plaszymedb). They completed
+            full prediction and database exploration workflows without prior instruction, providing direct usability
+            feedback. Their responses consistently highlighted that the system was intuitive, efficient, and practical
+            for real laboratory workflows, validating that our design successfully met its accessibility goals.</p>
+
+        <h3 id="learn-5">Learn</h3>
+        <p>Throughout this process, we realized that developing an effective scientific tool must begin with
+            understanding the real-world research contexts it is meant to serve—such as the metagenomic analysis of
+            environmental samples and microbial communities.</p>
+
+        <p>Continuous dialogue with microbiology, environmental, chemistry, and synthetic biology researchers helped us
+            recognize that accessibility and professionalism must coexist. Their feedback shaped our guiding principle:
+            a platform should be easy to use without oversimplifying the science behind it.</p>
+
+        <p>The consistently positive responses to the platform's clarity and smooth workflow validated this approach.
+            Ultimately, we learned that the real value of computational frameworks lies not only in prediction accuracy,
+            but in bridging advanced algorithms with practical usability, enabling researchers to focus on discovery
+            rather than deployment. This experience also revealed the platform's potential to expand toward more
+            specialized applications in the future.</p>
     </article>
-  </div>
+</div>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -417,7 +789,7 @@
     </button>
   </div>
 
-  <script>
+    <script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     
@@ -440,239 +812,12 @@
     
     function handleScroll() {
       if (!ticking) {
-        requestAnimationFrame(() => {
-          updateScrollButtonVisibility();
-          updateSidebarExpansion();
-        });
+        requestAnimationFrame(updateScrollButtonVisibility);
         ticking = true;
       }
     }
     
     window.addEventListener('scroll', handleScroll);
 
-    // Auto expand/collapse sidebar based on scroll position - chapter-wide logic
-    function updateSidebarExpansion() {
-      const currentScroll = window.pageYOffset;
-      const mainSections = document.querySelectorAll('.article-content h2');
-      const subSections = document.querySelectorAll('.article-content h3');
-      
-      // Reset all sub-catalogs
-      const allSubCatalogs = document.querySelectorAll('.sub-catalog');
-      allSubCatalogs.forEach(subCatalog => {
-        subCatalog.classList.remove('expanded');
-      });
-      
-      // Check each main section (Cycle) for chapter-wide expansion
-      mainSections.forEach((section, index) => {
-        const sectionId = section.getAttribute('id');
-        const sectionStart = section.offsetTop;
-        
-        // Get the end position of this chapter (start of next main section or page end)
-        const nextMainSection = index < mainSections.length - 1 ? mainSections[index + 1] : null;
-        const sectionEnd = nextMainSection ? nextMainSection.offsetTop : document.body.scrollHeight;
-        
-        // Check if current scroll position is within this chapter's range
-        const tolerance = 100; // Add some tolerance for better UX
-        const isInChapter = currentScroll >= sectionStart - tolerance && currentScroll < sectionEnd - tolerance;
-        
-        if (isInChapter && sectionId) {
-          // Find corresponding menu item and expand its sub-catalog
-          const menuLink = document.querySelector(`.catalog-list > li > a[href="#${sectionId}"]`);
-          if (menuLink) {
-            const parentLi = menuLink.closest('li');
-            if (parentLi) {
-              const subCatalog = parentLi.querySelector('.sub-catalog');
-              if (subCatalog) {
-                subCatalog.classList.add('expanded');
-                
-                // Also expand nested sub-catalogs for sub-sections within this chapter
-                subSections.forEach(subSection => {
-                  const subSectionStart = subSection.offsetTop;
-                  const subSectionId = subSection.getAttribute('id');
-                  
-                  // Check if this sub-section belongs to the current main section
-                  if (subSectionStart >= sectionStart && subSectionStart < sectionEnd) {
-                    // Find next sub-section to determine range
-                    const nextSubSection = Array.from(subSections).find(s => 
-                      s.offsetTop > subSectionStart && s.offsetTop >= sectionStart && s.offsetTop < sectionEnd
-                    );
-                    const subSectionEnd = nextSubSection ? nextSubSection.offsetTop : sectionEnd;
-                    
-                    // Check if current scroll is within this sub-section range
-                    const isInSubSection = currentScroll >= subSectionStart - tolerance && currentScroll < subSectionEnd - tolerance;
-                    
-                    if (isInSubSection && subSectionId) {
-                      // Find corresponding sub-menu item and expand its nested sub-catalog
-                      const subMenuLink = document.querySelector(`.sub-catalog a[href="#${subSectionId}"]`);
-                      if (subMenuLink) {
-                        const subParentLi = subMenuLink.closest('li');
-                        if (subParentLi) {
-                          const nestedSubCatalog = subParentLi.querySelector('.sub-catalog');
-                          if (nestedSubCatalog) {
-                            nestedSubCatalog.classList.add('expanded');
-                          }
-                        }
-                      }
-                    }
-                  }
-                });
-              }
-            }
-          }
-        }
-      });
-    }
-
-    // Enhanced catalog functionality with sub-menu expansion
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Enhanced highlight active section with improved detection for subsections
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 100;
-        let currentActiveSection = null;
-        let currentMainSection = null;
-        
-        // Get all headings and sort by position
-        const headingsArray = Array.from(headings);
-        let candidates = [];
-        
-        // Find all possible active sections with improved logic for short paragraphs
-        headings.forEach(function(heading, index) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const id = section.getAttribute('id');
-          
-          if (!id) return; // Skip headings without IDs
-          
-          // Calculate section bottom based on next heading
-          let sectionBottom;
-          if (index < headingsArray.length - 1) {
-            sectionBottom = headingsArray[index + 1].offsetTop;
-          } else {
-            sectionBottom = document.body.scrollHeight;
-          }
-          
-          // For short sections, ensure minimum detection range
-          const sectionHeight = sectionBottom - sectionTop;
-          const minRange = 300; // Minimum detection range for short sections
-          let effectiveBottom = sectionBottom;
-          
-          if (sectionHeight < minRange) {
-            effectiveBottom = sectionTop + minRange;
-            // But don't overlap with next section too much
-            if (index < headingsArray.length - 1) {
-              const nextSectionTop = headingsArray[index + 1].offsetTop;
-              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
-            }
-          }
-          
-          // Enhanced detection range with better tolerance
-          const topOffset = -100; // Start detecting 100px before section
-          const bottomOffset = -80; // Continue detecting 80px after section starts
-          
-          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
-            candidates.push({
-              id: id,
-              distance: Math.abs(scrollPos - sectionTop),
-              top: sectionTop,
-              element: heading,
-              isSubsection: heading.tagName.toLowerCase() !== 'h2'
-            });
-          }
-        });
-        
-        // Choose the best candidate based on priority and distance
-        if (candidates.length > 0) {
-          // Sort by distance, prioritizing closer sections
-          candidates.sort((a, b) => {
-            // Prefer subsections over main sections when close
-            if (Math.abs(a.distance - b.distance) < 50) {
-              if (a.isSubsection && !b.isSubsection) return -1;
-              if (!a.isSubsection && b.isSubsection) return 1;
-            }
-            return a.distance - b.distance;
-          });
-          
-          currentActiveSection = candidates[0].id;
-        }
-        
-        // Determine main section for expansion
-        const h2Headings = document.querySelectorAll('.article-content h2');
-        h2Headings.forEach(function(heading) {
-          const sectionTop = heading.offsetTop;
-          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
-          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
-          
-          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
-            currentMainSection = heading.id;
-          }
-        });
-        
-        // Remove all active states
-        catalogLinks.forEach(function(link) {
-          link.classList.remove('active');
-          const parentLi = link.closest('li');
-          if (parentLi) {
-            parentLi.classList.remove('active');
-          }
-        });
-        
-        // Set active state for current section (including sub-headings)
-        if (currentActiveSection) {
-          // Try to find exact match first
-          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
-          
-          // If no exact match, try to find a sub-heading that matches
-          if (!activeLink) {
-            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
-            subHeadings.forEach(function(subLink) {
-              const href = subLink.getAttribute('href');
-              if (href === '#' + currentActiveSection) {
-                activeLink = subLink;
-              }
-            });
-          }
-          
-          if (activeLink) {
-            activeLink.classList.add('active');
-          }
-        }
-        
-        // Keep main section expanded if we're anywhere within it
-        if (currentMainSection) {
-          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
-          if (mainSectionLink) {
-            const parentLi = mainSectionLink.closest('li');
-            if (parentLi) {
-              parentLi.classList.add('active');
-            }
-          }
-        }
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-      
-      // Initialize sidebar expansion on page load
-      setTimeout(() => {
-        updateSidebarExpansion();
-      }, 100);
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

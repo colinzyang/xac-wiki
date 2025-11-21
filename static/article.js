@@ -30,7 +30,7 @@ function initScrollToTop() {
 
 function initCatalogGeneration() {
   const catalogList = document.querySelector('.catalog-list');
-  const headings = document.querySelectorAll('.article-content h2, .article-content h3');
+  const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6');
   
   if (!catalogList || headings.length === 0) return;
   
@@ -48,10 +48,19 @@ function initCatalogGeneration() {
     a.href = '#' + heading.id;
     a.textContent = heading.textContent;
     
-    // Add class for sub-headings
+    // Add class for sub-headings with different indentation levels
     if (heading.tagName === 'H3') {
       a.className = 'sub-heading';
       li.style.paddingLeft = '16px';
+    } else if (heading.tagName === 'H4') {
+      a.className = 'sub-heading-2';
+      li.style.paddingLeft = '32px';
+    } else if (heading.tagName === 'H5') {
+      a.className = 'sub-heading-3';
+      li.style.paddingLeft = '48px';
+    } else if (heading.tagName === 'H6') {
+      a.className = 'sub-heading-4';
+      li.style.paddingLeft = '64px';
     }
     
     li.appendChild(a);
@@ -69,7 +78,7 @@ function initSmoothScrolling() {
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
-        const offsetTop = targetElement.offsetTop - 120; // Account for fixed navbar
+        const offsetTop = targetElement.offsetTop + 240; // Account for fixed navbar
         window.scrollTo({ 
           top: offsetTop, 
           behavior: 'smooth' 
@@ -80,13 +89,13 @@ function initSmoothScrolling() {
 }
 
 function initActiveSectionHighlighting() {
-  const headings = document.querySelectorAll('.article-content h2, .article-content h3');
+  const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6');
   const catalogLinks = document.querySelectorAll('.catalog-list a');
   
   if (headings.length === 0 || catalogLinks.length === 0) return;
   
   function updateActiveSection() {
-    const scrollPos = window.scrollY + 150;
+    const scrollPos = window.scrollY - 90;
     let activeHeading = null;
     
     // Find the current active heading

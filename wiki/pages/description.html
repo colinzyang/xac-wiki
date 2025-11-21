@@ -3,9 +3,139 @@
 {% block title %}Project Description{% endblock %}
 
 {% block page_content %}
+  <style>
+    .description-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/desc-background2.avif');
+      background-size: cover;
+      background-position: center 35%;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .description-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for description header */
+    body.dark-mode .description-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .description-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .description-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .description-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .description-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .description-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .description-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
   
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header description-header">
     <div class="container">
       <h1>Project Description</h1>
       <p>Innovative biotechnology solution for plastic waste degradation through AI-enhanced enzyme systems</p>
@@ -13,106 +143,308 @@
   </header>
 
   <!-- Article Container -->
-  <div class="article-container">
+<div class="article-container">
     <!-- Sidebar -->
     <div class="article-sidebar">
-      <nav class="catalog">
-        <h4 id="contents">Contents</h4>
-        <ul class="catalog-list">
-          <li><a href="#problem-statement">1. Problem Statement</a></li>
-          <li><a href="#our-solution">2. Our Solution</a></li>
-          <li><a href="#innovation">3. Innovation</a>
-            <ul class="sub-catalog">
-              <li><a href="#ai-enzyme-engineering" class="sub-heading">3.1 AI-Driven Enzyme Engineering</a></li>
-              <li><a href="#multi-enzyme-system" class="sub-heading">3.2 Multi-Enzyme Synergistic System</a></li>
-              <li><a href="#intelligent-monitoring" class="sub-heading">3.3 Intelligent Monitoring System</a></li>
+        <nav class="catalog">
+            <h4 id="contents">Contents</h4>
+            <ul class="catalog-list">
+                <li><a href="#modeling-overview">Modeling Overview</a></li>
+                <li><a href="#kinetic-models">Kinetic Models</a></li>
+                <li><a href="#machine-learning">Machine Learning Models</a></li>
+                <li><a href="#systems-biology">Systems Biology Models</a></li>
+                <li><a href="#optimization-models">Optimization Models</a></li>
+                <li><a href="#model-validation">Model Validation</a></li>
             </ul>
-          </li>
-          <li><a href="#methodology">4. Methodology</a>
-            <ul class="sub-catalog">
-              <li><a href="#computational-modeling" class="sub-heading">4.1 Computational Modeling and Simulation</a></li>
-              <li><a href="#molecular-biology" class="sub-heading">4.2 Molecular Biology Experiments</a></li>
-              <li><a href="#system-integration" class="sub-heading">4.3 System Integration and Testing</a></li>
-            </ul>
-          </li>
-          <li><a href="#expected-impact">5. Expected Impact</a>
-            <ul class="sub-catalog">
-              <li><a href="#environmental-benefits" class="sub-heading">5.1 Environmental Benefits</a></li>
-              <li><a href="#economic-benefits" class="sub-heading">5.2 Economic Benefits</a></li>
-              <li><a href="#social-benefits" class="sub-heading">5.3 Social Benefits</a></li>
-            </ul>
-          </li>
-          <li><a href="#sustainability">6. Sustainability</a></li>
-        </ul>
-      </nav>
+        </nav>
     </div>
-    
+
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="problem-statement">1. Problem Statement</h2>
-      <p>The global plastic pollution crisis has become one of the most severe environmental challenges facing our world today. Over 8 million tons of plastic waste enter the oceans annually, causing irreversible damage to marine ecosystems. Traditional plastic treatment methods, such as incineration and landfilling, are not only inefficient but also generate harmful byproducts.</p>
-      
-      <p>Existing plastic recycling technologies have numerous limitations: low recycling rates, high costs, enormous energy consumption, and inability to effectively process mixed plastic waste. These challenges urgently demand a revolutionary solution to fundamentally transform how we handle plastic waste.</p>
+        <h2 id="background">Background</h2>
+            <figure>
+                <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/plastic-bird.webp">
+                    <img alt="Plastic waste is damaging ecosystems around the world"
+                         src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/plastic-bird.webp"/>
+                </a>
+            </figure>
+            <blockquote>
+                Plastic waste is damaging ecosystems around the world.
+                <br/>Credit: Mark Rightmire / MediaNews Group / Orange County Register / Getty.
+            </blockquote>
+            <p>Plastics are among the most emblematic materials of modern civilization—lightweight, durable, and
+                versatile in application.</p>
+            <p>However, their persistence has created a global environmental challenge: traditional plastics can remain
+                in nature for centuries with little to no degradation.</p>
+            <p>In recent years, <strong>enzymatic degradation</strong> has emerged as a sustainable and promising
+                approach to address this issue, becoming an active research focus across microbiology, chemistry, and
+                synthetic biology.</p>
+            <p>Surprisingly, although plastics are synthetic materials created by humans less than a century ago—far too
+                recent for evolution to have produced enzymes specifically adapted to them—studies have revealed that
+                microorganisms capable of degrading plastics have already been found in soil, marine, compost, and
+                landfill environments (<em>Urbanek et al., 2020; Danso et al., 2019</em>).</p>
+            <p>This phenomenon is a result of<strong> functional convergence.</strong></p>
+            <p>Most known plastic-degrading enzymes originate from natural<strong> hydrolase families</strong> such as
+                cutinases, lipases, and carboxylesterases, whose native substrates—like cutin or natural
+                polyesters—share <strong>structural similarities</strong> with the chemical bonds found in synthetic
+                plastics (<em>Wei &amp; Zimmermann, 2017</em>).</p>
+            <p>Through long-term environmental exposure and subtle mutations, these enzymes gradually expanded their
+                substrate spectrum, accidentally acquiring hydrolytic activity toward synthetic polymers (<em>Austin et
+                    al., 2018; Kawai et al., 2020</em>).</p>
+            <p>However, this evolutionary process is <strong>stochastic </strong>and<strong> fragmented</strong>, with
+                degradation activities distributed across multiple enzyme families and lacking unified sequence patterns
+                (<em>Lu et al., 2022</em>).</p>
+            <p>As a result, traditional sequence alignment and homology-based search methods often fail to identify such
+                enzymes, implying that a vast number of potentially efficient plastic-degrading enzymes remain hidden in
+                nature and metagenomic datasets.</p>
+            <h2 id="inspiration">Inspiration</h2>
+            <figure>
+                <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/alphafold.webp">
+                    <img alt="Nature cover featuring AlphaFold: Protein power (Volume 596, Issue 7873, 26 August 2021)"
+                         src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/alphafold.webp"/>
+                </a>
+            </figure>
+            <blockquote>
+                <strong>Protein power.</strong> Cover of <em>Nature</em>, Volume 596, Issue 7873 (26 August 2021).
+                The issue highlights the AlphaFold breakthrough, marking a major advance in accurate protein structure
+                prediction.
+                <br/>Credit: © <em>Nature</em> (2021), Cover image by DeepMind.
+            </blockquote>
+            <p>In recent years, artificial intelligence has profoundly <strong>transformed</strong> biology — from
+                decoding genomes to predicting protein structures through <strong>AlphaFold </strong>(<em>Jumper et al.,
+                    2021</em>).</p>
+            <p>Yet, the next frontier of <strong>AI for Science (AI4Sci)</strong> raises a deeper question: Can AI go
+                beyond shape to predict what proteins actually do — how they function, and how they interact with their
+                substrates (<em>Sanchez-Lengeling et al., 2023</em>)？</p>
+            <p><strong>Plastic-degrading enzymes</strong> provide an ideal testing ground for this question (<em>Lu et
+                al., 2022</em>; <em>Tournier et al., 2020</em>). Their catalytic functions are not the result of
+                directed evolution, but rather adaptive innovations arising by chance — subtle functional shifts that
+                traditional bioinformatics often fails to capture.</p>
+            <p>If AI can learn the relationship between enzyme sequence, structure, and substrate specificity, it could
+                not only help us understand existing enzymes, but also <strong>design new, more efficient
+                    catalysts</strong>, accelerating both enzyme discovery and the development of sustainable
+                biotechnologies (<em>Hie et al., 2022</em>; <em>Yang et al., 2024</em>).</p>
+            <h2 id="our-goal">Our Goal</h2>
+            <p>Our project begins with the question of <strong>how AI can learn to understand and predict enzyme
+                function</strong>, seeking to bring artificial intelligence closer to the <strong>core challenges of
+                life science</strong> — from <em>prediction</em> to <em>understanding</em>.</p>
+            <p>By harnessing the analytical power of deep learning, we aim to explore whether AI can truly capture how
+                enzyme sequence and structure <strong>together</strong> determine catalytic activity.</p>
+            <p>Building on this foundation, our goal is to develop an <strong>interpretable </strong>intelligent
+                framework — one that allows AI not only to generate predictions but to <strong>r</strong>eveal the
+                <strong>biological logic</strong> behind them, making it a tool that is <strong>usable</strong>,
+                <strong>understandable</strong>, and<strong> trustworthy</strong> in scientific research.</p>
+            <p>In the long term, we aspire to move AI from assisting research to <strong>empowering</strong> science —
+                enabling researchers from diverse backgrounds to interact intuitively with intelligent models,</p>
+            <p>and turning artificial intelligence into a bridge between <strong>data </strong>and<strong>
+                understanding</strong>, a shared language for discovery in the life sciences.</p>
+            <h2 id="the-plaszyme-initiative">The Plaszyme Initiative</h2>
+            <p>Building upon this vision, the <strong>XJTLU AI China Team</strong> sought to integrate artificial
+                intelligence into biological research — combining <strong>deep learning</strong> with <strong>biochemical
+                    expertise</strong> to explore whether AI can truly understand <em>how enzymes degrade plastics</em>.
+            </p>
+            <p>To achieve this, we developed <strong>Plaszyme</strong>, an integrated framework that bridges data
+                organization, enzyme discovery, and predictive modeling.</p>
+            <p>At its foundation lies <strong>PlaszymeDB</strong>, a curated knowledge base of literature-reported
+                plastic-degrading enzymes, substrates, and activities — serving as a reference for model training and
+                biological validation.</p>
+            <p>Complementing the main framework, <strong>PlaszymeHMM</strong> provides a lightweight Hidden Markov Model
+                (HMM) tool for rapid metagenomic sequence discovery.</p>
+            <p>The core of the framework centers on two interconnected models
+                <strong>PlaszymeAlpha</strong> and <strong>PlaszymeX</strong> — representing successive steps in
+                AI-driven understanding of enzyme function:</p>
+            <ul>
+                <li><strong>PlaszymeAlpha</strong> is a <strong>sequence-based machine learning model</strong> built
+                    upon <strong>protein language models </strong>(ESM).
+                </li>
+            </ul>
+            <ul>
+                <li>It extracts evolutionary and biochemical signals directly from amino acid sequences, enabling fast,
+                    large-scale predictions of potential plastic-degrading activity.
+                </li>
+            </ul>
+            <ul>
+                <li>This model demonstrates how AI can learn the underlying logic of enzyme function directly from
+                    sequence data, making it ideal for metagenomic exploration and high-throughput enzyme screening.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>PlaszymeX</strong> builds upon the same ESM-based embeddings but extends them into
+                    a <strong>structure-aware </strong>dual-tower architecture.
+                </li>
+            </ul>
+            <ul>
+                <li>On the enzyme side, it integrates <strong>3D geometric encoders (GNN/GVP)</strong> to model
+                    residue-level spatial relationships; on the plastic side, it
+                    encodes <strong>physicochemical </strong>and<strong> topological polymer descriptors</strong>.
+                </li>
+            </ul>
+            <ul>
+                <li>Through a dedicated <strong>interaction layer</strong> — combining attention and bilinear mappings —
+                    the model captures how enzyme structure and substrate chemistry jointly determine catalytic
+                    specificity.
+                </li>
+            </ul>
+            <ul>
+                <li>This design not only refines prediction accuracy but also enhances <strong>mechanistic
+                    interpretability</strong>, allowing visualization of active sites and identification of key
+                    structure–function features.
+                </li>
+            </ul>
+            <p>To ensure accessibility beyond computational domains, we launched the <strong>Plaszyme Web
+                Platform</strong>, a cloud-based system automating the full workflow — from sequence upload to structure
+                prediction (via <strong>ColabFold</strong>) and interactive visualization (<strong>Mol</strong>* API).
+            </p>
+            <p>Seamlessly linked to <strong>PlaszymeDB</strong>, it allows researchers to perform predictions and cross
+                reference experimental data within a single, user-friendly interface.</p>
+            <p>Through close collaboration with experts in <strong>microbiology, environmental science </strong>and
+                <strong>synthetic biology</strong>, we continuously refine the <strong>Plaszyme</strong> data framework
+                and user experience to ensure its <strong>reliability</strong>, <strong>interpretability</strong>,
+                <strong>and practicality</strong> in real scientific research.</p>
+            <h2 id="future-outlook">Future Outlook</h2>
+            <p>In the next phase, we aim to expand Plaszyme’s role in<strong> predicting </strong>and<strong>
+                interpreting </strong>plastic degradation, transitioning from enzyme discovery to deciphering the
+                molecular logic of polymer breakdown.</p>
+            <p>This mechanistic understanding will guide the <strong>rational design of sustainable
+                biocatalysts</strong> and inspire new strategies to address persistent environmental challenges.</p>
+            <p>At the same time, Plaszyme’s modular and <strong>extensible </strong>architecture provides a foundation
+                for broader applications — integrating new biological tasks such as enzyme classification, activity
+                modeling, and structure–function analysis.</p>
+            <p>Through iterative optimization and multi-task learning, Plaszyme could gradually evolve into a <strong>shared</strong>, <strong>generalizable </strong>framework
+                for understanding protein function.</p>
+            <p>Beyond enzyme discovery, Plaszyme also aligns with the principles of<strong> synthetic biology</strong> turning
+                understanding into <strong>design</strong>.</p>
+            <p>By linking AI-driven insights with biological engineering, it paves the way for <strong>rational design,
+                evolution </strong>and<strong> optimization</strong> of new enzymes and metabolic pathways, accelerating
+                the development of <strong>sustainable </strong>and<strong> programmable </strong>biotechnologies.</p>
+            <p>Looking ahead, we envision <strong>Plaszyme</strong> as part of a broader transformation —
+                where artificial intelligence and synthetic biology converge to create a new paradigm of interpretable,
+                designable, and sustainable <strong>life science</strong>.</p>
+            <p>By maintaining openness, scalability, and strong biological foundations, we aim to empower
+                interdisciplinary researchers to explore life’s mechanisms with <strong>greater precision, deeper
+                    understanding, and lower barriers</strong>.</p>
+            <p>Ultimately, Plaszyme is more than a model —<strong> </strong>it is a<strong> vision</strong>: an
+                intelligent foundation for the next era of <strong>AI-driven synthetic biology </strong>and<strong>
+                    sustainable biotechnology</strong>.</p>
+            <h2 id="reference">Reference</h2>
+    <ul>
+        <li>Austin, H. P., Allen, M. D., Donohoe, B. S., Rorrer, N. A., Kearns, F. L., Silveira, R. L., …
+            Beckham, G. T. (2018).
+            <em>Characterization and engineering of a plastic-degrading aromatic polyesterase.</em>
+            <em>Proceedings of the National Academy of Sciences, 115</em>(19), E4350–E4357.
+            <a href="https://doi.org/10.1073/pnas.1718804115">https://doi.org/10.1073/pnas.1718804115</a>
+        </li>
+    </ul>
 
-      <h2 id="our-solution">2. Our Solution</h2>
-      <p>XJTLU iGEM Team 2025 proposes an innovative biotechnology solution that achieves efficient plastic waste degradation through the development of AI-enhanced enzyme systems. Our approach combines cutting-edge synthetic biology technologies with artificial intelligence algorithms to create engineered microorganisms capable of specifically degrading particular types of plastics.</p>
-      
-      <p>Our core strategies include:</p>
-      <ul>
-        <li>Utilizing machine learning algorithms to optimize enzyme design and activity</li>
-        <li>Developing enzyme systems specifically targeting common plastics such as PET, PE, and PP</li>
-        <li>Constructing controllable and monitorable bioreactor systems</li>
-        <li>Achieving resource utilization of plastic degradation products</li>
-      </ul>
+    <ul>
+        <li>Danso, D., Chow, J., &amp; Streit, W. R. (2019).
+            <em>Plastics: Microbial degradation, environmental and biotechnological perspectives.</em>
+            <em>Applied and Environmental Microbiology, 85</em>(19), e01970–18.
+            <a href="https://doi.org/10.1128/aem.01095-19">https://doi.org/10.1128/aem.01095-19</a>
+        </li>
+    </ul>
 
-      <h2 id="innovation">3. Innovation</h2>
-      <p>Our project achieves breakthrough innovations in multiple aspects:</p>
-      
-      <h3 id="ai-enzyme-engineering">3.1 AI-Driven Enzyme Engineering</h3>
-      <p>By analyzing the relationship between protein structure and function through deep learning algorithms, we can design plastic degradation enzymes with higher activity and stronger stability. This approach significantly reduces enzyme optimization time and improves design precision.</p>
-      
-      <h3 id="multi-enzyme-system">3.2 Multi-Enzyme Synergistic System</h3>
-      <p>We have developed a multi-enzyme synergistic degradation system capable of simultaneously processing multiple types of plastics. Through carefully designed metabolic pathways, different enzymes can work synergistically to maximize degradation efficiency.</p>
-      
-      <h3 id="intelligent-monitoring">3.3 Intelligent Monitoring System</h3>
-      <p>Integrated sensors and data analysis systems can monitor the degradation process in real-time, automatically adjust reaction conditions, and ensure optimal degradation effects.</p>
+    <ul>
+        <li>Han, X., Liu, W., Huang, J. W., Ma, J., Zheng, Y., Ko, T. P., … Guo, R. T. (2017).
+            <em>Structural insight into catalytic mechanism of PET hydrolase.</em>
+            <em>Nature Communications, 8</em>, 2106.
+            <a href="https://doi.org/10.1038/s41467-017-02255-z">https://doi.org/10.1038/s41467-017-02255-z</a>
+        </li>
+    </ul>
 
-      <h2 id="methodology">4. Methodology</h2>
-      <p>Our research adopts a multidisciplinary and interdisciplinary approach:</p>
-      
-      <h3 id="computational-modeling">4.1 Computational Modeling and Simulation</h3>
-      <p>Using molecular dynamics simulations and quantum chemical calculations to predict interactions between enzymes and plastic molecules, guiding enzyme design and optimization.</p>
-      
-      <h3 id="molecular-biology">4.2 Molecular Biology Experiments</h3>
-      <p>Constructing expression vectors through genetic engineering techniques, expressing designed enzymes in E. coli, and conducting activity testing and optimization.</p>
-      
-      <h3 id="system-integration">4.3 System Integration and Testing</h3>
-      <p>Building complete bioreactor systems, testing plastic degradation effects under real conditions, and optimizing process parameters.</p>
+    <ul>
+        <li>Hie, B., Zhong, E. D., Berger, B., &amp; Bryson, B. D. (2022).
+            <em>Learning the language of viral evolution and escape.</em>
+            <em>Science, 377</em>(6604), 480–486.
+            <a href="https://doi.org/10.1126/science.abd7331">https://doi.org/10.1126/science.abd7331</a>
+        </li>
+    </ul>
 
-      <h2 id="expected-impact">5. Expected Impact</h2>
-      <p>Our project is expected to generate positive impacts at multiple levels:</p>
-      
-      <h3 id="environmental-benefits">5.1 Environmental Benefits</h3>
-      <p>Significantly reduce plastic pollution, particularly marine plastic waste, protecting ecological environments and biodiversity.</p>
-      
-      <h3 id="economic-benefits">5.2 Economic Benefits</h3>
-      <p>Create new green industries, provide employment opportunities, while reducing the costs of traditional plastic treatment.</p>
-      
-      <h3 id="social-benefits">5.3 Social Benefits</h3>
-      <p>Enhance public environmental awareness and promote the widespread adoption of sustainable development concepts.</p>
+    <ul>
+        <li>Joo, S., Cho, I. J., Seo, H., Son, H. F., Sagong, H. Y., Shin, T. J., … Kim, K. J. (2018).
+            <em>Structural insight into molecular mechanism of poly(ethylene terephthalate) degradation.</em>
+            <em>Nature Communications, 9</em>, 382.
+            <a href="https://doi.org/10.1038/s41467-018-02881-1">https://doi.org/10.1038/s41467-018-02881-1</a>
+        </li>
+    </ul>
 
-      <h2 id="sustainability">6. Sustainability</h2>
-      <p>Our project fully aligns with the United Nations Sustainable Development Goals, particularly:</p>
-      <ul>
-        <li><strong>Goal 6</strong>: Clean Water and Sanitation - Reducing plastic pollution in water bodies</li>
-        <li><strong>Goal 12</strong>: Responsible Consumption and Production - Promoting plastic recycling</li>
-        <li><strong>Goal 14</strong>: Life Below Water - Protecting marine ecosystems</li>
-        <li><strong>Goal 15</strong>: Life on Land - Reducing terrestrial plastic pollution</li>
-      </ul>
-      
-      <p>By addressing plastic pollution through biotechnology, we not only provide an environmentally friendly solution but also make significant contributions to global sustainable development.</p>
+    <ul>
+        <li>Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., … Hassabis, D. (2021).
+            <em>Highly accurate protein structure prediction with AlphaFold.</em>
+            <em>Nature, 596</em>(7873), 583–589.
+            <a href="https://doi.org/10.1038/s41586-021-03819-2">https://doi.org/10.1038/s41586-021-03819-2</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Kawai, F., Kawabata, T., &amp; Oda, M. (2020).
+            <em>Current knowledge on enzymatic PET degradation and its possible application to waste stream
+                management and other fields.</em>
+            <em>Applied Microbiology and Biotechnology, 104</em>, 493–504.
+            <a href="https://doi.org/10.1007/s00253-019-09717-y">https://doi.org/10.1007/s00253-019-09717-y</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Lu, H., Diaz, D. J., Czarnecki, N. J., Zhu, C., Kim, W., Shroff, R., … Alper, H. S. (2022).
+            <em>Machine learning-aided engineering of hydrolases for PET depolymerization.</em>
+            <em>Nature Communications, 13</em>, 3743.
+            <a href="https://doi.org/10.1038/s41586-022-04599-z">https://doi.org/10.1038/s41586-022-04599-z</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Sanchez-Lengeling, B., Wei, J. N., Lee, B. K., Gerkin, R. C., Aspuru-Guzik, A., &amp; Wiltschko, A.
+            B. (2023).
+            <em>A structure-based generative model of olfactory molecules.</em>
+            <em>Science, 379</em>(6639), 1103–1110.
+            <a href="https://doi.org/10.1126/science.ade4401">https://doi.org/10.1126/science.ade4401</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Tournier, V., Topham, C. M., Gilles, A., David, B., Folgoas, C., Moya-Leclair, E., … Marty, A.
+            (2020).
+            <em>An engineered PET depolymerase to break down and recycle plastic bottles.</em>
+            <em>Nature, 580</em>(7802), 216–219.
+            <a href="https://doi.org/10.1038/s41586-020-2149-4">https://doi.org/10.1038/s41586-020-2149-4</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Urbanek, A. K., Rymowicz, W., &amp; Mirończuk, A. M. (2020).
+            <em>Degradation of plastics and plastic-degrading bacteria in cold marine habitats.</em>
+            <em>Applied Microbiology and Biotechnology, 104</em>, 493–504.
+            <a href="https://doi.org/10.1007/s00253-018-9195-y">https://doi.org/10.1007/s00253-018-9195-y</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Wei, R., &amp; Zimmermann, W. (2017).
+            <em>Microbial enzymes for the recycling of recalcitrant petroleum-based plastics: How far are
+                we?</em>
+            <em>Microbial Biotechnology, 10</em>(6), 1308–1322.
+            <a href="https://doi.org/10.1111/1751-7915.12710">https://doi.org/10.1111/1751-7915.12710</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Yang, K. K., Wu, Z., Bedbrook, C. N., &amp; Arnold, F. H. (2024).
+            <em>Machine learning-guided directed evolution for protein engineering.</em>
+            <em>Nature Machine Intelligence, 6</em>, 13–28.
+            <a href="https://doi.org/10.1038/s41592-019-0496-6">https://doi.org/10.1038/s41592-019-0496-6</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>Yoshida, S., Hiraga, K., Takehana, T., Taniguchi, I., Yamaji, H., Maeda, Y., … Oda, K. (2016).
+            <em>A bacterium that degrades and assimilates poly(ethylene terephthalate).</em>
+            <em>Science, 351</em>(6278), 1196–1199.
+            <a href="https://doi.org/10.1126/science.aad6359">https://doi.org/10.1126/science.aad6359</a>
+        </li>
+    </ul>
     </article>
-  </div>
+</div>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -151,151 +483,5 @@
     
     window.addEventListener('scroll', handleScroll);
 
-    // Enhanced catalog functionality with sub-menu expansion
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Enhanced highlight active section with improved detection for subsections
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 100;
-        let currentActiveSection = null;
-        let currentMainSection = null;
-        
-        // Get all headings and sort by position
-        const headingsArray = Array.from(headings);
-        let candidates = [];
-        
-        // Find all possible active sections with improved logic for short paragraphs
-        headings.forEach(function(heading, index) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const id = section.getAttribute('id');
-          
-          if (!id) return; // Skip headings without IDs
-          
-          // Calculate section bottom based on next heading
-          let sectionBottom;
-          if (index < headingsArray.length - 1) {
-            sectionBottom = headingsArray[index + 1].offsetTop;
-          } else {
-            sectionBottom = document.body.scrollHeight;
-          }
-          
-          // For short sections, ensure minimum detection range
-          const sectionHeight = sectionBottom - sectionTop;
-          const minRange = 300; // Minimum detection range for short sections
-          let effectiveBottom = sectionBottom;
-          
-          if (sectionHeight < minRange) {
-            effectiveBottom = sectionTop + minRange;
-            // But don't overlap with next section too much
-            if (index < headingsArray.length - 1) {
-              const nextSectionTop = headingsArray[index + 1].offsetTop;
-              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
-            }
-          }
-          
-          // Enhanced detection range with better tolerance
-          const topOffset = -100; // Start detecting 100px before section
-          const bottomOffset = -80; // Continue detecting 80px after section starts
-          
-          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
-            candidates.push({
-              id: id,
-              distance: Math.abs(scrollPos - sectionTop),
-              top: sectionTop,
-              element: heading,
-              isSubsection: heading.tagName.toLowerCase() !== 'h2'
-            });
-          }
-        });
-        
-        // Choose the best candidate based on priority and distance
-        if (candidates.length > 0) {
-          // Sort by distance, prioritizing closer sections
-          candidates.sort((a, b) => {
-            // Prefer subsections over main sections when close
-            if (Math.abs(a.distance - b.distance) < 50) {
-              if (a.isSubsection && !b.isSubsection) return -1;
-              if (!a.isSubsection && b.isSubsection) return 1;
-            }
-            return a.distance - b.distance;
-          });
-          
-          currentActiveSection = candidates[0].id;
-        }
-        
-        // Determine main section for expansion
-        const h2Headings = document.querySelectorAll('.article-content h2');
-        h2Headings.forEach(function(heading) {
-          const sectionTop = heading.offsetTop;
-          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
-          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
-          
-          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
-            currentMainSection = heading.id;
-          }
-        });
-        
-        // Remove all active states
-        catalogLinks.forEach(function(link) {
-          link.classList.remove('active');
-          const parentLi = link.closest('li');
-          if (parentLi) {
-            parentLi.classList.remove('active');
-          }
-        });
-        
-        // Set active state for current section (including sub-headings)
-        if (currentActiveSection) {
-          // Try to find exact match first
-          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
-          
-          // If no exact match, try to find a sub-heading that matches
-          if (!activeLink) {
-            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
-            subHeadings.forEach(function(subLink) {
-              const href = subLink.getAttribute('href');
-              if (href === '#' + currentActiveSection) {
-                activeLink = subLink;
-              }
-            });
-          }
-          
-          if (activeLink) {
-            activeLink.classList.add('active');
-          }
-        }
-        
-        // Keep main section expanded if we're anywhere within it
-        if (currentMainSection) {
-          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
-          if (mainSectionLink) {
-            const parentLi = mainSectionLink.closest('li');
-            if (parentLi) {
-              parentLi.classList.add('active');
-            }
-          }
-        }
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

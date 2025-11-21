@@ -3,10 +3,142 @@
 {% block title %}Lab Notebook{% endblock %}
 
 {% block page_content %}
+  <style>
+    .notebook-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/notebook.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .notebook-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for notebook header */
+    body.dark-mode .notebook-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .notebook-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .notebook-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .notebook-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .notebook-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .notebook-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .notebook-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
+  
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header notebook-header">
     <div class="container">
-      <h1>实验记录</h1>
+      <h1>Lab Notebook</h1>
+      <p>Detailed documentation of our experimental journey</p>
     </div>
   </header>
 
@@ -15,372 +147,560 @@
     <!-- Sidebar -->
     <div class="article-sidebar">
       <nav class="catalog">
-        <h4 id="contents">目录</h4>
+        <h4 id="contents">Contents</h4>
         <ul class="catalog-list">
-          <li><a href="#research-timeline">研究时间线</a></li>
-          <li><a href="#cloning-experiments">克隆实验</a></li>
-          <li><a href="#expression-optimization">表达优化</a></li>
-          <li><a href="#purification-records">纯化记录</a></li>
-          <li><a href="#activity-testing">活性测试</a></li>
-          <li><a href="#troubleshooting">问题解决</a></li>
+          <li><a href="#literature-review">Literature Review Phase</a></li>
+          <li><a href="#sequence-screening">Sequence Screening</a></li>
+          <li><a href="#plasmid-construction">Plasmid Construction</a></li>
+          <li><a href="#transformation-verification">Transformation Verification</a></li>
+          <li><a href="#expression-optimization">Expression Optimization</a></li>
+          <li><a href="#activity-testing">Activity Testing</a></li>
+          <li><a href="#protein-analysis">Protein Analysis</a></li>
         </ul>
       </nav>
     </div>
     
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="research-timeline">研究时间线</h2>
-      <p>本项目从2024年9月开始，历时9个月完成了从基因设计到酶表征的全过程。以下是详细的实验进展记录。</p>
+      <h2 id="literature-review">Literature Review Phase</h2>
       
-      <h3>第一阶段：项目启动与设计（2024年9月-10月）</h3>
-      <p><strong>2024年9月15日</strong> - 项目正式启动</p>
+      <h3>6.9 ~ 6.20</h3>
+      <p>Twelve days dedicated to wet-lab related literature retrieval and reading.</p>
+      
+      <h2 id="sequence-screening">Sequence Screening</h2>
+      
+      <h3>6.21 ~ 6.23</h3>
+      <p>Screen and identify five target sequences for subsequent validation.</p>
+      
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>PET_01</th>
+              <th>PET_02</th>
+              <th>PET_03</th>
+              <th>PET_04</th>
+              <th>PLA_01</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Enzyme_name</strong></td>
+              <td>Poly(ethylene terephthalate) hydrolase</td>
+              <td>putative cutinase 1 precursor</td>
+              <td>Triacylglycerol lipase</td>
+              <td>Leaf-branch compost cutinase</td>
+              <td>PLA depolymerase</td>
+            </tr>
+            <tr>
+              <td><strong>Class</strong></td>
+              <td>Hydrolase</td>
+              <td>Hydrolase</td>
+              <td>Hydrolase</td>
+              <td>Hydrolase</td>
+              <td>Hydrolase</td>
+            </tr>
+            <tr>
+              <td><strong>Type of degradable plastic</strong></td>
+              <td>PET</td>
+              <td>PET</td>
+              <td>PET</td>
+              <td>PET</td>
+              <td>PLA</td>
+            </tr>
+            <tr>
+              <td><strong>Source type</strong></td>
+              <td>BCT</td>
+              <td>FUN</td>
+              <td>BCT</td>
+              <td>Unknown</td>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <td><strong>Source species</strong></td>
+              <td>Piscinibacter sakaiensis (Ideonella sakaiensis)</td>
+              <td>Fusarium mangiferae</td>
+              <td>Caldimonas brevitalea</td>
+              <td>Unknown prokaryotic organism</td>
+              <td>Paenibacillus amylolyticus</td>
+            </tr>
+            <tr>
+              <td><strong>UniProt/NCBI ID</strong></td>
+              <td>A0A0K8P6T7</td>
+              <td>A0A1L7TAX9</td>
+              <td>A0A0G3BI90</td>
+              <td>G9BY57</td>
+              <td>Q83VD0</td>
+            </tr>
+            <tr>
+              <td><strong>Original sequence length</strong></td>
+              <td>290</td>
+              <td>230</td>
+              <td>298</td>
+              <td>293</td>
+              <td>201</td>
+            </tr>
+            <tr>
+              <td><strong>signal peptide</strong></td>
+              <td>yes (1-27)</td>
+              <td>yes (1-16)</td>
+              <td>yes (1-29)</td>
+              <td>yes (1-34)</td>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <td><strong>Disulfide linkage</strong></td>
+              <td>yes (203↔239, 273↔289)</td>
+              <td>yes (48↔126, 188↔195)</td>
+              <td>None</td>
+              <td>yes (275↔292)</td>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <td><strong>Ligand type</strong></td>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td><strong>AlphaFold/PDB model</strong></td>
+              <td>5XFY</td>
+              <td>AF-A0A1L7TAX9-F1</td>
+              <td>AF-A0A0G3BI90-F1</td>
+              <td>4EB0</td>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <td><strong>Design recommendation</strong></td>
+              <td>Remove the original signal peptide</td>
+              <td>Remove the original signal peptide</td>
+              <td>Remove the original signal peptide</td>
+              <td>Remove the original signal peptide</td>
+              <td>Remove the original signal peptide</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2 id="plasmid-construction">Plasmid Construction</h2>
+      
+      <h3>6.24 ~ 6.26</h3>
+      <p>Select pET22b(+) as the vector plasmid. Design and construct five novel recombinant plasmids. Commission a company for plasmid synthesis.</p>
+      
+      <h2 id="transformation-verification">Transformation Verification</h2>
+      
+      <h3>7.13</h3>
+      <p>Perform plasmid transformation of the plastic-degrading enzyme gene constructs according to the established protocol. Resuspend the bacterial cells evenly and plate onto LB agar plates supplemented with 100 μg/mL ampicillin. Incubate inverted at 37°C overnight.</p>
+      
+      <h3>7.14</h3>
+      <p><strong>LB Plate Overnight Culture Results:</strong></p>
+      <p>Colonies were observed on all 100 μg/mL Amp LB plates, indicating successful preliminary transformation.</p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-1.webp" alt="LB plate transformation result 1" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-2.webp" alt="LB plate transformation result 2" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-3jpg.webp" alt="LB plate transformation result 3" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-4.webp" alt="LB plate transformation result 4" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-5.webp" alt="LB plate transformation result 5" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-14-6.webp" alt="LB plate transformation result 6" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p><strong>Colony Selection and PCR Setup:</strong></p>
       <ul>
-        <li>完成文献调研，确定研究方向</li>
-        <li>选择目标酶：PETase和MHETase</li>
-        <li>制定实验计划和时间表</li>
+        <li>Select five distinct colonies from each plate and label them 1-30 (across 5 plates x 6 replicates each).</li>
+        <li>Prepare the PCR reaction mixture according to the protocol.</li>
+        <li>In a 1.5mL microcentrifuge tube, add ddH₂O, forward and reverse primers, and high-fidelity enzyme in equal proportions. Aliquot into PCR tubes.</li>
+        <li>Prepare an empty Amp LB plate and evenly label it with numbers 1-30.</li>
+        <li>Using a sterile pipette tip, pick individual colonies. First, streak a short line on the corresponding marked area on the plate to preserve the bacterial strain. Subsequently, gently transfer a small amount of bacterial cells from the streak into the PCR tube to serve as the template.</li>
       </ul>
       
-      <p><strong>2024年10月8日</strong> - 基因设计完成</p>
-      <ul>
-        <li>完成密码子优化设计</li>
-        <li>设计克隆引物</li>
-        <li>订购基因合成服务</li>
-      </ul>
+      <p><strong>PCR Amplification:</strong></p>
+      <p>95°C for 3 min ->(94°C for 25s, 55°C for 25s, 72°C for 15s) x 35 cycles ->72°C for 5 min -> 4°C indefinitely</p>
       
-      <h3>第二阶段：分子克隆（2024年10月-11月）</h3>
-      <p><strong>2024年10月20日</strong> - 开始克隆工作</p>
-      <ul>
-        <li>载体准备：pET-28a(+)双酶切</li>
-        <li>基因扩增：PCR产物正确</li>
-        <li>连接反应：获得阳性克隆</li>
-      </ul>
+      <p>Perform agarose gel electrophoresis on the PCR amplification products. No other non-specific bands were observed. The molecular weights of all five amplified fragments matched the expected sizes.</p>
       
-      <p><strong>2024年11月5日</strong> - 克隆验证完成</p>
-      <ul>
-        <li>测序结果：100%正确</li>
-        <li>载体转化：成功转化BL21(DE3)</li>
-        <li>甘油管保存：-80°C长期保存</li>
-      </ul>
-
-      <h2 id="cloning-experiments">克隆实验</h2>
-      <p>详细记录基因克隆过程中的实验数据和操作细节。</p>
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/pcr1.webp" alt="PCR gel electrophoresis result 1" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/pcr2.webp" alt="PCR gel electrophoresis result 2" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
       
-      <h3>实验记录 - 载体准备</h3>
-      <p><strong>实验日期：</strong>2024年10月20日</p>
-      <p><strong>操作人员：</strong>团队成员A</p>
-      <p><strong>实验目的：</strong>制备线性化pET-28a(+)载体</p>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/pcr3.webp" alt="PCR gel electrophoresis result 3" style="max-width: 60%; height: auto; border-radius: 8px;" />
+      </div>
       
-      <p><strong>实验步骤：</strong></p>
-      <ol>
-        <li>取5μg pET-28a(+)质粒DNA</li>
-        <li>37°C酶切4小时（NdeI + XhoI）</li>
-        <li>CIP处理30分钟去磷酸化</li>
-        <li>琼脂糖凝胶回收，得率85%</li>
-      </ol>
+      <p>Excise the DNA bands corresponding to samples 5, 8, 11, 17, and 22 from the agarose gel. Submit these gel slices to the company for Sanger sequencing.</p>
       
-      <p><strong>实验结果：</strong>获得约4.2μg线性化载体，质量良好</p>
-      <p><strong>备注：</strong>载体完全线性化，无环状载体残留</p>
+      <h2 id="expression-optimization">Expression Optimization</h2>
       
-      <h3>实验记录 - PCR扩增</h3>
-      <p><strong>实验日期：</strong>2024年10月21日</p>
-      <p><strong>操作人员：</strong>团队成员B</p>
-      <p><strong>实验目的：</strong>扩增目标基因插入片段</p>
+      <h3>7.15</h3>
+      <p><strong>Plasmid Transformation and Expression Optimization:</strong></p>
       
-      <p><strong>PCR条件：</strong></p>
-      <ul>
-        <li>模板：1ng基因合成产物</li>
-        <li>引物：上下游各10μM</li>
-        <li>聚合酶：Phusion高保真</li>
-        <li>循环：95°C 3min → 35×(95°C 30s, 58°C 30s, 72°C 1min) → 72°C 10min</li>
-      </ul>
+      <p><strong>Culture Preparation for Induction:</strong></p>
+      <p>Inoculate bacteria from the preserved single colony plates into LB liquid culture medium containing ampicillin (100 μg/mL). Incubate at 37°C on a shaker for 3 hours.</p>
       
-      <p><strong>实验结果：</strong>获得单一特异性条带，大小正确(~900bp)</p>
-      <p><strong>备注：</strong>PCR产物纯化后浓度为850ng/μL</p>
-
-      <h2 id="expression-optimization">表达优化</h2>
-      <p>系统优化重组蛋白的表达条件，获得最佳表达效果。</p>
+      <p><strong>IPTG Induction and Expression Optimization:</strong></p>
+      <p>Subsequently, add IPTG to final concentrations of 0, 0.05, 0.1, 0.5, and 1 mM for induction. This is to screen for the optimal expression concentration. Incubate the induced bacterial cultures at 25°C on a shaker overnight.</p>
       
-      <h3>表达条件筛选实验</h3>
-      <p><strong>实验日期：</strong>2024年11月15日-20日</p>
-      <p><strong>实验设计：</strong>三因素三水平正交试验</p>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>IPTG concentration（mM）</th>
+              <th>5mg/ml IPTG original liquid（ul）</th>
+              <th>Bacteria solution(ul）</th>
+              <th>5mg/ml IPTG original liquid（ul）</th>
+              <th>Bacteria solution（ul）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>1000</td>
+              <td>0</td>
+              <td>750</td>
+            </tr>
+            <tr>
+              <td>0.05</td>
+              <td>2.383</td>
+              <td>997.671</td>
+              <td>1.787</td>
+              <td>748.253</td>
+            </tr>
+            <tr>
+              <td>0.1</td>
+              <td>4.766</td>
+              <td>995.234</td>
+              <td>3.574</td>
+              <td>746.425</td>
+            </tr>
+            <tr>
+              <td>0.5</td>
+              <td>23.83</td>
+              <td>976.17</td>
+              <td>17.872</td>
+              <td>732.127</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>47.66</td>
+              <td>952.34</td>
+              <td>35.745</td>
+              <td>714.255</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       
-      <table style="border-collapse: collapse; width: 100%; border: 1px solid #ddd;">
-        <tr style="background-color: #f2f2f2;">
-          <th style="border: 1px solid #ddd; padding: 8px;">实验组</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">IPTG浓度(mM)</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">诱导温度(°C)</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">诱导时间(h)</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">表达量</th>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">1</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">0.1</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">16</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">16</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">++</td>
-        </tr>
-        <tr style="background-color: #f9f9f9;">
-          <td style="border: 1px solid #ddd; padding: 8px;">2</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">0.5</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">25</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">8</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">+++</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">3</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">1.0</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">37</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">4</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">+</td>
-        </tr>
-      </table>
+      <h3>7.16</h3>
+      <p>Bacterial cultures were cryopreserved on July 15th. Sanger sequencing confirmed that the sequences of the recombinant plasmids transformed into E. coli were fully consistent with the design.</p>
       
-      <p><strong>结论：</strong>最优条件为0.5mM IPTG，25°C诱导8小时</p>
+      <p>Following lysate collection, the initial 4-pNPA enzyme activity assay revealed an optimal enzyme activity profile at 0.1 mM IPTG. However, the PET_03 and PET_04 groups exhibited significantly lower enzyme activity compared to the empty vector control.</p>
       
-      <h3>可溶性表达分析</h3>
-      <p><strong>实验日期：</strong>2024年11月25日</p>
-      <p><strong>分析方法：</strong>SDS-PAGE分析上清和沉淀组分</p>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-16.webp" alt="4-pNPA enzyme activity assay results" style="max-width: 80%; height: auto; border-radius: 8px;" />
+      </div>
       
-      <p><strong>结果分析：</strong></p>
-      <ul>
-        <li>总表达量：约30%总蛋白</li>
-        <li>可溶性比例：约60%</li>
-        <li>包涵体比例：约40%</li>
-      </ul>
+      <h3>7.17</h3>
+      <p><strong>IPTG Induction Culture Preparation and OD Measurement:</strong></p>
       
-      <p><strong>优化策略：</strong>降低诱导温度至18°C，延长诱导时间至24小时</p>
-
-      <h2 id="purification-records">纯化记录</h2>
-      <p>重组蛋白纯化过程的详细记录和质量分析。</p>
+      <p><strong>Inoculation:</strong> Transfer 1 μL of the bacterial culture from July 15th into fresh 15 mL of LB medium supplemented with Ampicillin (100 μg/mL).</p>
+      <p><strong>Pre-induction Culture:</strong> Incubate for 1-2 hours.</p>
       
-      <h3>Ni-NTA亲和纯化</h3>
-      <p><strong>实验日期：</strong>2024年12月5日</p>
-      <p><strong>起始材料：</strong>1L发酵液，菌体湿重约4g</p>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Sample</th>
+              <th>OD600</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PLA_01</td>
+              <td>0.608</td>
+            </tr>
+            <tr>
+              <td>PET_01</td>
+              <td>0.637</td>
+            </tr>
+            <tr>
+              <td>PET_02</td>
+              <td>0.618</td>
+            </tr>
+            <tr>
+              <td>PET_03</td>
+              <td>0.526</td>
+            </tr>
+            <tr>
+              <td>PET_04</td>
+              <td>0.671</td>
+            </tr>
+            <tr>
+              <td>Plasmid</td>
+              <td>0.727</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       
-      <p><strong>纯化步骤记录：</strong></p>
-      <ol>
-        <li><strong>细胞破碎</strong>
-          <ul>
-            <li>超声参数：功率60%，工作3s停3s，总时间20min</li>
-            <li>破碎效果：细胞完全破碎，上清澄清</li>
-            <li>蛋白浓度：12.5mg/mL（Bradford法测定）</li>
-          </ul>
-        </li>
-        <li><strong>亲和层析</strong>
-          <ul>
-            <li>树脂用量：2mL Ni-NTA agarose</li>
-            <li>结合效率：约85%</li>
-            <li>洗涤体积：10倍柱体积</li>
-            <li>洗脱体积：5倍柱体积</li>
-          </ul>
-        </li>
-      </ol>
+      <p>Expression was induced using 0.1 mM IPTG (prepared from a 5 mg/mL stock solution, 24 μL added to the culture), followed by incubation at 20°C on a shaker starting at 18:50. However, due to the reuse of the same measurement vessel without proper cleaning when measuring OD values and the practice of returning the measured bacterial liquid to its original tube, contamination was suspected. The following day, the empty LB tube (without bacterial inoculation) appeared turbid, leading to the discard of this set of bacterial cultures.</p>
       
-      <p><strong>纯化结果：</strong></p>
-      <ul>
-        <li>回收率：72%</li>
-        <li>纯度：约90%（SDS-PAGE分析）</li>
-        <li>最终浓度：3.2mg/mL</li>
-        <li>总得量：约25mg</li>
-      </ul>
-
-      <h2 id="activity-testing">活性测试</h2>
-      <p>塑料降解酶活性检测的实验记录和数据分析。</p>
+      <h3>7.19</h3>
+      <p>A 5 μL aliquot from the cryopreserved glycerol stock of bacterial cells was used to inoculate 15 mL of fresh LB medium supplemented with Ampicillin (100 μg/mL). After 2 hours of incubation, the culture medium remained clear with no significant visible changes. Overnight incubation was then performed.</p>
       
-      <h3>PET薄膜降解实验</h3>
-      <p><strong>实验日期：</strong>2024年12月15日-18日</p>
-      <p><strong>实验条件：</strong></p>
-      <ul>
-        <li>酶浓度：50μg/mL</li>
-        <li>反应温度：55°C</li>
-        <li>反应时间：24小时</li>
-        <li>缓冲液：50mM Tris-HCl, pH 8.5</li>
-      </ul>
+      <h3>7.20 ~ 7.22</h3>
+      <p>The bacterial colonies cultured overnight on July 19th were measured for their OD600 using a spectrophotometer, yielding a value above 5.0. As the cell density was too high for immediate use, the cultures were consequently cryopreserved in glycerol stocks.</p>
       
-      <p><strong>检测结果：</strong></p>
-      <ul>
-        <li>TPA产量：12.3μg/mL（HPLC检测）</li>
-        <li>EG产量：8.7μg/mL</li>
-        <li>降解率：约15%（24小时）</li>
-        <li>比活力：145 U/mg蛋白</li>
-      </ul>
+      <p>Following a discussion, it was determined that an operational error had occurred. The correct procedure dictates that glycerol stocks should first be used to inoculate LB agar plates containing ampicillin (100 μg/mL) and incubated overnight. The resulting colonies should then be picked with a pipette tip and used to inoculate 15 mL of fresh LB Amp (100 μg/mL) liquid medium.</p>
       
-      <h3>动力学参数测定</h3>
-      <p><strong>实验日期：</strong>2024年12月20日-25日</p>
-      <p><strong>底物浓度范围：</strong>0.1-5.0mM（pNP-butyrate）</p>
+      <p>After 3 hours of incubation, samples were collected for OD measurement, with the following results:</p>
       
-      <p><strong>动力学参数：</strong></p>
-      <ul>
-        <li>Km值：1.8 ± 0.2 mM</li>
-        <li>kcat值：125 ± 8 s⁻¹</li>
-        <li>kcat/Km：69.4 M⁻¹s⁻¹</li>
-        <li>最适pH：8.5</li>
-        <li>最适温度：55°C</li>
-      </ul>
-
-      <h2 id="troubleshooting">问题解决</h2>
-      <p>实验过程中遇到的问题及解决方案记录。</p>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Sample</th>
+              <th>Nanodrop</th>
+              <th>Spectrophotometer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PLA_01</td>
+              <td>0.96</td>
+              <td>0.715</td>
+            </tr>
+            <tr>
+              <td>PET_01</td>
+              <td>0.91</td>
+              <td>0.597</td>
+            </tr>
+            <tr>
+              <td>PET_02</td>
+              <td>1.27</td>
+              <td>0.946</td>
+            </tr>
+            <tr>
+              <td>PET_03</td>
+              <td>0.82</td>
+              <td>0.670</td>
+            </tr>
+            <tr>
+              <td>PET_04</td>
+              <td>0.91</td>
+              <td>1.056</td>
+            </tr>
+            <tr>
+              <td>Plasmid</td>
+              <td>0.69</td>
+              <td>0.489</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       
-      <h3>问题1：蛋白表达量低</h3>
-      <p><strong>现象：</strong>初期表达实验中目标蛋白条带很弱</p>
-      <p><strong>可能原因：</strong></p>
-      <ul>
-        <li>诱导条件不当</li>
-        <li>宿主菌株不适合</li>
-        <li>载体问题</li>
-      </ul>
-      <p><strong>解决方案：</strong></p>
-      <ul>
-        <li>优化IPTG浓度和诱导温度</li>
-        <li>尝试不同的宿主菌株（BL21, Rosetta）</li>
-        <li>验证质粒构建的正确性</li>
-      </ul>
-      <p><strong>结果：</strong>通过优化条件，表达量提高了5倍</p>
+      <p>12 μL of IPTG was added to the bacterial cultures from July 20th, followed by overnight incubation at 20°C on a shaker.</p>
       
-      <h3>问题2：蛋白聚集形成包涵体</h3>
-      <p><strong>现象：</strong>大部分目标蛋白以包涵体形式存在</p>
-      <p><strong>解决方案：</strong></p>
-      <ul>
-        <li>降低诱导温度至18°C</li>
-        <li>延长诱导时间至24小时</li>
-        <li>添加分子伴侣共表达</li>
-        <li>优化缓冲液成分</li>
-      </ul>
-      <p><strong>结果：</strong>可溶性蛋白比例从30%提高到60%</p>
+      <h2 id="activity-testing">Activity Testing</h2>
       
-      <h3>问题3：酶活性不稳定</h3>
-      <p><strong>现象：</strong>纯化后酶活性迅速下降</p>
-      <p><strong>解决方案：</strong></p>
-      <ul>
-        <li>优化保存缓冲液（加入甘油和DTT）</li>
-        <li>-80°C分装保存</li>
-        <li>避免反复冻融</li>
-        <li>加入蛋白酶抑制剂</li>
-      </ul>
-      <p><strong>结果：</strong>酶活性在-80°C保存3个月后仍保持90%以上</p>
+      <p>The bacterial cultures from July 20th were processed according to the protocol. In wells A-F, columns 1-9 of the 96-well plate, 135 μL of sodium phosphate buffer (pH 8.0), 15 μL of crude enzyme solution, and 50 μL of 4-pNPA stock solution were added. For wells G, columns 1-9, 150 μL of sodium phosphate buffer (pH 8.0) and 50 μL of 4-pNPA stock solution were added.</p>
       
-      <p>通过详细的实验记录和数据分析，我们成功建立了塑料降解酶的制备和表征体系，为后续的工程改造和应用研究奠定了坚实基础。</p>
+      <p>The template is as shown in the table:</p>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PLA_01</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>PET_01</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>PET_02</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>PET_03</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>PET_04</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Plasmid</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>BLANK</strong></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <p>Following procedural improvements, secreted proteins from all strains exhibited degradation capabilities towards plastic analogs.</p>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-20-7-22.webp" alt="Activity testing results July 20-22" style="max-width: 80%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p>Bacterial cultures from July 20th were used to inoculate LB agar plates supplemented with ampicillin (100 μg/mL) via streaking. The plates were then incubated overnight at 37°C.</p>
+      
+      <h3>7.23 (The first attempt to measure enzyme activity)</h3>
+      <p><strong>PLA Solution Preparation:</strong> Dissolve 0.25 g of PLA plastic fragments in 20 mL of dichloromethane. Place the solution on a magnetic stirrer within a fume hood, under ice bath conditions, and in the dark, allowing it to evaporate for 3 hours.</p>
+      
+      <p><strong>Medium Preparation:</strong> Autoclave 500 mL of LB agar medium at 121°C.</p>
+      
+      <p><strong>Top Layer (5 mL per plate):</strong> Mix 87.5 mL of the autoclaved LB agar medium with 42 μL of IPTG stock solution (1 mM; 50 mg/mL) and 100 mL of the prepared PLA solution.</p>
+      <p><strong>Bottom Layer (15 mL per plate):</strong> Combine the remaining 400 mL of LB medium with 1.9 mL of IPTG stock solution (0.1 mM; 5 mg/mL) and 400 μL of Ampicillin stock solution (100 mg/mL).</p>
+      
+      <p>Then inoculation of bacterial cultures from July 22nd was performed by streaking or spot inoculation onto newly prepared media (in triplicate). The plates were subsequently incubated overnight at 37°C in an oven.</p>
+      
+      <p>Overnight cultures of bacterial colonies from July 23rd showed no discernible clear zones.</p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-23.webp" alt="Activity testing results July 20-22" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-23-2.webp" alt="July 23rd clear zone test results" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <h3>7.24 (The second attempt to measure enzyme activity after the adjustment)</h3>
+      <p>Add 0.25 g of PLA plastic fragments to 20 mL of dichloromethane. Process the mixture on a magnetic stirrer for 1.5 hours. Subsequently, add 100 mL of double-distilled water (ddH₂O) and homogenize for 1.5 hours to facilitate evaporation.</p>
+      
+      <p>However, after the dichloromethane evaporated, the PLA was unable to form a stable suspension in pure water. Instead, it aggregated into sheet-like structures and floated on the water surface.</p>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-24.webp" alt="PLA suspension aggregation July 24th" style="max-width: 70%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p>Prepare a 2x concentrated LB agar medium by dissolving 20 g of LB agar powder in 250 mL of double-distilled water (ddH₂O). After sterilizing the LB agar medium, add the mixture of PLA and water to the sterile medium. Pour this mixture into two plates. Following solidification of the medium, spot inoculate with PLA-degrading bacteria.</p>
+      
+      <h3>7.25</h3>
+      <p>The overnight cultures from July 24th showed contamination by unwanted microorganisms. Subsequently, 5 mg/mL IPTG was added to the PLA-degrading bacterial colonies, and 100 mg/mL Ampicillin was added to a blank area.</p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-25.webp" alt="July 25th contamination and IPTG treatment" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-25-2.webp" alt="July 25th bacterial inoculation setup" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p>Inoculating bacterial strains from the July 22nd streak plates into 5 mL of LB medium supplemented with 5 µL of ampicillin stock solution and incubated overnight at 37°C.</p>
+      
+      <h3>7.26 ~ 7.28 (The third attempt to measure enzyme activity)</h3>
+      <p>To the overnight cultures from July 25th, 24 µL of IPTG was added, followed by incubation at 20°C with shaking.</p>
+      
+      <p>Then, preparing the PLA degradation screening plates, 0.25 g of PLA plastic fragments were dissolved in 5 mL of chloroform and stirred on a magnetic stirrer for 1 hour. Subsequently, 100 mL of sterile double-distilled water (ddH₂O) was added, and the mixture was homogenized. This resulting suspension was then combined with 100 mL of 2x concentrated LB medium. Plates were poured at intervals of 15 min, 30 min, 1 h, and 1.5 h from this mixture, with a control group consisting of 100 mL ddH₂O mixed with 100 mL of 2x concentrated LB medium. Inoculation was performed by streak plating or spot inoculation onto the prepared plates with both PLA-degrading bacteria and empty vector control bacteria. All inoculated plates were incubated overnight at 37°C in an oven.</p>
+      
+      <p>The results for the July 27th inoculation are shown below:</p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-26-1jpg.webp" alt="July 26-27 PLA degradation test plate 1" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-26-2.webp" alt="July 26-27 PLA degradation test plate 2" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/7-26-3.webp" alt="July 26-27 PLA degradation test plate 3" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p>After three days of incubation and observation, no clear zones were detected around the bacterial colonies, indicating a lack of detectable plastic degradation enzyme activity. Therefore, the experiment to verify enzymatic activity on PLA-containing agar plates has been discontinued.</p>
+      
+      <h2 id="protein-analysis">Protein Analysis</h2>
+      
+      <h3>7.30</h3>
+      <p>Following the teacher's advice, we revised the experimental plan and decided to attempt using WB for supplementary verification.</p>
+      
+      <p>Bacterial liquid was processed according to the protocol, commencing with SDS-PAGE electrophoresis at 140 V for 45 minutes using pre-cast gels, with 10 µL of sample loaded per well. Following electrophoresis, protein transfer was performed at 100 V for 1 hour. For antibody incubation, the membrane was initially blocked for 1.5 hours at room temperature with 5% non-fat dry milk in 25 mL of TBST, followed by a single wash with TBST. Primary antibody incubation was conducted overnight at 4°C with shaking in a cold room (lid unsealed) using a 1:1000 dilution in 5 mL of 0.5% non-fat dry milk solution in TBST; this was followed by four TBST washes, each lasting approximately 30 minutes. Subsequently, the membrane was incubated with the secondary antibody at a 1:5000 dilution in 10 mL of TBST for 50 minutes at room temperature, followed by four 10-minute washes with TBST.</p>
+      
+      <p><strong>The results are as follow:</strong></p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/wb1.webp" alt="Western Blot result - Protein content in supernatant" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/wb2.webp" alt="Western Blot result - Protein content in bacterial cells" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      
+      <p>Left: Protein content in the supernatant. Right: Protein content in the bacterial cells.</p>
+      
+      <h3>8.15</h3>
+      <p>Finally, following the professor's suggestion and adhering to the protocol, the crude enzyme preparation obtained by sonication was added to Oxford cups on agar plates containing a plastic emulsion. The results showed only a faint ring, which, after discussion, was not considered a genuine indicator of plastic degradation.</p>
+      
+      <div class="image-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/8-15-1.webp" alt="Oxford cup plastic degradation test result 1" style="width: 100%; height: auto; border-radius: 8px;" />
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/notebook/8-15-2.webp" alt="Oxford cup plastic degradation test result 2" style="width: 100%; height: auto; border-radius: 8px;" />
+      </div>
     </article>
   </div>
-
-  <!-- Utility Buttons -->
-  <div class="article-utilities">
-    <button class="utility-btn" id="scroll-to-top" title="返回顶部">
-      ↑
-    </button>
-  </div>
-
-  <script>
-    // Enhanced scroll to top functionality with smart visibility
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
-    
-    // Scroll to top click handler
-    scrollToTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Smart visibility based on scroll position with throttling
-    let ticking = false;
-    
-    function updateScrollButtonVisibility() {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.add('show');
-      } else {
-        scrollToTopBtn.classList.remove('show');
-      }
-      ticking = false;
-    }
-    
-    function handleScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollButtonVisibility);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener('scroll', handleScroll);
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
-  </script>
-</body>
-</html>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>Experimental Log</h3>
-          <p>Detailed records of all experiments with dates, conditions, and observations</p>
-        </div>
-        <div class="feature-card">
-          <h3>Results & Analysis</h3>
-          <p>Data analysis, interpretation, and troubleshooting documentation</p>
-        </div>
-        <div class="feature-card">
-          <h3>Protocol Refinement</h3>
-          <p>Evolution of experimental protocols based on iterative improvements</p>
-        </div>
-        <div class="feature-card">
-          <h3>Collaborative Notes</h3>
-          <p>Shared insights and knowledge transfer between team members</p>
-        </div>
-      </div>
-    </section>
-  </main>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -418,7 +738,6 @@
     }
     
     window.addEventListener('scroll', handleScroll);
-
 
   </script>
 {% endblock %}

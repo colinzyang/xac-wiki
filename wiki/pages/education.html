@@ -3,155 +3,588 @@
 {% block title %}Education{% endblock %}
 
 {% block page_content %}
+  <style>
+    .education-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/educationbackground.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .education-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for education header */
+    body.dark-mode .education-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .education-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .education-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .education-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .education-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .education-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .education-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
+  
   <!-- Article Header -->
-  <header class="article-header" style="background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/educationbackground.webp'); background-size: cover; background-position: center 35%; background-repeat: no-repeat;">
+  <header class="article-header education-header">
     <div class="container">
       <h1>Education</h1>
+      <p>Making synthetic biology accessible and understandable for everyone</p>
     </div>
   </header>
 
   <!-- Article Container -->
-  <div class="article-container">
+<div class="article-container">
     <!-- Sidebar -->
     <div class="article-sidebar">
-      <nav class="catalog">
-        <h4 id="contents">Contents</h4>
-        <ul class="catalog-list">
-          <li><a href="#education-vision"></a></li>
-          <li><a href="#curriculum-development"></a></li>
-          <li><a href="#outreach-activities"></a></li>
-          <li><a href="#educational-impact"></a></li>
-        </ul>
-      </nav>
+        <nav class="catalog">
+            <h4 id="contents">Contents</h4>
+            <ul class="catalog-list">
+                <li><a href="#education-vision"></a></li>
+                <li><a href="#curriculum-development"></a></li>
+                <li><a href="#outreach-activities"></a></li>
+                <li><a href="#educational-impact"></a></li>
+            </ul>
+        </nav>
     </div>
-    
+
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="background">Background and Purpose</h2>
-      <p>When initially designing HP's educational work, the team didn't just think about classrooms and knowledge, but rather how to enable more people to truly understand synthetic biology. As an emerging discipline, although there are outstanding scholars "spreading the word and imparting knowledge" about it, it is still often considered "profound and difficult to understand." What we hope for is to break this barrier, making synthetic biology like a door that everyone can easily push open and walk through, just like watching a wonderful movie, and then sincerely praise and understand this discipline. Meanwhile, at the beginning of the project, we also saw the real challenges brought by plastic pollution. We deeply recognize that science should not remain in the ivory tower built by knowledge and technology; it also needs to be connected with reality and become a force for changing the world.</p>
-      
-      <p>So, we tried to use simple stories, interactive activities, and open communication to bring synthetic biology to a wider audience, allowing people to feel its connection with life and see the hope it may bring to environmental issues.</p>
-      
-      <p>In the process of formulating specific work, we gradually discovered that these educational tasks are not isolated from each other. They coincide with the educational philosophy in our hearts - education should be for everyone, inspiring both knowledge and responsibility. At the same time, we also recognize that only by joining hands with more partners can our efforts have a more lasting impact. From schools to communities, from researchers to the general public, we have always been seeking the possibility of moving forward together.</p>
-      
-      <p>It is precisely based on this original aspiration that our educational work naturally resonates with the vision of promoting quality education and fostering partnerships. It is not an externally imposed label, but rather something that has been written into the narrative of our actions from the very beginning. In the future, we will also continue to follow this path, enabling synthetic biology to truly become a discipline that everyone can understand and participate in.</p>
+        <h2 id="background">Background and Purpose</h2>
+        <p>When initially designing HP's educational work, the team didn't just think about classrooms and knowledge,
+            but rather how to enable more people to truly understand synthetic biology. As an emerging discipline,
+            although there are outstanding scholars "spreading the word and imparting knowledge" about it, it is still
+            often considered "profound and difficult to understand." What we hope for is to break this barrier, making
+            synthetic biology like a door that everyone can easily push open and walk through, just like watching a
+            wonderful movie, and then sincerely praise and understand this discipline. Meanwhile, at the beginning of
+            the project, we also saw the real challenges brought by plastic pollution. We deeply recognize that science
+            should not remain in the ivory tower built by knowledge and technology; it also needs to be connected with
+            reality and become a force for changing the world.</p>
 
-      <h2 id="educational-framework">Formulate the Educational Work Stage</h2>
-      <p>When we truly enter the educational scene and communicate with frontline teachers, we realize that education has never been a one-time transmission, but a path of continuous growth. It's like a journey, from the initial interest enlightenment, to gradually cultivating a sense of responsibility, and then to being able to take the initiative in interdisciplinary actions. Each stage should enable learners to find their own ways of participation.</p>
-      
-      <p>Based on this understanding, we contemplate how to make our educational work more hierarchical and continuous. Building on the theoretical foundation of Bruner's Spiral Curriculum Theory and Constructivist Learning Theory, with the core of education being deep progression, knowledge empowerment, and social connection, we have proposed the "Educational Spiral" framework unique to our team: starting with interest, centered on understanding, and ending with action. It links together educational activities from primary school, middle school, high school, university, and even the public, enabling knowledge to progress step by step, experiences to deepen gradually, and participation to expand continuously, thus forming an educational path that deepens and expands continuously.</p>
-      
-      <p>On this "spiral" path, children may be inspired by a small experiment, middle school students initially understand scientific methods through inquiry activities, high school students touch real-world problems through Project Based Learning, college students can engage in interdisciplinary cooperation, and the public can also see the connection between science and life in open communication. We believe that it is precisely this educational path that progresses from shallow to deep and from sensibility to rationality that can truly realize the vision of "synthetic biology being understandable and accessible to all."</p>
+        <p>So, we tried to use simple stories, interactive activities, and open communication to bring synthetic biology
+            to a wider audience, allowing people to feel its connection with life and see the hope it may bring to
+            environmental issues.</p>
 
-      <figure style="text-align: right; margin: 1rem 0; clear: both; margin-right: -5px;">
-        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/educationoverview.webp" alt="Education overview framework" loading="lazy" style="max-width: 70%; height: auto; border-radius: 8px;">
-      </figure>
+        <p>In the process of formulating specific work, we gradually discovered that these educational tasks are not
+            isolated from each other. They coincide with the educational philosophy in our hearts - education should be
+            for everyone, inspiring both knowledge and responsibility. At the same time, we also recognize that only by
+            joining hands with more partners can our efforts have a more lasting impact. From schools to communities,
+            from researchers to the general public, we have always been seeking the possibility of moving forward
+            together.</p>
 
-      <h2 id="educational-practices">Carry out Education Specific Work</h2>
-      
-      <h3 id="educational-spiral">Educational Spiral (Spiraling Upward)</h3>
-      <p>Guided by the concept of the "Educational Spiral," we implemented our first educational practice at Beijing Bozhi School. Limited by conditions, we attempted to initiate this exploration through online classes. In the classroom, we started with the most familiar things around the children, guiding them to distinguish between living and non-living things, and helping them establish their initial biological understanding: living things grow, need nutrients, can reproduce, and respond to stimuli. We also tried to popularize what AI is and briefly introduced our project. To our delight, some children in the class spontaneously picked up their pens to record what they had learned, showing genuine curiosity and engagement.</p>
-      
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin: 1.5rem 0; gap: 1rem;">
-        <figure style="flex: 1; margin: 0; max-width: 45%;">
-          <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/bozhischool1.webp" alt="Beijing Bozhi School education activity 1" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-        </figure>
-        <figure style="flex: 1; margin: 0; max-width: 45%;">
-          <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/bozhischool2.webp" alt="Beijing Bozhi School education activity 2" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
-        </figure>
-      </div>
-      
-      <p>However, the post-class feedback deeply touched us. The teaching assistant frankly admitted that the online format had greatly weakened the sense of interaction, and some children with weaker attention quickly got distracted; moreover, the parts of the curriculum design related to AI and projects were too abstract for this age group, making it difficult for them to understand. In contrast, using living and non-living things around them to explain "the four characteristics of living things" was the part that children could most readily accept and absorb. This first attempt, like a wake-up call, made us realize that we still had significant deficiencies in educational practice: rather than imparting new knowledge, tangible experiences were the most effective way to stimulate their curiosity and desire for exploration.</p>
-      
-      <p>"Recognize one's deficiencies and then rise up." With such reflection, we began to proactively adjust. We decided to abandon the online format and instead conduct offline classes in nearby areas; we removed abstract and difficult-to-understand knowledge points, retained the core content of basic biology, and added hands-on experiments and interactive sessions in the classroom, focusing educational emphasis on interest enlightenment and hands-on experience to help children maintain their attention and interest while participating.</p>
+        <p>It is precisely based on this original aspiration that our educational work naturally resonates with the
+            vision of promoting quality education and fostering partnerships. It is not an externally imposed label, but
+            rather something that has been written into the narrative of our actions from the very beginning. In the
+            future, we will also continue to follow this path, enabling synthetic biology to truly become a discipline
+            that everyone can understand and participate in.</p>
 
-      <h3 id="laboratory-experience">Laboratory Experience</h3>
-      <p>With the help of PI, we contacted the person in charge of the Asia Cold Spring Harbor DNA Learning Center located in Suzhou Industrial Park, and with the support of an alumnus, we got the opportunity to teach primary school students again. This time, we moved the classroom into the laboratory. We carefully designed a unique highlight of the class - "bacteria painting". Under the supervision of professional teachers, the children completed the "bacteria painting" experiment using Escherichia coli 1917 and Micrococcus luteus. We guided them to learn the basic operations of the laboratory and the preliminary knowledge of the two bacteria during the enjoyable hands-on process. For children who lacked creativity for a moment, we also introduced ChatGPT to help them design patterns, allowing science and technology to intertwine in a more interesting way. Naturally, this activity received positive feedback. Several children even voluntarily proposed to learn more about the laboratory operation process and biological knowledge.</p>
-      
-      <p>When the patterns drawn by bacteria gradually emerged in the hands of the children, the twinkling light in their eyes showed us the meaning of education. This time, we received an abundance of positive feedback. Even several children voluntarily expressed their desire to gain a deeper understanding of laboratory procedures and biological knowledge after the course. For us, this is not only an educational improvement but also a leap in the "educational spiral" path - gradually moving from initial interest enlightenment towards exploration and thinking.</p>
+        <h2 id="educational-framework">Formulate the Educational Work Stage</h2>
+        <p>When we truly enter the educational scene and communicate with frontline teachers, we realize that education
+            has never been a one-time transmission, but a path of continuous growth. It's like a journey, from the
+            initial interest enlightenment, to gradually cultivating a sense of responsibility, and then to being able
+            to take the initiative in interdisciplinary actions. Each stage should enable learners to find their own
+            ways of participation.</p>
 
-      <h3 id="success-factors">Success Factors Analysis</h3>
-      <p>Despite achieving initial success, we did not become impetuous. We carefully summarized our experience and pondered why this event was successful:</p>
-      <ol>
-        <li><strong>Innovative Form:</strong> Through "bacteria painting", children are transformed from "spectators" into "participants", experiencing science in an artistic way, which is more in line with the acceptance habits of this age group.</li>
-        <li><strong>Hands-on Practice:</strong> Compared to simple lectures, the experimental session greatly enhances children's sense of participation and memory, allowing them to naturally absorb knowledge during the process.</li>
-        <li><strong>Emotionally Inspiring Atmosphere:</strong> The classroom atmosphere is relaxed and open, allowing children to gain a sense of accomplishment through free exploration, which in turn stimulates their interest in active learning.</li>
-      </ol>
-      
-      <p>All these make us more convinced that the power of education lies in enabling students to "be willing to learn" rather than merely "passively listen".</p>
+        <p>Based on this understanding, we contemplate how to make our educational work more hierarchical and
+            continuous. Building on the theoretical foundation of Bruner's Spiral Curriculum Theory and Constructivist
+            Learning Theory, with the core of education being deep progression, knowledge empowerment, and social
+            connection, we have proposed the "Educational Spiral" framework unique to our team: starting with interest,
+            centered on understanding, and ending with action. It links together educational activities from primary
+            school, middle school, high school, university, and even the public, enabling knowledge to progress step by
+            step, experiences to deepen gradually, and participation to expand continuously, thus forming an educational
+            path that deepens and expands continuously.</p>
 
-      <h3 id="rural-education">Rural Education Outreach</h3>
-      <p>Meanwhile, this experience has also brought us new reflections. In areas with abundant resources, children can quickly access cutting-edge knowledge, and some have even advanced to learning junior high school courses ahead of schedule. We feel proud to see the continuous improvement of education in our motherland. However, what about in some areas with relatively weak educational resources? Are there also people longing for the same opportunities? With such questions in mind, we have decided to extend the reach of education to broader areas.</p>
-      
-      <p>With such questions and a sense of mission in mind, we came to Caomiao Middle School in Caomiao Village, Suqian City, Jiangsu Province. These are a group of ninth-grade students who are about to face the high school entrance examination. They are full of expectations for their future high school life, yet also faintly show signs of confusion. Before class, the teacher told us that not many children in this class would be able to continue their studies.</p>
-      
-      <p>Therefore, in the classroom, we not only shared the basic concepts of synthetic biology, its applications in life, and the development context of AI, but also incorporated exploratory Q&A sessions to encourage them to think actively and explore proactively. At the same time, we also shared our own high school experiences, telling them about the interesting discoveries and stories in various disciplines. We hope that through this approach, they can see the fun of learning itself and convey the belief that no matter what situation they are in, they should never give up the "learning mindset."</p>
-      
-      <p>At the end of the class, a boy walked up to us, his eyes full of longing, and said that he really liked our class and the experiences we shared, and hoped to hear more from us in the future. This statement deeply touched us. It is not only positive feedback on this event, but also like a reminder: the value of education lies not only in imparting knowledge, but also in igniting hope.</p>
-      
-      <p>From urban classrooms to rural schools, we have become more determined to pursue the concept of equitable education advocacy. In the future, we will continue to work hard to sow the seeds of cutting-edge knowledge in more places, enabling it to take root not only in fertile soil but also in the hearts of more children.</p>
+        <p>On this "spiral" path, children may be inspired by a small experiment, middle school students initially
+            understand scientific methods through inquiry activities, high school students touch real-world problems
+            through Project Based Learning, college students can engage in interdisciplinary cooperation, and the public
+            can also see the connection between science and life in open communication. We believe that it is precisely
+            this educational path that progresses from shallow to deep and from sensibility to rationality that can
+            truly realize the vision of "synthetic biology being understandable and accessible to all."</p>
 
-      <h3 id="high-school-engagement">High School Engagement</h3>
-      <p>Having experienced the interest enlightenment in primary school and the responsibility transfer in junior high school, we have gradually come to understand the deeper connotations behind education and better grasped our responsibilities. Education is not only about imparting knowledge but also about inspiring students' critical thinking and sense of responsibility. High school, as the crucial period when values gradually take shape and thinking patterns mature rapidly, has thus become the next focus of our educational practice.</p>
-      
-      <p>With the support of Teacher Gao Sheng, we went to Huamai Middle School in Chengmai, Hainan. Fortunately, it was the beginning of the new year of high school and coincided with the 9.3 military parade. We took this special moment as an opportunity to popularize the basic knowledge of synthetic biology to the students, and derived it from the high school curriculum and artificial intelligence technology. By reviewing the past history and focusing on the current plastic pollution problem, we guided them to think about the connection between science, individuals, and the country. In the classroom, students listened carefully and responded actively. Many students began to realize that when they devoted themselves to scientific exploration and paid attention to social issues, they were actually walking with the future of the country: Good educators not only impart knowledge, but also have the power to support students to go further. At that moment, the meaning of education is not only to impart knowledge, but also to awaken the sense of responsibility of individuals resonating with the times.</p>
-      
-      <p>However, reflecting on this event, we found that while it successfully inspired students' sense of responsibility, there was still room for improvement in stimulating critical thinking. With this in mind, we decided to give it another try, using the currently most highly regarded topic of artificial intelligence as the entry point. So, on the weekend, we once again entered the Cold Spring Harbor Asia DNA Learning Center to bring a special class to a group of high school students.</p>
-      
-      <p>This time, beyond the regular introduction, we focused on how young people can coexist with AI in the new AI era. Instead of simply explaining the principles of AI, we started with "how to talk to AI" and introduced students to the relevant knowledge of prompts, emphasizing the role and necessity of each component. Subsequently, we guided them to think: Is a prompt clear? Is it reasonable? Does it help AI accurately understand the task? In class, students actively tried, constantly modifying and optimizing their expressions. At the end of class, a student said to the teacher with a smile: "It feels like this is the first time I've truly learned to use artificial intelligence!" This light yet profound feedback is exactly the result we wanted - to enable students to develop critical thinking in exploration and then connect their personal abilities with future responsibilities.</p>
-      
-      <p>From interest to responsibility, and from responsibility to critical thinking, our educational spiral has completed a new leap during the high school stage.</p>
+        <div style="display: flex; gap: 20px; margin: 1rem 0; clear: both; align-items: flex-start;">
+            <figure style="flex: 1; margin: 0; text-align: left;">
+                <img alt="Education top overview"
+                     loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/edutopoverview.avif"
+                     style="max-width: 60%; height: auto; border-radius: 8px;">
+            </figure>
+            <figure style="flex: 1; margin: 0; text-align: right; margin-right: -5px;">
+                <img alt="Education overview framework"
+                     loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/educationoverview.webp"
+                     style="max-width: 100%; height: auto; border-radius: 8px;">
+            </figure>
+        </div>
 
-      <h3 id="college-programs">College Programs</h3>
-      <p>However, we have also gradually realized that: to enable more people to truly share the value of synthetic biology, relying solely on ourselves is far from enough. We need to find the group that is closest to cutting-edge knowledge and most likely to spread it to a wider audience—college students. Thus, the next step of the educational spiral naturally extends to college campuses.</p>
-      
-      <p>On this campus, we first offered ML (Machine Learning) course training to all students. In ML CAMP, the team started from the principles of linear regression and covered all the way to the applications of Machine Learning in biology, and invited relevant teachers from the school to participate in course design and Q&A. By providing this course, it helped interested college students to further understand the intersection of AI and synthetic biology; at the same time, we co-hosted a special presentation on synthetic biology and this project with the Life Science Society, and more than 50 colleagues from various grades participated in our offline event. They fully understood synthetic biology itself, how synthetic biology can provide solutions to the plastic pollution problem, and how artificial intelligence can assist and accelerate the development of synthetic biology research. By providing such content design, more colleagues have gained a preliminary understanding of this discipline.</p>
-      
-      <p>But we didn't stop at the classroom. Instead, we took it a step further by attempting cross-disciplinary collaboration, combining science education with culture and art. We collaborated with the calligraphy and painting society, extended the results of "bacteria painting", combined it with AI technology, created paintings themed on "how plastic harms Earth's organisms", and jointly held a five-day art exhibition on campus. Different from traditional laboratory displays, this time we chose to empower synthetic biology education through the power of traditional Chinese calligraphy and painting.</p>
-      
-      <p>Calligraphy and painting carry the weight of culture, and when combined with bacteria painting and AI creation, they not only allow visitors to directly experience the beauty of the intersection between science and art but also arouse everyone's attention to the issue of plastic pollution through cultural resonance.</p>
-      
-      <p>Many colleagues left messages during interviews after visiting the art exhibition, saying, "I never expected that traditional Chinese painting and calligraphy could be combined with synthetic biology. This approach made me realize for the first time that science is so close to life." This is exactly the educational effect we expect - under the influence of beauty, making scientific topics tangible, perceptible, and thought-provoking.</p>
+        <h2 id="educational-practices">Carry out Education Specific Work</h2>
 
-      <h3 id="enzyme-eats-plastic">Enzyme Eats Plastic Game</h3>
-      <p>Beyond educational practices from primary school to university, we also hope to find a way that truly transcends age and enables people from different backgrounds to easily participate. Thus, a pixel-style level-based mini-game, <em>Enzyme Eats Plastic</em>, was born.</p>
-      
-      <p>This mini-game is based on the classic pixel style and sets up a "world of confrontation between enzymes and plastic monsters". In each level, players must control the "enzymes" to decompose different plastic monsters. As the level progresses, the difficulty gradually increases, and factors such as "temperature" and "signal pathways" are added to modify enzymes. Players must think about how to use these modifications to degrade the corresponding plastic monsters in order to continue the game. Each time a plastic monster is eliminated, a "science popularization card" will be unlocked, which briefly introduces the properties, degradation difficulties, and real-life governance plans of this plastic. In this way, players unknowingly complete a journey of knowledge about synthetic biology and plastic pollution in the immersive experience of passing levels.</p>
-      
-      <p>We also look forward to it becoming a bridge for communication among children, parents, college students, and even teachers in the future. For children, it is an educational and entertaining enlightenment; for adults, it is an opportunity for easy yet profound reflection. We hope that in this way, "scientific knowledge" can break out of books and laboratories and become a cultural experience that everyone can feel.</p>
-      
-      <p>Thus, our educational spiral and story gradually become complete. From primary school to university, our educational path always follows the spiral progression of "interest enlightenment - responsibility cultivation - value internalization - cross-border action" Each link has unique highlights: "bacterial painting" in primary school, "fair education" in junior high school, "national and individual destiny" in high school, and "traditional calligraphy and painting empower" in university. Together, they constitute an expanding and progressive educational story, ultimately converging into our initial vision: to make synthetic biology understandable and accessible to everyone. The educational spiral is interconnected and will continue to extend to deeper and broader levels in the future.</p>
+        <h3 id="educational-spiral">Educational Spiral (Spiraling Upward)</h3>
+        <p>Guided by the concept of the "Educational Spiral," we implemented our first educational practice at Beijing
+            Bozhi School. Limited by conditions, we attempted to initiate this exploration through online classes. In
+            the classroom, we started with the most familiar things around the children, guiding them to distinguish
+            between living and non-living things, and helping them establish their initial biological understanding:
+            living things grow, need nutrients, can reproduce, and respond to stimuli. We also tried to popularize what
+            AI is and briefly introduced our project. To our delight, some children in the class spontaneously picked up
+            their pens to record what they had learned, showing genuine curiosity and engagement.</p>
 
-      <h2 id="unique-value">The Unique Value of the Educational Framework</h2>
-      <p>In the process of summarizing and reflecting, we gradually realized that many educational efforts often stop at the transmission of knowledge points, while we attempt to go further. Based on the overall concept of the "educational spiral," we have explored a complete educational path from primary school to university and then to the public, and formed several distinctive features with extensibility in practice:</p>
-      
-      <h3>Interdisciplinary Educational Theme</h3>
-      <p>We have chosen the practical and cutting-edge topic of "AI + plastic degradation" as the entry point, which not only enables students to understand the basic concepts of synthetic biology but also allows them to see how science combines with artificial intelligence and responds to environmental challenges.</p>
-      
-      <h3>Integration of Science × Art × Action</h3>
-      <p>In addition to classroom lectures, we have also carried out activities such as bacteria painting, AI-assisted creation, campus art exhibitions, and public mini-games. Such cross-disciplinary attempts have enabled science education to not only stay at the cognitive level but also stimulate emotional resonance and willingness to act. It can provide a model for other future teams to make science education more participatory and publicly acceptable.</p>
-      
-      <h3>Spiral Progression from Interest to Responsibility</h3>
-      <p>We strive to connect educational activities of different age groups, from the interest enlightenment of primary school students, to the exploration consciousness of middle school students, and then to the responsibility consciousness and critical thinking of high school students and the interdisciplinary cooperation of college students, gradually guiding learners to find their own way of participation. Each activity is independent, but it can be connected to form a complete and continuous educational chain across age groups. The "Education Spiral Framework" is not limited to our team's projects. In the future, other teams can apply their own themes on this basis.</p>
-      
-      <h3>Open and Shared Portability</h3>
-      <p>In practice, we have accumulated tools such as PPTs, experimental manuals, and open-source mini-games. These materials have lowered the threshold for reusing educational activities and also provided the possibility for other teams or teachers to apply them in different contexts.</p>
-      
-      <h3>Integrating Responsibility into the Educational Process</h3>
-      <p>We have always emphasized the connection between science education and social responsibility, attempting to combine classroom learning with practical actions such as plastic recycling, so that science education is not only about "understanding knowledge" but also "applying knowledge in practice". We hope that this approach will serve as a reference and provide practical assistance to other teams in the future, enhancing the impact and sustainability of education.</p>
-      
-      <p>We do not believe that these explorations have been perfected, but rather hope to provide some new ideas and possibilities for subsequent teams and more educators in limited practice.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin: 1.5rem 0; gap: 1rem;">
+            <figure style="flex: 1; margin: 0; max-width: 45%;">
+                <img alt="Beijing Bozhi School education activity 1"
+                     loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/bozhi-11.webp"
+                     style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+            </figure>
+            <figure style="flex: 1; margin: 0; max-width: 45%;">
+                <img alt="Beijing Bozhi School education activity 2"
+                     loading="lazy" src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/bozhi-22.webp"
+                     style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+            </figure>
+        </div>
 
-      <h2 id="reflection">Our Reflection</h2>
-      <p>Looking across the entire educational spiral, we have completed a systematic exploration from primary school to university and then to the public. However, when reviewing these practices, we have also gradually realized that education should not merely be a vertical path of "age-based progression," but also require horizontal expansion that is "cross-group, cross-regional, and cross-cultural." How science education can move beyond the campus and truly become a social dialogue remains an issue we have not fully resolved.</p>
-      
-      <p>Meanwhile, we have found that educational activities often appear as "point-like" or "phased", while the mechanism for continuous follow-up and feedback remains inadequate. Although the inspiration brought by a single activity is undoubtedly valuable, how to enable students and the public to maintain their enthusiasm for exploration after the activity ends and form a long-term learning and action network is a challenge that we urgently need to address in the future.</p>
-      
-      <p>Finally, although we have achieved the "dissemination of scientific knowledge", we look forward to further advancing towards "value co-creation" in the future. In other words, rather than simply having us as disseminators and students and the public as recipients, we aim to enable them to truly participate in educational design, science communication, and even project practice, jointly generating new understandings and actions.</p>
-      
-      <p>Therefore, our reflection is not merely a summary of existing paths, but a reminder to ourselves that the significance of education lies not only in imparting knowledge or inspiring, but in continuous co-construction. This will become the direction of our future efforts.</p>
-    </article>
+        <p>However, the post-class feedback deeply touched us. The teaching assistant frankly admitted that the online
+            format had greatly weakened the sense of interaction, and some children with weaker attention quickly got
+            distracted; moreover, the parts of the curriculum design related to AI and projects were too abstract for
+            this age group, making it difficult for them to understand. In contrast, using living and non-living things
+            around them to explain "the four characteristics of living things" was the part that children could most
+            readily accept and absorb. This first attempt, like a wake-up call, made us realize that we still had
+            significant deficiencies in educational practice: rather than imparting new knowledge, tangible experiences
+            were the most effective way to stimulate their curiosity and desire for exploration.</p>
+
+        <p>"Recognize one's deficiencies and then rise up." With such reflection, we began to proactively adjust. We
+            decided to abandon the online format and instead conduct offline classes in nearby areas; we removed
+            abstract and difficult-to-understand knowledge points, retained the core content of basic biology, and added
+            hands-on experiments and interactive sessions in the classroom, focusing educational emphasis on interest
+            enlightenment and hands-on experience to help children maintain their attention and interest while
+            participating.</p>
+
+        <h3 id="laboratory-experience">Laboratory Experience</h3>
+        <p>With the help of PI, we contacted the person in charge of the Asia Cold Spring Harbor DNA Learning Center
+            located in Suzhou Industrial Park, and with the support of an alumnus, we got the opportunity to teach
+            primary school students again. This time, we moved the classroom into the laboratory. We carefully designed
+            a unique highlight of the class - "bacteria painting". Under the supervision of professional teachers, the
+            children completed the "bacteria painting" experiment using Escherichia coli 1917 and Micrococcus luteus. We
+            guided them to learn the basic operations of the laboratory and the preliminary knowledge of the two
+            bacteria during the enjoyable hands-on process. For children who lacked creativity for a moment, we also
+            introduced ChatGPT to help them design patterns, allowing science and technology to intertwine in a more
+            interesting way. Naturally, this activity received positive feedback. Several children even voluntarily
+            proposed to learn more about the laboratory operation process and biological knowledge.</p>
+<figure style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/yazhoudna.webp"
+       style="width: 45%; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/yazhoudna-2.webp"
+       style="width: 45%; border-radius: 12px;" />
+</figure>
+
+      <figure style="text-align: center;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/lengquangang3.webp"
+       style="max-width: 95%; height: auto; border-radius: 12px;" />
+</figure>
+
+        <p>When the patterns drawn by bacteria gradually emerged in the hands of the children, the twinkling light in
+            their eyes showed us the meaning of education. This time, we received an abundance of positive feedback.
+            Even several children voluntarily expressed their desire to gain a deeper understanding of laboratory
+            procedures and biological knowledge after the course. For us, this is not only an educational improvement
+            but also a leap in the "educational spiral" path - gradually moving from initial interest enlightenment
+            towards exploration and thinking.</p>
+
+        <h3 id="success-factors">Success Factors Analysis</h3>
+        <p>Despite achieving initial success, we did not become impetuous. We carefully summarized our experience and
+            pondered why this event was successful:</p>
+        <ol>
+            <li><strong>Innovative Form:</strong> Through "bacteria painting", children are transformed from
+                "spectators" into "participants", experiencing science in an artistic way, which is more in line with
+                the acceptance habits of this age group.
+            </li>
+            <li><strong>Hands-on Practice:</strong> Compared to simple lectures, the experimental session greatly
+                enhances children's sense of participation and memory, allowing them to naturally absorb knowledge
+                during the process.
+            </li>
+            <li><strong>Emotionally Inspiring Atmosphere:</strong> The classroom atmosphere is relaxed and open,
+                allowing children to gain a sense of accomplishment through free exploration, which in turn stimulates
+                their interest in active learning.
+            </li>
+        </ol>
+
+        <p>All these make us more convinced that the power of education lies in enabling students to "be willing to
+            learn" rather than merely "passively listen".</p>
+
+        <h3 id="rural-education">Rural Education Outreach</h3>
+        <p>Meanwhile, this experience has also brought us new reflections. In areas with abundant resources, children
+            can quickly access cutting-edge knowledge, and some have even advanced to learning junior high school
+            courses ahead of schedule. We feel proud to see the continuous improvement of education in our motherland.
+            However, what about in some areas with relatively weak educational resources? Are there also people longing
+            for the same opportunities? With such questions in mind, we have decided to extend the reach of education to
+            broader areas.</p>
+
+        <p>With such questions and a sense of mission in mind, we came to Caomiao Middle School in Caomiao Village,
+            Suqian City, Jiangsu Province. These are a group of ninth-grade students who are about to face the high
+            school entrance examination. They are full of expectations for their future high school life, yet also
+            faintly show signs of confusion. Before class, the teacher told us that not many children in this class
+            would be able to continue their studies.</p>
+
+        <p>Therefore, in the classroom, we not only shared the basic concepts of synthetic biology, its applications in
+            life, and the development context of AI, but also incorporated exploratory Q&A sessions to encourage them to
+            think actively and explore proactively. At the same time, we also shared our own high school experiences,
+            telling them about the interesting discoveries and stories in various disciplines. We hope that through this
+            approach, they can see the fun of learning itself and convey the belief that no matter what situation they
+            are in, they should never give up the "learning mindset."</p>
+
+        <p>At the end of the class, a boy walked up to us, his eyes full of longing, and said that he really liked our
+            class and the experiences we shared, and hoped to hear more from us in the future. This statement deeply
+            touched us. It is not only positive feedback on this event, but also like a reminder: the value of education
+            lies not only in imparting knowledge, but also in igniting hope.</p>
+
+<figure style="display: flex; justify-content: center; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/suqian-1.webp"
+       style="width: 32%; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/suqian-2.webp"
+       style="width: 32%; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/suqiain-3.webp"
+       style="width: 32%; border-radius: 12px;" />
+</figure>
+
+        <p>From urban classrooms to rural schools, we have become more determined to pursue the concept of equitable
+            education advocacy. In the future, we will continue to work hard to sow the seeds of cutting-edge knowledge
+            in more places, enabling it to take root not only in fertile soil but also in the hearts of more
+            children.</p>
+
+        <h3 id="high-school-engagement">High School Engagement</h3>
+        <p>Having experienced the interest enlightenment in primary school and the responsibility transfer in junior
+            high school, we have gradually come to understand the deeper connotations behind education and better
+            grasped our responsibilities. Education is not only about imparting knowledge but also about inspiring
+            students' critical thinking and sense of responsibility. High school, as the crucial period when values
+            gradually take shape and thinking patterns mature rapidly, has thus become the next focus of our educational
+            practice.</p>
+
+        <p>With the support of Teacher Gao Sheng, we went to Huamai Middle School in Chengmai, Hainan. Fortunately, it
+            was the beginning of the new year of high school and coincided with the 9.3 military parade. We took this
+            special moment as an opportunity to popularize the basic knowledge of synthetic biology to the students, and
+            derived it from the high school curriculum and artificial intelligence technology. By reviewing the past
+            history and focusing on the current plastic pollution problem, we guided them to think about the connection
+            between science, individuals, and the country. In the classroom, students listened carefully and responded
+            actively. Many students began to realize that when they devoted themselves to scientific exploration and
+            paid attention to social issues, they were actually walking with the future of the country: Good educators
+            not only impart knowledge, but also have the power to support students to go further. At that moment, the
+            meaning of education is not only to impart knowledge, but also to awaken the sense of responsibility of
+            individuals resonating with the times.</p>
+
+      <figure style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/hainan-1.webp"
+       style="width: 45%; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/hainan-3.webp"
+       style="width: 45%; border-radius: 12px;" />
+</figure>
+
+        <p>However, reflecting on this event, we found that while it successfully inspired students' sense of
+            responsibility, there was still room for improvement in stimulating critical thinking. With this in mind, we
+            decided to give it another try, using the currently most highly regarded topic of artificial intelligence as
+            the entry point. So, on the weekend, we once again entered the Cold Spring Harbor Asia DNA Learning Center
+            to bring a special class to a group of high school students.</p>
+
+        <p>This time, beyond the regular introduction, we focused on how young people can coexist with AI in the new AI
+            era. Instead of simply explaining the principles of AI, we started with "how to talk to AI" and introduced
+            students to the relevant knowledge of prompts, emphasizing the role and necessity of each component.
+            Subsequently, we guided them to think: Is a prompt clear? Is it reasonable? Does it help AI accurately
+            understand the task? In class, students actively tried, constantly modifying and optimizing their
+            expressions. At the end of class, a student said to the teacher with a smile: "It feels like this is the
+            first time I've truly learned to use artificial intelligence!" This light yet profound feedback is exactly
+            the result we wanted - to enable students to develop critical thinking in exploration and then connect their
+            personal abilities with future responsibilities.</p>
+
+      <figure style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/leng-gaozhong-1.webp"
+       style="width: 45%; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/leng-gaozhong-2.webp"
+       style="width: 45%; border-radius: 12px;" />
+</figure>
+
+        <p>From interest to responsibility, and from responsibility to critical thinking, our educational spiral has
+            completed a new leap during the high school stage.</p>
+
+        <h3 id="college-programs">College Programs</h3>
+        <p>However, we have also gradually realized that: to enable more people to truly share the value of synthetic
+            biology, relying solely on ourselves is far from enough. We need to find the group that is closest to
+            cutting-edge knowledge and most likely to spread it to a wider audience—college students. Thus, the next
+            step of the educational spiral naturally extends to college campuses.</p>
+
+      <figure style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/ml-1.webp"
+       style="height: 250px; width: auto; object-fit: cover; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/logo.webp"
+       style="height: 250px; width: auto; object-fit: cover; border-radius: 12px;" />
+</figure>
+
+        <p>On this campus, we first offered ML (Machine Learning) course training to all students. In ML CAMP, the team
+            started from the principles of linear regression and covered all the way to the applications of Machine
+            Learning in biology, and invited relevant teachers from the school to participate in course design and Q&A.
+            By providing this course, it helped interested college students to further understand the intersection of AI
+            and synthetic biology; at the same time, we co-hosted a special presentation on synthetic biology and this
+            project with the Life Science Society, and more than 50 colleagues from various grades participated in our
+            offline event. They fully understood synthetic biology itself, how synthetic biology can provide solutions
+            to the plastic pollution problem, and how artificial intelligence can assist and accelerate the development
+            of synthetic biology research. By providing such content design, more colleagues have gained a preliminary
+            understanding of this discipline.</p>
+
+<figure style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/club-1.webp"
+       style="height: 200px; width: auto; object-fit: cover; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/club-2.webp"
+       style="height: 200px; width: auto; object-fit: cover; border-radius: 12px;" />
+</figure>
+
+        <p>But we didn't stop at the classroom. Instead, we took it a step further by attempting cross-disciplinary
+            collaboration, combining science education with culture and art. We collaborated with the calligraphy and
+            painting society, extended the results of "bacteria painting", combined it with AI technology, created
+            paintings themed on "how plastic harms Earth's organisms", and jointly held a five-day art exhibition on
+            campus. Different from traditional laboratory displays, this time we chose to empower synthetic biology
+            education through the power of traditional Chinese calligraphy and painting.</p>
+
+        <p>Calligraphy and painting carry the weight of culture, and when combined with bacteria painting and AI
+            creation, they not only allow visitors to directly experience the beauty of the intersection between science
+            and art but also arouse everyone's attention to the issue of plastic pollution through cultural
+            resonance.</p>
+
+        <p>Many colleagues left messages during interviews after visiting the art exhibition, saying, "I never expected
+            that traditional Chinese painting and calligraphy could be combined with synthetic biology. This approach
+            made me realize for the first time that science is so close to life." This is exactly the educational effect
+            we expect - under the influence of beauty, making scientific topics tangible, perceptible, and
+            thought-provoking.</p>
+
+<figure style="text-align: center;">
+  <!-- 第一张单独一行 -->
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/huazhan-1.webp"
+       style="max-width: 80%; height: auto; border-radius: 12px; margin-bottom: 1rem;" />
+
+  <!-- 中间两张并排 -->
+  <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+    <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/huazhan-2.webp"
+         style="width: 80%; height: auto; border-radius: 12px;" />
   </div>
+
+  <!-- 最后一张单独一行 -->
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/huazhan-4.webp"
+       style="max-width: 80%; height: auto; border-radius: 12px;" />
+</figure>
+
+        <h3 id="enzyme-eats-plastic">Enzyme Eats Plastic Game</h3>
+        <p>Beyond educational practices from primary school to university, we also hope to find a way that truly
+            transcends age and enables people from different backgrounds to easily participate. Thus, a pixel-style
+            level-based mini-game, <em>Enzyme Eats Plastic</em>, was born.</p>
+
+<figure style="display: flex; justify-content: center; align-items: flex-start; gap: 1rem; flex-wrap: nowrap;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/game-intro.webp"
+       style="width: 32%; height: auto; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/xiaoyouxi-1.webp"
+       style="width: 32%; height: auto; border-radius: 12px;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/xiaoyouxi-3.webp"
+       style="width: 32%; height: auto; border-radius: 12px;" />
+</figure>
+
+        <p>This mini-game is based on the classic pixel style and sets up a "world of confrontation between enzymes and
+            plastic monsters". In each level, players must control the "enzymes" to decompose different plastic
+            monsters. As the level progresses, the difficulty gradually increases, and factors such as "temperature" and
+            "signal pathways" are added to modify enzymes. Players must think about how to use these modifications to
+            degrade the corresponding plastic monsters in order to continue the game. Each time a plastic monster is
+            eliminated, a "science popularization card" will be unlocked, which briefly introduces the properties,
+            degradation difficulties, and real-life governance plans of this plastic. In this way, players unknowingly
+            complete a journey of knowledge about synthetic biology and plastic pollution in the immersive experience of
+            passing levels.</p>
+
+        <p>We also look forward to it becoming a bridge for communication among children, parents, college students, and
+            even teachers in the future. For children, it is an educational and entertaining enlightenment; for adults,
+            it is an opportunity for easy yet profound reflection. We hope that in this way, "scientific knowledge" can
+            break out of books and laboratories and become a cultural experience that everyone can feel.</p>
+
+        <p>Thus, our educational spiral and story gradually become complete. From primary school to university, our
+            educational path always follows the spiral progression of "interest enlightenment - responsibility
+            cultivation - value internalization - cross-border action" Each link has unique highlights: "bacterial
+            painting" in primary school, "fair education" in junior high school, "national and individual destiny" in
+            high school, and "traditional calligraphy and painting empower" in university. Together, they constitute an
+            expanding and progressive educational story, ultimately converging into our initial vision: to make
+            synthetic biology understandable and accessible to everyone. The educational spiral is interconnected and
+            will continue to extend to deeper and broader levels in the future.</p>
+
+        <p><strong>On the educational activities we have carried out, a framework for age-specific educational difficulties and countermeasures has been summarized for others to draw on and refer to:</strong> </p>
+        <figure style="text-align: center;">
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/education/educationform.webp"
+                 alt="Educational Framework"
+                 style="max-width: 95%; height: auto; border-radius: 12px;" 
+                 loading="lazy" />
+        </figure>
+        
+        <h2 id="unique-value">The Unique Value of the Educational Framework</h2>
+        
+        <p>In the process of summarizing and reflecting, we gradually realized that many educational efforts often stop
+            at the transmission of knowledge points, while we attempt to go further. Based on the overall concept of the
+            "educational spiral," we have explored a complete educational path from primary school to university and
+            then to the public, and formed several distinctive features with extensibility in practice:</p>
+
+        <h3>Interdisciplinary Educational Theme</h3>
+        <p>We have chosen the practical and cutting-edge topic of "AI + plastic degradation" as the entry point, which
+            not only enables students to understand the basic concepts of synthetic biology but also allows them to see
+            how science combines with artificial intelligence and responds to environmental challenges.</p>
+
+        <h3>Integration of Science × Art × Action</h3>
+        <p>In addition to classroom lectures, we have also carried out activities such as bacteria painting, AI-assisted
+            creation, campus art exhibitions, and public mini-games. Such cross-disciplinary attempts have enabled
+            science education to not only stay at the cognitive level but also stimulate emotional resonance and
+            willingness to act. It can provide a model for other future teams to make science education more
+            participatory and publicly acceptable.</p>
+
+        <h3>Spiral Progression from Interest to Responsibility</h3>
+        <p>We strive to connect educational activities of different age groups, from the interest enlightenment of
+            primary school students, to the exploration consciousness of middle school students, and then to the
+            responsibility consciousness and critical thinking of high school students and the interdisciplinary
+            cooperation of college students, gradually guiding learners to find their own way of participation. Each
+            activity is independent, but it can be connected to form a complete and continuous educational chain across
+            age groups. The "Education Spiral Framework" is not limited to our team's projects. In the future, other
+            teams can apply their own themes on this basis.</p>
+
+        <h3>Open and Shared Portability</h3>
+        <p>In practice, we have accumulated tools such as PPTs, experimental manuals, and open-source mini-games. These
+            materials have lowered the threshold for reusing educational activities and also provided the possibility
+            for other teams or teachers to apply them in different contexts.</p>
+
+        <h3>Integrating Responsibility into the Educational Process</h3>
+        <p>We have always emphasized the connection between science education and social responsibility, attempting to
+            combine classroom learning with practical actions such as plastic recycling, so that science education is
+            not only about "understanding knowledge" but also "applying knowledge in practice". We hope that this
+            approach will serve as a reference and provide practical assistance to other teams in the future, enhancing
+            the impact and sustainability of education.</p>
+
+        <p>We do not believe that these explorations have been perfected, but rather hope to provide some new ideas and
+            possibilities for subsequent teams and more educators in limited practice.</p>
+
+        <h2 id="reflection">Our Reflection</h2>
+        <p>Looking across the entire educational spiral, we have completed a systematic exploration from primary school
+            to university and then to the public. However, when reviewing these practices, we have also gradually
+            realized that education should not merely be a vertical path of "age-based progression," but also require
+            horizontal expansion that is "cross-group, cross-regional, and cross-cultural." How science education can
+            move beyond the campus and truly become a social dialogue remains an issue we have not fully resolved.</p>
+
+        <p>Meanwhile, we have found that educational activities often appear as "point-like" or "phased", while the
+            mechanism for continuous follow-up and feedback remains inadequate. Although the inspiration brought by a
+            single activity is undoubtedly valuable, how to enable students and the public to maintain their enthusiasm
+            for exploration after the activity ends and form a long-term learning and action network is a challenge that
+            we urgently need to address in the future.</p>
+
+        <p>Finally, although we have achieved the "dissemination of scientific knowledge", we look forward to further
+            advancing towards "value co-creation" in the future. In other words, rather than simply having us as
+            disseminators and students and the public as recipients, we aim to enable them to truly participate in
+            educational design, science communication, and even project practice, jointly generating new understandings
+            and actions.</p>
+
+        <p>Therefore, our reflection is not merely a summary of existing paths, but a reminder to ourselves that the
+            significance of education lies not only in imparting knowledge or inspiring, but in continuous
+            co-construction. This will become the direction of our future efforts.</p>
+    </article>
+</div>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -160,7 +593,7 @@
     </button>
   </div>
 
-  <script>
+    <script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     
@@ -190,65 +623,5 @@
     
     window.addEventListener('scroll', handleScroll);
 
-
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

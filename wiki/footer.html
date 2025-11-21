@@ -16,41 +16,41 @@
       <div class="footer-nav-multicol">
         <div class="footer-nav-group">
           <div class="footer-nav-title">TEAM</div>
-          <a href="members.html">Members</a>
-          <a href="attributions.html">Attributions</a>
+          <a href="{{ url_for('pages', page='members') }}">Members</a>
+          <a href="{{ url_for('pages', page='attributions') }}">Attributions</a>
         </div>
         <div class="footer-nav-group">
           <div class="footer-nav-title">PROJECT</div>
-          <a href="description.html">Description</a>
-          <a href="engineering.html">Engineering</a>
-          <a href="contribution.html">Contribution</a>
-          <a href="safety.html">Safety</a>
+          <a href="{{ url_for('pages', page='description') }}">Description</a>
+          <a href="{{ url_for('pages', page='engineering') }}">Engineering</a>
+          <a href="{{ url_for('pages', page='contribution') }}">Contribution</a>
+          <a href="{{ url_for('pages', page='safety') }}">Safety</a>
         </div>
         <div class="footer-nav-group">
           <div class="footer-nav-title">DRY LAB</div>
-          <a href="model.html">Overview</a>
-          <a href="database.html">Database</a>
-          <a href="predictor.html">Predictor</a>
-          <a href="webapp.html">Web App</a>
+          <a href="{{ url_for('pages', page='model') }}">Overview</a>
+          <a href="{{ url_for('pages', page='database') }}">Database</a>
+          <a href="{{ url_for('pages', page='predictor') }}">Predictor</a>
+          <a href="{{ url_for('pages', page='webapp') }}">Web App</a>
         </div>
         <div class="footer-nav-group">
           <div class="footer-nav-title">WET LAB</div>
-          <a href="wetlab-design.html">Overview</a>
-          <a href="protocol.html">Protocol</a>
-          <a href="notebook.html">Notebook</a>
+          <a href="{{ url_for('pages', page='overview') }}">Overview</a>
+          <a href="{{ url_for('pages', page='protocol') }}">Protocol</a>
+          <a href="{{ url_for('pages', page='notebook') }}">Notebook</a>
         </div>
         <div class="footer-nav-group">
           <div class="footer-nav-title">ACTIVITIES</div>
-          <a href="human-practices.html">Human-Practices</a>
-          <a href="education.html">Education</a>
-          <a href="sustainability.html">Sustainability</a>
+          <a href="{{ url_for('pages', page='human-practices') }}">Human-Practices</a>
+          <a href="{{ url_for('pages', page='education') }}">Education</a>
+          <a href="{{ url_for('pages', page='sustainability') }}">Sustainability</a>
         </div>
       </div>
     </div>
   </div>
+  <!-- The following MUST be on every page: license information and link to the repository on gitlab.igem.org -->
   <div class="footer-bottom">
-    © 2025 XJTLU iGEM Team. Licensed under CC BY 4.0.
-    <span style="margin-left:16px;">Advancing Synthetic Biology</span>
-    <a href="../privacy.html" style="margin-left:16px;">Privacy Policy</a>
+    <small>© 2025 - Content on this site is licensed under a <a class="subfoot" href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International license</a>.</small>
+    <small>The repository used to create this website is available at <a href="https://gitlab.igem.org/2025/xjtlu-ai-china">gitlab.igem.org/2025/xjtlu-ai-china.</small>
   </div>
 </footer> 

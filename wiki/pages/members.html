@@ -3,9 +3,99 @@
 {% block title %}Research Team{% endblock %}
 
 {% block page_content %}
+  <style>
+    .members-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/team-members.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .members-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for members header */
+    body.dark-mode .members-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .members-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .members-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .members-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .members-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .members-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .members-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Acknowledgment section styling */
+    .acknowledgment-section {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+    
+    .acknowledgment-text {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      font-style: italic;
+    }
+  </style>
   
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header members-header">
     <div class="container">
       <h1>Our Research Team</h1>
       <p>This is all the team researchers working together to create a solution!</p>
@@ -25,16 +115,16 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">ZY</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/yzc.webp" alt="Zhicheng Yang" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Zhicheng Yang</h4>
-              <p class="member-title">Dry Lab Leader</p>
-              <p class="member-department">Computer Science</p>
+              <p class="member-title">Student Leader</p>
+              <p class="member-department">Bioinformatics</p>
               <div class="research-areas">
-                <span class="research-tag">Computational Biology</span>
-                <span class="research-tag">AI & ML</span>
+                <span class="research-tag">Dry</span>
+                <span class="research-tag">HP</span>
               </div>
             </div>
           </div>
@@ -42,16 +132,15 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">YX</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/xyq2.webp" alt="Yueqing Xing" class="member-photo">
               </div>
             </div>
             <div class="member-info">
-              <h4 class="member-name">Yueqing Xin</h4>
-              <p class="member-title">Human Practices Leader</p>
-              <p class="member-department">Environmental Science</p>
+              <h4 class="member-name">Yueqing Xing</h4>
+              <p class="member-title">Student Leader</p>
+              <p class="member-department">Mathematics of Finance</p>
               <div class="research-areas">
-                <span class="research-tag">Environmental Policy</span>
-                <span class="research-tag">Community Engagement</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -59,16 +148,15 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">ZC</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/czyy2.webp" alt="Zhenyayuan Cao" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Zhenyayuan Cao</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Bioinformatics</p>
+              <p class="member-title">Student Leader</p>
+              <p class="member-department">Biopharmaceuticals</p>
               <div class="research-areas">
-                <span class="research-tag">Bioinformatics</span>
-                <span class="research-tag">Protein Engineering</span>
+                <span class="research-tag">HP</span>
               </div>
             </div>
           </div>
@@ -77,16 +165,16 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">YT</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/tyc.webp" alt="Yichen Tang" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Yichen Tang</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Molecular Biology</p>
+              <p class="member-title">Student</p>
+              <p class="member-department">Bioinformatics</p>
               <div class="research-areas">
-                <span class="research-tag">Protein Expression</span>
-                <span class="research-tag">Molecular Cloning</span>
+                <span class="research-tag">Wet</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -94,16 +182,16 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">SH</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/hsl.webp" alt="Shulei He" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Shulei He</h4>
-              <p class="member-title">Wet Lab Leader</p>
-              <p class="member-department">Biochemistry</p>
+              <p class="member-title">Student</p>
+              <p class="member-department">Biological Sciences</p>
               <div class="research-areas">
-                <span class="research-tag">Protein Engineering</span>
-                <span class="research-tag">Biochemistry</span>
+                <span class="research-tag">Dry</span>
+                <span class="research-tag">Wet</span>
               </div>
             </div>
           </div>
@@ -111,16 +199,15 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">YL</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/ly.webp" alt="Yan Long" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Yan Long</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Applied Mathematics</p>
+              <p class="member-title">Studnet</p>
+              <p class="member-department">Computer Science</p>
               <div class="research-areas">
-                <span class="research-tag">Mathematical Modeling</span>
-                <span class="research-tag">Optimization</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -128,16 +215,15 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">JZ</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/zjq.webp" alt="Jiaqi Zheng" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Jiaqi Zheng</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Chemical Engineering</p>
+              <p class="member-title">Student</p>
+              <p class="member-department">Artificial Intelligence</p>
               <div class="research-areas">
-                <span class="research-tag">Process Optimization</span>
-                <span class="research-tag">Enzyme Assays</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -145,16 +231,31 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">AW</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/xzm.webp" alt="Zimu Xie" class="member-photo">
+              </div>
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Zimu Xie</h4>
+              <p class="member-title">Others</p>
+              <p class="member-department">Artificial Intelligence</p>
+              <div class="research-areas">
+                <span class="research-tag">HP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-member-card">
+            <div class="member-image">
+              <div class="avatar-circle small">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/wax.webp" alt="Aixue Wang" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Aixue Wang</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Public Policy</p>
+              <p class="member-title">Student</p>
+              <p class="member-department">Bioinformatics</p>
               <div class="research-areas">
-                <span class="research-tag">Policy Research</span>
-                <span class="research-tag">Sustainability</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -162,16 +263,15 @@
           <div class="team-member-card">
             <div class="member-image">
               <div class="avatar-circle small">
-                <span class="avatar-initials">SW</span>
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/ws.webp" alt="Shang Wang" class="member-photo">
               </div>
             </div>
             <div class="member-info">
               <h4 class="member-name">Shang Wang</h4>
-              <p class="member-title">Research Scientist</p>
-              <p class="member-department">Sociology</p>
+              <p class="member-title">Student</p>
+              <p class="member-department">Computer Science</p>
               <div class="research-areas">
-                <span class="research-tag">Social Impact</span>
-                <span class="research-tag">Community Engagement</span>
+                <span class="research-tag">Dry</span>
               </div>
             </div>
           </div>
@@ -186,17 +286,15 @@
             <div class="team-member-card">
               <div class="member-image">
                 <div class="avatar-circle small">
-                  <span class="avatar-initials">CC</span>
+                  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/cc2.webp" alt="Chun Chen" class="member-photo">
                 </div>
               </div>
               <div class="member-info">
-                <h4 class="member-name">Prof. Chun Chen</h4>
-                <p class="member-title">Principal Investigator</p>
-                <p class="member-department">Computer Science & Engineering</p>
+                <h4 class="member-name">Chun Chan</h4>
+                <p class="member-title">Primary PI</p>
+                <p class="member-department">School of science</p>
                 <div class="research-areas">
-                  <span class="research-tag">AI & Machine Learning</span>
-                  <span class="research-tag">Biotechnology</span>
-                  <span class="research-tag">Environmental Science</span>
+                  <span class="research-tag">Dry</span>
                 </div>
               </div>
             </div>
@@ -205,16 +303,15 @@
             <div class="team-member-card">
               <div class="member-image">
                 <div class="avatar-circle small">
-                  <span class="avatar-initials">WY</span>
+                  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/ywl.webp" alt="Wenlong Yan" class="member-photo">
                 </div>
               </div>
               <div class="member-info">
                 <h4 class="member-name">Wenlong Yan</h4>
-                <p class="member-title">Supervisor</p>
-                <p class="member-department">Synthetic Biology</p>
+                <p class="member-title">Instructor</p>
+                <p class="member-department">XJTLU, MITS</p>
                 <div class="research-areas">
-                  <span class="research-tag">Synthetic Biology</span>
-                  <span class="research-tag">Metabolic Engineering</span>
+                  <span class="research-tag">HPC</span>
                 </div>
               </div>
             </div>
@@ -223,16 +320,15 @@
             <div class="team-member-card">
               <div class="member-image">
                 <div class="avatar-circle small">
-                  <span class="avatar-initials">XZ</span>
+                  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/zxf.webp" alt="Xuefei Zhao" class="member-photo">
                 </div>
               </div>
               <div class="member-info">
                 <h4 class="member-name">Xuefei Zhao</h4>
-                <p class="member-title">Supervisor</p>
-                <p class="member-department">Biochemistry</p>
+                <p class="member-title">Instructor</p>
+                <p class="member-department">School of science</p>
                 <div class="research-areas">
-                  <span class="research-tag">Protein Engineering</span>
-                  <span class="research-tag">Enzyme Design</span>
+                  <span class="research-tag">Wet</span>
                 </div>
               </div>
             </div>
@@ -241,20 +337,25 @@
             <div class="team-member-card">
               <div class="member-image">
                 <div class="avatar-circle small">
-                  <span class="avatar-initials">ZX</span>
+                  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/members/xzw2.webp" alt="Ziwen Xie" class="member-photo">
                 </div>
               </div>
               <div class="member-info">
                 <h4 class="member-name">Ziwen Xie</h4>
-                <p class="member-title">Supervisor</p>
-                <p class="member-department">Environmental Engineering</p>
+                <p class="member-title">Instructor</p>
+                <p class="member-department">School of science</p>
                 <div class="research-areas">
-                  <span class="research-tag">Environmental Science</span>
-                  <span class="research-tag">Biodegradation</span>
+                  <span class="research-tag">Wet</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        
+        <!-- Acknowledgment Section -->
+        <div class="acknowledgment-section">
+          <p class="acknowledgment-text">Our deepest thanks go to the mentors, colleagues, and community members who have selflessly supported us, and to our entire team.</p>
+          <p class="acknowledgment-text">Hope this project embodies our collective journey and stands as a testament to the collaborative spirit of the iGEM, and wider communities.</p>
         </div>
       </div>
     </section>

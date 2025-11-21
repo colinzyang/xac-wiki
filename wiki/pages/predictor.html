@@ -3,305 +3,2788 @@
 {% block title %}Model{% endblock %}
 
 {% block page_content %}
-  
-  <!-- Article Header -->
-  <header class="article-header">
-    <div class="container">
-      <h1>Mathematical Modeling</h1>
-    </div>
-  </header>
+<style>
+    .predictor-header {
+        height: 320px; /* 25% increase from typical 250px */
+        min-height: 320px;
+        background: #ffffff;
+        background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/x0001-ca.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        overflow: hidden;
+        padding: 120px 0 80px 0;
+        margin-bottom: 0;
+    }
 
-  <!-- Article Container -->
-  <div class="article-container">
+    /* Gradient overlay for top and bottom fade effect */
+    .predictor-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 255, 255, 0.05) 30%,
+                rgba(255, 255, 255, 0.05) 70%,
+                rgba(255, 255, 255, 0.6) 100%
+        );
+        z-index: 1;
+    }
+
+    /* Dark mode support for predictor header */
+    body.dark-mode .predictor-header {
+        background-color: #212121;
+    }
+
+    body.dark-mode .predictor-header::before {
+        background: linear-gradient(
+                rgba(33, 33, 33, 0.3) 0%,
+                rgba(33, 33, 33, 0.05) 30%,
+                rgba(33, 33, 33, 0.05) 70%,
+                rgba(33, 33, 33, 0.6) 100%
+        );
+    }
+
+    .predictor-header .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Text styling for better contrast on image background */
+    .predictor-header h1 {
+        color: #f8f9fa;
+        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+        font-weight: 700;
+    }
+
+    .predictor-header p {
+        color: #e9ecef;
+        opacity: 0.95;
+        text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode .predictor-header h1 {
+        color: #f8f9fa;
+        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-mode .predictor-header p {
+        color: #e9ecef;
+        text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+        max-height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+
+    .catalog-list {
+        max-height: calc(100vh - 250px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+        background: var(--bg-secondary, #f8f9fa);
+        border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+        background: var(--theme-accent, #0078d7);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+        background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+        background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+        background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+        background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+        scrollbar-width: thin;
+        scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+        scrollbar-color: #4dabf7 #2d2d30;
+    }
+</style>
+
+<!-- Article Header -->
+<header class="article-header predictor-header">
+    <div class="container">
+        <h1>Predictor</h1>
+    </div>
+</header>
+
+<!-- Article Container -->
+<div class="article-container">
     <!-- Sidebar -->
     <div class="article-sidebar">
-      <nav class="catalog">
-        <h4 id="contents">Contents</h4>
-        <ul class="catalog-list">
-          <li><a href="#modeling-overview">Modeling Overview</a></li>
-          <li><a href="#kinetic-models">Kinetic Models</a></li>
-          <li><a href="#machine-learning">Machine Learning Models</a></li>
-          <li><a href="#systems-biology">Systems Biology Models</a></li>
-          <li><a href="#optimization-models">Optimization Models</a></li>
-          <li><a href="#model-validation">Model Validation</a></li>
-        </ul>
-      </nav>
+        <nav class="catalog">
+            <h4 id="contents">Contents</h4>
+            <ul class="catalog-list">
+                <li><a href="#modeling-overview">Modeling Overview</a></li>
+                <li><a href="#kinetic-models">Kinetic Models</a></li>
+                <li><a href="#machine-learning">Machine Learning Models</a></li>
+                <li><a href="#systems-biology">Systems Biology Models</a></li>
+                <li><a href="#optimization-models">Optimization Models</a></li>
+                <li><a href="#model-validation">Model Validation</a></li>
+            </ul>
+        </nav>
     </div>
-    
+
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="modeling-overview">Modeling Overview</h2>
-      <p>Mathematical modeling is an important tool for understanding and optimizing plastic-degrading enzyme systems. We have developed multi-level, multi-scale modeling approaches, from molecular-level enzyme catalytic mechanisms to system-level metabolic networks, providing quantitative theoretical guidance for enzyme engineering.</p>
-      
-      <h3>Modeling Methodology</h3>
-      <p>We have adopted a systematic modeling methodology:</p>
-      <ul>
-        <li><strong>Mechanistic Modeling</strong>: First-principles models based on physicochemical principles</li>
-        <li><strong>Data-driven Modeling</strong>: Statistical learning models based on experimental data</li>
-        <li><strong>Hybrid Modeling</strong>: Hybrid approaches combining mechanistic knowledge and data-driven methods</li>
-        <li><strong>Multi-scale Modeling</strong>: Cross-scale modeling from molecular to system level</li>
-      </ul>
-      
-      <h3>Model Hierarchical Structure</h3>
-      <p>Established hierarchical model systems:</p>
-      <ul>
-        <li>Quantum mechanics level: Electronic structure and chemical reactions</li>
-        <li>Molecular mechanics level: Protein conformation and dynamics</li>
-        <li>Enzyme kinetics level: Catalytic reactions and kinetic parameters</li>
-        <li>Cellular level: Metabolic pathways and cell growth</li>
-        <li>Reactor level: Biological processes and engineering optimization</li>
-      </ul>
+        <div><h2 id="dataset-preparation-and-splitting">Dataset Preparation and Splitting</h2>
+            <h3 id="dataset-source-and-composition">Dataset Source and Composition</h3>
 
-      <h2 id="kinetic-models">Kinetic Models</h2>
-      <p>Kinetic models are core tools for describing enzyme catalytic reaction rates and mechanisms, providing quantitative foundations for understanding enzyme catalytic performance and optimization strategies.</p>
-      
-      <h3>Classical Kinetic Models</h3>
-      <p>Models established based on classical enzyme kinetics theory:</p>
-      <ul>
-        <li><strong>Michaelis-Menten Model</strong>: Describes single-substrate enzyme reaction kinetics</li>
-        <li><strong>Competitive Inhibition Model</strong>: Considers the effect of inhibitors on enzyme activity</li>
-        <li><strong>Synergistic Effect Model</strong>: Describes multi-enzyme synergistic catalytic processes</li>
-        <li><strong>Product Inhibition Model</strong>: Considers feedback inhibition from reaction products</li>
-      </ul>
-      
-      <h3>Complex Reaction Mechanism Modeling</h3>
-      <p>Specialized models for complex reaction mechanisms of plastic degradation:</p>
-      <ul>
-        <li>Kinetic description of multi-step reactions</li>
-        <li>Formation and dissociation of enzyme-substrate complexes</li>
-        <li>Accumulation and conversion of intermediate products</li>
-        <li>Effects of side reactions and non-specific reactions</li>
-      </ul>
-      
-      <h3>Environmental Factor Impact Modeling</h3>
-      <p>Mathematical models for environmental condition effects on enzyme activity:</p>
-      <ul>
-        <li><strong>Temperature Effects</strong>: Arrhenius equation and thermal inactivation models</li>
-        <li><strong>pH Effects</strong>: Henderson-Hasselbalch equation and ionization models</li>
-        <li><strong>Ionic Strength</strong>: Debye-Hückel theory and charge effects</li>
-        <li><strong>Co-solvent Effects</strong>: Organic solvent impacts on enzyme structure and activity</li>
-      </ul>
+            <p>
+                The predictive dataset was constructed from a curated collection of
+                experimentally verified or literature-supported <strong>enzyme–plastic pairs</strong>,
+                reflecting the biochemical relationships between hydrolases and their polymer substrates.
+            </p>
 
-      <h2 id="machine-learning">Machine Learning Models</h2>
-      <p>Machine learning methods provide powerful tools for enzyme performance prediction and optimization, particularly with unique advantages in handling high-dimensional complex data and nonlinear relationships.</p>
-      
-      <h3>Deep Learning Models</h3>
-      <p>Multiple deep learning models developed for enzyme performance prediction:</p>
-      <ul>
-        <li><strong>Convolutional Neural Networks (CNN)</strong>: For protein sequence and structural feature extraction</li>
-        <li><strong>Recurrent Neural Networks (RNN)</strong>: Processing sequence data and time series prediction</li>
-        <li><strong>Transformer Models</strong>: For protein language modeling and function prediction</li>
-        <li><strong>Graph Neural Networks (GNN)</strong>: Processing protein structure graphs and interaction networks</li>
-      </ul>
-      
-      <h3>Ensemble Learning Methods</h3>
-      <p>Combining multiple algorithms to improve prediction accuracy:</p>
-      <ul>
-        <li>Random forests for feature importance analysis</li>
-        <li>Gradient boosting algorithms to optimize prediction performance</li>
-        <li>Stacking ensemble methods to combine different models</li>
-        <li>Bayesian model averaging for uncertainty handling</li>
-      </ul>
-      
-      <h3>Feature Engineering</h3>
-      <p>Design and extraction of effective features for machine learning:</p>
-      <ul>
-        <li><strong>Sequence Features</strong>: Amino acid composition, k-mer frequency, sequence patterns</li>
-        <li><strong>Structural Features</strong>: Secondary structure, solvent accessibility, domain composition</li>
-        <li><strong>Physicochemical Features</strong>: Hydrophobicity, charge distribution, molecular weight</li>
-        <li><strong>Evolutionary Features</strong>: Conservation scores, phylogenetic information</li>
-      </ul>
+            <p>
+                Each entry includes a <strong>complete amino acid sequence</strong> and at least one
+                <strong>validated degradation record</strong>, ensuring biological completeness and experimental
+                reliability.
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Enzyme ID</th>
+                    <th>Sequence</th>
+                    <th>PET</th>
+                    <th>PE</th>
+                    <th>PP</th>
+                    <th>PCL</th>
+                    <th>PHB</th>
+                    <th>PU</th>
+                    <th>PLA</th>
+                    <th>...</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>X001</strong></td>
+                    <td>AANPYERGPNPTDALLEAR...</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td><strong>X002</strong></td>
+                    <td>AANPYQRGPDPTESLLRAA...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td><strong>X003</strong></td>
+                    <td>AANPYQRGPNPTEASITAA...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td><strong>X004</strong></td>
+                    <td>AAQTNAPWGLARISSTSPG...</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td><strong>X005</strong></td>
+                    <td>AYLTPGQSGEFTVKKVADT...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>...</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                Choosing <strong>full-length protein sequences</strong> as the primary input is both rational and
+                essential.
+                Sequence information inherently encodes the enzyme’s <strong>evolutionary constraints and functional
+                determinants</strong>,
+                enabling a <strong>generalizable biological representation space</strong> even in the absence of 3D
+                structural data.
+                This design preserves the evolutionary and functional information required for
+                downstream representation learning (Rives <em>et al.</em>, 2021)
+                and provides a foundation for capturing catalytic motifs and co-evolutionary signals relevant to
+                substrate recognition.
+            </p>
 
-      <h2 id="systems-biology">Systems Biology Models</h2>
-      <p>Systems biology models integrate information from multiple levels including molecular, cellular, and ecosystem levels, providing a systematic perspective for understanding complex biological processes of plastic degradation.</p>
-      
-      <h3>Metabolic Network Modeling</h3>
-      <p>Construction of metabolic network models related to plastic degradation:</p>
-      <ul>
-        <li><strong>Genome-scale Models</strong>: Whole-genome metabolic network reconstruction</li>
-        <li><strong>Flux Balance Analysis</strong>: Metabolic flux distribution calculation and optimization</li>
-        <li><strong>Kinetic Models</strong>: Dynamic changes in metabolite concentrations</li>
-        <li><strong>Regulatory Networks</strong>: Gene expression regulation and metabolic regulation</li>
-      </ul>
-      
-      <h3>Cell Growth Models</h3>
-      <p>Mathematical models for engineered microbial growth and enzyme production:</p>
-      <ul>
-        <li>Monod model describing cell growth kinetics</li>
-        <li>Product formation kinetic models</li>
-        <li>Nutrient consumption and limitation models</li>
-        <li>Cell density and biomass models</li>
-      </ul>
-      
-      <h3>Population Dynamics Models</h3>
-      <p>Study of microbial population behavior and interactions:</p>
-      <ul>
-        <li>Modeling of competitive and cooperative relationships</li>
-        <li>Quorum sensing and signal transduction</li>
-        <li>Spatial distribution and diffusion processes</li>
-        <li>Population genetics and evolutionary dynamics</li>
-      </ul>
+            <p>
+                The resulting dataset spans a diverse range of hydrolase families and
+                covers more than <strong>30 polymer types</strong> (e.g., PET, PE, PP, PCL),
+                providing a biologically interpretable foundation for model training.
+            </p>
+            <h3 id="sequence-similarity-guided-partitioning">
+                Sequence Similarity Guided Dataset Partitioning
+            </h3>
 
-      <h2 id="optimization-models">Optimization Models</h2>
-      <p>Optimization models are used to find optimal enzyme design parameters and process conditions, achieving maximum system performance.</p>
-      
-      <h3>Multi-objective Optimization</h3>
-      <p>Balancing multiple conflicting optimization objectives:</p>
-      <ul>
-        <li><strong>Enzyme Activity Maximization</strong>: Improving catalytic efficiency and reaction rates</li>
-        <li><strong>Stability Optimization</strong>: Enhancing thermostability and pH stability</li>
-        <li><strong>Cost Minimization</strong>: Reducing production costs and energy consumption</li>
-        <li><strong>Environmental Friendliness</strong>: Reducing by-products and environmental impact</li>
-      </ul>
-      
-      <h3>Constrained Optimization</h3>
-      <p>Optimization under realistic constraint conditions:</p>
-      <ul>
-        <li>Protein structural stability constraints</li>
-        <li>Solubility and expression level constraints</li>
-        <li>Safety and toxicity constraints</li>
-        <li>Process technology and economic constraints</li>
-      </ul>
-      
-      <h3>Optimization Algorithms</h3>
-      <p>Advanced optimization algorithms for solving complex problems:</p>
-      <ul>
-        <li><strong>Genetic Algorithms</strong>: Global optimization simulating natural evolution</li>
-        <li><strong>Particle Swarm Optimization</strong>: Swarm intelligence optimization algorithms</li>
-        <li><strong>Simulated Annealing</strong>: Probabilistic algorithms avoiding local optima</li>
-        <li><strong>Bayesian Optimization</strong>: Efficient black-box function optimization</li>
-      </ul>
+            <p>
+                To ensure objective evaluation, the dataset was divided into independent
+                training and test subsets guided by <strong>global sequence similarity</strong>
+                rather than random partitioning.
+            </p>
 
-      <h2 id="model-validation">Model Validation</h2>
-      <p>Establishment of comprehensive model validation systems to ensure model accuracy and reliability.</p>
-      
-      <h3>Validation Strategies</h3>
-      <p>Multi-level validation strategies:</p>
-      <ul>
-        <li><strong>Internal Validation</strong>: Cross-validation and bootstrap validation</li>
-        <li><strong>External Validation</strong>: Independent dataset validation</li>
-        <li><strong>Experimental Validation</strong>: Experimental data comparison validation</li>
-        <li><strong>Literature Validation</strong>: Published results comparison validation</li>
-      </ul>
-      
-      <h3>Performance Evaluation Metrics</h3>
-      <p>Establishment of quantitative model performance evaluation systems:</p>
-      <ul>
-        <li>Prediction accuracy: RMSE, MAE, R² and other metrics</li>
-        <li>Classification performance: Precision, recall, F1 score</li>
-        <li>Model stability: Confidence intervals and uncertainty quantification</li>
-        <li>Computational efficiency: Time complexity and space complexity</li>
-      </ul>
-      
-      <h3>Model Improvement and Iteration</h3>
-      <p>Continuous model improvement based on validation results:</p>
-      <ul>
-        <li>Identifying model weaknesses and improvement directions</li>
-        <li>Collecting new data to expand training sets</li>
-        <li>Adjusting model structure and parameters</li>
-        <li>Implementing model version management and updates</li>
-      </ul>
-      
-      <p>Through this complete mathematical modeling system, we can deeply understand the properties and behaviors of plastic-degrading enzymes from multiple perspectives, provide precise theoretical guidance for enzyme engineering, and continuously optimize model performance to address new challenges.</p>
+            <p>
+                <strong>Five experimentally validated enzymes</strong> were first fixed as
+                <strong>reference anchors</strong> in the test set, providing
+                <strong>experimentally confirmed ground truth</strong>.
+            </p>
+
+            <p>
+                For the remaining samples, pairwise global alignments were computed using
+                the <strong>BLOSUM62 substitution matrix</strong> (gap open = –10.0, gap extend = –0.5)
+                to quantify evolutionary similarity. Each sequence’s
+                <strong>nearest-neighbor identity</strong> to the training pool was then
+                calculated, allowing the algorithm to automatically select test samples under
+                strict constraints that prevent data leakage and overrepresentation:
+            </p>
+
+            <ul>
+                <li>(i) No test enzyme shared its closest homolog with the training set;</li>
+                <li>(ii) Internal redundancy among test sequences was capped at 0.95 identity;</li>
+                <li>(iii) The final subsets maintained approximate balance across enzyme families.</li>
+            </ul>
+
+            <p>
+                This produced <strong>87 test sequences</strong> and
+                <strong>387 training sequences</strong>, corresponding to a
+                <strong>split ratio of 18.4 : 81.6</strong>.
+                Although this partition slightly reduces training data, it ensures
+                <strong>statistical independence</strong> and
+                <strong>biological realism</strong>, consistent with benchmark standards
+                such as <em>UniRef50</em> (Suzek et al., 2015) and
+                <em>TAPE</em> (Rao et al., 2019).
+            </p>
+            <h3 id="benchmark-release-and-accessibility">Benchmark Release and Accessibility</h3>
+            <p>All dataset splits used in model training and evaluation are publicly available under
+                the <strong>Zenodo</strong>
+                record :</p>
+            <blockquote>
+                Zenodo DOI:
+                <a href="https://doi.org/10.5281/zenodo.17257278" style="all: unset; cursor: pointer;"
+                   target="_blank">
+                    <img alt="DOI:10.5281/zenodo.17257278"
+                         src="https://zenodo.org/badge/DOI/10.5281/zenodo.17257278.svg"
+                         style="all: unset; height: 24px; vertical-align: middle; cursor: pointer;">
+                </a>
+            </blockquote>
+            <p>Within the repository, the <code>splits/</code> directory contains the
+                finalized <strong>training </strong>and<strong> test partitions</strong>, along with metadata tables
+                specifying <strong>sequence identifiers</strong>,<strong> polymer associations</strong>, and <strong>difficulty
+                    tiers</strong> (Easy/Medium/Hard).</p>
+            <p>This release follows the <strong>FAIR data principles</strong> ensuring that the benchmark is <em>Findable,
+                Accessible, Interoperable </em>and <em>Reusable</em> allowing other researchers to fully reproduce or
+                extend the Plaszyme predictor pipeline.</p>
+            <h2 id="sequence-based-feature-extraction">Sequence-based Feature Extraction</h2>
+            <p>After curating and standardizing enzyme–polymer pairs, the first step in predictive modeling was to
+                encode enzyme sequences into quantitative representations suitable for machine learning.</p>
+            <p>Because amino acid sequences inherently contain rich biological and evolutionary information, we
+                explored <strong>three complementary embedding strategies</strong> — ranging from symbolic encodings to
+                deep contextual embeddings — to evaluate how representation depth affects downstream model performance.
+            </p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/protein-embedding.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/protein-embedding.webp"/></a>
+            </figure>
+            <h3 id="one-hot-encoding-baseline-representation">One-Hot Encoding (Baseline Representation)</h3>
+            <p>As the most interpretable and architecture-independent baseline, each enzyme sequence was represented by
+                a <strong>21-dimensional one-hot vector per residue</strong>, corresponding to the 20 canonical amino
+                acids plus one token for unknown residues (“X”).</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mtable columnalign="center center left" columnspacing="1em"
+                                rowlines="solid none none none none" rowspacing="0.16em">
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Amino Acid</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Symbol</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>One-Hot Vector</mtext>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Alanine</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mi mathvariant="normal">A</mi>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mrow>
+                                            <mo stretchy="false">[</mo>
+                                            <mn>1</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo stretchy="false">]</mo>
+                                        </mrow>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Cysteine</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mi mathvariant="normal">C</mi>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mrow>
+                                            <mo stretchy="false">[</mo>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>1</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo stretchy="false">]</mo>
+                                        </mrow>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Aspartic Acid</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mi mathvariant="normal">D</mi>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mrow>
+                                            <mo stretchy="false">[</mo>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>1</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo stretchy="false">]</mo>
+                                        </mrow>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Glutamic Acid</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mi mathvariant="normal">E</mi>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mrow>
+                                            <mo stretchy="false">[</mo>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>1</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo stretchy="false">]</mo>
+                                        </mrow>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mtext>Phenylalanine</mtext>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mi mathvariant="normal">F</mi>
+                                    </mstyle>
+                                </mtd>
+                                <mtd>
+                                    <mstyle displaystyle="false" scriptlevel="0">
+                                        <mrow>
+                                            <mo stretchy="false">[</mo>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>0</mn>
+                                            <mo separator="true">,</mo>
+                                            <mtext> </mtext>
+                                            <mn>1</mn>
+                                            <mo stretchy="false">]</mo>
+                                        </mrow>
+                                    </mstyle>
+                                </mtd>
+                            </mtr>
+                        </mtable>
+                        <annotation encoding="application/x-tex">\begin{array}{ccl}
+                            \text{Amino Acid} &amp; \text{Symbol} &amp; \text{One-Hot Vector} \\[4pt]
+                            \hline
+                            \text{Alanine} &amp; \mathrm{A} &amp; [1,\,0,\,0,\,0,\,0] \\[3pt]
+                            \text{Cysteine} &amp; \mathrm{C} &amp; [0,\,1,\,0,\,0,\,0] \\[3pt]
+                            \text{Aspartic Acid} &amp; \mathrm{D} &amp; [0,\,0,\,1,\,0,\,0] \\[3pt]
+                            \text{Glutamic Acid} &amp; \mathrm{E} &amp; [0,\,0,\,0,\,1,\,0] \\[3pt]
+                            \text{Phenylalanine} &amp; \mathrm{F} &amp; [0,\,0,\,0,\,0,\,1]
+                            \end{array}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>This discrete representation preserves exact sequence identity but lacks biochemical interpretability or
+                evolutionary context. Nevertheless, one-hot encoding provides a strong <strong>non-parametric
+                    control</strong>, allowing fair comparison with more sophisticated embeddings (Hinton, 1984; Mikolov
+                et al., 2013).</p>
+            <h3 id="physicochemical-embedding-feature-based-representation">Physicochemical Embedding (Feature-based
+                Representation)</h3>
+            <p>To incorporate biochemical meaning, we extracted <strong>physicochemical property vectors</strong> using
+                the <em><code>Peptides.py</code></em> library (Osorio, 2020).</p>
+            <p>This package computes a diverse set of <strong>quantitative structure–activity relationship
+                (QSAR)</strong> descriptors, including <strong>Kidera factors</strong>, <strong>Atchley factors</strong>, <strong>VHSE</strong>,
+                and <strong>Z-scales</strong>, each summarizing amino acid properties such as hydrophobicity, polarity,
+                charge, and molecular volume. For each enzyme, residue-level descriptors were averaged to form a global
+                feature vector:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi mathvariant="bold">x</mi>
+                            <mtext>physchem</mtext>
+                            <mo>=</mo>
+                            <mfrac>
+                                <mn>1</mn>
+                                <mi>L</mi>
+                            </mfrac>
+                            <mo>∑</mo>
+                            <msup>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mi>L</mi>
+                            </msup>
+                            <mi>f</mi>
+                            <mo stretchy="false">(</mo>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\mathbf{x}{\text{physchem}} = \frac{1}{L}\sum{i=1}^{L}
+                            f(a_i)
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>f</mi>
+                            <mo stretchy="false">(</mo>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">f(a_i)</annotation>
+                    </semantics>
+                </math>
+                denotes the descriptor vector for residue 
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mtext> </mtext>
+                        </mrow>
+                        <annotation encoding="application/x-tex">a_i </annotation>
+                    </semantics>
+                </math>
+                and
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>L</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">L</annotation>
+                    </semantics>
+                </math>
+                is sequence length.
+            </p>
+            <p>This representation preserves <strong>biochemical interpretability</strong> and facilitates direct
+                integration with traditional machine learning models, such as Random Forest and XGBoost.</p>
+            <h3 id="protein-language-model-embedding-esm-1b-representation">Protein Language Model Embedding (ESM-1b
+                Representation)</h3>
+            <p>Finally, we adopted <strong>Evolutionary Scale Modeling (ESM-1b)</strong> — a large-scale protein
+                language model with 650M parameters (Rives et al., 2021) — to derive contextualized embeddings that
+                capture residue-level co-evolution patterns learned from &gt;250 million UniProt sequences. Each enzyme
+                sequence was tokenized using the ESM alphabet and passed through the 33-layer Transformer.</p>
+            <p>We extracted the final hidden representation for each residue and performed <strong>mean pooling</strong> to
+                obtain a fixed-size embedding vector:</p>
+            <pre><code>out = model(toks, repr_layers=[33])
+rep = out["representations"][33]
+embedding = rep.mean(dim=1)</code></pre>
+            <p>This procedure yields a <strong>1280-dimensional embedding per protein</strong>, encoding both <strong>local
+                sequence context and global evolutionary constraints</strong>. Compared with one-hot and physicochemical
+                features, ESM embeddings significantly enhance <strong>representation richness and
+                    transferability</strong>, providing the foundation for downstream structure-aware learning.</p>
+            <p>
+            </p>
+            <p>Together, these three embedding schemes form a <strong>hierarchical feature pipeline</strong> — from
+                symbolic to physicochemical to deep contextual levels — enabling systematic evaluation of how
+                representation granularity influences model generalization and interpretability.</p>
+            <h2 id="machine-learning-multi-classifier-backbone">Machine Learning Multi-Classifier Backbone</h2>
+            <p>After obtaining numerical representations for enzyme sequences through diverse embedding strategies —
+                from one-hot encodings to deep contextual embeddings — the next logical step was to construct a
+                predictive framework that directly connects <strong>sequence features</strong> to <strong>plastic
+                    degradability outcomes</strong>.</p>
+            <p>The most straightforward formulation of this task is to treat <strong>plastic type as the target
+                label</strong>, thereby enabling supervised classification: each enzyme sequence corresponds to one or
+                multiple degradable polymers. This approach provides an interpretable baseline for mapping protein
+                sequence information to biochemical function and forms the foundation for subsequent structure-aware
+                learning stages.</p>
+            <h3 id="model-architecture-and-data-flow">Model Architecture and Data Flow</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/1280x1280.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/1280x1280.webp"/></a>
+            </figure>
+            <p>After generating sequence embeddings, we implemented a <strong>multi-class classification
+                framework</strong> to predict enzyme–polymer degradation relationships directly from sequence-derived
+                representations. This framework bridges <strong>protein language modeling</strong> and <strong>classical
+                    machine learning</strong>, providing an interpretable yet high-performance baseline for subsequent
+                structure-aware models.</p>
+            <p>Each enzyme sequence was transformed into a <strong>1280-dimensional embedding</strong> using the
+                <strong>ESM-1b</strong> protein language model (Rives et al., 2021). A <strong>mean pooling</strong>
+                operation was applied to aggregate residue-level embeddings into a fixed-length representation suitable
+                for supervised learning. These embeddings were used to predict the degradability profile across multiple
+                polymer types (e.g., PET, PCL, PHB, PLA).
+            </p>
+            <figure>
+                <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/smote.webp">
+                    <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/smote.webp"/>
+                </a>
+            </figure>
+            <blockquote>
+                <strong>Effect of SMOTE Oversampling on Class Balance.<br/></strong>
+                Comparison of confusion matrices before and after applying SMOTE.
+                After oversampling, class distribution becomes more uniform, reducing the dominance of abundant
+                categories such as PET and improving the overall balance of predictions.
+            </blockquote>
+            <p>To address <strong>class imbalance</strong> commonly observed in biological datasets, we employed the
+                <strong>Synthetic Minority Oversampling Technique (SMOTE) </strong>(Chawla et al., 2002), which
+                generates synthetic samples by interpolating between neighboring points of minority classes in the
+                embedding space. This strategy expands under-represented categories without simple duplication, allowing
+                the model to better capture rare degradation functions.</p>
+            <p>The processed vectors were then fed into a <strong>Histogram-based Gradient Boosting (HGB)
+                classifier</strong>, which captures non-linear interactions via additive ensemble learning:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi mathvariant="bold">y</mi>
+                            <mrow>
+                                <mi>p</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                            </mrow>
+                            <mo>=</mo>
+                            <mi>f</mi>
+                            <mtext>HGB</mtext>
+                            <mo stretchy="false">(</mo>
+                            <mi mathvariant="bold">x</mi>
+                            <mtext>ESM</mtext>
+                            <mo stretchy="false">)</mo>
+                            <mo separator="true">,</mo>
+                            <mspace width="1em"></mspace>
+                            <mi mathvariant="bold">y</mi>
+                            <mrow>
+                                <mi>p</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                            </mrow>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mi>C</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\mathbf{y}{pred} =
+                            f{\text{HGB}}(\mathbf{x}{\text{ESM}}), \quad
+                            \mathbf{y}{pred} \in \mathbb{R}^{C}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>C</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">C</annotation>
+                    </semantics>
+                </math>
+                denotes the number of polymer classes, and
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi mathvariant="bold">x</mi>
+                                <mtext>ESM</mtext>
+                            </msub>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\mathbf{x}_{\text{ESM}}</annotation>
+                    </semantics>
+                </math>
+                is the mean-pooled embedding vector (Ke et al., 2017).
+            </p>
+            <p>
+                This supervised multi-class baseline is referred to as <strong>PlaszymeAlpha</strong>,
+                our sequence-based machine learning model designed for enzyme–plastic classification:
+            </p>
+
+            <blockquote>
+                Model Repository:
+                <a href="https://gitlab.igem.org/2025/software-tools/xjtlu-ai-china/-/tree/main/PlaszymeAlpha?ref_type=heads"
+                   style="text-decoration: underline; color: var(--theme-accent); font-weight: 600;"
+                   target="_blank">
+                    GitLab – PlaszymeAlpha
+                </a>
+            </blockquote>
+            <h2 id="structural-graph-construction">Structural Graph Construction</h2>
+            <p>Understanding enzymatic plastic degradation requires not only sequence-level information but also a
+                representation that captures <strong>spatial organization and physicochemical interactions</strong>.
+                While sequence embeddings encode residue identity and contextual dependencies, they lack the <strong>geometric
+                    topology</strong> that governs catalysis and substrate binding. To overcome this limitation, we
+                adopted a <strong>graph-based structural representation</strong> — a mathematical abstraction
+                well-suited for molecular systems and widely used in protein representation learning (Gainza et al.,
+                2020; Gligorijević et al., 2021).</p>
+            <h3 id="graph">Graph</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/graph.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/graph.webp"/></a>
+            </figure>
+            <blockquote>For illustration, a 4-node undirected graph can be represented by an adjacency matrix
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>A</mi>
+                            <mo>∈</mo>
+                            <mo stretchy="false">{</mo>
+                            <mn>0</mn>
+                            <mo separator="true">,</mo>
+                            <mn>1</mn>
+                            <msup>
+                                <mo stretchy="false">}</mo>
+                                <mrow>
+                                    <mn>4</mn>
+                                    <mo>×</mo>
+                                    <mn>4</mn>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">A \in \{0,1\}^{4\times4}</annotation>
+                    </semantics>
+                </math>
+                . In a <strong>sparse chain fully connected graph</strong></blockquote>
+            <p>A <strong>graph</strong> is a mathematical structure defined as:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>G</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <mi>V</mi>
+                            <mo separator="true">,</mo>
+                            <mi>E</mi>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">G = (V, E)</annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>V</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">{</mo>
+                            <msub>
+                                <mi>v</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mo separator="true">,</mo>
+                            <msub>
+                                <mi>v</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo separator="true">,</mo>
+                            <mo>…</mo>
+                            <mo separator="true">,</mo>
+                            <msub>
+                                <mi>v</mi>
+                                <mi>N</mi>
+                            </msub>
+                            <mo stretchy="false">}</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">V = \{v_1, v_2, \ldots, v_N\}</annotation>
+                    </semantics>
+                </math>
+                is the <strong>set of nodes</strong>, and
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>E</mi>
+                            <mo>⊆</mo>
+                            <mi>V</mi>
+                            <mo>×</mo>
+                            <mi>V</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">E \subseteq V \times V</annotation>
+                    </semantics>
+                </math>
+                is the <strong>set of edges</strong> representing relationships between nodes.
+            </p>
+            <p>
+                Each node
+                <math>
+                    <msub>
+                        <mi>v</mi>
+                        <mi>i</mi>
+                    </msub>
+                </math>
+                is described by a <strong>feature vector</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>h</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mi>d</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">h_i \in \mathbb{R}^d</annotation>
+                    </semantics>
+                </math>
+                , which encodes local or global properties, and all pairwise connections can be summarized by an
+                <strong>adjacency matrix</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>A</mi>
+                            <mo>∈</mo>
+                            <mo stretchy="false">{</mo>
+                            <mn>0</mn>
+                            <mo separator="true">,</mo>
+                            <mn>1</mn>
+                            <msup>
+                                <mo stretchy="false">}</mo>
+                                <mrow>
+                                    <mi>N</mi>
+                                    <mo>×</mo>
+                                    <mi>N</mi>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">A \in \{0,1\}^{N \times N}</annotation>
+                    </semantics>
+                </math>
+                :
+            </
+            >
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>G</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <mi>V</mi>
+                            <mo separator="true">,</mo>
+                            <mi>E</mi>
+                            <mo stretchy="false">)</mo>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <mo stretchy="false">{</mo>
+                            <msub>
+                                <mi>h</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo stretchy="false">}</mo>
+                            <msup>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo>=</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                                <mi>N</mi>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <mi>A</mi>
+                            <mo stretchy="false">)</mo>
+                            <mo separator="true">,</mo>
+                            <mspace width="1em"></mspace>
+                            <mi>A</mi>
+                            <mrow>
+                                <mi>i</mi>
+                                <mi>j</mi>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo fence="true">{</mo>
+                                <mtable columnalign="left left" columnspacing="1em" rowspacing="0.36em">
+                                    <mtr>
+                                        <mtd>
+                                            <mstyle displaystyle="false" scriptlevel="0">
+                                                <mrow>
+                                                    <mn>1</mn>
+                                                    <mo separator="true">,</mo>
+                                                </mrow>
+                                            </mstyle>
+                                        </mtd>
+                                        <mtd>
+                                            <mstyle displaystyle="false" scriptlevel="0">
+                                                <mrow>
+                                                    <mtext>if node </mtext>
+                                                    <mi>i</mi>
+                                                    <mtext> and </mtext>
+                                                    <mi>j</mi>
+                                                    <mtext> are connected</mtext>
+                                                </mrow>
+                                            </mstyle>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd>
+                                            <mstyle displaystyle="false" scriptlevel="0">
+                                                <mrow>
+                                                    <mn>0</mn>
+                                                    <mo separator="true">,</mo>
+                                                </mrow>
+                                            </mstyle>
+                                        </mtd>
+                                        <mtd>
+                                            <mstyle displaystyle="false" scriptlevel="0">
+                                                <mtext>otherwise.</mtext>
+                                            </mstyle>
+                                        </mtd>
+                                    </mtr>
+                                </mtable>
+                            </mrow>
+                        </mrow>
+                        <annotation encoding="application/x-tex">G = (V, E) = (\{h_i\}{i=1}^N, A), \quad
+                            A{ij} =
+                            \begin{cases}
+                            1, &amp; \text{if node } i \text{ and } j \text{ are connected} \\
+                            0, &amp; \text{otherwise.}
+                            \end{cases}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>This formulation provides a <strong>generic, domain-independent framework</strong> for representing
+                systems with interacting elements—ranging from molecular residues to social networks.</p>
+            <p>In the context of proteins, nodes correspond to amino acid residues, while edges denote their spatial or
+                functional relationships.</p>
+            <p>Such a representation enables <strong>non-Euclidean learning</strong>, allowing neural networks to
+                capture <strong>topological and relational structure</strong> beyond fixed sequence order or Cartesian
+                coordinates.</p>
+            <h3 id="structure-source-and-reliability">Structure Source and Reliability</h3>
+            <p>Since most enzymes in our dataset lack experimentally resolved structures, we adopted a <strong>structure
+                prediction approach</strong> to bridge the gap between sequence and spatial representation.</p>
+            <p>Among available structure prediction methods, we selected <strong>AlphaFold 2</strong> — currently the
+                most reliable and widely validated protein structure prediction system (Jumper et al., 2021).</p>
+            <p>All protein structures were either obtained or predicted via AlphaFold 2, executed through <strong>ColabFold</strong>
+                (Mirdita et al., 2022).</p>
+            <p>AlphaFold predicts atomic coordinates by reconstructing <strong>inter-residue distance and orientation
+                matrices</strong> learned from large-scale multiple sequence alignments (MSAs).</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/predict-result.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/predict-result.webp"/></a>
+            </figure>
+            <blockquote><strong>pLDDT-colored predicted enzyme structure.<br/></strong>
+                The predominance of deep blue regions (mean pLDDT = 97.7) indicates a highly confident and accurate
+                structural prediction.
+            </blockquote>
+            <p>Because these distance maps directly reflect <strong>physical residue contacts</strong>, they can be
+                confidently converted into <strong>adjacency matrices</strong> for graph construction — a principle
+                supported by multiple benchmark studies (Senior et al., 2020; Baek et al., 2021).</p>
+            <h3 id="protein-graph-representation">Protein Graph Representation</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/protein-graph-representation.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/protein-graph-representation.webp"/></a>
+            </figure>
+            <blockquote><strong>Protein Graph Representation.<br/></strong>A local region of the enzyme is magnified to
+                illustrate the graph construction principle: residues are represented as nodes (Cα atoms), and edges are
+                formed when Cα–Cα distances are below 10 Å.
+            </blockquote>
+            <p>To incorporate structural information into the learning process, each enzyme was represented as a
+                <strong>graph (G)</strong> that jointly encodes spatial topology and sequence-derived features.</p>
+            <p>Formally, a protein graph can be expressed as:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>G</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <mi>V</mi>
+                            <mo separator="true">,</mo>
+                            <mi>E</mi>
+                            <mo stretchy="false">)</mo>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo fence="true">(</mo>
+                                <mo stretchy="false">{</mo>
+                                <msub>
+                                    <mi>h</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <msubsup>
+                                    <mo stretchy="false">}</mo>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>=</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mi>L</mi>
+                                </msubsup>
+                                <mo separator="true">,</mo>
+                                <mi>A</mi>
+                                <mo fence="true">)</mo>
+                            </mrow>
+                        </mrow>
+                        <annotation encoding="application/x-tex">G = (V, E) = \left(\{h_i\}_{i=1}^{L}, A\right)
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>V</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">V</annotation>
+                    </semantics>
+                </math>
+                denotes the set of <strong>nodes</strong> (amino acid residues), each associated with a <strong>feature
+                    vector</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>h</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mi>d</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">h_i \in \mathbb{R}^{d}</annotation>
+                    </semantics>
+                </math>
+                , and
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>A</mi>
+                            <mo>∈</mo>
+                            <mo stretchy="false">{</mo>
+                            <mn>0</mn>
+                            <mo separator="true">,</mo>
+                            <mn>1</mn>
+                            <msup>
+                                <mo stretchy="false">}</mo>
+                                <mrow>
+                                    <mi>L</mi>
+                                    <mo>×</mo>
+                                    <mi>L</mi>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">A \in \{0,1\}^{L \times L}</annotation>
+                    </semantics>
+                </math>
+                is the <strong>adjacency matrix</strong> describing pairwise residue interactions.
+            </p>
+            <p>An edge is defined between residues i and j if the distance between their Cα atoms is less than 10 Å:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>A</mi>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mi>j</mi>
+                                </mrow>
+                            </msub>
+                            <mo>=</mo>
+                            <mn mathvariant="double-struck">1</mn>
+                            <mo fence="false" maxsize="1.2em" minsize="1.2em" stretchy="true">[</mo>
+                            <mtext>dist</mtext>
+                            <mo stretchy="false">(</mo>
+                            <msubsup>
+                                <mi>C</mi>
+                                <mi>α</mi>
+                                <mi>i</mi>
+                            </msubsup>
+                            <mo separator="true">,</mo>
+                            <msubsup>
+                                <mi>C</mi>
+                                <mi>α</mi>
+                                <mi>j</mi>
+                            </msubsup>
+                            <mo stretchy="false">)</mo>
+                            <mo>&lt;</mo>
+                            <mn>10</mn>
+                            <mtext> </mtext>
+                            <mover accent="true">
+                                <mtext>A</mtext>
+                                <mo>˚</mo>
+                            </mover>
+                            <mo fence="false" maxsize="1.2em" minsize="1.2em" stretchy="true">]</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">A_{ij} = \mathbb{1}\big[\text{dist}(C_\alpha^i,
+                            C_\alpha^j) &lt; 10\,\text{Å}\big]
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>The <strong>Cα atom</strong> was selected as the structural reference because it provides a stable and
+                universal representation of the protein backbone, present in all amino acids (including glycine, which
+                still defines a Cα position). </p>
+            <p>Using Cα–Cα distances avoids side-chain noise and yields a coarse-grained yet faithful approximation of
+                the protein’s overall fold — a convention widely adopted in protein graph construction and structural
+                learning frameworks (Gainza et al., 2020; Gligorijević et al., 2021). The <strong>10 Å cutoff</strong>
+                reflects the average spatial range of non-covalent interactions such as hydrogen bonding and van der
+                Waals contacts, balancing graph connectivity and biological realism.</p>
+            <p>Importantly, <strong>the graph formulation aligns naturally with protein structure</strong>, as residues
+                interact locally yet form globally connected networks — making graph neural networks (GNNs) an ideal
+                framework for capturing both <strong>local biochemical environments</strong> and <strong>long-range
+                    structural dependencies</strong> within enzymes.</p>
+            <p>The <strong>node features</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>h</mi>
+                                <mi>i</mi>
+                            </msub>
+                        </mrow>
+                        <annotation encoding="application/x-tex">h_i</annotation>
+                    </semantics>
+                </math>
+                were derived from the <strong>protein language model ESM-2</strong> (Lin et al., 2023), which encodes
+                residue-level sequence context, evolutionary constraints, and implicit structural priors, forming a
+                feature matrix
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>X</mi>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mrow>
+                                    <mi>L</mi>
+                                    <mo>×</mo>
+                                    <mn>1280</mn>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">X \in \mathbb{R}^{L \times 1280}</annotation>
+                    </semantics>
+                </math>
+                .
+            </p>
+            <p>By combining <strong>AlphaFold-predicted 3D coordinates</strong> (Jumper et al., 2021; Mirdita et al.,
+                2022) with <strong>ESM embeddings</strong>, we constructed a <strong>structure-aware protein
+                    graph</strong> that integrates sequence semantics and spatial geometry.</p>
+            <p>Such graph representations have proven effective in modeling protein function, binding sites, and enzyme
+                activity (Senior et al., 2020; Gligorijević et al., 2021; Gainza et al., 2020), providing a biologically
+                grounded basis for downstream GNN learning.</p>
+            <h2 id="gnn-based-protein-backbone">GNN-based Protein Backbone</h2>
+            <p>Having represented each enzyme as a residue-level contact graph derived from its 3D structure, the next
+                step is to learn from this representation effectively.</p>
+            <p><strong>Graph neural networks (GNNs)</strong> naturally fit this paradigm — they operate directly on
+                non-Euclidean structures, aggregating <strong>local chemical environments</strong> while propagating
+                signals <strong>across long-range residue contacts</strong>, both of which are crucial for understanding
+                <strong>catalysis</strong> and <strong>substrate recognition</strong>.</p>
+            <h3 id="gnn-based-backbone">GNN-based Backbone</h3>
+            <p>To implement this framework, we employed the <strong>PyTorch Geometric (PyG)</strong> library, which
+                provides well-established molecular operators such as <strong>Graph Convolutional Networks
+                    (GCN)</strong> and <strong>Graph Attention Networks (GAT)</strong>.</p>
+            <p>Our backbone supports multiple architectures (GCN, GAT, GraphSAGE, GIN, GINE), enabling systematic
+                comparison of how different graph propagation mechanisms affect model performance and biological
+                interpretability.</p>
+            <p>A minimal PyG implementation for our protein graph backbone is shown below:</p>
+            <pre><code>import torch
+from torch_geometric.nn import GCNConv, global_mean_pool
+
+class ProteinGNN(torch.nn.Module):
+    def __init__(self, in_dim=1280, hidden=256, out_dim=64):
+        super().__init__()
+        self.conv1 = GCNConv(in_dim, hidden)
+        self.conv2 = GCNConv(hidden, out_dim)
+        self.act = torch.nn.ReLU()
+
+    def forward(self, x, edge_index, batch):
+        x = self.act(self.conv1(x, edge_index))
+        x = self.act(self.conv2(x, edge_index))
+        return global_mean_pool(x, batch)</code></pre>
+            <h3 id="gvp-enhanced-structural-encoding">GVP-enhanced Structural Encoding </h3>
+            <p>While standard GNNs effectively capture the topology of residue connections, they treat edges as simple
+                links and may overlook geometric directionality.</p>
+            <p>To better encode 3D orientation and vectorial relationships, <strong>we also experimented with the
+                Geometric Vector Perceptron (GVP)</strong> framework (Jing et al., 2021), an extension of GNNs
+                specifically designed for protein structures.</p>
+            <p>GVP introduces both <strong>scalar features</strong> (e.g., residue identity, hydrophobicity) and
+                <strong>vector features</strong> that describe <strong>3D orientations between residues</strong>,
+                allowing the model to directly reason over spatial geometry.</p>
+            <p>In practical terms, GVP enables the network to “see” not only which residues interact but also <strong>how
+                they are positioned in space</strong> — a key aspect for modeling <strong>active sites</strong>,
+                <strong>binding pockets</strong>, and <strong>structural flexibility</strong>.</p>
+            <p>This enriched representation is particularly suitable for enzyme–substrate systems, where both chemistry
+                and conformation jointly determine catalytic performance.</p>
+            <h2 id="plastic-feature-extraction-and-polymer-optimization">Plastic Feature Extraction and
+                Polymer Optimization</h2>
+            <p>In previous sections, plastic type was treated merely as a <strong>categorical label</strong> in enzyme
+                classification. However, this approach ignores the <strong>chemical diversity and structural
+                    complexity</strong> among polymers that determine their degradability.</p>
+            <p>To achieve a more interpretable and biologically grounded prediction framework, polymer information
+                itself was incorporated into the model. Instead of classifying plastics as abstract labels, their
+                <strong>molecular properties</strong> were explicitly quantified, allowing the system to learn how
+                enzyme behavior varies with substrate chemistry.</p>
+            <h3 id="molecular-descriptors">Molecular Descriptors</h3>
+            <p>Plastic polymers were numerically characterized using the <strong>RDKit</strong> cheminformatics toolkit,
+                extended with a custom feature extraction module <code><strong>plastic_featurizer.py</strong></code>.
+            </p>
+            <p>The extractor computes over <strong>200 physicochemical descriptors</strong>, covering multiple
+                categories of chemical information that capture both global and local molecular properties.</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/plastic-descriptor.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/plastic-descriptor.webp"/></a>
+            </figure>
+            <ol>
+                <li><strong>Standard Descriptors: i</strong>nclude molecular weight, polar surface area (PSA), number of
+                    rotatable bonds, and lipophilicity (logP), describing general physicochemical properties of
+                    polymers.
+                </li>
+            </ol>
+            <ol>
+                <li><strong>Fragment-based Descriptors: </strong>count the occurrence of functional groups such as
+                    esters, amides, ethers, and aromatic rings, which are chemically relevant to polymer <strong>hydrolytic
+                        reactivity</strong> and degradation susceptibility.
+                </li>
+            </ol>
+            <ol>
+                <li><strong>Charge Descriptors: </strong>derived from Gasteiger charge calculations, including maximum,
+                    minimum, and absolute charge values, reflecting <strong>electron distribution and
+                        polarization</strong> along the polymer backbone.
+                </li>
+            </ol>
+            <p>This descriptor-based approach provides a <strong>chemically interpretable representation</strong>,
+                bridging machine learning with polymer chemistry. It allows downstream models to infer <strong>polymer
+                    degradability</strong> from <strong>quantitative structural patterns</strong>, rather than relying
+                on abstract categorical labels.</p>
+            <h3 id="density-normalization">Density Normalization</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/plastic-normalize.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/plastic-normalize.webp"/></a>
+            </figure>
+            <p>Directly applying raw molecular descriptors to polymers introduces <strong>scale bias</strong>, since
+                extensive properties such as molecular weight, surface area, or atom count dominate the representation.
+            </p>
+            <p>To mitigate this effect, all extensive features
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>x</mi>
+                                <mi>i</mi>
+                            </msub>
+                        </mrow>
+                        <annotation encoding="application/x-tex">x_i</annotation>
+                    </semantics>
+                </math>
+                were <strong>normalized by molecular size</strong>, generating density descriptors:
+            </p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msubsup>
+                                <mi>x</mi>
+                                <mi>i</mi>
+                                <mtext>density</mtext>
+                            </msubsup>
+                            <mo>=</mo>
+                            <mfrac>
+                                <msub>
+                                    <mi>x</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <msub>
+                                    <mi>N</mi>
+                                    <mtext>heavy atoms</mtext>
+                                </msub>
+                            </mfrac>
+                        </mrow>
+                        <annotation encoding="application/x-tex">x_i^{\text{density}} = \frac{x_i}{N_{\text{heavy
+                            atoms}}}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>N</mi>
+                                <mtext>heavy atoms</mtext>
+                            </msub>
+                        </mrow>
+                        <annotation encoding="application/x-tex">N_{\text{heavy atoms}}</annotation>
+                    </semantics>
+                </math>
+                denotes the number of non-hydrogen atoms in the molecule.
+            </p>
+            <p>This normalization strategy was deliberately chosen instead of molecular weight normalization because
+                <strong>heavy atom count provides a more chemically meaningful and size-independent basis</strong>.</p>
+            <p>Unlike molecular weight, which fluctuates with hydrogen content and polymer chain length, heavy atom
+                count reflects the <strong>true backbone complexity</strong>—the number of atoms contributing to bonding
+                topology and potential reaction sites (C, N, O, S, etc.).</p>
+            <p>As a result, the normalization removes chain-length bias while preserving the structural essence of the
+                repeating unit.</p>
+            <p>Features that are already ratio-based (e.g., FractionCsp³, logP) or intrinsically intensive were excluded
+                from normalization.</p>
+            <p>After normalization, descriptor distributions became more compact and comparable across polymers,
+                highlighting the <strong>chemical essence of repeating units</strong> that governs polymer reactivity
+                and degradation kinetics.</p>
+            <h3 id="feature-optimization-and-validation">Feature Optimization and Validation</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/pca-2d-labeled.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/pca-2d-labeled.webp"/></a>
+            </figure>
+            <p>To assess feature redundancy and intrinsic structure, <strong>Principal Component Analysis (PCA)</strong>
+                was applied to the normalized descriptor matrix (Jolliffe &amp; Cadima, 2016).</p>
+            <p>The first few principal components (PCs) explained over <strong>85% of the total variance</strong>,
+                indicating that the extracted features effectively captured key chemical dimensions such as <strong>hydrophobicity</strong>,
+                <strong>polarity</strong>, and <strong>electronic distribution</strong> (Todeschini &amp; Consonni,
+                2009).</p>
+            <p>Notably, polymers with <strong>similar chemical backbones</strong> exhibited consistent spatial
+                clustering in the reduced feature space:</p>
+            <p>the <strong>PHA family</strong> (e.g., PHB, PHBV, PHA) formed a tight cluster,</p>
+            <p><strong>PCL</strong>, <strong>PEG</strong>, and <strong>PHO</strong> grouped closely due to their
+                flexible aliphatic chains,</p>
+            <p>while <strong>PET</strong> and <strong>PLA</strong> appeared adjacent — consistent with their shared
+                <strong>ester linkages</strong> and partially crystalline nature (Iannace &amp; Nicolais, 1997).</p>
+            <p>These clustering patterns confirm that the <strong>density-normalized descriptor representation</strong>
+                preserves <strong>chemically meaningful relationships</strong>, providing a robust foundation for
+                downstream learning.</p>
+            <h2 id="dual-tower-architecture-and-interaction-head">Dual-tower Architecture and Interaction Head</h2>
+            <p>To jointly model enzymes and plastics, we designed a <strong>dual-tower framework</strong> that learns
+                from both <strong>biological (protein)</strong> and <strong>chemical (polymer)</strong> representations
+                in a unified latent space.</p>
+            <p>This design draws on the <em>Siamese network</em> paradigm originally proposed by <strong>Bromley et al.
+                (1993)</strong> and later extended in contrastive representation learning (<strong>Hadsell et al.,
+                2006</strong>), enabling comparable embeddings from distinct molecular modalities.</p>
+            <p>This architecture enables flexible interaction modeling and interpretable prediction of enzyme–polymer
+                degradation compatibility.</p>
+            <h3 id="architecture-overview">Architecture Overview</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/model-backbone-architecture-wb.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/model-backbone-architecture-wb.webp"/></a>
+            </figure>
+            <p>Each tower encodes one molecular modality (protein or polymer)：</p>
+            <ul>
+                <li>The <strong>enzyme tower</strong> transforms 3D structural graphs (GNN / GVP / ESM embeddings) into
+                    vector embeddings
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mi>z</mi>
+                                    <mrow>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>E</mi>
+                                        <mo stretchy="false">)</mo>
+                                    </mrow>
+                                </msup>
+                            </mrow>
+                            <annotation encoding="application/x-tex">z^{(E)}</annotation>
+                        </semantics>
+                    </math>
+                    .
+                </li>
+            </ul>
+            <ul>
+                <li>The <strong>polymer tower</strong> projects RDKit-based descriptor vectors into embeddings
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mi>z</mi>
+                                    <mrow>
+                                        <mo stretchy="false">(</mo>
+                                        <mi>P</mi>
+                                        <mo stretchy="false">)</mo>
+                                    </mrow>
+                                </msup>
+                            </mrow>
+                            <annotation encoding="application/x-tex">z^{(P)}</annotation>
+                        </semantics>
+                    </math>
+                    .
+                </li>
+            </ul>
+            <p>
+                This cross-domain dual-tower framework, integrating sequence and structure representations,
+                is referred to as <strong>PlaszymeX</strong>:
+            </p>
+
+            <blockquote>
+                Model Repository:
+                <a href="https://gitlab.igem.org/2025/software-tools/xjtlu-ai-china/-/tree/main/PlaszymeX?ref_type=heads"
+                   style="text-decoration: underline; color: var(--theme-accent); font-weight: 600;"
+                   target="_blank">
+                    GitLab – PlaszymeX
+                </a>
+            </blockquote>
+            <h3 id="shared-embedding-space">Shared Embedding Space</h3>
+            <p>Both are projected into a <strong>shared embedding space</strong> (
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msup>
+                                <mi mathvariant="normal">R</mi>
+                                <mi>d</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">ℝ^d</annotation>
+                    </semantics>
+                </math>
+                ) via the TwinProjector module:
+            </p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext>’</mtext>
+                                </mrow>
+                            </msup>
+                            <mo>=</mo>
+                            <msub>
+                                <mi>W</mi>
+                                <mi>E</mi>
+                            </msub>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <mspace width="1em"></mspace>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                    <mtext>’</mtext>
+                                </mrow>
+                            </msup>
+                            <mo>=</mo>
+                            <msub>
+                                <mi>W</mi>
+                                <mi>P</mi>
+                            </msub>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">z^{(E)’} = W_E z^{(E)} ,\quad z^{(P)’} = W_P z^{(P)}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>z</mi>
+                                <mi>E</mi>
+                            </msub>
+                            <mtext>’</mtext>
+                            <mo separator="true">,</mo>
+                            <msub>
+                                <mi>z</mi>
+                                <mi>P</mi>
+                            </msub>
+                            <mtext>’</mtext>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mi>d</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">z_E’, z_P’ \in \mathbb{R}^{d}</annotation>
+                    </semantics>
+                </math>
+                lie in the <strong>shared embedding space</strong>.
+            </p>
+            <h3 id="interaction-heads">Interaction Heads</h3>
+            <p>After projecting enzyme and plastic embeddings into the same latent space
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo>∈</mo>
+                            <msup>
+                                <mi mathvariant="double-struck">R</mi>
+                                <mi>d</mi>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">z^{(E)} , z^{(P)} \in \mathbb{R}^d</annotation>
+                    </semantics>
+                </math>
+                ,<br/>their interaction is computed through a scoring function
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>s</mi>
+                            <mo>=</mo>
+                            <mi>f</mi>
+                            <mo stretchy="false">(</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">s = f(z^{(E)}, z^{(P)})</annotation>
+                    </semantics>
+                </math>
+                ,<br/>which measures how likely an enzyme–polymer pair represents a degradative relationship.
+            </p>
+            <h4><strong>Cosine Interaction</strong></h4>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>s</mi>
+                            <mo>=</mo>
+                            <mfrac>
+                                <mrow>
+                                    <mo stretchy="false">⟨</mo>
+                                    <msup>
+                                        <mi>z</mi>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>E</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </msup>
+                                    <mo separator="true">,</mo>
+                                    <msup>
+                                        <mi>z</mi>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>P</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </msup>
+                                    <mo stretchy="false">⟩</mo>
+                                </mrow>
+                                <mrow>
+                                    <mi mathvariant="normal">∥</mi>
+                                    <msup>
+                                        <mi>z</mi>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>E</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </msup>
+                                    <mi mathvariant="normal">∥</mi>
+                                    <mtext> </mtext>
+                                    <mi mathvariant="normal">∥</mi>
+                                    <msup>
+                                        <mi>z</mi>
+                                        <mrow>
+                                            <mo stretchy="false">(</mo>
+                                            <mi>P</mi>
+                                            <mo stretchy="false">)</mo>
+                                        </mrow>
+                                    </msup>
+                                    <mi mathvariant="normal">∥</mi>
+                                </mrow>
+                            </mfrac>
+                        </mrow>
+                        <annotation encoding="application/x-tex">s = \frac{\langle z^{(E)}, z^{(P)} \rangle}{\| z^{(E)}
+                            \| \, \| z^{(P)} \|}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>This baseline measures <strong>directional similarity</strong>, assuming enzymatic affinity correlates
+                with vector alignment.</p><h4><strong>Bilinear Interaction</strong></h4>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>s</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <msup>
+                                <mo stretchy="false">)</mo>
+                                <mi mathvariant="normal">⊤</mi>
+                            </msup>
+                            <mi>W</mi>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">s = (z^{(E)})^\top W z^{(P)}</annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>A <strong>learnable bilinear matrix</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>W</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">W</annotation>
+                    </semantics>
+                </math>
+                captures pairwise dependencies between feature dimensions,
+            </p>
+            <p>allowing richer cross-feature coupling than cosine similarity (Gao et al., 2019).</p><h4><strong>Factorized
+                Bilinear Interaction</strong></h4>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>W</mi>
+                            <mo>=</mo>
+                            <mi>U</mi>
+                            <msup>
+                                <mi>V</mi>
+                                <mi mathvariant="normal">⊤</mi>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <mtext> </mtext>
+                            <mi>s</mi>
+                            <mo>=</mo>
+                            <mo stretchy="false">(</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <msup>
+                                <mo stretchy="false">)</mo>
+                                <mi mathvariant="normal">⊤</mi>
+                            </msup>
+                            <mi>U</mi>
+                            <msup>
+                                <mi>V</mi>
+                                <mi mathvariant="normal">⊤</mi>
+                            </msup>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                        </mrow>
+                        <annotation encoding="application/x-tex">W = UV^\top, \ s = (z^{(E)})^\top U V^\top z^{(P)}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>The <strong>element-wise product</strong>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mo>⊙</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\odot</annotation>
+                    </semantics>
+                </math>
+                fuses local feature correspondences,
+            </p>
+            <p>while the multilayer perceptron (MLP) introduces <strong>nonlinear cross-feature interactions</strong>.
+            </p><h4><strong>Gated Interaction</strong></h4>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>g</mi>
+                            <mo>=</mo>
+                            <mi>σ</mi>
+                            <mo stretchy="false">(</mo>
+                            <msub>
+                                <mi>W</mi>
+                                <mi>g</mi>
+                            </msub>
+                            <mo stretchy="false">[</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo>:</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo stretchy="false">]</mo>
+                            <mo stretchy="false">)</mo>
+                            <mo separator="true">,</mo>
+                            <mspace width="1em"></mspace>
+                            <mi>s</mi>
+                            <mo>=</mo>
+                            <mtext>MLP</mtext>
+                            <mo stretchy="false">(</mo>
+                            <mi>g</mi>
+                            <mo>⊙</mo>
+                            <mo stretchy="false">(</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo>⊙</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo stretchy="false">)</mo>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">g = \sigma(W_g [z^{(E)} : z^{(P)}]), \quad
+                            s = \text{MLP}(g \odot (z^{(E)} \odot z^{(P)}))
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>A gating vector
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>g</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">g</annotation>
+                    </semantics>
+                </math>
+                dynamically controls the contribution of each feature channel,
+            </p>
+            <p>enabling <strong>conditional modulation</strong> depending on enzyme–polymer context (Gao et al., 2019).
+            </p>
+            <p>
+            </p>
+            <p>These interaction mechanisms range from <strong>interpretable geometric similarity</strong> to <strong>nonlinear
+                adaptive gating</strong>, allowing the system to balance explainability and expressiveness.</p>
+            <h3 id="loss-computation">Loss Computation</h3>
+            <p>Once the enzyme and polymer embeddings are mapped into the shared space and their interaction scores are
+                computed, the model is trained to distinguish degradable from non-degradable pairs.</p>
+            <p>To optimize the interaction between enzymes and polymers, the model employs a <strong>listwise ranking
+                objective</strong> rather than a simple pairwise contrastive loss.</p>
+            <p>For each enzyme, a <strong>list of candidate polymers</strong> is evaluated simultaneously, producing a
+                set of compatibility scores
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>s</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo>=</mo>
+                            <mi>f</mi>
+                            <mo stretchy="false">(</mo>
+                            <msup>
+                                <mi>z</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>E</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msup>
+                            <mo separator="true">,</mo>
+                            <msubsup>
+                                <mi>z</mi>
+                                <mi>i</mi>
+                                <mrow>
+                                    <mo stretchy="false">(</mo>
+                                    <mi>P</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </msubsup>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">s_i = f(z^{(E)}, z_i^{(P)})</annotation>
+                    </semantics>
+                </math>
+                .
+            </p>
+            <h4><strong>Listwise InfoNCE Objective</strong></h4>
+            <p>The model is trained with a <strong>multi-positive InfoNCE loss</strong>, which encourages the embeddings
+                of degradable pairs to cluster closely while pushing non-degradable ones apart.</p>
+            <p>Formally, for a list of L candidate polymers, the loss is defined as:</p>
+            <div style="text-align: center; margin: 2em 0;">
+                <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi mathvariant="script">L</mi>
+                            <mo>=</mo>
+                            <mo>−</mo>
+                            <mi>log</mi>
+                            <mo>⁡</mo>
+                            <mfrac>
+                                <mrow>
+                                    <msub>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>i</mi>
+                                            <mo>∈</mo>
+                                            <mtext>pos</mtext>
+                                        </mrow>
+                                    </msub>
+                                    <mi>exp</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>s</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">/</mi>
+                                    <mi>τ</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                                <mrow>
+                                    <msubsup>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>j</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mi>L</mi>
+                                    </msubsup>
+                                    <mi>exp</mi>
+                                    <mo>⁡</mo>
+                                    <mo stretchy="false">(</mo>
+                                    <msub>
+                                        <mi>s</mi>
+                                        <mi>j</mi>
+                                    </msub>
+                                    <mi mathvariant="normal">/</mi>
+                                    <mi>τ</mi>
+                                    <mo stretchy="false">)</mo>
+                                </mrow>
+                            </mfrac>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\mathcal{L} = -\log
+                            \frac{\sum_{i \in \text{pos}} \exp(s_i / \tau)}
+                            {\sum_{j=1}^{L} \exp(s_j / \tau)}
+                        </annotation>
+                    </semantics>
+                </math>
+            </div>
+            <p>where
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <mi>τ</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\tau</annotation>
+                    </semantics>
+                </math>
+                is a temperature coefficient controlling the sharpness of the ranking distribution.
+            </p>
+            <p>This formulation extends the traditional InfoNCE loss to multi-positive ranking, aligning with listwise
+                learning objectives widely used in retrieval and recommender systems (Cao et al., 2007; Xie et al.,
+                2022).</p><h4><strong>Intuitive Interpretation</strong></h4>
+            <p>Intuitively, the objective encourages the model to assign <strong>higher scores to degradable
+                substrates</strong> and <strong>lower scores to non-degradable ones</strong>, thus maximizing the
+                separation between positive and negative samples within each enzyme’s local list.</p>
+            <p>This listwise formulation reflects real biochemical scenarios — enzymes often act on a <strong>set of
+                structurally similar polymers</strong>, and the model must <strong>learn relative preferences</strong>
+                rather than absolute binary outcomes.</p><h4><strong>Evaluation and Inference</strong></h4>
+            <p>At inference, the trained model computes a compatibility score matrix
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                        <mrow>
+                            <msub>
+                                <mi>S</mi>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mi>j</mi>
+                                </mrow>
+                            </msub>
+                            <mo>=</mo>
+                            <mi>s</mi>
+                            <mo stretchy="false">(</mo>
+                            <msub>
+                                <mi>e</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo separator="true">,</mo>
+                            <msub>
+                                <mi>p</mi>
+                                <mi>j</mi>
+                            </msub>
+                            <mo stretchy="false">)</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">S_{ij} = s(e_i, p_j)</annotation>
+                    </semantics>
+                </math>
+                , enabling:
+            </p>
+            <ul>
+                <li><strong>Top-K retrieval:</strong> ranking candidate polymers for each enzyme.</li>
+            </ul>
+            <ul>
+                <li><strong>Compatibility thresholding:</strong> classifying degradable vs. non-degradable pairs.</li>
+            </ul>
+            <ul>
+                <li><strong>Cross-domain analysis:</strong> visualizing enzyme–plastic clustering in shared space.</li>
+            </ul>
+            <p>This provides not only predictive capability but also interpretable cross-domain embeddings useful for
+                mechanistic analysis and enzyme discovery.</p>
+            <h2 id="model-training-and-evaluation">Model Training and Evaluation</h2>
+            <h3 id="ml-training-and-evaluation">ML Training and Evaluation</h3>
+            <p>To systematically improve enzyme–plastic degradability prediction, the model underwent <strong>three
+                progressive training stages</strong>, each introducing more biologically informative representations.
+            </p>
+            <p>All experiments were conducted under consistent evaluation settings using <strong>Top-n Hit</strong> and
+                <strong>Micro F1</strong> metrics across three difficulty buckets (Easy, Medium, Hard).</p>
+            <p>Training stability, convergence patterns, and generalization were continuously monitored during
+                optimization.</p><h4><strong>Training Configuration</strong></h4>
+            <p>All models were trained on the same dataset partition, consisting of <strong>387 training</strong> and
+                <strong>87 testing</strong> enzyme samples.</p>
+            <p>The test set was stratified into <strong>Easy</strong>, <strong>Medium</strong>, and
+                <strong>Hard</strong> buckets according to sequence identity thresholds of <strong>0.9</strong> and
+                <strong>0.7</strong>.</p>
+            <p>Plastic type served as the supervision signal for multi-class classification.</p>
+            <p>Training employed <strong>Histogram-based Gradient Boosting (HGB)</strong> classifiers implemented in
+                <strong>scikit-learn</strong>, with <strong>SMOTE</strong> oversampling to alleviate class imbalance.
+            </p>
+            <p>Each model used a fixed random seed (<strong>42</strong>) to ensure reproducibility.</p>
+            <p>Performance was evaluated using <strong>Top-k Hit Rate (Hit@k)</strong> and <strong>Micro-F1</strong>,
+                both reported per difficulty bucket and overall.</p><h4><strong>One-hot Encoding Model</strong></h4>
+            <p>Training utilized the same HGB framework with SMOTE balancing.<br/>Dropout (0.1) was applied to the
+                upstream embeddings to enhance generalization.<br/>The model reached stable convergence after
+                approximately 25 rounds.</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-onehot-1.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-onehot-1.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-onehot-2.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-onehot-2.webp"/></a>
+            </figure>
+            <p>The ESM-based model exhibited the strongest overall performance, achieving <strong>Hit@1 = 0.89</strong>
+                and <strong>Micro-F1 = 0.65</strong> in the Easy bucket.</p>
+            <p>Both Medium and overall scores improved significantly, confirming the superior generalization of
+                contextual embeddings.</p>
+            <p>Although performance on the Hard bucket remained limited, the upward trend across all difficulty levels
+                demonstrated clear gains in expressive power and robustness.</p><h4><strong>Peptides Descriptor
+                Embeddings</strong></h4>
+            <p>To incorporate biochemical semantics, the second stage utilized 102-dimensional <strong>physicochemical
+                descriptors</strong> derived from the <em>Peptides</em> library.</p>
+            <p>These descriptors included aliphatic index, Boman index, hydrophobicity scales, and isoelectric
+                properties, providing a richer and more interpretable biological representation.</p>
+            <p>Input features were standardized via z-score normalization.<br/>The model adopted an early-stopping
+                strategy with a reduced learning rate, maintaining training stability while preventing overfitting.</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-physchem-1.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-physchem-1.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-physchem-2.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-physchem-2.webp"/></a>
+            </figure>
+            <p>Performance improved across all buckets, especially on simpler data.</p>
+            <p>The <strong>Easy bucket</strong> achieved <strong>Hit@1 = 0.81</strong> and <strong>Micro-F1 =
+                0.61</strong>, while the overall Micro-F1 rose to <strong>0.43</strong>.</p>
+            <p>Although high-complexity samples remained challenging (Hard F1 = 0.20), the inclusion of biochemical
+                descriptors enhanced robustness and interpretability compared to one-hot encoding.</p><h4><strong>ESM
+                Contextual Representations</strong></h4>
+            <p>In the third training stage, handcrafted physicochemical descriptors were replaced with <strong>deep
+                contextual embeddings</strong> derived from the <strong>ESM-1b protein language model</strong> (Lin et
+                al., 2023). This transition marks a shift from static, manually designed features toward <strong>context-aware
+                    representations</strong> learned directly from raw sequences.</p>
+            <p>Each amino acid residue was encoded as a <strong>1280-dimensional embedding</strong> using the
+                Transformer-based ESM architecture pretrained on the <strong>UR50D</strong> database. Residue-level
+                embeddings were aggregated by <strong>mean pooling</strong> to produce a fixed-size vector per sequence,
+                effectively capturing both <strong>evolutionary</strong> and <strong>structural-context
+                    dependencies</strong> across residues.</p>
+            <p>The ESM embeddings were extracted using the following configuration:</p>
+            <pre><code>def get_embeddings(sequences, batch_size=4):
+    """ESM-1b contextual embedding (mean pooling per sequence)"""
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
+    model.eval().to(device)
+    batch_converter = alphabet.get_batch_converter()</code></pre>
+            <p>Here, the pretrained weights are automatically loaded from the <strong>esm2_t33_650M_UR50D</strong>
+                checkpoint, which contains <strong>33 Transformer layers</strong> and <strong>650 million
+                    parameters</strong>, offering high expressiveness while maintaining reasonable computational cost.
+                The extracted mean-pooled embeddings were subsequently passed to the downstream classifier for
+                degradability prediction.</p>
+            <p>Training followed the same <strong>Histogram-based Gradient Boosting (HGB)</strong> pipeline used in
+                previous stages, with <strong>SMOTE oversampling</strong> to balance label distribution. A dropout rate
+                of <strong>0.1</strong> was applied to upstream embeddings to prevent overfitting and enhance
+                generalization. The model achieved stable convergence after approximately <strong>25 iterations</strong>,
+                with smooth validation curves and minimal variance across folds.</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-esm-1.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-esm-1.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-esm-2.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/m-esm-2.webp"/></a>
+            </figure>
+            <p>The ESM-based model exhibited the strongest overall performance among all variants. In the <strong>Easy
+                bucket</strong>, it achieved <strong>Hit@1 = 0.89</strong> and <strong>Micro-F1 = 0.65</strong>,
+                surpassing both one-hot and descriptor-based models. Performance on <strong>Medium</strong> and <strong>All</strong>
+                samples also improved markedly, confirming the superior <strong>generalization and
+                    expressiveness</strong> of contextual embeddings.</p>
+            <p>Although prediction accuracy on the <strong>Hard bucket</strong> remained modest, the consistent upward
+                trend across all difficulty levels demonstrated that contextual embeddings effectively bridge <strong>sequence
+                    variation</strong> and <strong>functional similarity</strong>, enabling the model to infer
+                degradation potential even from distantly related enzymes.</p><h4><strong>Overall Trends</strong></h4>
+            <p>Across all stages, performance improvements followed the hierarchy:</p>
+            <p><strong>One-hot &lt; Physicochemical descriptors &lt; ESM embeddings</strong></p>
+            <p>This progression highlights the growing representational richness—from raw residue identity to
+                biologically informed properties, and finally to contextualized sequence semantics. Models trained with
+                SMOTE achieved better recall for underrepresented plastics without severe overfitting. Performance
+                differences across Easy, Medium, and Hard buckets mirrored biological expectations: enzymes sharing
+                higher sequence identity were more predictable, while distant homologs required deeper contextual
+                understanding.</p>
+            <h3 id="dual-tower-training-and-evaluation">Dual-tower Training and Evaluation</h3>
+            <p>To systematically evaluate the dual-tower framework, a series of controlled experiments were conducted
+                focusing on <strong>interaction mechanisms</strong>, <strong>listwise sampling strategies</strong>, and
+                <strong>backbone architectures</strong>. The goal was to determine the optimal configuration that
+                balances <strong>performance</strong>, <strong>training stability</strong>, and <strong>biological
+                    interpretability</strong>.</p><h4><strong>Indicator Interpretation</strong></h4>
+            <p><strong>Loss Curve</strong></p>
+            <p>Indicates overall optimization stability. A <strong>smooth and monotonically decreasing</strong> curve
+                suggests steady convergence, while <strong>oscillations or plateaus</strong> may imply overfitting or
+                gradient instability. Models with faster and more stable loss decay generally exhibit stronger learning
+                efficiency.</p>
+            <p><strong>Hit@k Curve</strong></p>
+            <p>Measures ranking quality: the proportion of true degradable plastics appearing in the top <em>k</em>
+                predictions. A <strong>higher Hit@1 or Hit@3</strong> reflects better ranking precision and retrieval
+                reliability, especially relevant for prioritizing enzyme–substrate pairs in experimental screening.</p>
+            <p><strong>Score Separation</strong></p>
+            <p>Plots the mean predicted scores for positive (degradable) versus negative (non-degradable) samples. A
+                <strong>larger positive–negative gap</strong> indicates that the model successfully separates degradable
+                interactions from irrelevant pairs, reflecting discriminative embedding quality.</p><h4><strong>Interaction
+                Head Comparison</strong></h4>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-bilinear.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-bilinear.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-cosine.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-cosine.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-gated.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-gated.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-hadamard.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/gnn-hadamard.webp"/></a>
+            </figure>
+            <p>Across all formulations, convergence was achieved within approximately <strong>60 epochs</strong>, as
+                shown by the synchronized stabilization of loss and score curves.</p>
+            <p>The <strong>cosine interaction</strong>, though the simplest mathematically, exhibited the <strong>most
+                stable convergence behavior</strong> and consistent performance across all metrics, with minimal
+                fluctuations in both loss and Hit@k.</p>
+            <p>The <strong>bilinear</strong> and <strong>Hadamard-MLP</strong> variants displayed <strong>faster early
+                convergence</strong> but suffered from <strong>greater late-stage variance</strong>, suggesting
+                sensitivity to parameter scaling and data imbalance.</p>
+            <p>The <strong>factorized bilinear</strong> approach provided moderate performance, balancing model size and
+                feature coupling but lacking robustness under small-sample conditions.</p>
+            <p>The <strong>gated interaction</strong> achieved the <strong>best overall ranking accuracy</strong>,
+                maintaining smooth loss decay and the widest score separation, demonstrating its advantage in adaptively
+                modulating enzyme–polymer feature channels.</p><h4><strong>Backbone Comparison</strong></h4>
+            <p>To evaluate the impact of structural encoding strategies, two protein backbones — <strong>Graph
+                Convolutional Network (GCN)</strong> and <strong>Geometric Vector Perceptron (GVP)</strong> — were
+                compared under identical data and training conditions. </p>
+            <p>Both models processed residue-level protein graphs derived from Cα–Cα contacts (&lt;10 Å) and shared the
+                same polymer tower, projection layers, and gated interaction head, ensuring that observed performance
+                differences originated solely from the backbone design.</p>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/metrics-all.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/metrics-all.webp"/></a>
+            </figure>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/metrics-hard.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/metrics-hard.webp"/></a>
+            </figure>
+            <p>Training stability and convergence were tracked through <strong>loss</strong>, <strong>Hit@k</strong>,
+                and <strong>score</strong> curves, analogous to the interaction head evaluation.</p>
+            <p>However, the <strong>GVP-based model</strong>, despite its richer geometric parameterization and ability
+                to encode vectorial features, <strong>did not outperform</strong> the simpler <strong>GCN-based
+                    backbone</strong> in this specific enzyme–polymer task.</p>
+            <p>The additional geometric channels introduced by GVP increased the <strong>model complexity and parameter
+                count</strong>, which, under a relatively limited dataset size, led to <strong>slower
+                convergence</strong> and <strong>slight overfitting tendencies</strong> in later epochs.</p>
+            <p>In contrast, the <strong>GCN backbone</strong> maintained <strong>lower variance and faster
+                stabilization</strong>, producing more consistent ranking scores across validation folds.</p>
+            <p>Quantitatively, both architectures achieved comparable <strong>Top-1 Hit</strong> and
+                <strong>Micro-F1</strong> metrics, with GCN slightly ahead in stability and generalization.</p>
+            <p>This result suggests that for <strong>moderate-scale biochemical datasets</strong>, the <strong>simpler
+                scalar-based message passing of GCN</strong> suffices to capture residue connectivity and chemical
+                context, whereas <strong>vector-aware extensions</strong> like GVP may yield marginal benefits only when
+                trained on <strong>larger and more structurally diverse datasets</strong>.</p><h4><strong>Effect of
+                Listwise Sampling</strong></h4>
+            <p>The <strong>listwise sampling length (L)</strong> — representing the number of candidate polymers
+                presented per enzyme during training — was a key hyperparameter affecting convergence and
+                generalization.</p>
+            <p>Empirical testing across <strong>L ∈ {5, 10, 20, 30}</strong> revealed that a <strong>moderate list size
+                (≈10)</strong> achieved the <strong>best overall performance</strong>:</p>
+            <ul>
+                <li>Shorter lists (L &lt; 5) limited the model’s ability to learn robust ranking relationships, reducing
+                    contrast diversity.
+                </li>
+            </ul>
+            <ul>
+                <li>Longer lists (L &gt; 20) increased gradient noise and slowed convergence without clear gains in
+                    retrieval precision.
+                </li>
+            </ul>
+            <p>Thus, maintaining a compact but diverse candidate set allowed the model to efficiently capture <strong>relative
+                preferences</strong> while preserving training stability.</p>
+            <h3 id="summary">Summary</h3>
+            <p>The progressive training strategy — from classical machine learning (ML) baselines to structure-aware
+                dual-tower models — collectively illustrates the evolution of enzyme–plastic degradability prediction
+                from <strong>sequence-level classification</strong> to <strong>representation-level interaction
+                    modeling</strong>.</p>
+            <p>In the ML phase, performance steadily improved as feature representations became more biologically
+                grounded: simple <strong>one-hot encodings</strong> provided basic residue identity, <strong>physicochemical
+                    descriptors</strong> introduced interpretable biochemical properties, and <strong>ESM contextual
+                    embeddings</strong> captured deeper evolutionary and structural semantics. This progression reflects
+                the growing integration of biological knowledge into data-driven learning, ultimately enhancing both
+                <strong>predictive accuracy</strong> and <strong>generalization</strong>.</p>
+            <p>In the dual-tower stage, the model transitioned from learning independent enzyme features to
+                understanding <strong>cross-domain relationships</strong> between enzymes and polymers. Extensive
+                experiments on <strong>interaction heads</strong>, <strong>backbone architectures</strong>, and <strong>listwise
+                    ranking strategies</strong> demonstrated that architectural complexity does not guarantee superior
+                performance. While advanced modules such as <strong>GVP</strong> and <strong>high-rank interaction
+                    heads</strong> offer theoretical expressiveness, the <strong>GCN + gated head</strong> configuration
+                achieved the best balance between <strong>training stability</strong>, <strong>interpretability</strong>,
+                and <strong>ranking precision</strong>.</p>
+            <p>Overall, these findings underscore two key insights for biochemical deep learning:</p>
+            <ul>
+                <li><strong>Representation quality</strong>—the ability to encode biologically meaningful structure and
+                    context—is more critical than model depth or parameter count;
+                </li>
+            </ul>
+            <ul>
+                <li><strong>Architectural parsimony</strong>, when aligned with biological constraints and dataset
+                    scale, can lead to <strong>more stable, interpretable, and generalizable models</strong> for
+                    enzyme–polymer prediction.
+                </li>
+            </ul>
+            <h2 id="interpretability-and-feature-analysis">Interpretability and Feature Analysis</h2>
+            <p>Understanding <em>why</em> a model makes a certain prediction is essential for validating its <strong>biological
+                relevance</strong>, improving <strong>scientific transparency</strong>, and guiding the <strong>rational
+                design of enzymes and polymers</strong>.</p>
+            <p>Interpretability analysis aims to <strong>trace back the model’s internal decision process</strong>,
+                identifying which <em>features, representations, or interactions</em> most influence its final output.
+            </p>
+            <p>Rather than treating the model as a black box, this approach allows a mechanistic understanding of
+                <strong>what the model has truly learned</strong> — whether it aligns with known biochemical mechanisms
+                or reveals new, data-driven insights.</p>
+            <h3 id="descriptor-importance-in-polymer-representation">Descriptor Importance in Polymer
+                Representation</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/feature-gradient-contributions.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/feature-gradient-contributions.webp"/></a>
+            </figure>
+            <p>High-importance features such as <strong>TPSA</strong>, <strong>hydrogen-bond donors/acceptors</strong>,
+                and <strong>ester, amide, and ether groups</strong> showed strong positive contributions, indicating
+                their key role in hydrolytic reactivity and enzyme accessibility.</p>
+            <p>The high weight of <strong>aromatic density </strong>(fr_benzeneDensity) highlights the resistance of
+                <strong>rigid aromatic polymers</strong> like PET and PS, consistent with known barriers caused by
+                <strong>π–π conjugation</strong> and <strong>crystallinity</strong> (Wei &amp; Zimmermann, 2017;
+                Tournier et al., 2020).</p>
+            <p>Interestingly, features related to <strong>molecular flexibility</strong> (e.g.,
+                <em>NumRotatableBonds</em>, <em>fr_etherDensity</em>) correlated positively with degradability,
+                suggesting that <strong>flexible chains are more easily accommodated in enzyme pockets</strong>,
+                enhancing catalytic access (Joo et al., 2018).</p>
+            <p>In contrast, larger or more rigid molecules showed reduced susceptibility, implying that <strong>spatial
+                accessibility</strong>—not just bond type—affects degradation.</p>
+            <p>Hydrophobicity and <strong>polar surface distribution</strong> (<em>MolLogP</em>, <em>TPSADensity</em>)
+                also ranked highly, emphasizing that <strong>surface polarity</strong> modulates enzyme–polymer
+                interactions by affecting <strong>binding affinity and pocket compatibility</strong> (Yoshida et al.,
+                2016; Han et al., 2017).</p>
+            <p>Overall, degradability emerges as a <strong>multifactorial property</strong> shaped by both <strong>chemical
+                bonds</strong> and <strong>three-dimensional accessibility</strong>, suggesting that <strong>enzyme
+                engineering</strong> should consider <strong>pocket polarity and spatial accommodation</strong> in
+                addition to catalytic residues.</p>
+            <h3 id="shap-based-interpretability-in-ml-classification">SHAP-based Interpretability in ML
+                Classification</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/shap-all.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/shap-all.webp"/></a>
+            </figure>
+            <p>The <strong>SHAP summary plot (Figure X)</strong> highlights several high-impact descriptors:</p>
+            <ul>
+                <li><strong>KF4 (Kidera Factor 4)</strong> — reflects amino acid hydrophobicity and side-chain
+                    bulkiness; higher KF4 values indicate a stronger hydrophobic core, often associated with
+                    plastic-binding regions (Kidera et al., 1985).
+                </li>
+            </ul>
+            <ul>
+                <li><strong>SVGER3, SVGER2</strong> — encode electrostatic and solvent accessibility patterns; positive
+                    SHAP contributions suggest that favorable surface charge distributions enhance substrate
+                    recognition.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>PRIN3 / F5</strong> — represent polarity and residue–residue interaction energy; their high
+                    positive SHAP values imply that polarity heterogeneity aids in adapting to chemically diverse
+                    plastics.
+                </li>
+            </ul>
+            <ul>
+                <li><strong>BLOSUM4, Z3, ST3</strong> — describe sequence substitution patterns and topological
+                    autocorrelations; negative contributions indicate that conservative or rigid sequence motifs
+                    correlate with lower degradative versatility.
+                </li>
+            </ul>
+            <p>Color gradients (red = high feature value, blue = low) visualize how each descriptor modulates the model
+                output:</p>
+            <p><strong>red features push predictions toward degradable plastics</strong>, while <strong>blue features
+                suppress degradability</strong> — consistent with the understanding that flexible, surface-accessible,
+                and electrostatically adaptive enzymes are more likely to interact with polymer substrates (Tournier et
+                al., <em>Nature</em>, 2020).</p>
+            <p>Overall, SHAP analysis confirms that the model learned <strong>biophysically meaningful patterns</strong>
+                rather than memorizing label correlations.</p>
+            <p>The results align with established enzymatic degradation mechanisms, where <strong>surface charge,
+                flexibility, and hydrophobic exposure</strong> jointly determine substrate specificity (Wei &amp;
+                Zimmermann, <em>Microbial Biotechnology</em>, 2017).</p>
+            <h3 id="shared-embedding-space-analysis">Shared Embedding Space Analysis</h3>
+            <figure><a
+                    href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/shared-space-3d-static-full.webp"><img
+                    src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/model/predictor/shared-space-3d-static-full.webp"/></a>
+            </figure>
+            <p>To further assess how the dual-tower model organizes enzymatic and polymeric representations in the
+                shared latent space, a <strong>dimensionality-reduced projection</strong> (via UMAP) was generated from
+                the final enzyme and polymer embeddings.</p>
+            <p>The visualization reveals a <strong>clear structural organization</strong> on the enzyme side: proteins
+                cluster according to sequence and functional similarity, reflecting the model’s ability to encode
+                biologically meaningful relationships.</p>
+            <p>In contrast, polymer representations exhibit a <strong>more diffuse distribution</strong>.</p>
+            <p>Notably, distinct polymer families such as <strong>PET</strong>, <strong>Nylon</strong>,
+                <strong>PLA</strong>, and <strong>PHA</strong> form recognizable but partially overlapping regions,
+                suggesting that the model captures major chemical motifs (e.g., ester or amide linkages) while retaining
+                cross-family relational awareness.</p>
+            <p>However, several <strong>minor polymer classes</strong> appear <strong>compressed or aggregated</strong>
+                near the periphery of the embedding map.</p>
+            <p>This phenomenon likely results from <strong>limited training samples</strong> for these categories,
+                leading to <strong>representation collapse</strong> under the shared-space constraint.</p>
+            <p>Such clustering behavior explains why the <strong>dual-tower framework</strong>, despite being more
+                expressive in theory, sometimes <strong>underperforms the simpler multi-class classifiers</strong>.</p>
+            <p>When data are imbalanced or sparse, the shared representation must jointly optimize both domains, which
+                can dilute the separability of underrepresented polymer types.</p>
+            <p>Overall, this observation underscores the <strong>untapped potential</strong> of the dual-tower
+                architecture: with more balanced polymer data and fine-tuned alignment, the shared latent space could
+                achieve <strong>clearer inter-class boundaries</strong> and <strong>enhanced interpretability</strong>
+                across enzyme–polymer interactions.</p>
+            <h2 id="discussion-and-insights">Discussion and Insights</h2>
+            <h3 id="bridging-biology-and-computation">Bridging Biology and
+                Computation</h3>
+            <p>Computational modeling has become an indispensable engine in modern synthetic biology, enabling the
+                rational design, prediction, and optimization of biological systems that were once driven mainly by
+                empirical trial-and-error.</p>
+            <p>This study demonstrates how computational learning frameworks can be harnessed to capture the intricate
+                determinants of <strong>plastic biodegradation</strong>, a phenomenon governed by both <strong>enzymatic
+                    structure</strong> and <strong>polymer chemistry</strong>. Through progressive model design, from
+                interpretable ML classifiers to dual-tower embedding systems, the Plaszyme project bridges <strong>biochemical
+                    intuition</strong> and <strong>data-driven discovery</strong>.</p>
+            <p>In this study, the sequence-only classifier (PlazymeAlpha)
+                and the cross-domain dual-tower (PlazymeX)
+                exemplify this progression. Our findings also highlight that biological function can<strong> emerge
+                    naturally</strong> from learned representations, even without explicit annotation of catalytic
+                residues or binding motifs. </p>
+            <p>In particular, contextual embeddings from <strong>protein language models (ESM)</strong> effectively
+                internalized <strong>evolutionary constraints</strong> and <strong>structure–function
+                    relationships</strong>, allowing the model to generalize across homologous and remote enzyme
+                families.</p>
+            <p>At the same time, the polymer descriptors revealed how <strong>molecular flexibility, polarity, and
+                aromatic rigidity</strong> collectively shape degradability, moving beyond the simplistic view that
+                hydrolysis depends solely on ester or amide bonds.</p>
+            <h3 id="model-interpretability-and-scientific-transparency">Model Interpretability and Scientific
+                Transparency</h3>
+            <p>The interpretability analyses gradient-based feature attribution, SHAP value interpretation, and
+                shared-space visualization consistently revealed <strong>chemically and biologically plausible
+                    patterns</strong>.</p>
+            <p>These analyses indicate that the model is not a “black box,” but a <strong>learnable hypothesis
+                generator</strong>, capable of identifying the molecular factors most correlated with enzymatic
+                degradability.</p>
+            <p>The alignment between model-derived importance scores and known biochemical determinants (e.g., aromatic
+                density, hydrogen-bond potential, surface polarity) validates the system’s <strong>scientific
+                    transparency</strong> and provides rational directions for <strong>enzyme engineering</strong> and
+                <strong>substrate design</strong>.</p>
+            <h3 id="biological-and-engineering-implications">Biological and Engineering Implications</h3>
+            <p>From a biological perspective, the models elucidate how enzyme specificity may arise from <strong>combined
+                spatial and electrostatic complementarity</strong> rather than catalytic residues alone.</p>
+            <p>Such insights could guide <strong>directed evolution</strong> or <strong>structure-guided
+                mutagenesis</strong>, focusing on improving substrate accommodation and binding dynamics instead of
+                merely optimizing active-site chemistry.</p>
+            <p>On the polymer side, descriptor-level analyses highlight potential strategies for designing <strong>next-generation
+                biodegradable materials</strong>, such as tuning flexibility, introducing hydrolysis-prone linkages, or
+                modulating aromatic density to achieve desired degradation profiles.</p>
+            <h3 id="limitations-and-future-directions">Limitations and Future Directions</h3><h4><strong>Current
+                Limitations</strong></h4>
+            <p>Although the current framework demonstrates strong predictive performance and chemical interpretability,
+                several limitations remain:</p>
+            <ul>
+                <li><strong>Data imbalance across plastic categories.</strong>
+                    <p>The number of polymer types greatly exceeds the available enzyme–polymer pairs, leading to severe
+                        long-tail effects. Certain underrepresented plastics (e.g., specialty copolymers) are
+                        insufficiently sampled, causing their representations to collapse or cluster into a single
+                        region in the shared latent space.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Limited enzyme sample diversity.</strong>
+                    <p>Despite integrating multiple known hydrolase families, the current dataset remains small in both
+                        sequence and structure coverage. This limits generalization to novel or distant homologs and may
+                        bias the learned representation toward well-studied enzyme classes.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Incomplete modeling of structural and kinetic factors.</strong>
+                    <p>The model primarily focuses on static structural embeddings. Physical attributes such as polymer
+                        crystallinity, chain packing, and enzyme conformational flexibility which substantially
+                        influence degradation efficiency are not yet explicitly modeled.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Optimization sensitivity and shared-space compression.</strong>
+                    <p>Some plastics show spatial compression or overlap within the shared embedding space, indicating
+                        that the current dual-tower model has not fully converged to disentangled, domain-specific
+                        manifolds. This explains why, despite structural insight, the overall retrieval performance does
+                        not yet surpass the multi-class baseline in every metric.</p></li>
+            </ul>
+            <h4><strong>Future Directions</strong></h4>
+            <p>To overcome these limitations and enhance biological interpretability, the <strong>dual-tower
+                framework</strong> offers a flexible foundation for more advanced and generalizable training paradigms:
+            </p>
+            <ul>
+                <li><strong>Multi-task joint training (Protein-tower side)</strong>
+                    <p>Integrate multiple biological supervision signals onto the same protein backbone — including
+                        sequence/structure contrastive tasks (InfoNCE), fold-type or family classification,
+                        binding-pocket and active-site prediction, residue accessibility and electrostatic regression,
+                        and contact-map reconstruction.</p>
+                    <p>Such <strong>multi-objective constraints</strong> enhance the backbone’s ability to capture
+                        <strong>spatial geometry and electrostatic environments</strong>, mitigating overfitting to
+                        specific degradase families.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Cross-domain consistency and auxiliary tasks (Polymer-tower side)</strong>
+                    <p>Introduce self- or weakly supervised tasks on the polymer side descriptor reconstruction and
+                        masking, normalized descriptor consistency, regression of basic physical properties (e.g., Tg,
+                        polar surface density), and functional-group fragment recognition.</p>
+                    <p>Aligning these auxiliary tasks with the protein domain helps <strong>sharpen the enzyme–polymer
+                        boundary</strong> in the shared latent space.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Unified multi-task alignment objectives (Shared space)</strong>
+                    <p>Extend the current listwise InfoNCE into a <strong>multi-task alignment objective</strong>
+                        jointly optimizing:</p>
+                    <p>(a) degradation-pair ranking,</p>
+                    <p>(b) pocket–functional group compatibility scoring, and</p>
+                    <p>(c) conformational penalty/flexibility reward terms.</p>
+                    <p>Integrating <strong>hard negative mining</strong> and <strong>curriculum learning</strong> (from
+                        homologous to remote pairs) can stabilize convergence and enhance separability.</p></li>
+            </ul>
+            <ul>
+                <li><strong>Data and supervision expansion</strong>
+                    <p>Incorporate <strong>high-throughput screening</strong> and <strong>metagenomic mining</strong> to
+                        expand enzyme diversity, while leveraging <strong>semi-supervised pre-training</strong> to
+                        reduce reliance on labeled data.</p>
+                    <p>Including kinetic proxies (e.g., relative activity tiers) and polymer morphology descriptors
+                        (e.g., crystallinity, roughness) would better link <strong>structure and catalysis</strong>
+                        under realistic biophysical contexts.</p></li>
+            </ul>
+            <p>Overall, these directions aim to evolve <strong>Plaszyme’s dual-tower architecture</strong> into a
+                biologically grounded multi-task representation framework, capable of capturing both <strong>structural
+                    realism and catalytic logic</strong> paving the way for rational enzyme design, novel polymer
+                discovery, and interpretable biodegradation prediction.</p>
+            <h2 id="reference">Reference</h2>
+
+            <h4><strong>Machine Learning and Representation Learning</strong></h4>
+            <ul>
+                <li>Bromley, J., Guyon, I., LeCun, Y., Säckinger, E., &amp; Shah, R. (1993). Signature verification
+                    using a “Siamese” time delay neural network. <em>Advances in Neural Information Processing Systems,
+                        6</em>, 737–744. <a
+                            href="https://proceedings.neurips.cc/paper_files/paper/1993/hash/288cc0ff022877bd3df94bc9360b9c5d-Abstract.html">https://proceedings.neurips.cc/.../Abstract.html</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    Cao, Z., Qin, T., Liu, T.-Y., Tsai, M.-F., &amp; Li, H. (2007).
+                    Learning to rank: From pairwise approach to listwise approach.
+                    <em>Proceedings of the 24th International Conference on Machine Learning (ICML 2007)</em>, 129–136.
+                    <a href="https://doi.org/10.1145/1273496.1273513">https://doi.org/10.1145/1273496.1273513</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Chawla, N. V., Bowyer, K. W., Hall, L. O., &amp; Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority
+                    over-sampling technique. <em>Journal of Artificial Intelligence Research, 16</em>, 321–357. <a
+                            href="https://doi.org/10.1613/jair.953">https://doi.org/10.1613/jair.953</a></li>
+            </ul>
+            <ul>
+                <li>Hadsell, R., Chopra, S., &amp; LeCun, Y. (2006). Dimensionality reduction by learning an invariant
+                    mapping. <em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 1735–1742. <a
+                            href="https://doi.org/10.1109/CVPR.2006.100">https://doi.org/10.1109/CVPR.2006.100</a></li>
+            </ul>
+            <ul>
+                <li>
+                    Hinton, G. E. (1984).
+                    <a href="https://web.stanford.edu/~jlmcc/papers/PDP/Chapter3.pdf">
+                        <em>Distributed representations.</em>
+                    </a>
+                    Technical Report CMU-CS-84-157, Carnegie Mellon University.
+                </li>
+            </ul>
+            <ul>
+                <li>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., et al. (2017). LightGBM: A highly
+                    efficient gradient boosting decision tree. <em>Advances in Neural Information Processing Systems,
+                        30</em>. <a
+                            href="https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html">https://proceedings.neurips.cc/.../Abstract.html</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Mikolov, T., Chen, K., Corrado, G., &amp; Dean, J. (2013). Efficient estimation of word
+                    representations in vector space. <em>arXiv preprint arXiv:1301.3781</em>. <a
+                            href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></li>
+            </ul>
+            <ul>
+                <li>McInnes, L., Healy, J., &amp; Melville, J. (2018). UMAP: Uniform manifold approximation and
+                    projection for dimension reduction. <em>arXiv preprint arXiv:1802.03426</em>. <a
+                            href="https://arxiv.org/abs/1802.03426">https://arxiv.org/abs/1802.03426</a></li>
+            </ul>
+
+            <h4><strong>Protein Structure and Modeling</strong></h4>
+            <ul>
+                <li>Baek, M., DiMaio, F., Anishchenko, I., et al. (2021). Accurate prediction of protein structures and
+                    interactions using a three-track neural network. <em>Science, 373</em>(6557), 871–876. <a
+                            href="https://doi.org/10.1126/science.abj8754">https://doi.org/10.1126/science.abj8754</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Gainza, P., Sverrisson, F., Monti, F., et al. (2020). Deciphering interaction fingerprints from
+                    protein surfaces using geometric deep learning. <em>Nature Methods, 17</em>(2), 184–192. <a
+                            href="https://doi.org/10.1038/s41592-019-0666-6">https://doi.org/10.1038/s41592-019-0666-6</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Gligorijević, V., Renfrew, P. D., Kosciolek, T., et al. (2021). Structure-based protein function
+                    prediction using graph convolutional networks. <em>Nature Communications, 12</em>(1), 3168. <a
+                            href="https://doi.org/10.1038/s41467-021-23303-9">https://doi.org/10.1038/s41467-021-23303-9</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Jing, B., Eismann, S., Soni, P. N., Townshend, R. J. L., &amp; Dror, R. O. (2021). Learning from
+                    protein structure with geometric vector perceptrons. <em>International Conference on Learning
+                        Representations (ICLR 2021)</em>. <a href="https://openreview.net/forum?id=1YLJDvSx6J4">https://openreview.net/forum?id=1YLJDvSx6J4</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Jumper, J., Evans, R., Pritzel, A., et al. (2021). Highly accurate protein structure prediction with
+                    AlphaFold. <em>Nature, 596</em>(7873), 583–589. <a
+                            href="https://doi.org/10.1038/s41586-021-03819-2">https://doi.org/10.1038/s41586-021-03819-2</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Lin, Z., Akin, M., Rao, R., et al. (2023). Evolutionary-scale prediction of atomic-level protein
+                    structure with a language model. <em>Science, 379</em>(6637), 1123–1130. <a
+                            href="https://doi.org/10.1126/science.ade2574">https://doi.org/10.1126/science.ade2574</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Mirdita, M., Schütze, K., Moriwaki, Y., Heo, L., Ovchinnikov, S., &amp; Steinegger, M. (2022).
+                    ColabFold: Making protein folding accessible to all. <em>Nature Methods, 19</em>(6), 679–682. <a
+                            href="https://doi.org/10.1038/s41592-022-01488-1">https://doi.org/10.1038/s41592-022-01488-1</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Tunyasuvunakool, K., et al. (2021). Highly accurate protein structure prediction for the human
+                    proteome. <em>Nature, 596</em>(7873), 590–596. <a href="https://doi.org/10.1038/s41586-021-03828-1">https://doi.org/10.1038/s41586-021-03828-1</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Fey, M., &amp; Lenssen, J. E. (2019). Fast graph representation learning with PyTorch Geometric.
+                    <em>arXiv preprint arXiv:1903.02428</em>. <a href="https://arxiv.org/abs/1903.02428">https://arxiv.org/abs/1903.02428</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Kipf, T. N., &amp; Welling, M. (2017). Semi-supervised classification with graph convolutional
+                    networks. <em>International Conference on Learning Representations (ICLR 2017)</em>. <a
+                            href="https://arxiv.org/abs/1609.02907">https://arxiv.org/abs/1609.02907</a></li>
+            </ul>
+            <ul>
+                <li>Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., &amp; Bengio, Y. (2018). Graph
+                    attention networks. <em>International Conference on Learning Representations (ICLR 2018)</em>. <a
+                            href="https://arxiv.org/abs/1710.10903">https://arxiv.org/abs/1710.10903</a></li>
+            </ul>
+            <ul>
+                <li>Xu, K., Hu, W., Leskovec, J., &amp; Jegelka, S. (2019). How powerful are graph neural networks? <em>International
+                    Conference on Learning Representations (ICLR 2019)</em>. <a href="https://arxiv.org/abs/1810.00826">https://arxiv.org/abs/1810.00826</a>
+                </li>
+            </ul>
+
+            <h4><strong>Polymer Chemistry and Descriptor Analysis</strong></h4>
+            <ul>
+                <li>Atchley, W. R., Zhao, J., Fernandes, A. D., Drüke, T., &amp; Su, Z. (2005). Solving the protein
+                    sequence metric problem. <em>Proceedings of the National Academy of Sciences, 102</em>(18),
+                    6395–6400. <a
+                            href="https://doi.org/10.1073/pnas.0408677102">https://doi.org/10.1073/pnas.0408677102</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    Iannace, S., &amp; Nicolais, L. (1997).
+                    Biodegradable aliphatic polyesters: Mechanical properties and degradation kinetics.
+                    <em>Journal of Applied Polymer Science, 64</em>(5), 911–919.
+                    <a href="https://doi.org/10.1002/(SICI)1097-4628(19970502)64:5%3C911::AID-APP11%3E3.0.CO;2-W">
+                        https://doi.org/10.1002/(SICI)1097-4628(19970502)64:5%3C911::AID-APP11%3E3.0.CO;2-W
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>Jolliffe, I. T., &amp; Cadima, J. (2016). Principal component analysis: A review and recent
+                    developments. <em>Philosophical Transactions of the Royal Society A, 374</em>(2065), 20150202. <a
+                            href="https://doi.org/10.1098/rsta.2015.0202">https://doi.org/10.1098/rsta.2015.0202</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Kidera, A., Konishi, Y., Oka, M., Ooi, T., &amp; Scheraga, H. A. (1985). Statistical analysis of the
+                    physical properties of amino acids and construction of the new physicochemical scale: the Kidera
+                    factors. <em>Protein Engineering, Design &amp; Selection, 1</em>(5), 399–408. <a
+                            href="https://doi.org/10.1093/protein/1.5.399">https://doi.org/10.1093/protein/1.5.399</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Landrum, G. (2016). <em>RDKit: Open-source cheminformatics.</em> <a href="http://www.rdkit.org/">http://www.rdkit.org/</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Osorio, D. (2020). <em>Peptides.py: Physicochemical properties, indices and descriptors for
+                    amino-acid sequences.</em> Zenodo. <a href="https://doi.org/10.5281/zenodo.3814196">https://doi.org/10.5281/zenodo.3814196</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Todeschini, R., &amp; Consonni, V. (2009). <em>Molecular descriptors for chemoinformatics</em> (2nd
+                    ed.). Wiley-VCH. <a href="https://doi.org/10.1002/9783527628766">https://doi.org/10.1002/9783527628766</a>
+                </li>
+            </ul>
+
+            <h4><strong>Plastic Biodegradation and Enzyme Mechanism</strong></h4>
+            <ul>
+                <li>Han, X., Liu, W., Huang, J. W., Ma, J., Zheng, Y., Ko, T. P., et al. (2017). Structural insight into
+                    catalytic mechanism of PET hydrolase. <em>Nature Communications, 8</em>, 2106. <a
+                            href="https://doi.org/10.1038/s41467-017-02255-z">https://doi.org/10.1038/s41467-017-02255-z</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Joo, S., Cho, I. J., Seo, H., Son, H. F., Sagong, H. Y., Shin, T. J., et al. (2018). Structural
+                    insight into molecular mechanism of poly(ethylene terephthalate) degradation. <em>Nature
+                        Communications, 9</em>, 382. <a href="https://doi.org/10.1038/s41467-018-02881-1">https://doi.org/10.1038/s41467-018-02881-1</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Tournier, V., Topham, C. M., Gilles, A., et al. (2020). An engineered PET depolymerase to break down
+                    and recycle plastic bottles. <em>Nature, 580</em>, 216–219. <a
+                            href="https://doi.org/10.1038/s41586-020-2149-4">https://doi.org/10.1038/s41586-020-2149-4</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Wei, R., &amp; Zimmermann, W. (2017). Microbial enzymes for the recycling of recalcitrant
+                    petroleum-based plastics: how far are we? <em>Microbial Biotechnology, 10</em>(6), 1308–1322. <a
+                            href="https://doi.org/10.1111/1751-7915.12710">https://doi.org/10.1111/1751-7915.12710</a>
+                </li>
+            </ul>
+            <ul>
+                <li>Yoshida, S., Hiraga, K., Takehana, T., Taniguchi, I., Yamaji, H., Maeda, Y., et al. (2016). A
+                    bacterium that degrades and assimilates poly(ethylene terephthalate). <em>Science, 351</em>(6278),
+                    1196–1199. <a
+                            href="https://doi.org/10.1126/science.aad6359">https://doi.org/10.1126/science.aad6359</a>
+                </li>
+            </ul>
+        </div>
+        <!-- === Chapter Navigation === -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.1);">
+            <a href="{{ url_for('pages', page='database') }}" style="text-decoration: none;">
+                <div style="font-size: 0.85em; color: var(--text-primary, inherit); opacity: 0.85; font-weight: 400;">←
+                    Previous
+                </div>
+                <div style="font-size: 1.25em; font-weight: 600; color: var(--theme-accent);">Database</div>
+            </a>
+            <a href="{{ url_for('pages', page='webapp') }}" style="text-decoration: none; text-align: right;">
+                <div style="font-size: 0.85em; color: var(--text-primary, inherit); opacity: 0.85; font-weight: 400;">
+                    Next →
+                </div>
+                <div style="font-size: 1.25em; font-weight: 600; color: var(--theme-accent);">WebApp</div>
+            </a>
+        </div>
     </article>
-  </div>
+</div>
 
-  <!-- Floating Buttons -->
-  <div class="floating-buttons">
-    <button type="button" class="btn-circle" id="scroll-to-top" title="Back to Top">
-      <span style="font-weight: 600; font-size: 0.9rem; color: var(--color-text);">up</span>
+<!-- Floating Buttons -->
+<div class="floating-buttons">
+    <button class="btn-circle" id="scroll-to-top" title="Back to Top" type="button">
+        <span style="font-weight: 600; font-size: 0.9rem; color: var(--color-text);">up</span>
     </button>
-  </div>
+</div>
 
-  <script>
+<script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
-    
+
     // Scroll to top click handler
-    scrollToTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTopBtn.addEventListener('click', function () {
+        window.scrollTo({top: 0, behavior: 'smooth'});
     });
-    
+
     // Smart visibility based on scroll position with throttling
     let ticking = false;
-    
+
     function updateScrollButtonVisibility() {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.add('show');
-      } else {
-        scrollToTopBtn.classList.remove('show');
-      }
-      ticking = false;
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+        ticking = false;
     }
-    
+
     function handleScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollButtonVisibility);
-        ticking = true;
-      }
+        if (!ticking) {
+            requestAnimationFrame(updateScrollButtonVisibility);
+            ticking = true;
+        }
     }
-    
+
     window.addEventListener('scroll', handleScroll);
 
-
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
-  </script>
+</script>
 {% endblock %}

@@ -3,10 +3,142 @@
 {% block title %}Sustainability{% endblock %}
 
 {% block page_content %}
+  <style>
+    .sustainability-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/sdg-back.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .sustainability-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for sustainability header */
+    body.dark-mode .sustainability-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .sustainability-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .sustainability-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .sustainability-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .sustainability-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .sustainability-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .sustainability-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
+  
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header sustainability-header">
     <div class="container">
-      <h1>可持续发展</h1>
+      <h1>Sustainable Development</h1>
+      <p>Building a sustainable future through responsible biotechnology innovation</p>
     </div>
   </header>
 
@@ -15,55 +147,146 @@
     <!-- Sidebar -->
     <div class="article-sidebar">
       <nav class="catalog">
-        <h4 id="contents">目录</h4>
+        <h4 id="contents">Contents</h4>
         <ul class="catalog-list">
-          <li><a href="#sustainability-vision">可持续愿景</a></li>
-          <li><a href="#green-research">绿色研究</a></li>
-          <li><a href="#environmental-impact">环境影响</a></li>
-          <li><a href="#future-commitment">未来承诺</a></li>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#sdg4">SDG 4: Quality Education</a></li>
+          <li><a href="#sdg9">SDG 9: Industry, Innovation and Infrastructure</a></li>
+          <li><a href="#sdg12">SDG 12: Responsible Consumption and Production</a></li>
+          <li><a href="#sdg17">SDG 17: Partnerships for the Goals</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
         </ul>
       </nav>
     </div>
     
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="sustainability-vision">可持续愿景</h2>
-      <p>我们致力于通过科学研究和技术创新，为全球可持续发展做出贡献，构建一个更加美好的未来。</p>
+      <h2 id="overview">Overview</h2>
+      <p>In the process of designing and advancing the project, we have always hoped that it would not merely be a scientific research exploration, but rather closely resonate with broader social goals. The United Nations Sustainable Development Goals (SDGs) provide us with a clear coordinate system, helping us continuously reflect on: What long-term value can our work bring to education, industry, society, and the environment? Based on this reflection, our project has made direct contributions to SDG 4 (Quality Education) and SDG 17 (Partnerships for the Goals), while also demonstrating potential contributions in SDG 9 (Industry, Innovation, and Infrastructure) and SDG 12 (Responsible Consumption and Production).</p>
       
-      <h3>核心理念</h3>
-      <ul>
-        <li>环境保护与生态修复</li>
-        <li>绿色技术与清洁能源</li>
-        <li>循环经济与资源利用</li>
-        <li>社会责任与伦理科研</li>
-      </ul>
+      <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/sustainbility/sdgoverview.webp" alt="SDG Overview" style="width: 100%; height: auto; margin: 20px 0; float: right;">
+      
+      <p>In iHP, we have presented in detail how to connect education, scientific research, responsible consumption, and partnerships into a sustainable development path. In this section, we will further clarify this path from the perspective of the United Nations Sustainable Development Goals (SDGs) and explain it in conjunction with the target indicators.</p>
 
-      <h2 id="green-research">绿色研究</h2>
-      <p>我们的研究工作始终秉承绿色可持续的原则，在实验设计和执行中最大限度地减少环境影响。</p>
+      <h2 id="sdg4" style="display: flex; align-items: center; gap: 300px;">SDG 4: Quality Education <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/xjtluaichinasdg4.webp" alt="SDG 4 Icon" style="height: 150px; width: auto;"></h2>
+      <p><em>Ensure inclusive, equitable, and quality education, and promote lifelong learning opportunities for all</em></p>
       
-      <h3>绿色实验室实践</h3>
-      <ul>
-        <li>减少化学试剂和危险物质的使用</li>
-        <li>优化实验流程减少能耗</li>
-        <li>实验废料的分类处理和回收</li>
-        <li>采用环保材料和设备</li>
-      </ul>
+      <p>SDG 4: Quality Education aims to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all. Its core connotations include: Accessibility: Ensure that all children and adolescents have access to basic education, without being deprived of learning opportunities due to geographical location, gender, or economic conditions. Fairness: Pay special attention to disadvantaged groups and regions with limited resources, and strive to narrow the education gap. Quality and Relevance: Not only impart knowledge, but also cultivate critical thinking, innovation capabilities, and values of sustainable development. Lifelong Learning: Education should not be confined to campus, but should become a right that everyone can access and enjoy throughout their lives.</p>
 
-      <h2 id="environmental-impact">环境影响</h2>
-      <p>我们的研究目标是在解决塑料污染问题的同时，最大限度地减少研究过程中的环境负担。</p>
-      
-      <h3>积极影响</h3>
-      <ul>
-        <li>塑料污染的有效治理</li>
-        <li>清洁生产技术的推广</li>
-        <li>绿色产业的发展促进</li>
-        <li>可持续生活理念的传播</li>
-      </ul>
+      <h3>Why We Choose</h3>
+      <p>During the preliminary research for HP's education work design, we realized that most people's attitude towards cutting-edge technologies such as synthetic biology and AI technology is "abstract" and "only for professionals". Moreover, although they vaguely perceive the pollution problem, they still lack a profound understanding of the severity of plastic pollution and the motivation to change this situation. Therefore, through our education work, we hope not only to help more people cross this knowledge threshold and translate cutting-edge scientific research into language that everyone can understand, but also to enable more people to understand that the plastic pollution problem is closely related to themselves, thereby stimulating their initiative to protect the environment.</p>
 
-      <h2 id="future-commitment">未来承诺</h2>
-      <p>我们承诺将继续致力于可持续发展的研究和实践，为构建一个更加绿色、更加美好的世界贡献力量。</p>
+      <h3>Stakeholder Dialogue and Feedback</h3>
       
-      <p>通过我们的努力，我们希望能够为全球环境保护和可持续发展事业做出积极贡献。</p>
+      <h4>Primary School: Teacher Feedback</h4>
+      <p>After the first online class at Beijing Bozhi School in Beijing, China, the teaching assistant teacher admitted that the online format weakened the sense of interaction, causing children to get distracted quickly; moreover, the parts involving AI and projects were too abstract for them. In contrast, explanations like "the four characteristics of living organisms" that are close to life are most understandable and acceptable to children. The teacher's feedback reminds us that interest must start from experiences that children can perceive, rather than from complex concepts.</p>
+
+      <h4>Primary School: Student Feedback</h4>
+      <p>It is precisely based on this feedback that we strengthened the design of "hands-on" and "experiential" elements in the second primary school activity. During the "Bacteria Painting" activity at the Cold Spring Harbor Asia DNA Learning Center in Suzhou, Jiangsu, China, children personally completed the experiment, their eyes shining as their works gradually took shape. Several children even voluntarily proposed after class that they wanted to learn more in-depth about laboratory procedures and biological knowledge.</p>
+
+      <h4>Junior High School: The Call for Fair Education</h4>
+      <p>At Cao Miao Middle School in Suqian City, Jiangsu Province, China, we were facing a group of students about to take the high school entrance examination. Before class, the teacher told us that many children in the class might not be able to continue their studies. So, we not only shared the basic knowledge of synthetic biology but also encouraged them to explore the fun of learning and conveyed the mindset of "never give up learning no matter the circumstances." After class, a boy came up to us and gave feedback that he really liked the class and hoped to hear more from us in the future.</p>
+
+      <h4>High School: Teacher Support</h4>
+      <p>After a class at Huamai Middle School in Chengmai County, Hainan Province, China, local biology teachers said that if students are interested, they are willing to provide further support and even jointly design relevant activities. The teachers' feedback made us realize that when education truly stimulates students' interest, it will naturally extend into continuous actions by schools and teachers.</p>
+
+      <h3>Impact and Coverage</h3>
+      <p>In terms of specific coverage, our educational activities have reached 1 primary school, 1 junior high school, 1 senior high school, and all classes of 1 educational institution and its summer school. This coverage has enabled us to implement continuous educational practices from younger to older age groups, while also ensuring the multi-level nature and representativeness of the activities.</p>
+
+      <h2 id="sdg9" style="display: flex; align-items: center; gap: 300px;">SDG 9: Industry, Innovation and Infrastructure <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/xjtluaichinasdg9.webp" alt="SDG 9 Icon" style="height: 150px; width: auto;"></h2>
+      <p><em>Build resilient infrastructure, promote sustainable industrialization, and foster innovation</em></p>
+      
+      <p>SDG9 aims to "build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation." It emphasizes that many challenges faced by modern society, such as environmental pollution, resource shortages, and economic transformation, need to be addressed through industrial upgrading and innovative scientific research.</p>
+
+      <h3>Why Choose</h3>
+      <p>Plastic pollution is a typical interdisciplinary and cross-industry issue. Academic exploration alone cannot form a closed loop; it must collaborate with the industry to truly promote the entry of degradable materials into market applications. In our communication with Guangdong Zhongsu, we deeply felt that the significance of scientific research lies not only in proposing new tools but also in whether it can address industrial pain points.</p>
+
+      <h3>Stakeholder Feedback</h3>
+      <p>After an online conversation, representatives from Guangdong Zhongsu reminded us that if the model does not take into account the complexity of the natural environment, it will be difficult to meet the actual needs of the industry. They also suggested that our platform be positioned as a scientific research service tool, embedded in the front end of the industrial chain to help enterprises and research institutions collaborate.</p>
+
+      <h3>Quantitative Impact Assessment</h3>
+      <p>Taking enzyme engineering R&D as an example, traditional methods often require high-throughput screening of large-scale libraries. Assuming that a typical cycle requires approximately 10,000 mutants, with a screening cost of about 10USD per mutant, the direct investment in the experimental phase alone amounts to as much as 100,000USD. In contrast, the Plaszyme model significantly reduces the number of actual validations through intelligent prediction: by comparing the model results, we only need to experimentally test approximately 100 candidates, plus a small amount of computational cost (about 1,000USD), and the expenditure for the entire cycle can be effectively controlled, which means that the direct R&D cost is expected to be reduced by approximately 90 percent.</p>
+
+      <h2 id="sdg12" style="display: flex; align-items: center; gap: 300px;">SDG 12: Responsible Consumption and Production <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/xjtluaichinasdg12.webp" alt="SDG 12 Icon" style="height: 150px; width: auto;"></h2>
+      <p><em>Promote efficient use of resources, reduce waste and pollution, and achieve sustainable production and consumption patterns</em></p>
+      
+      <p>SDG 12 aims to "ensure sustainable consumption and production patterns". It emphasizes that by reducing resource waste, promoting the circular economy, and advocating green production methods, social consumption and production can be made more efficient and environmentally friendly, thus avoiding adding to the environmental burden.</p>
+
+      <h3>Why Choose</h3>
+      <p>As a team researching plastic degradation, our work is inherently closely linked to SDG12: the essence of plastic pollution is precisely the result of unsustainable production and consumption patterns. Although our project focuses on scientific research, we also adhere to the practice of sustainable concepts in the project periphery and communication aspects. When designing team uniforms and peripherals, we proactively chose environmentally friendly materials made from plant residues or biodegradable materials.</p>
+
+      <h3>Stakeholder Feedback</h3>
+      <p>When we introduced the material selection of the surrounding products during the event, many participants expressed that such environmental protection practices in details made them feel the sincere attitude of the research team towards sustainable development, rather than just empty words in publicity. Some residents mentioned to us during a plastic recycling event that they rarely come into contact with daily necessities made of biodegradable materials, which made us realize that promoting an environmentally friendly consumption model requires not only production by enterprises but also joint efforts from scientific research and public education.</p>
+
+      <h2 id="sdg17" style="display: flex; align-items: center; gap: 300px;">SDG 17: Partnerships for the Goals <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/icons/xjtluaichinasdg17.webp" alt="SDG 17 Icon" style="height: 150px; width: auto;"></h2>
+      <p><em>Strengthen global cooperation and partnerships, bringing together the forces of government, scientific research, industry, education, and the public</em></p>
+      
+      <p>SDG 17 aims to "promote partnerships for the goals". It emphasizes that in the face of global challenges such as climate change, educational equity, and environmental protection, no single country, institution, or team can achieve them alone. Only through cooperation among governments, enterprises, scientific research institutions, communities, and the public, integrating resources, sharing knowledge, and complementing each other's strengths, can all sustainable development goals be truly implemented.</p>
+
+      <h3>Why Choose</h3>
+      <p>At the very beginning of Project Initiation, we realized that the issue of plastic pollution cannot be solved solely by laboratory research; rather, it is a systematic challenge that requires the joint participation of scientific research, industry, community, and education. SDG17 emphasizes "Partnerships for the Goals," which aligns perfectly with our team's philosophy.</p>
+
+      <h3>Stakeholder Dialogue and Feedback</h3>
+      
+      <h4>Community: Discover the Value of Connection through Actions Close to You</h4>
+      <p>The plastic recycling activity launched on the shores of Jinji Lake in Suzhou, Jiangsu Province, China, initially aimed only to collect creatives for the project. However, when we personally collected and sorted these plastic products and shared the significance of recycling with community residents, we truly felt for the first time that scientific research is not "starting from scratch" but should be based on social reality.</p>
+
+      <h4>Enterprise: Industry feedback makes scientific research closer to reality</h4>
+      <p>During our communication with Guangdong Zhongsu, we originally had no expectation of receiving useful feedback after introducing our research approach, but unexpectedly received a reminder from the other party: "If the prediction model does not take into account the complexity of the natural environment, it will be difficult to truly help the industry." This feedback made us deeply realize that partnerships are not passive, but rather a driving force that constantly pushes us to correct our direction.</p>
+
+      <h4>Cross-team Collaboration: Inspiration and Co-creation from the Research Community</h4>
+      <p>At an online sharing session held with five teams, namely BUCT, BUCT-China, ZJUT-China, JLU-NBBMS, and Tsinghua, we not only exchanged ideas on project challenges and explorations but also achieved four outcomes through cooperation: <em>Chassis Bacteria Comic White Paper</em>, <em>Enzymatic Cycling: Synthetic Biology Roadmap and Action Initiative towards a Plastic Circular Economy</em>, cross-team plastic recycling actions and joint course recordings. All outcomes have been compiled into downloadable PDFs or video links, which are placed on the Community page for easy reference and reuse by future teams.</p>
+
+      <h4>Academic Stage: From Sharing to Mutual Learning</h4>
+      <p>At the CCiC National Exchange Conference, we first presented our project on a larger stage, showcasing and discussing it with iGEM teams and experts from across the country. Different teams provided us with multi-dimensional feedback ranging from experimental design to educational activities.</p>
+
+          <h3 id="learning-and-inheritance">Learning and Inheritance: Building on Previous iGEM Projects</h3>
+
+    <p>
+        Throughout the progression of our project, we have never moved forward in isolation. Instead, we consciously
+        look back to learn from and build upon the footprints of our predecessors. The <strong>2024 CAU-China</strong>
+        team left a lasting impression on us. Their sustainable design not only aligned conceptually with the SDGs but,
+        more importantly, was rooted in collaboration—sharing educational resources, co-developing public science
+        materials, and creating open-access platforms that enabled future teams to continue and expand their work.
+    </p>
+
+    <p>
+        Inspired by this spirit of cooperative continuity, we began, in the course of our project, to build connections
+        with several teams, including <strong>BUCT</strong>, <strong>BUCT-China</strong>, <strong>ZJUT-China</strong>,
+        <strong>JLU-NBBMS</strong>, and <strong>Tsinghua</strong>. Our collaboration was not limited to idea exchange or
+        superficial communication; instead, we worked together to produce tangible outcomes. Initiatives such as the
+        <em>“An Illustrated White Paper on Chassis”</em>, <em>Enzymatic Cycle: A Synthetic Biology Roadmap and Action
+        Initiative towards a Plastic Closed Loop Economy</em>, cross-team plastic recycling campaigns, and jointly
+        recorded educational courses were all realized through these partnerships.
+    </p>
+
+    <p>
+        These results carry not only the efforts of each participating team but also our shared aspiration to make
+        knowledge and experience flow across broader communities. Taking this further, we have sought to embed this
+        collaborative spirit into our project framework itself—building bridges between education, research, industry,
+        and community engagement. Through these connections, we hope to weave these seemingly separate modules into a
+        cohesive, bottom-up pathway toward sustainable development.
+    </p>
+
+    <p>
+        Ultimately, we see this process not merely as a tribute to past achievements but as a continuation of them—a way
+        to let the <em>“seeds sown by previous teams”</em> sprout in our hands, and to provide future iGEMers with a
+        framework that continues to grow and evolve.
+    </p>
+      <h2 id="conclusion">Conclusion</h2>
+      <p>During the project implementation, we did not "attach SDGs to the outcomes" but instead regarded them as the steering wheel for our thinking: through the exploration of SDG4, SDG9, SDG12, and SDG17, we gradually constructed a complete path from educational enlightenment → scientific research and innovation → responsible consumption → collaborative co-construction. Education is not just a slogan; it is about entering classrooms in cities and villages to truly ignite children's curiosity with knowledge. Scientific research and innovation are not just laboratory concepts; they have achieved nearly 90 percent savings in experimental costs through the Plaszyme platform. Responsible consumption is not just an idea; it is about bringing environmental protection into daily life through cross-provincial recycling initiatives. And partnerships are not just verbal appeals; they are the implementation of four cross-team cooperation outcomes.</p>
+      
+      <p>It is precisely through these solid actions that we have gradually come to realize that SDGs are not just distant goals but practical paths that can be implemented step by step. This path not only helps us see the connection between scientific research and society but also leads us to think: Can a young scientific research team respond to more ambitious global issues with continuous actions?</p>
+      
+      <p>This path not only demonstrates how synthetic biology can contribute to solving social problems but also reflects how a young scientific research team responds to global issues through continuous action. We believe that sustainable development is not an abstract slogan but rather every bit of interaction in the classroom, every sincere exchange with enterprises, every choice in the surrounding details, and every joint creation across teams.</p>
+      
+      <p>It is precisely through these "concrete and nuanced" actions that our project has established a strong connection with the SDGs, and also provided new imaginative space for the intersection of future scientific research and society. We hope that this effort can become a seed that, with the participation of more educators, researchers, industries, and the public, will take root, germinate, blossom, and bear fruit in the soil of global sustainable development.</p>
+
+      <h3>Part of Project Contribution</h3>
+      <ol>
+        <li>Open source resources (especially data resource sharing and database co-construction plan) <a href="http://plaszyme.org/plaszymedb" target="_blank">plaszyme.org/plaszymedb</a> (database online platform link)</li>
+        <li><a href="https://github.com/Tsutayaaa/PlaszymeDB" target="_blank">https://github.com/Tsutayaaa/PlaszymeDB</a></li>
+      </ol>
     </article>
   </div>
 
@@ -104,65 +327,5 @@
     
     window.addEventListener('scroll', handleScroll);
 
-
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

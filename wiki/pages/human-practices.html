@@ -3,10 +3,141 @@
 {% block title %}Human Practices{% endblock %}
 
 {% block page_content %}
+  <style>
+    .human-practices-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/background/hpck2.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .human-practices-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for human practices header */
+    body.dark-mode .human-practices-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .human-practices-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .human-practices-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .human-practices-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .human-practices-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .human-practices-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .human-practices-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
+  
   <!-- Article Header -->
-  <header class="article-header">
+  <header class="article-header human-practices-header">
     <div class="container">
-      <h1>人文实践</h1>
+      <h1>Human Practices</h1>
     </div>
   </header>
 
@@ -15,198 +146,769 @@
     <!-- Sidebar -->
     <div class="article-sidebar">
       <nav class="catalog">
-        <h4 id="contents">目录</h4>
+        <h4 id="contents">Contents</h4>
         <ul class="catalog-list">
-          <li><a href="#stakeholder-engagement">利益相关者参与</a></li>
-          <li><a href="#expert-interviews">专家访谈</a></li>
-          <li><a href="#ethical-considerations">伦理考量</a></li>
-          <li><a href="#social-impact">社会影响</a></li>
-          <li><a href="#policy-recommendations">政策建议</a></li>
-          <li><a href="#continuous-dialogue">持续对话</a></li>
+          <li><a href="#overview">HP Framework Overview</a></li>
+          <li><a href="#background">Background</a></li>
+          <li><a href="#stakeholder-analysis">Stakeholder Analysis</a></li>
+          <li><a href="#wet-experiment-ihp">Wet Experiment iHP</a></li>
+          <li><a href="#online-platform-ihp">Online Platform iHP</a></li>
+          <li><a href="#model-section-ihp">Model Section iHP</a></li>
+          <li><a href="#educational-ihp">Educational iHP</a></li>
+          <li><a href="#sustainable-development-ihp">Sustainable Development iHP</a></li>
+          <li><a href="#communication-cooperation">Communication and Cooperation</a></li>
         </ul>
       </nav>
     </div>
     
     <!-- Article Content -->
     <article class="article-content">
-      <h2 id="stakeholder-engagement">利益相关者参与</h2>
-      <p>我们积极与各利益相关者对话，了解塑料污染问题的多元视角和复杂性，确保我们的研究能够真正解决现实问题。</p>
-      
-      <h3>政府部门交流</h3>
-      <p>与环保部门、工信部门等政府机构沟通：</p>
-      <ul>
-        <li><strong>政策理解</strong>：深入了解塑料污染防治政策及其实施挑战</li>
-        <li><strong>技术需求</strong>：探讨生物降解技术在政策层面的支持需求</li>
-        <li><strong>标准制定</strong>：参与相关行业标准和规范的讨论</li>
-        <li><strong>监管框架</strong>：了解生物技术应用的监管要求</li>
-      </ul>
-      
-      <h3>企业界合作</h3>
-      <p>与塑料产业链企业建立合作关系：</p>
-      <ul>
-        <li>塑料生产企业：了解生产过程中的现实挑战</li>
-        <li>废料处理企业：探讨应用场景和技术集成</li>
-        <li>环保科技公司：交流技术路线和市场需求</li>
-        <li>投资机构：讨论技术产业化的可行性</li>
-      </ul>
-      
-      <h3>学术界协作</h3>
-      <p>与各高校和科研院所建立学术交流：</p>
-      <ul>
-        <li>环境科学领域专家：讨论环境影响评估</li>
-        <li>生物技术领域专家：交流技术可行性</li>
-        <li>社会学领域专家：分析社会接受度</li>
-        <li>伦理学领域专家：探讨伦理问题</li>
-      </ul>
+        <h2 id="overview">HP Framework Overview</h2>
+        <p><strong>Understanding:</strong> Clearly define project objectives at the initial stage (Initial objectives) +
+            Potential impacts, survey results. Analyze and determine the
+            direction of follow-up work. List potential stakeholders (researchers, relevant enterprises, the public,
+            iGEM community teams), and predict and analyze their possible concerns.</p>
 
-      <h2 id="expert-interviews">专家访谈</h2>
-      <p>我们进行了广泛的专家访谈，从不同领域获取专业意见和建议。</p>
-      
-      <h3>环境专家访谈</h3>
-      <p><strong>访谈对象：</strong>中科院生态环境研究中心 李教授</p>
-      <p><strong>主要观点：</strong></p>
-      <ul>
-        <li>塑料污染已成为全球性环境问题，需要系统性解决方案</li>
-        <li>生物降解技术具有巨大潜力，但需要谨慎评估环境影响</li>
-        <li>建议建立完善的环境安全评估体系</li>
-        <li>需要长期监测和跟踪研究</li>
-      </ul>
-      
-      <h3>产业专家访谈</h3>
-      <p><strong>访谈对象：</strong>某知名塑料企业研发总监 王先生</p>
-      <p><strong>主要观点：</strong></p>
-      <ul>
-        <li>传统回收方法成本高、效率低，急需新技术</li>
-        <li>生物降解技术需要解决成本和规模化问题</li>
-        <li>市场对环保技术有强烈需求，愿意投资</li>
-        <li>建议加强产学研合作</li>
-      </ul>
-      
-      <h3>政策专家访谈</h3>
-      <p><strong>访谈对象：</strong>环保部政策研究中心 张研究员</p>
-      <p><strong>主要观点：</strong></p>
-      <ul>
-        <li>国家高度重视塑料污染防治，政策支持力度大</li>
-        <li>生物技术符合绿色发展理念，前景广阔</li>
-        <li>需要建立完善的技术标准和监管体系</li>
-        <li>建议开展国际合作和交流</li>
-      </ul>
+        <p><strong>Interaction/Participation:</strong> Based on previous understanding, we conduct iHP and collect and
+            analyze feedback from activities.</p>
 
-      <h2 id="ethical-considerations">伦理考量</h2>
-      <p>生物技术的应用必须建立在伦理和责任的基础上，我们深入思考了相关的伦理问题。</p>
-      
-      <h3>生物安全问题</h3>
-      <ul>
-        <li><strong>基因改造微生物的安全性</strong>：评估工程微生物泄漏的风险</li>
-        <li><strong>生态系统影响</strong>：分析对自然环境和生物多样性的潜在影响</li>
-        <li><strong>可逆性原则</strong>：确保技术应用的可控性和可逆性</li>
-        <li><strong>预防性原则</strong>：采取谨慎方法，防范未知风险</li>
-      </ul>
-      
-      <h3>社会公正问题</h3>
-      <ul>
-        <li><strong>技术获取平等</strong>：确保技术能惠及不同经济条件的地区</li>
-        <li><strong>就业影响</strong>：考虑对传统回收产业就业的影响</li>
-        <li><strong>知识产权</strong>：平衡知识产权保护与技术普及</li>
-        <li><strong>参与民主</strong>：保障公众在决策中的发言权</li>
-      </ul>
-      
-      <h3>伦理框架建设</h3>
-      <p>我们建立了全面的伦理评估框架：</p>
-      <ul>
-        <li>伦理委员会审查制度</li>
-        <li>风险评估和管理机制</li>
-        <li>利益相关者参与机制</li>
-        <li>透明度和公开性原则</li>
-        <li>持续监测和评估机制</li>
-      </ul>
+        <p><strong>Reflection:</strong> Combine the feedback collected from HP with one's own next steps of work, and
+            correct and adjust the deviations.</p>
 
-      <h2 id="social-impact">社会影响</h2>
-      <p>我们全面评估了技术的社会影响，包括积极和消极影响，以确保技术发展符合社会利益。</p>
-      
-      <h3>积极影响</h3>
-      <ul>
-        <li><strong>环境效益</strong>：显著减少塑料污染，改善环境质量</li>
-        <li><strong>经济效益</strong>：创造新的产业机会和就业岗位</li>
-        <li><strong>科技进步</strong>：推动生物技术领域的发展</li>
-        <li><strong>教育价值</strong>：提高公众环保意识和科学素养</li>
-        <li><strong>国际合作</strong>：促进国际科技交流与合作</li>
-      </ul>
-      
-      <h3>潜在风险</h3>
-      <ul>
-        <li><strong>技术依赖</strong>：可能减少对传统环保方法的重视</li>
-        <li><strong>经济冲击</strong>：对传统回收产业的冲击</li>
-        <li><strong>不平等加剧</strong>：可能加剧技术鸿沟和地区差异</li>
-        <li><strong>过度依赖</strong>：对单一技本路线的过度依赖</li>
-      </ul>
-      
-      <h3>应对策略</h3>
-      <p>针对潜在风险，我们制定了相应的应对策略：</p>
-      <ul>
-        <li>平衡技术发展的组合拳法</li>
-        <li>加强对传统产业的帮助和转型支持</li>
-        <li>促进技术普及和教育均衡化</li>
-        <li>建立多元化的技术解决方案</li>
-      </ul>
+        <p><strong>Actions/Adjustments:</strong> Based on the results of adjustments after feedback and how to share
+            these experiences.</p>
 
-      <h2 id="policy-recommendations">政策建议</h2>
-      <p>基于我们的研究和社会调研，我们对相关政策制定提出了建议。</p>
-      
-      <h3>法律法规建议</h3>
-      <ul>
-        <li><strong>生物安全法规</strong>：完善工程微生物的安全管理规定</li>
-        <li><strong>环境影响评估</strong>：建立全面的环境风险评估体系</li>
-        <li><strong>产业准入标准</strong>：制定生物降解产业的准入标准</li>
-        <li><strong>知识产权保护</strong>：平衡创新激励与技术普及</li>
-      </ul>
-      
-      <h3>经济政策建议</h3>
-      <ul>
-        <li><strong>财政支持</strong>：设立专项资金支持研发和产业化</li>
-        <li><strong>税收优惠</strong>：给予环保技术企业税收优惠</li>
-        <li><strong>政府采购</strong>：优先采购生物降解技术和产品</li>
-        <li><strong>绿色金融</strong>：发展绿色信贷和绿色债券</li>
-      </ul>
-      
-      <h3>科技政策建议</h3>
-      <ul>
-        <li><strong>研发支持</strong>：增加对生物技术基础研究的投入</li>
-        <li><strong>人才培养</strong>：加强相关专业人才培养</li>
-        <li><strong>平台建设</strong>：建设共享的研发平台和数据库</li>
-        <li><strong>国际合作</strong>：加强国际科技合作与交流</li>
-      </ul>
+        <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/hpoverviewpic.avif" alt="Human Practices Overview" style="width: 100%; max-width: 800px; height: auto; margin: 20px 0; border-radius: 8px;">
 
-      <h2 id="continuous-dialogue">持续对话</h2>
-      <p>人文实践是一个持续的过程，我们将继续与各方保持对话，不断完善我们的研究和应用。</p>
-      
-      <h3>建立长期机制</h3>
-      <ul>
-        <li><strong>利益相关者委员会</strong>：建立常设的对话机制</li>
-        <li><strong>定期评估</strong>：定期评估技术影响和社会反映</li>
-        <li><strong>公众参与</strong>：定期举办公众参与活动</li>
-        <li><strong>信息透明</strong>：及时公布研究进展和发现</li>
-      </ul>
-      
-      <h3>国际交流平台</h3>
-      <ul>
-        <li>参与国际科技伦理组织的活动</li>
-        <li>与国际iGEM团队分享经验</li>
-        <li>参与国际环保技术会议</li>
-        <li>建立跨国研究合作关系</li>
-      </ul>
-      
-      <h3>教育与传播</h3>
-      <ul>
-        <li><strong>科学普及</strong>：开展多形式的科学普及活动</li>
-        <li><strong>教育资源</strong>：开发教育资源和课程</li>
-        <li><strong>媒体传播</strong>：通过媒体扩大社会影响</li>
-        <li><strong>青少年教育</strong>：重点关注青少年科学教育</li>
-      </ul>
-      
-      <p>通过全面的人文实践活动，我们不仅为技术发展提供了社会支撑，也为科学研究的伦理发展做出了积极贡献。我们将继续秉承责任科研的理念，为构建可持续发展的未来贡献力量。</p>
+        
+
+        <h2 id="background">Background</h2>
+        <p>Plastic pollution has become a global environmental and social challenge. More than 400 million tons of waste
+            plastic are generated annually, most of which is difficult to recycle or degrade, remaining in the natural
+            environment for a long time and posing potential threats to the ecosystem and human health. Traditional
+            physical and chemical treatment methods are costly, energy-intensive, and may also cause secondary
+            pollution, making them difficult to meet the requirements of sustainable development. In contrast, microbial
+            enzyme degradation of plastics provides a green and viable alternative path.</p>
+
+        <p>However, both the scientific research and industrial sectors still face numerous obstacles when advancing in
+            this direction:</p>
+        <ul>
+            <li>Traditional enzyme discovery methods have long cycles, high costs, and low efficiency;</li>
+            <li>Given the limited number of degradation enzymes and incomplete functional annotation, it is difficult to
+                support large-scale R&D;
+            </li>
+            <li>For mainstream synthetic plastics such as PE, PP, and PET, there is a lack of mature enzyme
+                preparations, which limits their application and promotion;
+            </li>
+            <li>The candidate enzyme verification process is lengthy, impeding scientific research efficiency.</li>
+        </ul>
+
+        <p>Against this backdrop, we have proposed the <strong>Plaszyme Project</strong>, aiming to accelerate the
+            discovery and application of plastic-degrading enzymes through computational methods. The project objectives
+            include:</p>
+        <ol>
+            <li>Achieve highly reliable prediction under limited sample conditions and shorten the screening cycle of
+                candidate enzymes;
+            </li>
+            <li>Automatically capture sequence features using Machine Learning and Deep Learning, breaking through the
+                limitations of traditional homology methods;
+            </li>
+            <li>Provide priority ranking and function prediction of candidate enzymes for researchers, reducing
+                unnecessary experimental consumption;
+            </li>
+            <li>Provide data foundation for the industrial community and promote the research, development, and
+                application of new degradation enzymes.
+            </li>
+        </ol>
+
+        <h2 id="stakeholder-analysis">Stakeholder Analysis</h2>
+        <p>We identified the key stakeholders. To gain a more intuitive understanding of the
+            advantages and challenges of the project from the perspectives of different stakeholders, we further
+            conducted a SWOT analysis.</p>
+
+        <p>These insights and the analysis of stakeholders have helped us clarify the scientific objectives and social
+            significance of the project, enabling the team to be guided by actual needs in subsequent model development,
+            online platform development, wet experiment design, community engagement, educational practice, and
+            sustainable development strategies, ensuring that every action is based on a full understanding of the
+            issues, audiences, and potential impacts.</p>
+<figure style="text-align: center; display: grid; grid-template-columns: 1fr; gap: 0.6rem; justify-items: center; margin: 1rem 0;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/liyixiangguanzhe-1.webp"
+       style="width: 92%; border-radius: 16px; display: block; margin: 0;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/liyixiangguanzhe-2.webp"
+       style="width: 92%; border-radius: 16px; display: block; margin: 0;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/liyixiangguanzhe-3.webp"
+       style="width: 92%; border-radius: 16px; display: block; margin: 0;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/liyixiangguanzhe-4.webp"
+       style="width: 92%; border-radius: 16px; display: block; margin: 0;" />
+</figure>
+
+        <h2 id="wet-experiment-ihp">Wet Experiment iHP</h2>
+        <p>In this project, we are committed to building a highly accurate prediction model for plastic-degrading
+            enzymes. Although computational biology methods (such as AI and molecular dynamics simulations) can
+            efficiently screen potential enzyme sequences, their reliability ultimately depends on real and reproducible
+            experimental data. Sequence functional annotations in databases often contain inconsistencies or errors, and
+            direct use may lead to biases in model evaluation. Therefore, wet experiments become an indispensable
+            component - they provide us with an empirically validated test set, ensuring that the model's prediction
+            results are not only based on algorithms but also grounded in biological facts.</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/xieziwen-1.webp"
+               style="flex: 1;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/xieziwen-1.webp"
+                     style="width: 100%; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/2.webp" style="flex: 1;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/2.webp"
+                     style="width: 100%; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <h3>Integration of External Feedback and Method Optimization</h3>
+        <p>During the experimental design process, we encountered a critical operational challenge: how to ensure the
+            consistency of the crude enzyme solution prepared by ultrasonic disruption among different samples.</p>
+
+        <p>The initially adopted ratio of "1g of bacterial cells : 10mL of buffer" resulted in weak enzyme activity
+            signals in some strains, and we realized that the difference in fragmentation efficiency might stem from an
+            unreasonable dilution ratio.</p>
+
+        <p>To solve the problem, we proactively consulted <strong>Professor Han</strong> and <strong>his doctoral
+            student Zhao</strong>, who have extensive experience in protein biochemical experiments.</p>
+
+        <p>They pointed out that an excessively high cell concentration can easily lead to incomplete disruption and
+            cause heat-induced denaturation, while an excessively low concentration will dilute proteins and reduce
+            detection sensitivity. Finally, they recommended using a standardized ratio of "1g of cells : 5mL of
+            buffer".</p>
+
+        <p>We immediately fully adopted the ratio of "1g : 5mL" in subsequent experiments. Practice has proven that this
+            adjustment not only solved the original problem of weak signals but also made the results more consistent
+            across different samples. As a result, the team has become more aware that the optimization of many
+            experimental details often relies on inspiration from external experience.</p>
+
+        <h3>Experimental Validation and Data Contribution</h3>
+        <p>The wet experiment part is centered around the goal of "constructing a reliable test set", and the specific
+            steps include:</p>
+        <ul>
+            <li><strong>Plasmid construction and cloning verification:</strong> Five target sequences (PLA01–PET04) were
+                cloned into the pET22b vector and transformed into E. coli BL21(DE3). The genetic sequence was confirmed
+                to be correct by colony PCR and Sanger sequencing, providing "true positive" inputs for the model.
+            </li>
+            <li><strong>Protein Expression and Functional Verification:</strong> IPTG was used to induce expression,
+                followed by ultrasonic disruption and preparation of crude enzyme solution, and an enzyme activity test
+                was conducted using 4pNPA as the substrate. The results showed that all five sequences were
+                significantly higher than the Control group (p < 0.05). Western Blot further provided direct evidence of
+                protein expression for PLA01, PET01, and PET02.
+            </li>
+        </ul>
+
+        <p>These results validate the effectiveness of the prediction model from three dimensions: sequence consistency,
+            enzyme activity rate, and protein expression level, ensuring that subsequent iterations are based on real
+            and reliable data.</p>
+
+        <h3>Responsibility and Impact: From Experiment to Society</h3>
+        <p>We recognize that wet experiments are not only technical issues but also involve the responsibility of
+            scientific research towards society and the environment. Throughout the process, we strictly adhere to
+            biosafety regulations: all experiments were conducted in a BSL-1 laboratory, the Escherichia coli BL21(DE3)
+            used was a non-pathogenic engineered strain, and all waste containing bacteria was autoclaved to avoid risks
+            to the environment and personnel.</p>
+
+        <p>This sense of responsibility is not only reflected in compliance operations but also in our hope to ensure
+            that research results can be safely adopted and applied by the scientific community and society in the
+            future. By considering both scientific rigor and social responsibility in design and implementation, we
+            ensure that experimental data serves as a solid foundation for Model Iteration and is also a practical
+            demonstration of the team's commitment to "responsible science".</p>
+
+        <h2 id="online-platform-ihp">Online Platform iHP</h2>
+        <p>Through extensive research, we have recognized the importance of an online platform. Its convenient operation
+            can enable the product to reach a broader client base, actually assist researchers, and allow more people to
+            experience the ability of artificial intelligence platforms to accelerate the development of synthetic
+            biology. Therefore, we have designed the online platform in detail, making our database and models available
+            online.</p>
+        <figure style="text-align: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/1.webp">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/1.webp"
+                     style="max-width: 80%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>After the design was developed, we communicated with <strong>Yukun Jiang</strong>, a member from ZHU Lab, and
+            separately with <strong>Sekar Raju</strong> from the School of Science at Xi'an Jiaotong-Liverpool
+            University and his Ph.D. students. They are all engaged in research on the biodegradation of plastics and
+            have in-depth hands-on experience in this field, which is also the important reason for our interviews with
+            these individuals or research groups. We shared the platform design with them and summarized the specific
+            suggestions they put forward:</p>
+        <ol>
+            <li>Optimize the database display mode;</li>
+            <li>Add more descriptive information and provide web cards with more guidance;</li>
+            <li>Optimize the usage logic of the website;</li>
+            <li>Add more diverse model input methods.</li>
+        </ol>
+
+        <p>These ideas have also been incorporated into the next phase of our platform development:</p>
+        <ol>
+            <li>Considering that most researchers lack specific plastic-degrading enzyme sequences and many
+                biodegradation researchers often obtain input in the form of metagenomic sequences from the environment,
+                we have developed a metagenomic input module using HMM as a new model input method, enabling more
+                researchers to study specific issues more conveniently.
+            </li>
+            <li>We have also implemented the optimization of the mentioned database display mode, further enriching the
+                content displayed on the details page and adjusting the layout accordingly.
+            </li>
+        </ol>
+
+        <p>During the final online follow-up visit with Jiang colleagues: She personally experienced the entire process
+            of model prediction and database query on the public domain names we shared http://plaszyme.org/plaszymedb
+            and http://plaszyme.org/plaszyme. After hands-on operation, she gave positive feedback and commended the
+            platform for achieving the design goal of "intuitive and convenient".</p>
+        <figure style="text-align: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/zaixian-2.webp">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/zaixian-2.webp"
+                     style="max-width: 80%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <h2 id="model-section-ihp">Model Section iHP</h2>
+        <p>Under the global challenge of plastic pollution, we proposed the idea of constructing the <strong>Plaszyme
+            Model Platform</strong>, hoping to accelerate the discovery and application of degrading enzymes through
+            computational methods. However, we soon realized that it would be difficult to solve all problems solely
+            through internal team thinking:</p>
+        <ul>
+            <li>With limited data samples, is the model reliable enough?</li>
+            <li>Is it applicable to all different scientific research scenarios?</li>
+            <li>Is the model output truly useful to researchers?</li>
+        </ul>
+        <p>These uncertainties have motivated us to proactively seek external feedback and consult experts from
+            scientific research, environmental studies, and the iGEM community. Through these exchanges, we have not
+            only received valuable advice but also continuously adjusted and optimized the direction and design of our
+            model.</p>
+
+        <h3>Stakeholder Consultation and Feedback</h3>
+        <h4>ZhuLab Researcher Yukun Jiang</h4>
+        <p><strong>Question/Concern:</strong> Under the condition of limited samples, how to ensure the reliability of
+            prediction? How to obtain more available data?</p>
+        <p><strong>Our Actions:</strong> We integrate decentralized databases, supplement data using methods such as HMM
+            and sequence alignment, and ensure robustness even on small samples through model architecture optimization.
+        </p>
+
+        <h4>Professor Sekar Raju and his doctoral student Xiaotian Zhao</h4>
+        <p><strong>Question/Concern:</strong> Is the application scenario of the model too single? Can it serve
+            environmental sample research that is closer to the needs of researchers?</p>
+        <p><strong>Recommendation:</strong> Introduce a metagenomic analysis module to directly mine potential degrading
+            enzymes in environmental samples.</p>
+        <p><strong>Improvement:</strong> We added a metagenomic analysis interface, combined with a hidden Markov model
+            to predict degradation enzyme sequences in metagenomes, and automatically input the results into the main
+            model for validation.</p>
+
+        <h4>BUCT-China 2025 Runze Sun</h4>
+        <p><strong>Problem/Concern:</strong> The coverage of plastic type prediction is insufficient, with early
+            versions only supporting 7 categories. For iGEM research, the limited number of predicted categories
+            restricts its application.</p>
+        <p><strong>Recommendation:</strong> Expand the types of plastics covered by the prediction, especially common
+            but data-scarce categories.</p>
+        <p><strong>Improvement:</strong> Plaszyme Alpha and Plaszyme X can ultimately cover 34 types of plastics,
+            greatly enhancing the applicability of the model.</p>
+
+        <p>Through communication with researchers, professors, and other iGEM teams, we continuously incorporate
+            external feedback into Model Iteration to make it more in line with real scientific research needs.</p>
+
+        <h3>Model Iteration and Core Methods</h3>
+        <h4>Plaszyme Alpha</h4>
+        <p>Combines ESM protein language model embeddings with SMOTE oversampling under small sample conditions to
+            address the issues of insufficient data volume and class imbalance. By using the Histogram-based Gradient
+            Boosting classifier for modeling, the hit@1 can reach up to 0.88, significantly improving the prediction
+            reliability under limited data conditions.</p>
+
+        <h4>Plaszyme X</h4>
+        <p>Adopts a dual-tower architecture: one side embeds and represents the enzyme sequence, while the other side
+            generates descriptor vectors for the plastic molecular structure. Features are fused through graph neural
+            networks, with cosine similarity as the optimization objective. The model performs outstandingly on
+            multi-label tasks, with the F1-score reaching up to 0.9, better reflecting the complexity of the
+            enzyme-plastic relationship.</p>
+
+        <p>The two types of models are complementary: the Alpha model focuses on rapid classification and sequence
+            prediction, while the X model delves into in-depth modeling of enzyme-substrate interactions. Combined with
+            the metagenomic expansion module, the platform can cover the full range of application scenarios from
+            laboratory data to environmental samples.</p>
+
+        <h3>Security and Feasibility Assessment</h3>
+        <h4>Security</h4>
+        <p>The platform strictly protects user privacy in its design and does not collect personal sensitive data.</p>
+
+        <h4>Data Source Reliability</h4>
+        <p>PlaszymeDB integrates professional databases such as PlasticDB, PAZy, and PMBD, supplements with data from
+            GitHub open-source projects and literature, and cross-verifies through authoritative databases such as
+            UniProt, NCBI, and PDB. Each piece of data comes with a source and citation link to ensure traceability.</p>
+
+        <h4>Hypothesis Testing and Verification</h4>
+        <p>We hypothesized that enzyme sequence features could distinguish their plastic degradation capabilities. Five
+            validation sequences obtained through wet experiments were used as an independent test set to evaluate the
+            model's generalization ability on real data. Statistical results showed that the predictions were highly
+            consistent with experimental annotations, providing solid scientific support for the model.</p>
+
+        <h4>Model Scope of Application</h4>
+        <p>The Alpha model is suitable for rapid classification tasks where the plastic type is known; the X model is
+            suitable for exploring the degradation relationships of new or complex plastics. The combination of the two
+            provides full-process support for scientific research and industrial applications.</p>
+
+        <h3>Conclusion</h3>
+        <p>The development of Plaszyme has undergone a process that starts from social needs, continuously collects
+            feedback, and then proceeds to continuous optimization. Each adjustment brings the model closer to the needs
+            of scientific research and application, and also makes our work more robust and reliable.</p>
+
+        <h2 id="educational-ihp">Educational iHP</h2>
+        <p>When initially designing educational work, what we considered was not just classrooms and knowledge, but how
+            to enable more people to truly understand synthetic biology. As an emerging discipline, although excellent
+            scholars have been working hard to promote it, it is still often regarded as "abstruse and difficult to
+            understand." We hope to break this barrier, making synthetic biology like a door that everyone can easily
+            open and discover surprises and value within. Meanwhile, we also see the real challenges posed by plastic
+            pollution. We are well aware that science should not remain in an ivory tower but should engage in dialogue
+            with reality and become a driving force for social progress. Therefore, we attempt to bring synthetic
+            biology to more people through stories, interactions, and exchanges, allowing everyone to feel its
+            connection to life and see the hope it may bring to environmental issues.</p>
+
+        <h3>Educational Philosophy and Spiral Framework</h3>
+        <p>In the process of practice, we have gradually realized that educational activities for different groups are
+            not isolated but rather a closely linked and progressive whole. Combining Bruner's spiral curriculum theory
+            and constructivist learning theory, we have proposed the team's "educational spiral": starting with
+            interest, centered on understanding, and ending with action. The primary school stage focuses on
+            enlightenment and experience, the middle school stage emphasizes responsibility and exploration, the high
+            school stage highlights critical thinking and value identification, while university and public education
+            move towards cross-border cooperation and social participation.</p>
+
+        <p>This framework is not only a conceptual design, but also continuously undergoes feedback testing in practice,
+            and is adjusted and optimized with reflection.</p>
+
+        <h3>Educational Practice and Feedback Adjustment</h3>
+
+        <h4>First Attempt: Shortcomings of Online Teaching</h4>
+        <p>In the online classes at Beijing Bozhi School, we guided students to understand "the four characteristics of
+            living organisms" through real-life examples. The children showed genuine curiosity, but after class, the
+            teaching assistants reported that the online format lacked interaction, making it difficult for some
+            children to concentrate; the AI and project components were too abstract and beyond their comprehension.
+            This feedback made us realize that real experiences can stimulate interest more effectively than abstract
+            knowledge.</p>
+
+        <h4>Feedback-based Improvement: Offline Interaction and Bacterial Painting</h4>
+        <p>After reflection, we proactively adjusted our strategy: abandoning the online format and instead launching
+            offline courses, reducing abstract content, and increasing hands-on experiments. In the classroom of the
+            Cold Spring Harbor DNA Learning Center in Suzhou, children completed "bacterial painting" under the guidance
+            of teachers. The sense of participation and artistic form of the experiment brought positive feedback, with
+            students remaining focused during exploration and even expressing a desire for further learning. This
+            improvement has made us deeply realize that listening to feedback and making timely adjustments are the keys
+            to the success of educational practice.</p>
+
+        <h4>Further Extension: Reflections on the Urban-Rural Education Gap</h4>
+        <p>In the classrooms of Caomiao Middle School, we not only introduced synthetic biology and AI but also
+            incorporated interactive Q&A sessions and personal stories to help students find motivation to learn despite
+            limited educational resources. The sincere responses from students after class made us realize that the
+            value of education lies not only in imparting knowledge but also in igniting hope. This feedback has
+            prompted us to expand our educational vision to areas with relatively weak resources.</p>
+
+        <h4>High School Stage: Enhancement of Responsibility and Critical Thinking</h4>
+        <p>At Huamai Middle School, we have successfully inspired students' sense of responsibility by taking the
+            national and personal fates as the starting point. However, in our post-class reflection, we realized that
+            we still lacked in inspiring critical thinking. Therefore, in subsequent classes, we added "AI prompt"
+            exercises to guide students to learn how to interact with AI through practice and develop critical thinking
+            in the process. The students' feedback, "This is the first time I've truly learned to use AI," confirmed the
+            effectiveness of this adjustment.</p>
+
+        <h4>University and the Public: Cross-Boundary Collaboration and Cultural Resonance</h4>
+        <p>During the university stage, we not only offered ML training courses but also attempted cross-boundary
+            initiatives, combining "bacterial painting" with calligraphy and painting arts to hold art exhibitions. Many
+            colleagues reported that this format made them feel for the first time the closeness of science to life. The
+            success of this cross-boundary collaboration stems from our continuous collection of feedback and
+            optimization of design in practice, ultimately finding the most resonant approach.</p>
+
+        <h3>Conclusion</h3>
+        <p>From interest enlightenment to a sense of responsibility, from a sense of responsibility to critical
+            thinking, and then to cross-border cooperation and social participation, our educational practices continue
+            to progress through feedback and adjustment. Each attempt is not a one-way output, but a two-way dialogue
+            jointly completed with students, teachers, and the public. It is precisely this cycle of "feedback -
+            reflection - improvement" that makes the educational spiral truly become a continuously growing path, and
+            also gradually brings synthetic biology towards "understandable and participatory by all".</p>
+
+        <h2 id="sustainable-development-ihp">Sustainable Development iHP</h2>
+
+        <h3>Sustainable Development Pathway: From Education to Collaboration</h3>
+        <p>We have always believed that sustainable development should not remain a mere slogan but should be reflected
+            in the path of specific practices. Looking back on the entire project, our work has gradually formed a
+            sustainable development route linked by <strong>education - research - consumption - cooperation</strong>.
+        </p>
+
+        <h4>Starting from Education</h4>
+        <p>In educational activities that compare urban and rural areas and are segmented by age group, we have reached
+            1 primary school, 1 junior high school, 1 senior high school, and all classes of 1 educational institution
+            and its summer school. In these activities, students' interests, teachers' teaching feedback, and schools'
+            considerations regarding curriculum arrangements have driven us to continuously revise and refine our
+            design, ultimately resulting in a set of reusable educational frameworks (primary schools focus on hands-on
+            practice, while senior high schools emphasize extended thinking). This framework has been fully presented in
+            the Education section and can be directly referenced by future teams and educators. This is not only the
+            starting point of our social awareness but also makes the connotation of SDG4 "Quality Education" truly take
+            root.</p>
+
+        <h4>Towards Scientific Research and Innovation</h4>
+        <p>The awareness of the question "how plastics can be truly degraded" inspired during the educational process
+            has driven us to think about the industrial significance of translating scientific research into practical
+            applications. On this basis, we developed the <strong>Plaszyme Prediction Model</strong>, which has reduced
+            the cost and time of experimental trial and error by approximately <strong>98%</strong> through
+            computational simulation. This tool has received positive feedback during exchanges with enterprises: it is
+            not only a scientific research method but also has the potential to become a pre-evaluation tool for the
+            industrial sector. Thus, we have realized that the synergy between scientific research and industry is a key
+            entry point for SDG9 "Industry, Innovation and Infrastructure".</p>
+
+        <h4>Extending to Responsible Consumption</h4>
+        <p>Based on scientific research and education, we attempt to translate our concepts into the team's own code of
+            conduct. For example, we prioritize the use of environmentally friendly materials in peripheral design and
+            promote low-waste work methods within the team. Although these initiatives are limited in scale, they enable
+            us to achieve "unity of knowledge and action" and influence more people to pay attention to SDG 12
+            "Responsible Consumption and Production" through the dissemination of peripheral products. This is another
+            way for us to externalize the value of scientific research into social action.</p>
+
+        <h4>Finally, We Return to Collaborative Co-construction</h4>
+        <p>We are well aware that the strength of a single team is limited, so we actively engage in cross-border
+            cooperation. Through exchanges with multiple teams such as BUCT, ZJUT-China, JLU-NBBMS, Tsinghua, etc., we
+            jointly produced <em>Chassis Bacteria Comic White Paper</em>, <em>Plastic Circular Economy Initiative</em>,
+            <em>Cross-team Recycling Action</em>, and <em>Joint Course Recording</em>, etc. downloadable and reusable
+            outcomes. Meanwhile, through enterprise interviews and community linkages, our scientific research
+            exploration has gradually integrated with social expectations. It is precisely in these collaborations that
+            we have realized that SDG17 "Partnerships" is not just a bonus, but a necessary path to promote the
+            sustainable development of scientific research and society.</p>
+
+        <p>This path from start to finish is not only the trajectory of our growth in the one-year project, but also our
+            most authentic understanding of "sustainable development": <strong>Educational enlightenment, scientific
+                research innovation, responsible consumption, and collaborative co-construction are not isolated
+                actions, but an integrated whole that supports and advances each other.</strong></p>
+
+        <h2 id="communication-cooperation">Communication and Cooperation</h2>
+        <p>Throughout the journey of the project, we have always reminded ourselves that scientific research cannot be
+            conducted in isolation within the laboratory; it must establish connections with society, industry, teams,
+            and the public to truly realize its value. That is why we have taken the initiative to reach out,
+            continuously engaging in exchanges and cooperation among communities, industries, teams, and on academic
+            platforms. These experiences have not only enriched the connotations of the project but also helped us
+            understand the significance of scientific research from new perspectives.</p>
+
+        <h3>Community Communication</h3>
+
+        <h4>Plastic Recycling · Starting Point Initiative: Sharing Environmental Responsibility with the Community</h4>
+        <figure style="text-align: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/suliao-1.webp">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/suliao-1.webp"
+                     style="max-width: 80%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>Team members organized a "Plastic Recycling Campaign" by Jinji Lake in Suzhou City, Jiangsu Province. We
+            cleaned up scattered plastic waste along the lakeside trail. After several hours of effort, we collected
+            dozens of plastic items in total.</p>
+
+        <p>Initially, we only had the idea of "collecting background creatives for the project," but witnessing this
+            trash made us for the first time deeply and intuitively feel the problem of plastic pollution.</p>
+
+        <p>Subsequently, we sorted out these plastic samples, conducted preliminary classification of biodegradable and
+            non-biodegradable waste, and transformed them into "creatives" that promote the connection between
+            scientific research and society. This process also made us truly realize that researching plastic
+            degradation is not just a "point of interest" in scientific research; it corresponds to an urgent social
+            pain point. It is precisely this impact that has strengthened our conviction in the significance of the
+            project and made us recognize that scientific research needs to draw problems from reality.</p>
+
+        <p>After CCIC, the team, with the help of the synthetic biology community, got to know iGEM teams such as BUCT
+            and BUCT-China. Through discussions and exchanges among the teams, they jointly organized the subsequent
+            "Joint Plastic Product Recycling Activity".</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/suliao-3.webp"
+               style="flex: 1 1 45%; max-width: 100%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/suliao-3.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+
+        <h4>CCiC Exchange Conference: Cross-team Sharing and Collaboration</h4>
+
+        <p>At the CCiC National Exchange Conference, we first presented our project on a larger stage, sharing the
+            spotlight with iGEM teams from across the country. We shared our research ideas and also raised questions
+            about experimental design and educational activities.</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-2.webp"
+               style="flex: 1 1 30%; max-width: 40%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-2.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-3.webp"
+               style="flex: 1 1 30%; max-width: 40%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-3.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-1.webp"
+               style="flex: 1 1 30%; max-width: 40%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-1.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>We also engaged in in-depth exchanges with multiple teams on experimental techniques, HP ideas, and science
+            popularization and education methods:</p>
+
+        <p>Taking this opportunity provided by CCiC, the XJTLU-AI-China Team engaged in in-depth exchanges with
+            outstanding teams such as BIT, ZJUT, SJU, and BUCT in the biodegradation and artificial intelligence track,
+            and established mutually trusted cooperative relationships with some of them.</p>
+        <ul>
+            <li>Share experimental details (such as the preparation method of screening plates) with ZJUT, optimize the
+                design of wet experiment procedures, avoid potential errors, and jointly promote research progress;
+            </li>
+            <li>The SJU AI team conducts two-way exchanges on development experience and platform functions, and
+                mutually proposes implementable optimization suggestions;
+            </li>
+            <li>Members of the BUCT-China team gave positive feedback on PlaszymeDB (a plastic degrading enzyme database
+                independently designed by XJTLU-AI-China) and had an initial experience of the database's functions.
+            </li>
+        </ul>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-6.webp"
+               style="flex: 1 1 45%; max-width: 45%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-6.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-7.webp"
+               style="flex: 1 1 45%; max-width: 45%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/ccic-7.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>Through sharing and feedback, our project has been further optimized from an external perspective, and we
+            have also gained many potential future cooperation opportunities. These suggestions not only help us
+            optimize our research, but also make us realize that scientific exploration is not a one-way output, but
+            continuous evolution through mutual inspiration. CCiC has taught us to step outside our team and view our
+            work from others' perspectives.</p>
+
+        <h4>Volunteers at Cold Spring Harbor Asia DNA Learning Center Summer Camp: Lighting Up Children's Eyes with
+            Stories</h4>
+        <p>At the summer camp of Cold Spring Harbor Asia DNA Learning Center in Suzhou, Jiangsu Province, China, our
+            team members participated as volunteers, leading campers to visit laboratories, teaching buildings, etc.,
+            and introduced through interactive explanations the development history of DNA research. In the
+            communication with primary and secondary school students, our team's volunteers explained complex scientific
+            concepts and issues in easy-to-understand language, acting like little tour guides, leading them to explore
+            the ocean of science and inspiring their interest in life sciences. We firmly believe that scientific
+            communication is not about "dumbing down" complex knowledge, but about finding a bridge to communicate with
+            different audiences. This experience not only improved our communication skills but also reminded us that
+            the value of scientific research results also lies in whether they can inspire the curiosity and sense of
+            responsibility of the next generation.</p>
+
+        <h3>Enterprise Communication: Two-way Dialogue between Scientific Research and Industry</h3>
+        <p>During the project's advancement, we have always emphasized maintaining close ties with the industry. Only by
+            continuously listening to real-world needs can our work truly solve problems, rather than working in
+            isolation. Based on this understanding, we actively sought to communicate with enterprises in the plastic
+            degradation industry. However, actually taking this step was not easy. After four rejections, we finally
+            established a communication opportunity with Guangdong Zhongsu, a leading enterprise in the plastic
+            degradation industry in Dongguan City, Guangdong Province, China.</p>
+
+        <p>During the first online communication, after we introduced the project concept, we unexpectedly received
+            positive and candid feedback from the other party: "If you can develop such a tool, it will surely be a good
+            thing for the industry." This affirmation made us feel the alignment between scientific research results and
+            real-world needs, and also strengthened our confidence to continue exploring. More importantly, their
+            representative put forward a highly valuable suggestion: if our prediction model can take into account the
+            complex conditions of the natural environment, the results will be closer to the application scenarios. This
+            reminder made us reflect that the gap between the perfect settings in the laboratory and the real world may
+            determine whether the project can ultimately truly benefit stakeholders. The "ideal environment" in the
+            laboratory is not reality, and for scientific research to be effective, this gap must be bridged.</p>
+        <figure style="display: flex; justify-content: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/qiye.webp"
+               style="max-width: 80%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/qiye.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <h4>Face-to-Face Thinking: Repositioning Amid Industry Pain Points</h4>
+        <p>On this basis, we further went offline and had in-depth face-to-face exchanges with enterprise
+            representatives. During the meeting, they not only shared the current situation of the industry and market
+            pain points: Although policy promotion has gradually reduced the cost of degradable materials, they still
+            remain at a disadvantage compared to traditional plastics; the market demand is strong, but it is restricted
+            by the imperfect industrial chain and inconsistent standards. These real challenges have made us realize
+            that our project cannot merely exist as a scientific research achievement. Enterprises have also helped us
+            think about the positioning of our project within the industrial chain. They further pointed out that if we
+            position our project platform as a scientific research service tool, it can better integrate into the front
+            end of the industrial chain, help research institutions and enterprises collaborate, and thus promote the
+            implementation of research results. This direct feedback from the community and the industry has made us
+            realize that communication is not just about passively acquiring information, but a driving force that
+            propels us to continuously correct our understanding and expand the boundaries of our project. Such
+            communication has not only given us an overall understanding of the industry but also made us more clear
+            about the role we can play in future development.</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/qiye-2.webp"
+               style="flex: 1 1 45%; max-width: 45%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/qiye-2.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/xianxiajiaoliu.webp"
+               style="flex: 1 1 45%; max-width: 45%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/xianxiajiaoliu.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>Through both online and offline communication, we have gradually come to understand the industry's
+            expectations and support for the project, and have also deeply felt that scientific research must respond to
+            real-world issues. It is precisely these conversations that have made us realize that the relationship
+            between scientific research and industry is not a "one-way output," but rather a cycle of mutual
+            empowerment.</p>
+
+        <h3>Team Communication</h3>
+        <p>If community and enterprise exchanges have allowed us to see the expectations of society and the industry for
+            scientific research, then team exchanges have enabled us to experience the mutual assistance and growth
+            within the scientific research community. In our interactions with other iGEM teams, we have not only shared
+            experiences but also continuously reflected and improved through the collision of ideas with each other.</p>
+
+        <h4>Cross-team Online Sharing Session: From Doubts to Consensus</h4>
+        <p>We first organized a national online sharing session with multiple teams engaged in research related to
+            plastic degradation (such as BUCT, BUCT-China, ZJUT-China, JLU-NBBMS...).</p>
+        <figure style="display: flex; justify-content: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/quanduiwu.webp"
+               style="max-width: 80%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/quanduiwu.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <p>Everyone introduced their
+            respective projects, sharing the results of their exploration and candidly presenting the challenges they
+            encountered. It was precisely in this "unreserved" communication atmosphere that we gained many insights:
+            (such as the progress of wet experiments, the affirmation of the scientific significance of such a plastic
+            degradation prediction model within the field, and the subsequent HP work based on the synthetic biology
+            community). The discussion gradually evolved from communication to cooperation, ultimately resulting in four
+            practical outputs:</p>
+
+        <h5>Chassis Bacteria Comic White Paper</h5>
+        <p>Each team is responsible for writing about 1–2 chassis bacteria, introducing them from four dimensions:
+            introduction and core features, application examples and engineering plasticity, industrialization and
+            application prospects, as well as safety and risks. We presented these contents in the form of comics and
+            exhibited them on our respective social media platforms. Finally, we compiled them into a book and made it
+            available for everyone to browse in physical form at the Paris venue. This is not only an organization of
+            knowledge but also an attempt at science popularization for the public.</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-1.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-1.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu-2.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu-2.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu3.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu3.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu4.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-baipishu4.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-5.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-5.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-6.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/dipan-6.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+
+        <h5>Enzymatic Cycling: A Synthetic Biology Roadmap and Action Initiative towards a Closed-Loop Plastic
+            Economy</h5>
+        <p>During a previous online sharing session, teams from different tracks and research backgrounds came together
+            to jointly discuss environmental issues and their respective projects, generating a wealth of meaningful
+            intellectual exchanges. Through the collaboration of multiple teams, we organized our ideas and documented
+            them in writing, resulting in this white paper. Our team emphasizes the writing on the integration of AI in
+            the white paper, sharing the overall background and innovative projects. More importantly, as a team in the
+            Software&AI track, we responsibly conduct a detailed analysis of the risks and safety of AI products,
+            especially those related to plastic biodegradation research, to address the lack of awareness among most
+            teams regarding the detailed content of AI risks in this field.</p>
+        <figure style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-1.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-1.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-2.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-2.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-3.webp"
+               style="flex: 1 1 30%; max-width: 30%;">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/meicu-3.webp"
+                     style="width: 100%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+
+        <h5>Jointly Recorded Sustainable Development Courses</h5>
+        <p>Among the 7 Sustainable Development Goals (SDG3, 6, 9, 11, 12, 14, 17), each team selected one to record a
+            course. We chose SDG17 (Partnerships for the Goals), focusing on the core topic of "plastic pollution as a
+            global issue that requires international cooperation to address". From how global research teams promote
+            synthetic biology research through collaboration to how governments, enterprises, and social organizations
+            jointly promote technology application and dissemination, we shared real-world cases. The course was finally
+            uploaded to social media platforms by the BUCT team, enabling more people to benefit.</p>
+<figure style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; text-align: center;">
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/sdg17-ke.webp"
+       style="height: 320px; width: auto; border-radius: 12px; object-fit: contain;" />
+  <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/sdg.webp"
+       style="height: 320px; width: auto; border-radius: 12px; object-fit: contain;" />
+</figure>
+        <h5>Eco Plastic Recycling · Joint Action</h5>
+        <figure style="text-align: center;">
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhehuishou-1.webp"
+                 style="max-width: 60%; height: auto; border-radius: 8px;"/>
+        </figure>
+        <p>Building on our previous community recycling activities, each team decided to jointly deepen the significance
+            and scope of the activities. We created a "Plastic Type Query Table" as a reference tool and unified all the
+            data collected by the teams into an Excel spreadsheet for everyone to share. These data not only help the
+            teams supplement the background of their respective projects but also form a shared outcome for the
+            community. Through this sharing session, we have deeply felt that cooperation is not merely about making an
+            event "even more beautiful" through teamwork and collecting a larger amount of background data on plastic
+            products with a wider geographical scope, but rather a way to promote scientific research results to reach a
+            broader society.</p>
+        <figure style="text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe-3.webp"
+                 style="width: 22%; border-radius: 8px;"/>
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe-4.webp"
+                 style="width: 22%; border-radius: 8px;"/>
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe-5.webp"
+                 style="width: 22%; border-radius: 8px;"/>
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe-6.webp"
+                 style="width: 22%; border-radius: 8px;"/>
+        </figure>
+        <figure style="text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe-7.webp"
+                 style="width: 45%; border-radius: 8px;"/>
+            <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/lianhe8.webp"
+                 style="width: 45%; border-radius: 8px;"/>
+        </figure>
+        <h4>Peer-to-Peer Communication: In-depth Experiments and Models</h4>
+        <p>In more specific cooperation, we had in-depth discussions with two teams from BUCT regarding the wet lab
+            experiment section. During the communication process, we were able to review and reflect on the work of the
+            wet lab experiment section and envision subsequent summary plans. This helped us realize the importance of
+            an interdisciplinary perspective: teams with different backgrounds can illuminate our blind spots from new
+            angles.</p>
+        <figure style="text-align: center;">
+            <a href="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/buct-shiyan.webp">
+                <img src="https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/hp/buct-shiyan.webp"
+                     style="max-width: 80%; height: auto; border-radius: 8px;"/>
+            </a>
+        </figure>
+        <h3>Our Achievements and Reflections</h3>
+        <p>This series of team exchanges has made us deeply realize that:</p>
+        <ul>
+            <li>Collaboration is not an accessory, but the core driving force that propels scientific research to
+                continuously improve;
+            </li>
+            <li>The sharing of knowledge can be transformed into educational resources for the public and can also
+                benefit the project itself;
+            </li>
+            <li>More importantly, as one of the Sponsors, we have learned how to organize collaboration and integrate
+                scattered efforts into truly impactful outcomes. The iGEM spirit is embodied in these exchanges: it
+                represents a journey of growth from individuals to groups, and it is also the inevitable path for our
+                project to evolve from "exploration in the laboratory" to "co-creation within the scientific research
+                community".
+            </li>
+        </ul>
     </article>
-  </div>
+</div>>
 
   <!-- Floating Buttons -->
   <div class="floating-buttons">
@@ -244,66 +946,5 @@
     }
     
     window.addEventListener('scroll', handleScroll);
-
-
-
-    // Auto-generate catalog based on headings
-    function initPageSpecificFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3');
-      
-      // Clear existing links
-      catalogList.innerHTML = '';
-      
-      headings.forEach(function(heading) {
-        if (heading.id) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + heading.id;
-          a.textContent = heading.textContent;
-          a.className = heading.tagName === 'H3' ? 'sub-heading' : '';
-          li.appendChild(a);
-          catalogList.appendChild(li);
-        }
-      });
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Highlight active section on scroll
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 150;
-        headings.forEach(function(heading) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const id = section.getAttribute('id');
-          
-          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            catalogLinks.forEach(function(link) {
-              link.classList.remove('active');
-            });
-            const activeLink = document.querySelector('.catalog-list a[href="#' + id + '"]');
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-    setTimeout(initPageSpecificFunctionality, 500);
   </script>
 {% endblock %}

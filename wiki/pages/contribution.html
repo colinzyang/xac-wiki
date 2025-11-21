@@ -3,9 +3,139 @@
 {% block title %}Contribution{% endblock %}
 
 {% block page_content %}
+  <style>
+    .contribution-header {
+      height: 320px; /* 25% increase from typical 250px */
+      min-height: 320px;
+      background: #ffffff;
+      background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/contribution/contribution.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px 0;
+      margin-bottom: 0;
+    }
+    
+    /* Gradient overlay for top and bottom fade effect */
+    .contribution-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0.05) 70%,
+        rgba(255,255,255,0.6) 100%
+      );
+      z-index: 1;
+    }
+    
+    /* Dark mode support for contribution header */
+    body.dark-mode .contribution-header {
+      background-color: #212121;
+    }
+    
+    body.dark-mode .contribution-header::before {
+      background: linear-gradient(
+        rgba(33, 33, 33, 0.3) 0%,
+        rgba(33, 33, 33, 0.05) 30%,
+        rgba(33, 33, 33, 0.05) 70%,
+        rgba(33, 33, 33, 0.6) 100%
+      );
+    }
+    
+    .contribution-header .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Text styling for better contrast on image background */
+    .contribution-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+    }
+    
+    .contribution-header p {
+      color: #e9ecef;
+      opacity: 0.95;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    body.dark-mode .contribution-header h1 {
+      color: #f8f9fa;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    
+    body.dark-mode .contribution-header p {
+      color: #e9ecef;
+      text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar scrollbar styling for long content */
+    .catalog {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+
+    .catalog-list {
+      max-height: calc(100vh - 250px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 8px;
+    }
+
+    /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    .catalog-list::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .catalog-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary, #f8f9fa);
+      border-radius: 10px;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb {
+      background: var(--theme-accent, #0078d7);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #005a9e;
+    }
+
+    /* Dark mode scrollbar */
+    body.dark-mode .catalog-list::-webkit-scrollbar-track {
+      background: #2d2d30;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb {
+      background: #4dabf7;
+    }
+
+    body.dark-mode .catalog-list::-webkit-scrollbar-thumb:hover {
+      background: #339af0;
+    }
+
+    /* Firefox scrollbar styling */
+    .catalog-list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--theme-accent, #0078d7) var(--bg-secondary, #f8f9fa);
+    }
+
+    body.dark-mode .catalog-list {
+      scrollbar-color: #4dabf7 #2d2d30;
+    }
+  </style>
   
   <!-- Article Header -->
-  <header class="article-header" style="background-image: url('https://static.igem.wiki/teams/5580/xjtluaichina2025/assets/images/matching-pictures/contribution/contribution.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <header class="article-header contribution-header">
     <div class="container">
       <h1>Contribution</h1>
       <p>Giving Back to the SynBio Community</p>
@@ -19,9 +149,10 @@
       <nav class="catalog">
         <h4 id="contents">Contents</h4>
         <ul class="catalog-list">
+          <li><a href="#problem-solution">The Problem and Our Solution</a></li>
           <li><a href="#giving-back">Giving Back to the SynBio Community</a></li>
           <li><a href="#plaszymedb">PlaszymeDB: Our Dedicated Database</a></li>
-          <li><a href="#ai-models">Our Two Core AI Models</a>
+          <li><a href="#ai-models">Two Core AI Models</a>
             <ul class="sub-catalog">
               <li><a href="#plaszyme-proto" class="sub-heading">PlaszymeAlpha</a></li>
               <li><a href="#plaszyme-gnn" class="sub-heading">PlaszymeX</a></li>
@@ -36,6 +167,11 @@
     
     <!-- Article Content -->
     <article class="article-content">
+      <h2 id="problem-solution">The Problem and Our Solution</h2>
+      <p>Our project selection was driven by a three-fold imperative: the urgency of the global plastic pollution crisis, the bottleneck in enzyme engineering, and the maturity of modern Artificial Intelligence (AI).</p>
+      <p>We recognized that while synthetic biology offers a promising "green" solution through plastic-degrading enzymes (PDEs), the research process is fundamentally challenged. The traditional method of discovering and optimizing these crucial BioParts is a time-consuming, low-throughput 'trial-and-error' wet lab process. For researchers, the available PDE data is often fragmented, inconsistently annotated, and buried across various literature and general databases. </p>
+      <p>As a team with core expertise in Bioinformatics and AI, we realized we were uniquely positioned to address this. Our central motivation was to apply a systematic, engineering-driven logic to transform this chaotic landscape into an ordered, high-efficiency workflow. We were determined to leverage the power of AI for Science (AI4S), using advanced machine learning and deep learning models to capture the complex relationships between enzyme sequence, structure and function. Also, help to push the synbiology community development.</p>
+
       <h2 id="giving-back">Giving Back to the SynBio Community</h2>
       <p>We have always recognized that our project's success is deeply rooted in the spirit of generous collaboration and open sharing cultivated by the synthetic biology and iGEM communities. Countless iGEM teams, including our own, have benefited from this ethos, allowing us to build upon the work of others and navigate a smoother development path. We truly believe that access to resources and the dissemination of knowledge can lead to great achievements. This is constantly proven by the world around us; as the old saying goes, "Unity is strength."</p>
       <p>Throughout our public engagement activities, we were often asked about the "value" of our work. This prompted us to reflect deeply on how we could make our project valuable to future iGEM teams and the broader synthetic biology community. We hope that the work detailed here, and throughout our wiki, will offer valuable insights and help facilitate future projects.</p>
@@ -45,7 +181,7 @@
       <p>PlaszymeDB currently contains 474 curated sequences of verified plastic-degrading enzymes. For every entry, we have not only generated an accurate predicted structure but also integrated experimentally determined structural data (e.g., from X-ray crystallography) where available. More importantly, each entry has been carefully annotated with key information, including the type of plastic it degrades (e.g., PET, PE) and its EC number.</p>
       <p>This database is our gift to the community. It is fully open and accessible through our WebApp, supporting online browsing, searching, and full data export and download functions. We believe PlaszymeDB serves as a rare, ready-to-use data resource that can significantly accelerate the research workflows of all iGEMers and synthetic biology researchers. Explore it at its dedicated portal: <a href="http://plaszyme.org/plaszymedb" target="_blank" rel="noopener">PlaszymeDB</a>.</p>
 
-      <h2 id="ai-models">Our 2 Core AI Models</h2>
+      <h2 id="ai-models">Two Core AI Models</h2>
       <p>Leveraging the solid data foundation of PlaszymeDB, we have sequentially engineered two distinct AI models. These innovative contributions, each with unique advantages on different metrics, act as the core intelligence and driving force of our project. Discover more on our <a href="https://gitlab.igem.org/2025/software-tools/xjtlu-ai-china" target="_blank" rel="noopener">GitLab homepage</a>.</p>
       
       <h3 id="plaszyme-proto">PlaszymeAlpha: A Sequence-Based Model for Rapid Screening</h3>
@@ -83,7 +219,7 @@
     </button>
   </div>
 
-  <script>
+    <script>
     // Enhanced scroll to top functionality with smart visibility
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     
@@ -113,156 +249,5 @@
     
     window.addEventListener('scroll', handleScroll);
 
-
-
-    // Enhanced catalog functionality with sub-menu expansion
-    // Wait for components to load before initializing catalog  
-    function initCatalogFunctionality() {
-      const catalogList = document.querySelector('.catalog-list');
-      const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4, .article-content h5');
-      
-      // Add smooth scrolling and active state
-      const catalogLinks = document.querySelectorAll('.catalog-list a');
-      catalogLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-      
-      // Enhanced highlight active section with improved detection for subsections
-      function updateActiveSection() {
-        const scrollPos = window.scrollY + 100;
-        let currentActiveSection = null;
-        let currentMainSection = null;
-        
-        // Get all headings and sort by position
-        const headingsArray = Array.from(headings);
-        let candidates = [];
-        
-        // Find all possible active sections with improved logic for short paragraphs
-        headings.forEach(function(heading, index) {
-          const section = heading;
-          const sectionTop = section.offsetTop;
-          const id = section.getAttribute('id');
-          
-          if (!id) return; // Skip headings without IDs
-          
-          // Calculate section bottom based on next heading
-          let sectionBottom;
-          if (index < headingsArray.length - 1) {
-            sectionBottom = headingsArray[index + 1].offsetTop;
-          } else {
-            sectionBottom = document.body.scrollHeight;
-          }
-          
-          // For short sections, ensure minimum detection range
-          const sectionHeight = sectionBottom - sectionTop;
-          const minRange = 300; // Minimum detection range for short sections
-          let effectiveBottom = sectionBottom;
-          
-          if (sectionHeight < minRange) {
-            effectiveBottom = sectionTop + minRange;
-            // But don't overlap with next section too much
-            if (index < headingsArray.length - 1) {
-              const nextSectionTop = headingsArray[index + 1].offsetTop;
-              effectiveBottom = Math.min(effectiveBottom, nextSectionTop + 50);
-            }
-          }
-          
-          // Enhanced detection range with better tolerance
-          const topOffset = -100; // Start detecting 100px before section
-          const bottomOffset = -80; // Continue detecting 80px after section starts
-          
-          if (scrollPos >= sectionTop + topOffset && scrollPos < effectiveBottom + bottomOffset) {
-            candidates.push({
-              id: id,
-              distance: Math.abs(scrollPos - sectionTop),
-              top: sectionTop,
-              element: heading,
-              isSubsection: heading.tagName.toLowerCase() !== 'h2'
-            });
-          }
-        });
-        
-        // Choose the best candidate based on priority and distance
-        if (candidates.length > 0) {
-          // Sort by distance, prioritizing closer sections
-          candidates.sort((a, b) => {
-            // Prefer subsections over main sections when close
-            if (Math.abs(a.distance - b.distance) < 50) {
-              if (a.isSubsection && !b.isSubsection) return -1;
-              if (!a.isSubsection && b.isSubsection) return 1;
-            }
-            return a.distance - b.distance;
-          });
-          
-          currentActiveSection = candidates[0].id;
-        }
-        
-        // Determine main section for expansion
-        const h2Headings = document.querySelectorAll('.article-content h2');
-        h2Headings.forEach(function(heading) {
-          const sectionTop = heading.offsetTop;
-          const nextH2 = Array.from(h2Headings).find(h => h.offsetTop > sectionTop);
-          const sectionBottom = nextH2 ? nextH2.offsetTop : document.body.scrollHeight;
-          
-          if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom - 50) {
-            currentMainSection = heading.id;
-          }
-        });
-        
-        // Remove all active states
-        catalogLinks.forEach(function(link) {
-          link.classList.remove('active');
-          const parentLi = link.closest('li');
-          if (parentLi) {
-            parentLi.classList.remove('active');
-          }
-        });
-        
-        // Set active state for current section (including sub-headings)
-        if (currentActiveSection) {
-          // Try to find exact match first
-          let activeLink = document.querySelector('.catalog-list a[href="#' + currentActiveSection + '"]');
-          
-          // If no exact match, try to find a sub-heading that matches
-          if (!activeLink) {
-            const subHeadings = document.querySelectorAll('.sub-catalog a.sub-heading');
-            subHeadings.forEach(function(subLink) {
-              const href = subLink.getAttribute('href');
-              if (href === '#' + currentActiveSection) {
-                activeLink = subLink;
-              }
-            });
-          }
-          
-          if (activeLink) {
-            activeLink.classList.add('active');
-          }
-        }
-        
-        // Keep main section expanded if we're anywhere within it
-        if (currentMainSection) {
-          const mainSectionLink = document.querySelector('.catalog-list > li > a[href="#' + currentMainSection + '"]');
-          if (mainSectionLink) {
-            const parentLi = mainSectionLink.closest('li');
-            if (parentLi) {
-              parentLi.classList.add('active');
-            }
-          }
-        }
-      }
-      
-      window.addEventListener('scroll', updateActiveSection);
-      updateActiveSection();
-    }
-
-    // Initialize catalog after a short delay to ensure components are loaded
-    setTimeout(initCatalogFunctionality, 500);
   </script>
 {% endblock %}
